@@ -1,5 +1,0 @@
-runtime: custom
-env: flex
-endpoints_api_service:
-  name: quit-smoke-web-api.appspot.com
-  rollout_strategy: managed
