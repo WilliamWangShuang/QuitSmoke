@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using QuitSmokeWebAPI.Controllers.Entity;
 using QuitSmokeWebAPI.Controllers.WebApiUtils;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace QuitSmokeWebAPI.Controllers
 {
@@ -30,7 +31,7 @@ namespace QuitSmokeWebAPI.Controllers
                 MyTestEntity testEntity = new MyTestEntity();
                 try 
                 {
-                    testEntity.UnitInfo = new System.Collections.ArrayList();
+                    //testEntity.UnitInfo = new System.Collections.ArrayList();
                     client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
 
                     // add an Accept header for JSON format
@@ -43,26 +44,26 @@ namespace QuitSmokeWebAPI.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         // parse the response body
-                        Console.WriteLine("*****" + response.Content.ReadAsAsync<MyTestEntity>().Result);
-                        var jsonString = response.Content.ReadAsAsync<string>().Result;
-                        Console.WriteLine("111111" + jsonString);
-                        JValue jsonVal = JValue.Parse(jsonString) as JValue;
-                        Console.WriteLine("222222"); 
-                        dynamic rcvData = jsonVal; Console.WriteLine("33333333333333");
+                        testEntity = response.Content.ReadAsAsync<MyTestEntity>().Result;
+                        //testEntity = JsonConvert.DeserializeObject<MyTestEntity>(json);
+                        
+                        // JValue jsonVal = JValue.Parse(jsonString) as JValue; 
+                        // dynamic rcvData = jsonVal;
 
-                        testEntity.Name = rcvData.name;
-                        JValue jsonValUnit = JValue.Parse(rcvData.unit) as JValue;
-                        Console.WriteLine("444444444" + jsonValUnit);
-                        foreach (JObject content in jsonValUnit.Children<JObject>())
-                        {
-                            foreach (JProperty prop in content.Properties())
-                            {
-                                testEntity.UnitInfo.Add(prop.Name + prop.Value);
-                            }
-                        }
+                        // testEntity.Name = rcvData.name;
+                        // JValue jsonValUnit = JValue.Parse(rcvData.unit) as JValue;
+                        // Console.WriteLine("444444444" + jsonValUnit);
+                        // foreach (JObject content in jsonValUnit.Children<JObject>())
+                        // {
+                        //     foreach (JProperty prop in content.Properties())
+                        //     {
+                        //         testEntity.UnitInfo.Add(prop.Name + prop.Value);
+                        //     }
+                        // }
                     } else {
-                        testEntity.Name = "Unknown";
-                        testEntity.UnitInfo.AddRange(new String[] {"No enrolled unit for SEM1", "No enrolled unit for SEM2"});
+                        testEntity.name = "Unknown";
+                        testEntity.unit.FIT5046 = "No enrolled unit for FIT5046";
+                        testEntity.unit.FIT5140 = "No enrolled unit for FIT5140";
                     }
                 } 
                 catch (Exception ex)
