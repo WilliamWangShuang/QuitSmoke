@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "Dockerfile/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Dockerfile.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Dockerfile.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -4399,6 +4408,16 @@
     }
   },
   "libraries": {
+    "Dockerfile/1.0.0": {
+      "sha512": "wXUWijvWdLH1BOnKr/75yhcCGNKlj1UHKbWvz1uoGTawvJ9J+Aflhk7qv3hkCrleKdNGIBaVIdl63S1lRZM1cw==",
+      "type": "package",
+      "path": "dockerfile/1.0.0",
+      "files": [
+        "dockerfile.1.0.0.nupkg.sha512",
+        "dockerfile.nuspec",
+        "lib/netstandard2.0/Dockerfile.dll"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "rMDlyePoxggkmN/qgha1+BR2Uy+dOr38xKCQOPfVNKGY07R2nYJGMTKJFE1XFgwD70RYUNazf2fqutjJF18XgQ==",
       "type": "package",
@@ -11607,6 +11626,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "Dockerfile >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
       "Newtonsoft.Json >= 11.0.2",
@@ -11614,23 +11634,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\swan0005\\.nuget\\packages\\": {},
+    "C:\\Users\\Jasper\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\swan0005\\Desktop\\GitHub\\QuitSmokeWebAPI\\QuitSmokeWebAPI.csproj",
+      "projectUniqueName": "c:\\Users\\Jasper\\Desktop\\IE\\QuitSmoking\\QuitSmoke\\QuitSmokeWebAPI.csproj",
       "projectName": "QuitSmokeWebAPI",
-      "projectPath": "C:\\Users\\swan0005\\Desktop\\GitHub\\QuitSmokeWebAPI\\QuitSmokeWebAPI.csproj",
-      "packagesPath": "C:\\Users\\swan0005\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\swan0005\\Desktop\\GitHub\\QuitSmokeWebAPI\\obj\\",
+      "projectPath": "c:\\Users\\Jasper\\Desktop\\IE\\QuitSmoking\\QuitSmoke\\QuitSmokeWebAPI.csproj",
+      "packagesPath": "C:\\Users\\Jasper\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Jasper\\Desktop\\IE\\QuitSmoking\\QuitSmoke\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\swan0005\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Jasper\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -11652,6 +11672,10 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "Dockerfile": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
