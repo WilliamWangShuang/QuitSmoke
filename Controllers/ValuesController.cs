@@ -17,7 +17,7 @@ namespace QuitSmokeWebAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "This is Restful deploy test" };
+            return new string[] { "This is Restful deploy test." };
         }
 
         // GET api/values/5
@@ -39,10 +39,11 @@ namespace QuitSmokeWebAPI.Controllers
                     
 
                     // retrieve data response
-                    HttpResponseMessage response = client. GetAsync(Constant.FIREBASE_ROOT + Constant.FIREBASE_SUFFIX_JSON).Result;
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT + Constant.FIREBASE_SUFFIX_JSON).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         // parse the response body
+                        Console.WriteLine("*****" + response.Content.ReadAsAsync<MyTestEntity>().Result);
                         var jsonString = response.Content.ReadAsAsync<string>().Result;
                         Console.WriteLine("111111" + jsonString);
                         JValue jsonVal = JValue.Parse(jsonString) as JValue;
