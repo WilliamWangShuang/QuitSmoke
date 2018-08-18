@@ -30,7 +30,6 @@
                 android:fontFamily="@font/nanum_brush_script"
                 android:padding="0dp"
                 android:text="@string/quite_together"
-                android:textColor="#FFFFFF"
                 android:textSize="200px" />
         </TableRow>
     </TableLayout>
