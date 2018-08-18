@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#33CCCC" >
@@ -8,7 +9,7 @@
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="1" >
+        android:stretchColumns="1">
 
         <TableRow android:background="#FFFFFF">
 
@@ -24,13 +25,13 @@
             <TextView
                 android:id="@+id/lblAppName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:fontFamily="@font/nanum_brush_script"
-                android:textColor="#FFFFFF"
                 android:padding="0dp"
                 android:text="@string/quite_together"
-                android:textSize="100px" />
+                android:textColor="#FFFFFF"
+                android:textSize="200px" />
         </TableRow>
     </TableLayout>
 
