@@ -1,5 +1,18 @@
-[Bb]in/
-[Oo]bj/
+QuitSmoke/[Bb]in/
+QuitSmoke/[Oo]bj/
 
 *.bin
 *.obj
+
+# Mobile tools for Java (J2ME)
+.mtj.tmp/
+QuitSmokeMobile/*.iml
+QuitSmokeMobile/.gradle
+QuitSmokeMobile/local.properties
+QuitSmokeMobile/.idea/libraries
+QuitSmokeMobile/.idea/modules.xml
+QuitSmokeMobile/.idea/workspace.xml
+QuitSmokeMobile/.DS_Store
+QuitSmokeMobile/build
+QuitSmokeMobile/captures
+QuitSmokeMobile/.externalNativeBuild
