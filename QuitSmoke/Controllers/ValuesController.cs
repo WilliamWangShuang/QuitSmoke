@@ -63,6 +63,47 @@ namespace QuitSmokeWebAPI.Controllers
             }
         }
 
+        // GET api/values/xxxx@xxx.com
+        [HttpGet("{email}")]
+        public ActionResult<bool> Get(string email)
+        {
+            // declare a http client to call RESTful from web api exposed by other providers
+            using(var client = new HttpClient())
+            {
+                // if user with the email exist, return true, otherwise, return false.
+                bool responseResult = true;
+                try 
+                {
+                    //testEntity.UnitInfo = new System.Collections.ArrayList();
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_APP_USERS 
+                        + Constant.FIREBASE_SUFFIX_JSON
+                        + string.Format("?orderBy=\"email\"&equalTo={0}&print=pretty", email)).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        var firebaseQueryResultByEmail = response.Content.ReadAsAsync<AppUser>().Result;
+                        responseResult = firebaseQueryResultByEmail != null;
+                    } else {
+                        responseResult = false;
+                    }
+                } 
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return responseResult;
+            }
+        }
+
         // POST api/values
         [HttpPost]
         public string Post([FromBody] AppUser newUser)
@@ -76,23 +117,6 @@ namespace QuitSmokeWebAPI.Controllers
                     client.Encoding = Encoding.UTF8;
                     // set headers
                     client.Headers.Add("Accept", "application/json");
-                    // Serialize our concrete class into a JSON String
-                    // var values = new NameValueCollection();
-                    // values[Constant.JSON_KEY_LICENCE_NO] = newUser.license_no;
-                    // values[Constant.JSON_KEY_LICENCE_TYPE] = newUser.license_type;
-                    // values[Constant.JSON_KEY_EMAIL] = newUser.email;
-                    // values[Constant.JSON_KEY_NAME] = newUser.name;
-                    // values[Constant.JSON_KEY_PWD] = newUser.password;
-                    // values[Constant.JSON_KEY_SMOKER_I] = newUser.smoker_indicator;
-                    // values[Constant.JSON_KEY_PARTNER_I] = newUser.partner_indicator;
-                    // values[Constant.JSON_KEY_REGISTER_DATE] = newUser.register_date;
-                    // values[Constant.JSON_KEY_SUBURB] = newUser.suburb;
-                    // values[Constant.JSON_KEY_CITY] = newUser.city;
-                    // values[Constant.JSON_KEY_PLAN_ID] = newUser.plan_id;
-                    // values[Constant.JSON_KEY_PARTNER_ID] = newUser.partner_id;
-                    // values[Constant.JSON_KEY_POINT] = newUser.point.ToString();
-                    //var values = QuitSmokeUtils.Serialize(newUser);
-
                     var response = client.UploadString(Constant.FIREBASE_ROOT 
                         + Constant.JSON_NODE_NAME_APP_USERS 
                         + Constant.FIREBASE_SUFFIX_JSON, JsonConvert.SerializeObject(newUser));

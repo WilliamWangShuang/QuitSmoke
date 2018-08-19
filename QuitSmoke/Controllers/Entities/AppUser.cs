@@ -5,8 +5,6 @@ namespace QuitSmokeWebAPI.Controllers.Entity
 {
     public class AppUser
     {
-        public string license_no { get; set; }
-        public string license_type { get; set; }
         public string email { get; set; }
         public string password { get; set; }
         public string name { get; set; }
