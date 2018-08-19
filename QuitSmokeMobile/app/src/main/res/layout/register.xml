@@ -23,43 +23,18 @@
             <TableRow>
 
                 <EditText
-                    android:id="@+id/register_licence_no"
+                    android:id="@+id/register_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:textColor="#000000"
-                    android:hint="@string/licence_number"
-                    android:textColorHint="@color/grey" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/lblLicenceNoErrorMsg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/errorBackgound"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow>
-
-                <EditText
-                    android:id="@+id/register_licence_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:entries="@array/licence_type"
-                    android:textColor="#000000"
-                    android:hint="@string/licence_type_for_example_driver_licence_password"
+                    android:hint="@string/licence_name"
                     android:textColorHint="@color/grey" />
             </TableRow>
             <TableRow>
 
                 <TextView
-                    android:id="@+id/lblLicenceTypeErrorMsg"
+                    android:id="@+id/lblNameNoErrorMsg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_column="0"

@@ -10,11 +10,14 @@
     <string name="quite_together">Quite Together</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="licence_number">Licence Number</string>
+    <string name="licence_name">Name</string>
+    <string name="register_name_empty_msg">Name cannot be empty.</string>
     <string name="register_email">Email</string>
     <string name="register_email_empty_msg">Email cannot be empty</string>
     <string name="register_email_format_msg">Email format is wrong. Must contain at least 1 \'@\' and end with \'.\' following by domain</string>
     <string name="register_email_exist_msg">User with same email already exist. Please change another email.</string>
+    <string name="register_throw_exception">Register fail due to exception thrown. Try again. If not work, unintall this shit app.</string>
+    <string name="register_success">Register successfully.</string>
     <string name="licence_type_for_example_driver_licence_password">licence type. For example: Driver Licence, Password.</string>
     <string name="register_pwd_empty_msg">Password cannot be empty</string>
     <string name="register_pwd_format_msg">Password at least has 8 length. Contains at least 1 special character, 1 lower and upper letter, and 1 number</string>
