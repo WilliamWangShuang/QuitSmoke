@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuitSmokeAppClient</string>
+    <string name="app_name">Quit Together</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -8,4 +8,23 @@
     <string name="action_settings">Settings</string>
     <string name="launch_logo">launch_logo</string>
     <string name="quite_together">Quite Together</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="licence_number">Licence Number</string>
+    <string name="register_email">Email</string>
+    <string name="register_email_empty_msg">Email cannot be empty</string>
+    <string name="register_email_format_msg">Email format is wrong. Must contain at least 1 \'@\' and end with \'.\' following by domain</string>
+    <string name="register_email_exist_msg">User with same email already exist. Please change another email.</string>
+    <string name="licence_type_for_example_driver_licence_password">licence type. For example: Driver Licence, Password.</string>
+    <string name="register_pwd_empty_msg">Password cannot be empty</string>
+    <string name="register_pwd_format_msg">Password at least has 8 length. Contains at least 1 special character, 1 lower and upper letter, and 1 number</string>
+    <string name="login_pwd_hint">Password</string>
+    <string name="i_am_a_smoker">I am a smoker</string>
+    <string name="register_title">Create a new account</string>
+
+    <array name="licence_type">
+        <item>Driver Licence</item>
+        <item>Password</item>
+        <item>ID Card</item>
+    </array>
 </resources>

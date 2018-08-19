@@ -4,34 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     android:background="#33CCCC" >
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:stretchColumns="1">
 
-        <TableRow android:background="#FFFFFF">
+        <TableRow
+            android:background="#FFFFFF"
+            android:gravity="center">
 
             <ImageView
                 android:layout_height="199dp"
-                android:layout_gravity="center"
                 android:contentDescription="@string/launch_logo"
                 android:src="@drawable/launch_logo" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:gravity="center_horizontal"
+            android:paddingTop="150dp">
 
             <TextView
                 android:id="@+id/lblAppName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:color="#FF2345"
                 android:fontFamily="@font/nanum_brush_script"
+                android:gravity="center"
                 android:padding="0dp"
                 android:text="@string/quite_together"
-                android:textSize="200px" />
+                android:textSize="180px" />
         </TableRow>
     </TableLayout>
 
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/sign_in"
+        android:textSize="85px" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/sign_up"
+        android:textSize="80px" />
 </LinearLayout>

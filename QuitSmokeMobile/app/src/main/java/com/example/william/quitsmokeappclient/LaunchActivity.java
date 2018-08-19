@@ -1,5 +1,6 @@
 package com.example.william.quitsmokeappclient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -19,6 +22,26 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_launcher);
+
+        // sign in button click
+        Button btnSignIn = findViewById(R.id.btnSignIn);
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: login logic
+                Toast.makeText(getApplicationContext(),R.string.i_am_a_smoker,Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Button btnRegister = findViewById(R.id.btnSignUp);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // go to register activity
+                Intent intent = new Intent(LaunchActivity.this, RegisterActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
     @Override
