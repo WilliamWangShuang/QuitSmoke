@@ -28,7 +28,7 @@ public class LaunchActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: login logic
+
                 Toast.makeText(getApplicationContext(),R.string.i_am_a_smoker,Toast.LENGTH_LONG).show();
             }
         });

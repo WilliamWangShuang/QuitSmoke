@@ -17,11 +17,13 @@ public class UserInfoEntity {
 
     public UserInfoEntity() {}
 
-    public UserInfoEntity(String name, String email, String password, Boolean isSmoker) {
+    public UserInfoEntity(String name, String email, String password, String city, String suburb, Boolean isSmoker) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.isSmoker = isSmoker;
+        this.city = city;
+        this.suburb = suburb;
     }
 
     public UserInfoEntity(String name, String email, String password, String city, String partnerId, boolean isPartner, int point, String suburb, String registerDate, boolean isSmoker) {

@@ -12,6 +12,8 @@
     <string name="sign_up">Sign Up</string>
     <string name="licence_name">Name</string>
     <string name="register_name_empty_msg">Name cannot be empty.</string>
+    <string name="register_city_empty_msg">City cannot be empty.</string>
+    <string name="register_suburb_empty_msg">Suburb cannot be empty.</string>
     <string name="register_email">Email</string>
     <string name="register_email_empty_msg">Email cannot be empty</string>
     <string name="register_email_format_msg">Email format is wrong. Must contain at least 1 \'@\' and end with \'.\' following by domain</string>
@@ -24,10 +26,14 @@
     <string name="login_pwd_hint">Password</string>
     <string name="i_am_a_smoker">I am a smoker</string>
     <string name="register_title">Create a new account</string>
+    <string name="role_smoker">Smoker</string>
+    <string name="role_supporter">Supporter</string>
+    <string name="city">city</string>
+    <string name="suburb">Suburb</string>
 
-    <array name="licence_type">
-        <item>Driver Licence</item>
-        <item>Password</item>
-        <item>ID Card</item>
+    <array name="user_role">
+        <item>Select</item>
+        <item>Smoker</item>
+        <item>Supporter</item>
     </array>
 </resources>

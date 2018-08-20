@@ -41,6 +41,7 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
         isSucc = false;
     }
 
+    @Override
     protected Void doInBackground(Void... params) {
         // check if a user with same email is already exist
         try {
@@ -52,8 +53,8 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                 h.sendEmptyMessage(1);
             } else if (!userWithSameEmail) {
                 // auto fill in other user info value that not from UI
-                registerInfoUI.setCity("Melbourne"); //TODO: hardcode city not right, should input from user
-                registerInfoUI.setSuburb("Caulfield"); //TODO: hardcode suburb not right, should input from user
+                registerInfoUI.setCity(registerInfoUI.getCity());
+                registerInfoUI.setSuburb(registerInfoUI.getSuburb());
                 registerInfoUI.setPartner(false);
                 registerInfoUI.setPoint(0);
                 registerInfoUI.setRegisterDate(QuitSmokeClientUtils.convertDateToString(new Date()));
@@ -71,10 +72,7 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
         return null;
     }
 
-
-
     @Override
-
     protected void onPostExecute(Void result) {
         //mContext.sendBroadcast(new Intent("startGenerateAppDataSignal"));
         Log.d("SmartERDebug", "register finish.");

@@ -46,6 +46,52 @@
             <TableRow>
 
                 <EditText
+                    android:id="@+id/register_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:textColor="#000000"
+                    android:hint="@string/city"
+                    android:textColorHint="@color/grey" />
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/lblCityErrorMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/errorBackgound"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/register_suburb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:textColor="#000000"
+                    android:hint="@string/suburb"
+                    android:textColorHint="@color/grey" />
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/lblSuburbErrorMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/errorBackgound"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
                     android:id="@+id/register_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,11 +147,10 @@
 
             <TableRow>
 
-                <CheckBox
-                    android:id="@+id/chkSmokerI"
-                    android:text="@string/i_am_a_smoker"
-                    android:textColor="#000000"
-                    android:background="@color/grey"/>
+                <Spinner
+                    android:id="@+id/ddlRole"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
             </TableRow>
 
             <TableRow>

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
@@ -27,12 +28,16 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView msgName;
     private TextView msgEmail;
     private TextView msgPwd;
+    private TextView msgCity;
+    private TextView msgSuburb;
     // declare text fields
     private EditText txtName;
     private EditText txtEmail;
+    private EditText txtCity;
+    private EditText txtSuburb;
     private TextView txtPwd;
     // declare check box
-    private CheckBox chkSmokerI;
+    private Spinner ddlRole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +52,16 @@ public class RegisterActivity extends AppCompatActivity {
         msgName = (TextView)findViewById(R.id.lblNameNoErrorMsg);
         msgEmail = (TextView)findViewById(R.id.lblEmailErrorMsg);
         msgPwd = (TextView)findViewById(R.id.lblPwdErrorMsg);
+        msgCity = (TextView)findViewById(R.id.lblCityErrorMsg);
+        msgSuburb = (TextView)findViewById(R.id.lblSuburbErrorMsg);
         // get text fields
         txtName = (EditText)findViewById(R.id.register_name);
         txtEmail = (EditText)findViewById(R.id.register_email);
         txtPwd = (TextView)findViewById(R.id.register_password);
+        txtCity = (EditText)findViewById(R.id.register_city);
+        txtSuburb = (EditText)findViewById(R.id.register_suburb);
         // get checkbox
-        chkSmokerI = (CheckBox)findViewById(R.id.chkSmokerI);
+        ddlRole = (Spinner)findViewById(R.id.ddlRole);
 
         // register button logic
         Button btnRegister = (Button)findViewById(R.id.btn_confirm_register);
@@ -63,11 +72,14 @@ public class RegisterActivity extends AppCompatActivity {
                 String name = txtName.getText().toString();
                 String email = txtEmail.getText().toString();
                 String pwd = txtPwd.getText().toString();
-                boolean isSmoker = chkSmokerI.isChecked();
+                String city = txtCity.getText().toString();
+                String suburb = txtSuburb.getText().toString();
+                boolean isSmoker = ddlRole.isSelected()
+                        && getResources().getString(R.string.role_smoker).equals((String)ddlRole.getSelectedItem());
 
                 // UI validation
                 // create UI info entity object
-                UserInfoEntity registerInfoUI = new UserInfoEntity(name, email, pwd, isSmoker);
+                UserInfoEntity registerInfoUI = new UserInfoEntity(name, email, pwd, city, suburb, isSmoker);
                 // validate fields on UI
                 boolean isDataValidate = validateUIFields(registerInfoUI);
                 // if UI validation pass, do server-side validation
@@ -96,6 +108,10 @@ public class RegisterActivity extends AppCompatActivity {
         boolean result = false;
         // validate first name
         result = QuitSmokeClientUtils.validateEmpty(entity.getName(), getResources().getString(R.string.register_name_empty_msg), msgName);
+        // validate city
+        result = QuitSmokeClientUtils.validateEmpty(entity.getCity(), getResources().getString(R.string.register_city_empty_msg), msgCity);
+        // validate suburb
+        result = QuitSmokeClientUtils.validateEmpty(entity.getSuburb(), getResources().getString(R.string.register_suburb_empty_msg), msgSuburb);
         // validate email
         result = QuitSmokeClientUtils.validateEmpty(entity.getEmail(), getResources().getString(R.string.register_email_empty_msg), msgEmail) && result;
         result = QuitSmokeClientUtils. validateEmailFormat(entity.getEmail(), getResources().getString(R.string.register_email_format_msg), msgEmail) && result;
