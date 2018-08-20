@@ -3,7 +3,10 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
     public class Constant
     {
         public static string FIREBASE_ROOT = "https://quit-smoke-web-api.firebaseio.com/";
+        public static string AUTH_ROOT_SIGN_UP = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=";
+        public static string AUTH_ROOT_SIGN_IN = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=";
         public static string FIREBASE_SUFFIX_JSON = ".json";
+        public static string FIREBASE_APP_KEY = "AIzaSyBxuvPNqF9TMk4gea0hfOls1QEQa4hNrlQ";
 
         #region <<json keys>>
         public static string JSON_KEY_USER_ID = "user_id";
@@ -20,6 +23,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string JSON_KEY_PLAN_ID = "plan_id";
         public static string JSON_KEY_PARTNER_ID = "partner_id";
         public static string JSON_KEY_POINT = "point";
+        public static string JSON_KEY_UID = "localId";
 
         #endregion
 

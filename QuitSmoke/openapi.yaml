@@ -32,16 +32,21 @@ paths:
         - application/json
         - text/json
         - application/*+json
-      produces: []
+      produces:
+        - text/plain
+        - application/json
+        - text/json
       parameters:
-        - name: value
+        - name: newUser
           in: body
           required: false
           schema:
-            type: string
+            $ref: '#/definitions/AppUser'
       responses:
         '200':
           description: Success
+          schema:
+            type: string
   '/api/Values/{id}':
     get:
       tags:
@@ -62,7 +67,7 @@ paths:
         '200':
           description: Success
           schema:
-            type: string
+            $ref: '#/definitions/MyTestEntity'
     put:
       tags:
         - Values
@@ -102,4 +107,91 @@ paths:
       responses:
         '200':
           description: Success
-definitions: {}
+  '/api/Values/email/{email}':
+    get:
+      tags:
+        - Values
+      operationId: ApiValuesEmailByEmailGet
+      consumes: []
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: email
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
+  /api/Values/login:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesLoginPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: user
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/AppUser'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AppUser'
+definitions:
+  AppUser:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      name:
+        type: string
+      smoker_indicator:
+        type: string
+      partner_indicator:
+        type: string
+      register_date:
+        type: string
+      suburb:
+        type: string
+      city:
+        type: string
+      plan_id:
+        type: string
+      partner_id:
+        type: string
+      point:
+        format: int32
+        type: integer
+      uid:
+        type: string
+  MyTestEntity:
+    type: object
+    properties:
+      name:
+        type: string
+      unit:
+        $ref: '#/definitions/Unit'
+  Unit:
+    type: object
+    properties:
+      fiT5046:
+        type: string
+      fiT5140:
+        type: string
