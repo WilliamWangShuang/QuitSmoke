@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Interaction">
+            <menu>
+                <item
+                    android:id="@+id/nav_camera"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="Plan" />
+                <item
+                    android:id="@+id/nav_gallery"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="Diary" />
+                <item
+                    android:id="@+id/nav_slideshow"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="History" />
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="Journey">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Quitting Progress" />
+        </menu>
+    </item>
+
+    <item android:title="Recommendation">
+        <menu>
+            <item
+                android:id="@+id/nav_rec"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Recommendation" />
+        </menu>
+    </item>
+
+    <item
+        android:title="Switch Role"
+        android:id="@+id/nav_switch">
+        <menu>
+            <item
+                android:id="@+id/nav_smoker"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Quitter View" />
+        </menu>
+    </item>
+
+</menu>
