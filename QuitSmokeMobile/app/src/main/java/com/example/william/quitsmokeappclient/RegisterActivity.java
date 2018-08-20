@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -90,6 +92,24 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    // Handles check box event
+    /*public void onCheckboxClicked(View view){
+        boolean smokerChecked = chkSmoker.isChecked();
+        boolean supporterChecked = chkSupporter.isChecked();
+
+        if (smokerChecked && supporterChecked)
+        {
+            // if user is both smoker and supporter
+        }
+        else if (smokerChecked){
+            // if user is a smoker
+        }
+        else {
+            // if user is a supporter
+        }
+
+    }*/
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {

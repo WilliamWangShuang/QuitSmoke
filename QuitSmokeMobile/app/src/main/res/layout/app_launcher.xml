@@ -25,7 +25,7 @@
 
         <TableRow
             android:gravity="center_horizontal"
-            android:paddingTop="150dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/lblAppName"
@@ -35,12 +35,46 @@
                 android:fontFamily="@font/nanum_brush_script"
                 android:gravity="center"
                 android:padding="0dp"
-                android:text="@string/quite_together"
+                android:text="@string/quit_together"
                 android:textSize="180px" />
         </TableRow>
     </TableLayout>
 
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:inputType="textEmailAddress"
+        android:hint="Email" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"/>
+
     <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/registerLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Do not have an account? Register now!"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textColor="#0D47A1"/>
+
+    <!--<Button
         android:id="@+id/btnSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,5 +88,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/sign_up"
-        android:textSize="80px" />
+        android:textSize="80px" />-->
 </LinearLayout>

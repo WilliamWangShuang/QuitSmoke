@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LaunchActivity extends AppCompatActivity {
@@ -33,8 +34,8 @@ public class LaunchActivity extends AppCompatActivity {
             }
         });
 
-        Button btnRegister = findViewById(R.id.btnSignUp);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        TextView registerTextView = findViewById(R.id.registerLink);
+        registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // go to register activity
