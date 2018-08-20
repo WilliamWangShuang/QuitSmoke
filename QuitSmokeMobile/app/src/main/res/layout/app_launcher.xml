@@ -74,19 +74,4 @@
         android:gravity="center"
         android:textColor="#0D47A1"/>
 
-    <!--<Button
-        android:id="@+id/btnSignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/sign_in"
-        android:textSize="85px" />
-
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/sign_up"
-        android:textSize="80px" />-->
 </LinearLayout>
