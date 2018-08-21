@@ -63,47 +63,6 @@ namespace QuitSmokeWebAPI.Controllers
             }
         }
 
-        // GET api/values/xxxx@xxx.com
-        [HttpGet("email/{email}")]
-        public ActionResult<bool> Get(string email)
-        {
-            // declare a http client to call RESTful from web api exposed by other providers
-            using(var client = new HttpClient())
-            {
-                // if user with the email exist, return true, otherwise, return false.
-                bool responseResult = true;
-                try 
-                {
-                    //testEntity.UnitInfo = new System.Collections.ArrayList();
-                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
-
-                    // add an Accept header for JSON format
-                    client.DefaultRequestHeaders.Accept.Add(
-                        new MediaTypeWithQualityHeaderValue("application/json"));
-                    
-
-                    // retrieve data response
-                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
-                        + Constant.JSON_NODE_NAME_APP_USERS 
-                        + Constant.FIREBASE_SUFFIX_JSON
-                        + string.Format("?orderBy=\"email\"&equalTo={0}&print=pretty", email)).Result;
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // parse the response body
-                        var firebaseQueryResultByEmail = response.Content.ReadAsAsync<AppUser>().Result;
-                        responseResult = firebaseQueryResultByEmail != null;
-                    } else {
-                        responseResult = false;
-                    }
-                } 
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                return responseResult;
-            }
-        }
-
         // POST api/values/login
         [HttpPost("login")]
         public ActionResult<AppUser> Login([FromBody] AppUser user)
@@ -119,8 +78,8 @@ namespace QuitSmokeWebAPI.Controllers
                     authClient.Encoding = Encoding.UTF8;
                     // set headers
                     authClient.Headers.Add("Accept", "application/json");
-                    var response = authClient.UploadString(Constant.AUTH_ROOT_SIGN_IN 
-                        + Constant.FIREBASE_APP_KEY, JsonConvert.SerializeObject(new AuthUser() { email = user.email, password = user.password, returnSecureToken = true}));
+                    var response = authClient.UploadString(Constant.AUTH_ROOT_SIGN_IN
+                        + Constant.FIREBASE_APP_KEY, JsonConvert.SerializeObject(new AuthUser() { email = user.email, password = user.password, returnSecureToken = true }));
 
                     responseAuth = JObject.Parse(response);
                 }
@@ -179,56 +138,73 @@ namespace QuitSmokeWebAPI.Controllers
         public string Post([FromBody] AppUser newUser)
         {
             string responseString = null;
+            JObject responseAuth = null;
+            string response = null;
             try
             {
-                // get uid after sign up this new user in firebase
-                JObject responseAuth = null;
                 using (var authClient = new WebClient())
                 {
                     // specify encoding 
                     authClient.Encoding = Encoding.UTF8;
                     // set headers
                     authClient.Headers.Add("Accept", "application/json");
-                    var response = authClient.UploadString(Constant.AUTH_ROOT_SIGN_UP 
-                        + Constant.FIREBASE_APP_KEY, JsonConvert.SerializeObject(new AuthUser() { email = newUser.email, password = newUser.password, returnSecureToken = true}));
+                    response = authClient.UploadString(Constant.AUTH_ROOT_SIGN_UP
+                        + Constant.FIREBASE_APP_KEY, JsonConvert.SerializeObject(new AuthUser() { email = newUser.email, password = newUser.password, returnSecureToken = true }));
 
                     responseAuth = JObject.Parse(response);
                 }
-                // save new user info in firebase
-                using (var client = new WebClient())
+                // save user profile after success register this new user auth account in firebase(db)
+                responseString = saveNewUserProfile(newUser, responseAuth);
+            }
+            catch (WebException ex)
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+                if (ex.Message.Contains("400")) 
                 {
-                    // get user id
-                    string uid = responseAuth.GetValue(Constant.JSON_KEY_UID).Value<string>();
-                    // construct user info object association with the uid
-                    UserInfo userInfo = new UserInfo();
-                    userInfo.city = newUser.city;
-                    userInfo.name = newUser.name;
-                    userInfo.partner_id = newUser.partner_id;
-                    userInfo.partner_indicator = newUser.partner_indicator;
-                    userInfo.point = newUser.point;
-                    userInfo.register_date = newUser.register_date;
-                    userInfo.smoker_indicator = newUser.smoker_indicator;
-                    userInfo.suburb = newUser.suburb;
-                    userInfo.uid = uid;
-                    // specify encoding 
-                    client.Encoding = Encoding.UTF8;
-                    // set headers
-                    client.Headers.Add("Accept", "application/json");
-                    var response = client.UploadString(Constant.FIREBASE_ROOT 
-                        + Constant.JSON_NODE_NAME_APP_USERS 
-                        + Constant.FIREBASE_SUFFIX_JSON, JsonConvert.SerializeObject(userInfo));
-
-                    responseString = JObject.Parse(response).ToString();
-                } 
+                    responseString = Constant.FIRBASE_RESPONSE_EMAIL_EXIST;
+                }
             }
             catch (Exception ex)
             {
                 QuitSmokeUtils.WriteErrorStackTrace(ex);
-                
             }
             return responseString;
         }
-        
+
+        // save new user info in db, e.g.city, suburb, registration date, etc.
+        private static string saveNewUserProfile(AppUser newUser, JObject responseAuth)
+        {
+            string responseString;
+            // save new user info in firebase
+            using (var client = new WebClient())
+            {
+                // // get uid after sign up this new user in firebase
+                string uid = responseAuth.GetValue(Constant.JSON_KEY_UID).Value<string>();
+                // construct user info object association with the uid
+                UserInfo userInfo = new UserInfo();
+                userInfo.city = newUser.city;
+                userInfo.name = newUser.name;
+                userInfo.partner_id = newUser.partner_id;
+                userInfo.partner_indicator = newUser.partner_indicator;
+                userInfo.point = newUser.point;
+                userInfo.register_date = newUser.register_date;
+                userInfo.smoker_indicator = newUser.smoker_indicator;
+                userInfo.suburb = newUser.suburb;
+                userInfo.uid = uid;
+                // specify encoding 
+                client.Encoding = Encoding.UTF8;
+                // set headers
+                client.Headers.Add("Accept", "application/json");
+                var response = client.UploadString(Constant.FIREBASE_ROOT
+                    + Constant.JSON_NODE_NAME_APP_USERS
+                    + Constant.FIREBASE_SUFFIX_JSON, JsonConvert.SerializeObject(userInfo));
+
+                responseString = JObject.Parse(response).ToString();
+            }
+
+            return responseString;
+        }
+
 
         // PUT api/values/5
         [HttpPut("{id}")]

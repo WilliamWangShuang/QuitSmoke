@@ -7,6 +7,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string AUTH_ROOT_SIGN_IN = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=";
         public static string FIREBASE_SUFFIX_JSON = ".json";
         public static string FIREBASE_APP_KEY = "AIzaSyBxuvPNqF9TMk4gea0hfOls1QEQa4hNrlQ";
+        public static string FIRBASE_RESPONSE_EMAIL_EXIST = "EMAIL_EXISTS";
 
         #region <<json keys>>
         public static string JSON_KEY_USER_ID = "user_id";
@@ -24,6 +25,9 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string JSON_KEY_PARTNER_ID = "partner_id";
         public static string JSON_KEY_POINT = "point";
         public static string JSON_KEY_UID = "localId";
+        public static string JSON_KEY_CODE = "code";
+        public static string JSON_KEY_MESSAGE = "message";
+        public static string JSON_KEY_ID_TOKEN = "idToken";
 
         #endregion
 

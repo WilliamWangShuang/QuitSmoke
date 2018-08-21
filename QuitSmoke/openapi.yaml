@@ -107,26 +107,6 @@ paths:
       responses:
         '200':
           description: Success
-  '/api/Values/email/{email}':
-    get:
-      tags:
-        - Values
-      operationId: ApiValuesEmailByEmailGet
-      consumes: []
-      produces:
-        - text/plain
-        - application/json
-        - text/json
-      parameters:
-        - name: email
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Success
-          schema:
-            type: boolean
   /api/Values/login:
     post:
       tags:
