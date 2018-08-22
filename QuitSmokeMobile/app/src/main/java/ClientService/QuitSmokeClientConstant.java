@@ -25,7 +25,7 @@ public class QuitSmokeClientConstant {
     public static String WS_JSON_USER_PASSWORD = "password";
     public static String WS_JSON_USER_KEY_PLAN_ID = "plan_id";
     public static String WS_JSON_USER_KEY_POINT = "point";
-    public static String WS_JSON_USER_KEY_REGISTER_DT = "register_date ";
+    public static String WS_JSON_USER_KEY_REGISTER_DT = "register_date";
     public static String WS_JSON_USER_KEY_SUBURB = "suburb";
     public static String WS_JSON_USER_KEY_UID = "uid";
 }

@@ -269,9 +269,9 @@ public class BaseWebservice {
         }
     }
 
-    public static JSONArray postWebServiceForGetRestrieve(String serviceUrl, JSONObject jsonParam) throws IOException {
+    public static JSONObject postWebServiceForGetRestrieveJSON(String serviceUrl, JSONObject jsonParam) throws IOException {
         // response result
-        JSONArray result = null;
+        JSONObject result = null;
 
         // declare a url connection
         HttpURLConnection urlConnection=null;
@@ -308,7 +308,7 @@ public class BaseWebservice {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 // put the stream content into string
                 String responseFromWS = getResponseText(in);
-                result = new JSONArray(responseFromWS);
+                result = new JSONObject(responseFromWS);
             }
         } catch (IOException ex) {
             throw ex;

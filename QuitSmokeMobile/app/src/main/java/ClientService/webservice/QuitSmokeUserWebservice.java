@@ -55,11 +55,11 @@ public class QuitSmokeUserWebservice {
             jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_PASSWORD, pwd);
             Log.d("QuitSmokeDebug", "parsed resident json to post:" + jsonResident.toString());
             // get json array from ws
-            JSONArray jsonArray = BaseWebservice.postWebServiceForGetRestrieve(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.LOGIN_URI_WS, jsonResident);
-            Log.d("QuitSmokeDebug", "json array length:" + jsonArray.length());
+            JSONObject jsonObj = BaseWebservice.postWebServiceForGetRestrieveJSON(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.LOGIN_URI_WS, jsonResident);
+            Log.d("QuitSmokeDebug", "json array length:" + jsonObj.length());
             // get use credential by username and pwd
-            if (jsonArray.length() > 0) {
-                appUserJson = jsonArray.getJSONObject(0);
+            if (jsonObj.length() > 0) {
+                appUserJson = jsonObj;
                 // construct json to result object
                 result = new UserInfoEntity();
                 result.setName(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_NAME));
@@ -90,10 +90,9 @@ public class QuitSmokeUserWebservice {
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_ID, registerInfoUI.getPartnerId());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_I, registerInfoUI.isPartner());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_SMOKER_I, registerInfoUI.isSmoker());
-        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_PASSWORD, registerInfoUI.getPassword());
-        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_PLAN_ID, QuitSmokeClientUtils.isNullOrEmpty(registerInfoUI.getPlanId()) ? -1 : Integer.parseInt(registerInfoUI.getPlanId()));
+        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_PASSWORD, QuitSmokeClientUtils.encryptPwd(registerInfoUI.getPassword()));
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_POINT, registerInfoUI.getPoint());
-        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT, registerInfoUI.getRegisterDate());
+        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT, QuitSmokeClientUtils.convertDateToString(new Date()));
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_SUBURB, registerInfoUI.getSuburb());
         Log.d("QuitSmokeDebug", "parsed resident json to post:" + jsonResident.toString());
         // call ws to save
