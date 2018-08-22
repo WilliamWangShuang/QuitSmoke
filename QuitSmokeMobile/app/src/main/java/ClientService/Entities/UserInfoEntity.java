@@ -14,6 +14,7 @@ public class UserInfoEntity {
     private String registerDate;
     private boolean isSmoker;
     private String planId;
+    private String uid;
 
     public UserInfoEntity() {}
 
@@ -93,6 +94,14 @@ public class UserInfoEntity {
 
     public void setSmoker(boolean smoker) {
         isSmoker = smoker;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {

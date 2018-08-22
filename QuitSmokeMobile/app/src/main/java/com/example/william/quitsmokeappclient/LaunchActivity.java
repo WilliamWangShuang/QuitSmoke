@@ -14,23 +14,39 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ClientService.Factory.LoginFactorial;
+
 public class LaunchActivity extends AppCompatActivity {
+
+    // declare text field email & password
+    private EditText txtEmail;
+    private EditText txtPwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_launcher);
 
+        // get text field email & password
+        txtEmail = (EditText)findViewById(R.id.emailEditText);
+        txtPwd = (EditText)findViewById(R.id.passwordEditText);
+
         // sign in button click
         Button btnSignIn = findViewById(R.id.btnSignIn);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // get value in text field email & password
+                String emailFromUI = txtEmail.getText().toString();
+                String pwdFromUI = txtPwd.getText().toString();
+                // check if the user exist by email and password
+                LoginFactorial loginFactorial = new LoginFactorial(LaunchActivity.this, emailFromUI, pwdFromUI);
 
-                Toast.makeText(getApplicationContext(),R.string.i_am_a_smoker,Toast.LENGTH_LONG).show();
+                loginFactorial.execute();
             }
         });
 

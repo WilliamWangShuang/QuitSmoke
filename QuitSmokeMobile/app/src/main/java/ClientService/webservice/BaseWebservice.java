@@ -1,6 +1,8 @@
 package ClientService.webservice;
 
 import android.os.Build;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;;
@@ -16,6 +18,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 import ClientService.QuitSmokeClientConstant;
+import ClientService.QuitSmokeClientUtils;
 
 public class BaseWebservice {
 
@@ -93,6 +96,7 @@ public class BaseWebservice {
 
         try {
             // create connection
+            Log.d("QuitSmokeDebug", "coming in url:" + serviceUrl);
             URL urlToRequest = new URL(serviceUrl);
             urlConnection = (HttpURLConnection)urlToRequest.openConnection();
             // set content type to JSON
@@ -116,6 +120,7 @@ public class BaseWebservice {
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     // put the stream content into string
                     result = getResponseText(in);
+                    Log.d("QuitSmokeDebug","check email exist result:" + result);
                     break;
                 default:
                     break;
@@ -242,10 +247,68 @@ public class BaseWebservice {
 
             // get server response status
             int HttpResult = urlConnection.getResponseCode();
-            if(HttpResult == HttpURLConnection.HTTP_NO_CONTENT){
-                result = QuitSmokeClientConstant.SUCCESS_MSG;
+            String httpMsg = QuitSmokeClientUtils.readInputStreamToString(urlConnection);
+            Log.d("QuitSmokeDebug", "http code:" + HttpResult + ",message:" + httpMsg);
+            if(HttpResult == HttpURLConnection.HTTP_OK){
+                if (QuitSmokeClientConstant.EMAIL_EXIST.equals(httpMsg))
+                    result = QuitSmokeClientConstant.EMAIL_EXIST;
+                else
+                    result = QuitSmokeClientConstant.SUCCESS_MSG;
             }else{
                 result = urlConnection.getResponseMessage();
+            }
+        } catch (IOException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            // close connection
+            if(urlConnection!=null)
+                urlConnection.disconnect();
+            return result;
+        }
+    }
+
+    public static JSONArray postWebServiceForGetRestrieve(String serviceUrl, JSONObject jsonParam) throws IOException {
+        // response result
+        JSONArray result = null;
+
+        // declare a url connection
+        HttpURLConnection urlConnection=null;
+
+        try {
+            // create connection
+            URL urlToRequest = new URL(serviceUrl);
+            urlConnection = (HttpURLConnection)urlToRequest.openConnection();
+            // set http request is POST
+            urlConnection.setRequestMethod("POST");
+            // disable caches
+            urlConnection.setUseCaches(false);
+            // set time out in case net is slow
+            urlConnection.setConnectTimeout(10000);
+            urlConnection.setReadTimeout(10000);
+            // set post request header
+            urlConnection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+            // set post send true. allow to send to ws
+            urlConnection.setDoOutput(true);
+
+            // set stream sent to server
+            OutputStream outputPost = new BufferedOutputStream(urlConnection.getOutputStream());
+            outputPost.write(jsonParam.toString().getBytes());
+            outputPost.flush();
+            outputPost.close();
+
+            // connect url
+            urlConnection.connect();
+
+            // get server response status
+            int HttpResult = urlConnection.getResponseCode();
+            if(HttpResult == HttpURLConnection.HTTP_OK) {
+                // get response stream from web service
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                // put the stream content into string
+                String responseFromWS = getResponseText(in);
+                result = new JSONArray(responseFromWS);
             }
         } catch (IOException ex) {
             throw ex;

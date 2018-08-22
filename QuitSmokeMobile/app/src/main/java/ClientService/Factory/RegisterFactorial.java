@@ -45,28 +45,14 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         // check if a user with same email is already exist
         try {
-            // get resident by email
-            boolean userWithSameEmail = QuitSmokeUserWebservice.checkUserExistByEmail(email);
-
-            // check user with same email
-            if (userWithSameEmail) {
-                h.sendEmptyMessage(1);
-            } else if (!userWithSameEmail) {
-                // auto fill in other user info value that not from UI
-                registerInfoUI.setCity(registerInfoUI.getCity());
-                registerInfoUI.setSuburb(registerInfoUI.getSuburb());
-                registerInfoUI.setPartner(false);
-                registerInfoUI.setPoint(0);
-                registerInfoUI.setRegisterDate(QuitSmokeClientUtils.convertDateToString(new Date()));
-                registerInfoUI.setPartnerId("");
-                registerInfoUI.setPassword(QuitSmokeClientUtils.encryptPwd(registerInfoUI.getPassword()));
-                registerInfoUI.setPlanId("");
-                // if no user found with same email, can create new user
-                isSucc = QuitSmokeUserWebservice.saveRegisterResident(registerInfoUI);
+            isSucc = QuitSmokeUserWebservice.saveRegisterResident(registerInfoUI);
+            if (isSucc) {
                 h.sendEmptyMessage(0);
+            } else {
+                h.sendEmptyMessage(1);
             }
         } catch (Exception ex) {
-            Log.e("SmartERDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
+            Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
         }
 
         return null;
@@ -75,7 +61,7 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void result) {
         //mContext.sendBroadcast(new Intent("startGenerateAppDataSignal"));
-        Log.d("SmartERDebug", "register finish.");
+        Log.d("QuitSmokeDebug", "register finish.");
 
     }
 
@@ -86,24 +72,24 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
         public void handleMessage(Message msg){
             if(msg.what == 0) {
                 try {
-                    if (isSucc) {
-                        Toast.makeText(activity, activity.getResources().getString(R.string.register_success), Toast.LENGTH_LONG);
-                        // set resident info to application level
-                        QuitSmokeClientUtils.setEmail(registerInfoUI.getEmail());
-                        QuitSmokeClientUtils.setPassword(registerInfoUI.getPassword());
+                    Toast.makeText(activity, activity.getResources().getString(R.string.register_success), Toast.LENGTH_LONG);
+                    // set resident info to application level
+                    QuitSmokeClientUtils.setEmail(registerInfoUI.getEmail());
+                    QuitSmokeClientUtils.setPassword(registerInfoUI.getPassword());
 
-                        //TODO: go to main activity
+                    // clear text field background color and error message
+                    tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.whiteBg));
+                    ((TextView)activity.findViewById(R.id.lblEmailErrorMsg)).setText("");
+                    //TODO: go to main activity
 //                        Intent intent = new Intent(activity, MainActivity.class);
 //                        activity.startActivityForResult(intent, 1);
-                    } else {
-                        Toast.makeText(activity, "Register fail and try again.If not work, unintall this shit app.", Toast.LENGTH_LONG);
-                    }
                 } catch (Exception ex) {
-                    Log.e("SmartERDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
+                    Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
                     Toast.makeText(activity, activity.getResources().getString(R.string.register_throw_exception), Toast.LENGTH_LONG);
                 }
             } else if(msg.what == 1) {
                 // if user with same email exist, server side validation not passed
+                Log.e("QuitSmokeDebug", activity.getResources().getString(R.string.register_email_exist_msg));
                 tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.errorBackgound));
                 ((TextView)activity.findViewById(R.id.lblEmailErrorMsg)).setText(activity.getResources().getString(R.string.register_email_exist_msg));
             }

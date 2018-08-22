@@ -1,7 +1,15 @@
 package ClientService;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.TextView;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
@@ -12,8 +20,18 @@ public class QuitSmokeClientUtils extends Application {
     // global attributes
     private static String email;
     private static String password;
+    private static String uid;
 
     // setters and getters
+
+    public static String getUid() {
+        return uid;
+    }
+
+    public static void setUid(String uid) {
+        QuitSmokeClientUtils.uid = uid;
+    }
+
     public static String getEmail() {
         return email;
     }
@@ -127,5 +145,38 @@ public class QuitSmokeClientUtils extends Application {
     // check string null or empty
     public static boolean isNullOrEmpty(String str) {
         return str == null || str.isEmpty();
+    }
+
+    // read http response into a stream
+    public static String readInputStreamToString(HttpURLConnection connection) {
+        String result = null;
+        StringBuffer sb = new StringBuffer();
+        InputStream is = null;
+
+        try {
+            is = new BufferedInputStream(connection.getInputStream());
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String inputLine = "";
+            while ((inputLine = br.readLine()) != null) {
+                sb.append(inputLine);
+            }
+            result = sb.toString();
+        }
+        catch (Exception e) {
+            Log.i("QuitSmokeDebug", "Error reading InputStream");
+            result = null;
+        }
+        finally {
+            if (is != null) {
+                try {
+                    is.close();
+                }
+                catch (IOException e) {
+                    Log.i("QuitSmokeDebug", "Error closing InputStream");
+                }
+            }
+        }
+
+        return result;
     }
 }

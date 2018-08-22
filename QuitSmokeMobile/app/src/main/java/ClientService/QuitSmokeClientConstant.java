@@ -4,6 +4,7 @@ public class QuitSmokeClientConstant {
     // web service URL
     public static String WEB_SERVER_BASE_URI = "https://quit-smoke-web-api.appspot.com/";
     public static String FIND_USER_BY_EMAIL_WS = "api/Values/email/";
+    public static String LOGIN_URI_WS = "api/Values/login";
     public static String REGISTER_WS = "api/Values";
 
     public static String WS_KEY_EXCEPTION = "Exception";
@@ -12,6 +13,7 @@ public class QuitSmokeClientConstant {
     public static String MSG_500 = "500 Internal error when request web resource";
     public static String DATE_FORMAT = "yyyy-MM-dd";
     public static String SUCCESS_MSG = "Success";
+    public static String EMAIL_EXIST = "EMAIL_EXISTS";
 
     // app user json key
     public static String WS_JSON_USER_KEY_CITY = "city";
@@ -25,4 +27,5 @@ public class QuitSmokeClientConstant {
     public static String WS_JSON_USER_KEY_POINT = "point";
     public static String WS_JSON_USER_KEY_REGISTER_DT = "register_date ";
     public static String WS_JSON_USER_KEY_SUBURB = "suburb";
+    public static String WS_JSON_USER_KEY_UID = "uid";
 }
