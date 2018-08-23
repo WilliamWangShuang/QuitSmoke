@@ -80,9 +80,9 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                     // clear text field background color and error message
                     tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.whiteBg));
                     ((TextView)activity.findViewById(R.id.lblEmailErrorMsg)).setText("");
-                    //TODO: go to main activity
-//                        Intent intent = new Intent(activity, MainActivity.class);
-//                        activity.startActivityForResult(intent, 1);
+                    // go to main activity
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    activity.startActivityForResult(intent, 1);
                 } catch (Exception ex) {
                     Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
                     Toast.makeText(activity, activity.getResources().getString(R.string.register_throw_exception), Toast.LENGTH_LONG);
