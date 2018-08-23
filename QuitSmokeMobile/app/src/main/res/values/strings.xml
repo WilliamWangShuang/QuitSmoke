@@ -10,7 +10,6 @@
     <string name="quit_together">Quit Together</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="licence_name">Name</string>
     <string name="register_name_empty_msg">Name cannot be empty.</string>
     <string name="register_city_empty_msg">City cannot be empty.</string>
     <string name="register_suburb_empty_msg">Suburb cannot be empty.</string>
@@ -20,9 +19,9 @@
     <string name="register_email_exist_msg">User with same email already exist. Please change another email.</string>
     <string name="register_throw_exception">Register fail due to exception thrown. Try again. If not work, unintall this shit app.</string>
     <string name="register_success">Register successfully.</string>
-    <string name="licence_type_for_example_driver_licence_password">licence type. For example: Driver Licence, Password.</string>
     <string name="register_pwd_empty_msg">Password cannot be empty</string>
     <string name="register_pwd_format_msg">Password at least has 8 length. Contains at least 1 special character, 1 lower and upper letter, and 1 number</string>
+    <string name="register_age">Please select age.</string>
     <string name="login_pwd_hint">Password</string>
     <string name="i_am_a_smoker">I am a smoker</string>
     <string name="supporter">I am a supporter</string>
@@ -31,7 +30,8 @@
     <string name="role_supporter">Supporter</string>
     <string name="city">city</string>
     <string name="suburb">Suburb</string>
-    <string name="role_selector_prompt">Select a role</string>
+    <string name="spinner_age_selector">Age</string>
+
 
     <array name="user_role">
         <item>Smoker</item>

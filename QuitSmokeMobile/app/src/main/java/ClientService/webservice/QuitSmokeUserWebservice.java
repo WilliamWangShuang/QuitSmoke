@@ -94,6 +94,7 @@ public class QuitSmokeUserWebservice {
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_POINT, registerInfoUI.getPoint());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT, QuitSmokeClientUtils.convertDateToString(new Date()));
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_SUBURB, registerInfoUI.getSuburb());
+        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_AGE, registerInfoUI.getAge());
         Log.d("QuitSmokeDebug", "parsed resident json to post:" + jsonResident.toString());
         // call ws to save
         String saveResidentResult = BaseWebservice.postWebService(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.REGISTER_WS, jsonResident);

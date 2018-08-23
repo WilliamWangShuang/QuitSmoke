@@ -21,6 +21,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import ClientService.Entities.UserInfoEntity;
 import ClientService.Factory.RegisterFactorial;
 import ClientService.QuitSmokeClientUtils;
@@ -33,14 +39,16 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView msgPwd;
     private TextView msgCity;
     private TextView msgSuburb;
+    private TextView msgAge;
     // declare text fields
     private EditText txtName;
     private EditText txtEmail;
     private EditText txtCity;
     private EditText txtSuburb;
     private TextView txtPwd;
-    // declare check box
+    // declare drop down lists
     private Spinner ddlRole;
+    private Spinner ddlAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,20 +69,38 @@ public class RegisterActivity extends AppCompatActivity {
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
 
+        // set age spinner
+        // Get reference of widgets from XML layout
+        Spinner spinnerAge = (Spinner)findViewById(R.id.ddlAge);
+        // initial spinner values
+        List<String> valuesBuilder = new ArrayList<>();
+        valuesBuilder.add(getResources().getString(R.string.spinner_age_selector));
+        for (int i = 20; i <= 79; i++ ) {
+            valuesBuilder.add("" + i);
+        }
+        ArrayAdapter<String> spinnerAgeAdapter = new ArrayAdapter<String>(
+                this, R.layout.spinner_item, valuesBuilder.toArray(new String[0])
+        );
+        // Initializing an ArrayAdapter
+        spinnerAgeAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinnerAge.setAdapter(spinnerAgeAdapter);
+
         // get error messages labels
         msgName = (TextView)findViewById(R.id.lblNameNoErrorMsg);
         msgEmail = (TextView)findViewById(R.id.lblEmailErrorMsg);
         msgPwd = (TextView)findViewById(R.id.lblPwdErrorMsg);
         msgCity = (TextView)findViewById(R.id.lblCityErrorMsg);
         msgSuburb = (TextView)findViewById(R.id.lblSuburbErrorMsg);
+        msgAge = (TextView)findViewById(R.id.lblAgeErrorMsg);
         // get text fields
         txtName = (EditText)findViewById(R.id.register_name);
         txtEmail = (EditText)findViewById(R.id.register_email);
         txtPwd = (TextView)findViewById(R.id.register_password);
         txtCity = (EditText)findViewById(R.id.register_city);
         txtSuburb = (EditText)findViewById(R.id.register_suburb);
-        // get checkbox
+        // get drop down lists
         ddlRole = (Spinner)findViewById(R.id.ddlRole);
+        ddlAge = (Spinner)findViewById(R.id.ddlAge);
 
         // register button logic
         Button btnRegister = (Button)findViewById(R.id.btn_confirm_register);
@@ -87,12 +113,15 @@ public class RegisterActivity extends AppCompatActivity {
                 String pwd = txtPwd.getText().toString();
                 String city = txtCity.getText().toString();
                 String suburb = txtSuburb.getText().toString();
+                String age = ddlAge.getSelectedItem().toString();
                 boolean isSmoker = ddlRole.isSelected()
                         && getResources().getString(R.string.role_smoker).equals((String)ddlRole.getSelectedItem());
+                boolean isSupporter = ddlRole.isSelected()
+                        && getResources().getString(R.string.role_supporter).equals((String)ddlRole.getSelectedItem());
 
                 // UI validation
                 // create UI info entity object
-                UserInfoEntity registerInfoUI = new UserInfoEntity(name, email, pwd, city, suburb, isSmoker);
+                UserInfoEntity registerInfoUI = new UserInfoEntity(name, age, email, pwd, city, suburb, isSmoker, isSupporter);
                 // validate fields on UI
                 boolean isDataValidate = validateUIFields(registerInfoUI);
                 // if UI validation pass, do server-side validation
@@ -122,9 +151,11 @@ public class RegisterActivity extends AppCompatActivity {
         // validate first name
         result = QuitSmokeClientUtils.validateEmpty(entity.getName(), getResources().getString(R.string.register_name_empty_msg), msgName);
         // validate city
-        result = QuitSmokeClientUtils.validateEmpty(entity.getCity(), getResources().getString(R.string.register_city_empty_msg), msgCity);
+        result = QuitSmokeClientUtils.validateEmpty(entity.getCity(), getResources().getString(R.string.register_city_empty_msg), msgCity) && result;
         // validate suburb
-        result = QuitSmokeClientUtils.validateEmpty(entity.getSuburb(), getResources().getString(R.string.register_suburb_empty_msg), msgSuburb);
+        result = QuitSmokeClientUtils.validateEmpty(entity.getSuburb(), getResources().getString(R.string.register_suburb_empty_msg), msgSuburb) && result;
+        // validate age
+        result = QuitSmokeClientUtils.validateAge(entity.getAge(), getResources().getString(R.string.register_age), msgAge) && result;
         // validate email
         result = QuitSmokeClientUtils.validateEmpty(entity.getEmail(), getResources().getString(R.string.register_email_empty_msg), msgEmail) && result;
         result = QuitSmokeClientUtils. validateEmailFormat(entity.getEmail(), getResources().getString(R.string.register_email_format_msg), msgEmail) && result;

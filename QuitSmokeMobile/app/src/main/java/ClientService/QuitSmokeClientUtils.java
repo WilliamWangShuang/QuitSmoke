@@ -90,6 +90,25 @@ public class QuitSmokeClientUtils extends Application {
         return result;
     }
 
+    public static boolean validateAge(String age, String message, TextView msgView) {
+        boolean result = false;
+        try {
+            int inputAge = Integer.parseInt(age);
+            if (inputAge >=20 && inputAge<= 80) {
+                result = true;
+                msgView.setText("");
+            } else {
+                result = false;
+                msgView.setText(message);
+            }
+        } catch (Exception ex) {
+            Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
+            result = false;
+            msgView.setText(message);
+        }
+        return result;
+    }
+
     //  encrypt password
     public static String encryptPwd(String pwd) {
         String result = "";

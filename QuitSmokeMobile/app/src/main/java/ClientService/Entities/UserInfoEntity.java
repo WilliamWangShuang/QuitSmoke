@@ -15,19 +15,22 @@ public class UserInfoEntity {
     private boolean isSmoker;
     private String planId;
     private String uid;
+    private String age;
 
     public UserInfoEntity() {}
 
-    public UserInfoEntity(String name, String email, String password, String city, String suburb, Boolean isSmoker) {
+    public UserInfoEntity(String name, String age, String email, String password, String city, String suburb, Boolean isSmoker, Boolean isSupporter) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.isSmoker = isSmoker;
         this.city = city;
         this.suburb = suburb;
+        this.isPartner = isSupporter;
+        this.age = age;
     }
 
-    public UserInfoEntity(String name, String email, String password, String city, String partnerId, boolean isPartner, int point, String suburb, String registerDate, boolean isSmoker) {
+    public UserInfoEntity(String name, String email, String password, String city, String partnerId, boolean isPartner, int point, String suburb, String registerDate, boolean isSmoker, String planId, String uid, String age) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -38,6 +41,17 @@ public class UserInfoEntity {
         this.suburb = suburb;
         this.registerDate = registerDate;
         this.isSmoker = isSmoker;
+        this.planId = planId;
+        this.uid = uid;
+        this.age = age;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getCity() {
