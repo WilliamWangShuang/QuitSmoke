@@ -149,8 +149,8 @@
 
                 <Spinner
                     android:id="@+id/ddlRole"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </TableRow>
 
             <TableRow>
@@ -160,7 +160,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_span="2"
-                    android:background="#FF9900"
                     android:text="@string/register_title"
                     android:textStyle="bold" />
             </TableRow>

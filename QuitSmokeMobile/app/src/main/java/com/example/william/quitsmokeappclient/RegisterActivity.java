@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
@@ -49,6 +50,16 @@ public class RegisterActivity extends AppCompatActivity {
         // set tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        // set role spinner
+        // Get reference of widgets from XML layout
+        Spinner spinner = (Spinner) findViewById(R.id.ddlRole);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                this, R.layout.spinner_item, getResources().getStringArray(R.array.user_role)
+        );
+        // Initializing an ArrayAdapter
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setAdapter(spinnerArrayAdapter);
 
         // get error messages labels
         msgName = (TextView)findViewById(R.id.lblNameNoErrorMsg);
@@ -92,24 +103,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
-    // Handles check box event
-    /*public void onCheckboxClicked(View view){
-        boolean smokerChecked = chkSmoker.isChecked();
-        boolean supporterChecked = chkSupporter.isChecked();
-
-        if (smokerChecked && supporterChecked)
-        {
-            // if user is both smoker and supporter
-        }
-        else if (smokerChecked){
-            // if user is a smoker
-        }
-        else {
-            // if user is a supporter
-        }
-
-    }*/
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {

@@ -31,9 +31,9 @@
     <string name="role_supporter">Supporter</string>
     <string name="city">city</string>
     <string name="suburb">Suburb</string>
+    <string name="role_selector_prompt">Select a role</string>
 
     <array name="user_role">
-        <item>Select</item>
         <item>Smoker</item>
         <item>Supporter</item>
     </array>
