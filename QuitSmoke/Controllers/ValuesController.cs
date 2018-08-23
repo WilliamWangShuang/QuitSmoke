@@ -133,6 +133,68 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost]
+        public int calculateFRS([FromBody] FRSData frsData)
+        {
+            int result = 0;
+            try
+            {
+                int age = frsData.age;
+                string gender = frsData.gender;
+                int total_cholesterol = frsData.total_cholesterol;
+                int hdl_cholesterol = frsData.hdl_cholesterol;
+                int systolic_blood_pressure = frsData.systolic_blood_pressure;
+
+                // // calculate age
+                // switch(age)
+                // {
+                //     case 20 <= age && age <= 34:
+                //         result = -7;
+                //         break;
+                //     case 
+
+                // }
+            } 
+            catch (Exception ex)
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+            }
+            return result;
+        }
+
+        // POST api/Values/checkEmail
+        [HttpPost]
+        public bool CheckEmail([FromBody] String email) 
+        {
+            bool result = false;
+            String response = null;
+            JObject responseAuth = null;
+            CheckEmailEntity checkEmailEntity = new CheckEmailEntity();
+            try 
+            {
+                using (var authClient = new WebClient())
+                {
+                    // specify encoding 
+                    authClient.Encoding = Encoding.UTF8;
+                    // set headers
+                    authClient.Headers.Add("Accept", "application/json");
+                    checkEmailEntity.identifier = email;
+                    checkEmailEntity.continueUri = Constant.AUTH_CONTINUE_URI;
+                    response = authClient.UploadString(Constant.AUTH_VERIFY_EMAIL
+                        + Constant.FIREBASE_APP_KEY, JsonConvert.SerializeObject(checkEmailEntity));
+
+                    responseAuth = JObject.Parse(response);
+                    // get registered status
+                    result = responseAuth.GetValue(Constant.JSON_KEY_REGISTER_STATUS).Value<bool>();
+                }
+            }
+            catch (Exception ex)
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+            }
+            return result;
+        }
+
         // POST api/values
         [HttpPost]
         public string Post([FromBody] AppUser newUser)
@@ -178,7 +240,7 @@ namespace QuitSmokeWebAPI.Controllers
             // save new user info in firebase
             using (var client = new WebClient())
             {
-                // // get uid after sign up this new user in firebase
+                // get uid after sign up this new user in firebase
                 string uid = responseAuth.GetValue(Constant.JSON_KEY_UID).Value<string>();
                 // construct user info object association with the uid
                 UserInfo userInfo = new UserInfo();
