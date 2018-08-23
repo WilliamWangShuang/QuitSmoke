@@ -28,6 +28,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string JSON_KEY_CODE = "code";
         public static string JSON_KEY_MESSAGE = "message";
         public static string JSON_KEY_ID_TOKEN = "idToken";
+        public static string JSON_KEY_AGE = "age";
 
         #endregion
 

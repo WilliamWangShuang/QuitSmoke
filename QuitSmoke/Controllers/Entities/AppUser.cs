@@ -17,5 +17,6 @@ namespace QuitSmokeWebAPI.Controllers.Entity
         public string partner_id { get; set; }
         public int point { get; set; }
         public string uid { get; set; }
+        public string age { get; set; }
     }
 }

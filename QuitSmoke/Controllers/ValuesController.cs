@@ -191,6 +191,8 @@ namespace QuitSmokeWebAPI.Controllers
                 userInfo.smoker_indicator = newUser.smoker_indicator;
                 userInfo.suburb = newUser.suburb;
                 userInfo.uid = uid;
+                userInfo.age = Int32.Parse(newUser.age);
+
                 // specify encoding 
                 client.Encoding = Encoding.UTF8;
                 // set headers
