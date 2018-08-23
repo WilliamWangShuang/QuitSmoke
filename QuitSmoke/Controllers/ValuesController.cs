@@ -164,7 +164,7 @@ namespace QuitSmokeWebAPI.Controllers
         }
 
         // POST api/Values/checkEmail
-        [HttpPost]
+        [HttpPost("checkEmail")]
         public bool CheckEmail([FromBody] String email) 
         {
             bool result = false;
