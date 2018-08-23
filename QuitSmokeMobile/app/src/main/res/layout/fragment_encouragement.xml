@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvEncouragement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Encouragement"
+        android:paddingTop="15dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvEncouragementContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvEncouragement"
+        android:text="Content of Encouragement"
+        android:paddingTop="15dp" />
+
+    <Button
+        android:id="@+id/btnWantSmoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEncouragementContent"
+        android:text="I still want to smoke"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>
