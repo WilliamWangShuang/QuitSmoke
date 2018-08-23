@@ -133,7 +133,8 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
-        [HttpPost]
+        // POST api/Values/Calculatefrs
+        [HttpPost("Calculatefrs")]
         public int calculateFRS([FromBody] FRSData frsData)
         {
             int result = 0;
