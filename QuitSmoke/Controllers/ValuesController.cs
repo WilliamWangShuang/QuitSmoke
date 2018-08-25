@@ -410,42 +410,10 @@ namespace QuitSmokeWebAPI.Controllers
         public bool updatePartner([FromBody] UpdatePartner updatePartner)
         {
             bool result = false;
-            string nodeName = string.Empty;
+            string nodeName = updatePartner.smokerNodeName;
 
             try
             {
-                // get smoker node name
-                using (var client = new HttpClient()) 
-                {
-                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
-
-                    // add an Accept header for JSON format
-                    client.DefaultRequestHeaders.Accept.Add(
-                        new MediaTypeWithQualityHeaderValue("application/json"));
-                    
-
-                    // construct request uri
-                    string uri = Constant.FIREBASE_ROOT 
-                        + Constant.JSON_NODE_NAME_APP_USERS 
-                        + Constant.FIREBASE_SUFFIX_JSON 
-                        + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, updatePartner.smokerUID);
-                    // retrieve data response
-                    HttpResponseMessage response = client.GetAsync(uri).Result;
-                    // if can get user properly, procceed to get node name
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // parse the response body
-                        JObject firebaseQueryResult = response.Content.ReadAsAsync<JObject>().Result;
-                        // loop each node under this result json and get its name which is name of the user node
-                        foreach (JProperty prop in firebaseQueryResult.Properties())
-                        {
-                            // only need to loop once. Because result json only have one child token and it is the name system want
-                            nodeName = prop.Name;
-                            break;
-                        }
-                    }
-                }
-
                 // if node name is not empty, start update
                 if (!string.IsNullOrEmpty(nodeName))
                 {
