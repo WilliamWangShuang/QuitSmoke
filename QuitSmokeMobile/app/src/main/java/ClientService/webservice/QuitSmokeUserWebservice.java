@@ -59,14 +59,10 @@ public class QuitSmokeUserWebservice {
     // check if a user exist by email
     public static boolean checkUserExistByEmail(String email) throws IOException, JSONException, ParseException {
         boolean result = false;
-        // construct json
-        JSONObject json = new JSONObject();
-        json.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_EMAIL, email);
-
         // call ws to check
         String jsonResult = BaseWebservice.postWSForGetRestrievePlainText(QuitSmokeClientConstant.WEB_SERVER_BASE_URI
                     + QuitSmokeClientConstant.REGISTER_WS
-                    + QuitSmokeClientConstant.CHECK_USER_EXIST_WS, json);
+                    + QuitSmokeClientConstant.CHECK_USER_EXIST_WS, email);
         Log.d("QuitSmokeDebug", "result from backend:" + jsonResult);
         result = Boolean.parseBoolean(jsonResult);
         return  result;
@@ -77,12 +73,12 @@ public class QuitSmokeUserWebservice {
         boolean isUpdateSucc = false;
         // construct update partner request json
         JSONObject json = new JSONObject();
-        json.put(QuitSmokeClientConstant.WS_JSON_UPDATE_PARTNER_KEY_SMOKER_UID, updatePartnerEntity.getSmokerUID());
+        json.put(QuitSmokeClientConstant.WS_JSON_UPDATE_PARTNER_KEY_SMOKER_NODE_NAME, updatePartnerEntity.getSmokerNodeName());
         json.put(QuitSmokeClientConstant.WS_JSON_UPDATE_PARTNER_KEY_SMOKER_PARTNER_EMAIL, updatePartnerEntity.getPartnerEmail());
         Log.d("QuitSmokeDebug", "parsed update partner json to post:" + json.toString());
 
         // call ws to save
-        String updatePartnerResult = BaseWebservice.postWebService(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.UPDATE_PARTNER_WS, json);
+        String updatePartnerResult = BaseWebservice.postWSForGetRestrievePlainText(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.UPDATE_PARTNER_WS, json);
         Log.d("QuitSmokeDebug", "result from backend:" + updatePartnerResult);
         isUpdateSucc = Boolean.parseBoolean(updatePartnerResult);
 

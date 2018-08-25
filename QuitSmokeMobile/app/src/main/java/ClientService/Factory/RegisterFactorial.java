@@ -77,7 +77,7 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                     // set resident info to application level
                     QuitSmokeClientUtils.setEmail(registerInfoUI.getEmail());
                     QuitSmokeClientUtils.setPassword(registerInfoUI.getPassword());
-                    QuitSmokeClientUtils.setUid(registerInfoUI.getUid());
+                    QuitSmokeClientUtils.setSmokerNodeName(QuitSmokeClientUtils.getSmokerNodeName());
 
                     // clear text field background color and error message
                     tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.whiteBg));

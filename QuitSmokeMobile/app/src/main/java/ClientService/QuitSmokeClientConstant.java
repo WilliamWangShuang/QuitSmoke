@@ -6,7 +6,7 @@ public class QuitSmokeClientConstant {
     public static String LOGIN_URI_WS = "api/Values/login";
     public static String REGISTER_WS = "api/Values";
     public static String UPDATE_PARTNER_WS = "api/Values/updatePartner";
-    public static String CHECK_USER_EXIST_WS = "checkEmail";
+    public static String CHECK_USER_EXIST_WS = "/checkEmail";
 
     public static String WS_KEY_EXCEPTION = "Exception";
     public static String MSG_401 = "401 Unauthorized. Please check your identity";
@@ -33,6 +33,6 @@ public class QuitSmokeClientConstant {
     public static String WS_JSON_USER_KEY_GENDER = "gender";
 
     // update user json key
-    public static String WS_JSON_UPDATE_PARTNER_KEY_SMOKER_UID = "smokerUID";
+    public static String WS_JSON_UPDATE_PARTNER_KEY_SMOKER_NODE_NAME = "smokerNodeName";
     public static String WS_JSON_UPDATE_PARTNER_KEY_SMOKER_PARTNER_EMAIL = "partnerEmail";
 }

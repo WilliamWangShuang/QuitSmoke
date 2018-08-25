@@ -22,6 +22,7 @@
     <string name="register_pwd_empty_msg">Password cannot be empty</string>
     <string name="register_pwd_format_msg">Password at least has 8 length. Contains at least 1 special character, 1 lower and upper letter, and 1 number</string>
     <string name="supporter_not_found">The user with this email not found. Please change another one, or update your supporter later.</string>
+    <string name="supporter_is_smoker">Cannot designate yourself as your supporter. Please change another email.</string>
     <string name="error_msg">Unexpected error occur. Please try again. If keep failing, smash your mobile immediately.</string>
     <string name="register_age">Please select age.</string>
     <string name="register_gender">Please select a gender</string>

@@ -1,22 +1,22 @@
 package ClientService.Entities;
 
 public class UpdatePartnerEntity {
-    private String smokerUID;
+    private String smokerNodeName;
     private String partnerEmail;
 
     public UpdatePartnerEntity() {}
 
-    public UpdatePartnerEntity(String smokerUID, String partnerEmail) {
-        this.smokerUID = smokerUID;
+    public UpdatePartnerEntity(String smokerNodeName, String partnerEmail) {
+        this.smokerNodeName = smokerNodeName;
         this.partnerEmail = partnerEmail;
     }
 
-    public String getSmokerUID() {
-        return smokerUID;
+    public String getSmokerNodeName() {
+        return smokerNodeName;
     }
 
-    public void setSmokerUID(String smokerUID) {
-        this.smokerUID = smokerUID;
+    public void setSmokerNodeName(String smokerNodeName) {
+        this.smokerNodeName = smokerNodeName;
     }
 
     public String getPartnerEmail() {

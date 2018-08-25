@@ -174,7 +174,7 @@ public class RegisterActivity extends AppCompatActivity {
         // validate age
         result = QuitSmokeClientUtils.validateAge(entity.getAge(), getResources().getString(R.string.register_age), msgAge) && result;
         // validate gender
-        result = QuitSmokeClientUtils.validateAge(entity.getGender(), getResources().getString(R.string.register_gender), msgGender) && result;
+        result = QuitSmokeClientUtils.validateGender(entity.getGender(), getResources().getString(R.string.register_gender), msgGender) && result;
         // validate email
         result = QuitSmokeClientUtils.validateEmpty(entity.getEmail(), getResources().getString(R.string.register_email_empty_msg), msgEmail) && result;
         result = QuitSmokeClientUtils. validateEmailFormat(entity.getEmail(), getResources().getString(R.string.register_email_format_msg), msgEmail) && result;

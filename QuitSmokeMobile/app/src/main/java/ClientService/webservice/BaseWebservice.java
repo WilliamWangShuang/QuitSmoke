@@ -1,16 +1,19 @@
 package ClientService.webservice;
 
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
@@ -213,10 +216,6 @@ public class BaseWebservice {
         // response result
         String result = "";
 
-        // if json content is empty, driectly return success message
-        if (jsonParam.length() == 0)
-            return QuitSmokeClientConstant.SUCCESS_MSG;
-
         // declare a url connection
         HttpURLConnection urlConnection=null;
 
@@ -252,8 +251,15 @@ public class BaseWebservice {
             if(HttpResult == HttpURLConnection.HTTP_OK){
                 if (QuitSmokeClientConstant.EMAIL_EXIST.equals(httpMsg))
                     result = QuitSmokeClientConstant.EMAIL_EXIST;
-                else
+                else {
                     result = QuitSmokeClientConstant.SUCCESS_MSG;
+                    // check request url so that to update different application level attribute
+                    if (serviceUrl.endsWith(QuitSmokeClientConstant.REGISTER_WS)) {
+                        // if this is a register request, set value of smoker node name
+                        JSONObject smokerNodeNameJson = new JSONObject(httpMsg);
+                        QuitSmokeClientUtils.setSmokerNodeName(smokerNodeNameJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_NAME));
+                    }
+                }
             }else{
                 result = urlConnection.getResponseMessage();
             }
@@ -356,6 +362,62 @@ public class BaseWebservice {
 
             // get server response status
             int HttpResult = urlConnection.getResponseCode();
+            if(HttpResult == HttpURLConnection.HTTP_OK) {
+                // get response stream from web service
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                // put the stream content into string
+                String responseFromWS = getResponseText(in);
+                result = responseFromWS;
+            }
+        } catch (IOException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            // close connection
+            if(urlConnection!=null)
+                urlConnection.disconnect();
+            return result;
+        }
+    }
+
+    public static String postWSForGetRestrievePlainText(String serviceUrl, String variable) throws IOException {
+        // response result
+        String result = null;
+
+        // declare a url connection
+        HttpURLConnection urlConnection = null;
+
+        try {
+            // create connection
+            URL urlToRequest = new URL(serviceUrl);
+            urlConnection = (HttpURLConnection)urlToRequest.openConnection();
+            // set http request is POST
+            urlConnection.setRequestMethod("POST");
+            // disable caches
+            urlConnection.setUseCaches(false);
+            urlConnection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+            // set time out in case net is slow
+            urlConnection.setConnectTimeout(10000);
+            urlConnection.setReadTimeout(10000);
+            // set post send true. allow to send to ws
+            urlConnection.setDoOutput(true);
+
+            // set stream sent to server
+            OutputStream outputPost = new BufferedOutputStream(urlConnection.getOutputStream());
+            OutputStreamWriter osw = new OutputStreamWriter(outputPost, "UTF-8");
+            osw.write("\"" + variable + "\"");
+            osw.flush();
+            osw.close();
+            outputPost.close();
+
+            // connect url
+            urlConnection.connect();
+
+            // get server response status
+            int HttpResult = urlConnection.getResponseCode();
+            Log.d("QuitSmokeDebug", HttpResult + "\n" + urlConnection.getResponseMessage());
+
             if(HttpResult == HttpURLConnection.HTTP_OK) {
                 // get response stream from web service
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());

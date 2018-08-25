@@ -1,6 +1,7 @@
 package ClientService;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -21,8 +22,17 @@ public class QuitSmokeClientUtils extends Application {
     private static String email;
     private static String password;
     private static String uid;
+    private static String smokerNodeName;
 
     // setters and getters
+
+    public static String getSmokerNodeName() {
+        return smokerNodeName;
+    }
+
+    public static void setSmokerNodeName(String smokerNodeName) {
+        QuitSmokeClientUtils.smokerNodeName = smokerNodeName;
+    }
 
     public static String getUid() {
         return uid;
@@ -86,6 +96,24 @@ public class QuitSmokeClientUtils extends Application {
         } else {
             result = true;
             msgView.setText("");
+        }
+        return result;
+    }
+
+    public static boolean validateGender(String gender, String message, TextView msgView) {
+        boolean result = false;
+        try {
+            if (gender != null && "" != gender) {
+                result = true;
+                msgView.setText("");
+            } else {
+                result = false;
+                msgView.setText(message);
+            }
+        } catch (Exception ex) {
+            Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
+            result = false;
+            msgView.setText(message);
         }
         return result;
     }
@@ -197,5 +225,16 @@ public class QuitSmokeClientUtils extends Application {
         }
 
         return result;
+    }
+
+    @NonNull
+    public static String getHttpUrlConnectionResponseErrorContent(HttpURLConnection urlConnection) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader((urlConnection.getErrorStream())));
+        StringBuilder sb = new StringBuilder();
+        String output;
+        while ((output = br.readLine()) != null) {
+            sb.append(output);
+        }
+        return sb.toString();
     }
 }

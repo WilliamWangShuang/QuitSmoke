@@ -38,21 +38,25 @@ public class CreateSupporterFactorial extends AsyncTask<Void, Void, Void> {
         try {
             isSupporterExist = QuitSmokeUserWebservice.checkUserExistByEmail(supporterEmail);
             if (isSupporterExist) {
-                boolean isUpdateSucc = false;
-                // construct request json object
-                UpdatePartnerEntity entity = new UpdatePartnerEntity(QuitSmokeClientUtils.getUid(), supporterEmail);
-                // call ws to do update
-                isUpdateSucc = QuitSmokeUserWebservice.updatePartner(entity);
-                // send behavior according to ws result
-                if (isUpdateSucc) {
-                    h.sendEmptyMessage(0);
+                if (!supporterEmail.equals(QuitSmokeClientUtils.getEmail())) {
+                    boolean isUpdateSucc = false;
+                    // construct request json object
+                    UpdatePartnerEntity entity = new UpdatePartnerEntity(QuitSmokeClientUtils.getSmokerNodeName(), supporterEmail);
+                    // call ws to do update
+                    isUpdateSucc = QuitSmokeUserWebservice.updatePartner(entity);
+                    // send behavior according to ws result
+                    if (isUpdateSucc) {
+                        h.sendEmptyMessage(0);
+                    } else {
+                        h.sendEmptyMessage(2);
+                    }
                 } else {
-                    h.sendEmptyMessage(1);
+                    h.sendEmptyMessage(3);
                 }
 
             } else {
                 // if user with the email not found, show error message
-                h.sendEmptyMessage(2);
+                h.sendEmptyMessage(1);
             }
         } catch (Exception ex) {
             Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
@@ -80,6 +84,9 @@ public class CreateSupporterFactorial extends AsyncTask<Void, Void, Void> {
             } else if(msg.what == 1) {
                 // show partner not exist error message
                 tvErrorMsg.setText(createSupporterActivity.getResources().getString(R.string.supporter_not_found));
+            } else if(msg.what == 3) {
+                // show partner cannot be smoker himself
+                tvErrorMsg.setText(createSupporterActivity.getResources().getString(R.string.supporter_is_smoker));
             } else {
                 // show exception error message
                 tvErrorMsg.setText(createSupporterActivity.getResources().getString(R.string.error_msg));
