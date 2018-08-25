@@ -105,11 +105,12 @@ public class QuitSmokeUserWebservice {
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT, QuitSmokeClientUtils.convertDateToString(new Date()));
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_SUBURB, registerInfoUI.getSuburb());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_AGE, registerInfoUI.getAge());
+        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_GENDER, registerInfoUI.getGender());
         Log.d("QuitSmokeDebug", "parsed user json to post:" + jsonResident.toString());
         // call ws to save
         String saveResidentResult = BaseWebservice.postWebService(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.REGISTER_WS, jsonResident);
         Log.d("QuitSmokeDebug", "result from backend:" + saveResidentResult);
-        // if save resident successfully, start save credential
+        // if save resident successfully, return true, otherwise, return this email already been registered.
         if (QuitSmokeClientConstant.SUCCESS_MSG.equals(saveResidentResult)) {
             isSuccessSave = true;
         } else if (QuitSmokeClientConstant.EMAIL_EXIST.equals(saveResidentResult)) {

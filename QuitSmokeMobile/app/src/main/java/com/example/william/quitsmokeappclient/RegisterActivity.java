@@ -40,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView msgCity;
     private TextView msgSuburb;
     private TextView msgAge;
+    private TextView msgGender;
     // declare text fields
     private EditText txtName;
     private EditText txtEmail;
@@ -49,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     // declare drop down lists
     private Spinner ddlRole;
     private Spinner ddlAge;
+    private Spinner ddlGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,19 +61,22 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        // get drop down lists
+        ddlRole = (Spinner)findViewById(R.id.ddlRole);
+        ddlAge = (Spinner)findViewById(R.id.ddlAge);
+        ddlGender = (Spinner)findViewById(R.id.ddlGender);
+
         // set role spinner
         // Get reference of widgets from XML layout
-        Spinner spinner = (Spinner) findViewById(R.id.ddlRole);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this, R.layout.spinner_item, getResources().getStringArray(R.array.user_role)
         );
         // Initializing an ArrayAdapter
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinner.setAdapter(spinnerArrayAdapter);
+        ddlRole.setAdapter(spinnerArrayAdapter);
 
         // set age spinner
         // Get reference of widgets from XML layout
-        Spinner spinnerAge = (Spinner)findViewById(R.id.ddlAge);
         // initial spinner values
         List<String> valuesBuilder = new ArrayList<>();
         valuesBuilder.add(getResources().getString(R.string.spinner_age_selector));
@@ -83,7 +88,20 @@ public class RegisterActivity extends AppCompatActivity {
         );
         // Initializing an ArrayAdapter
         spinnerAgeAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinnerAge.setAdapter(spinnerAgeAdapter);
+        ddlAge.setAdapter(spinnerAgeAdapter);
+
+        // set gender spinner
+        // initial spinner values
+        List<String> genderValuesBuilder = new ArrayList<>();
+        genderValuesBuilder.add(getResources().getString(R.string.spinner_gender_selector));
+        genderValuesBuilder.add("M");
+        genderValuesBuilder.add("F");
+        ArrayAdapter<String> spinnerGenderAdapter = new ArrayAdapter<String>(
+                this, R.layout.spinner_item, genderValuesBuilder.toArray(new String[0])
+        );
+        // Initializing an ArrayAdapter
+        spinnerGenderAdapter.setDropDownViewResource(R.layout.spinner_item);
+        ddlGender.setAdapter(spinnerGenderAdapter);
 
         // get error messages labels
         msgName = (TextView)findViewById(R.id.lblNameNoErrorMsg);
@@ -92,15 +110,13 @@ public class RegisterActivity extends AppCompatActivity {
         msgCity = (TextView)findViewById(R.id.lblCityErrorMsg);
         msgSuburb = (TextView)findViewById(R.id.lblSuburbErrorMsg);
         msgAge = (TextView)findViewById(R.id.lblAgeErrorMsg);
+        msgGender = (TextView)findViewById(R.id.lblGenderErrorMsg);
         // get text fields
         txtName = (EditText)findViewById(R.id.register_name);
         txtEmail = (EditText)findViewById(R.id.register_email);
         txtPwd = (TextView)findViewById(R.id.register_password);
         txtCity = (EditText)findViewById(R.id.register_city);
         txtSuburb = (EditText)findViewById(R.id.register_suburb);
-        // get drop down lists
-        ddlRole = (Spinner)findViewById(R.id.ddlRole);
-        ddlAge = (Spinner)findViewById(R.id.ddlAge);
 
         // register button logic
         Button btnRegister = (Button)findViewById(R.id.btn_confirm_register);
@@ -114,6 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String city = txtCity.getText().toString();
                 String suburb = txtSuburb.getText().toString();
                 String age = ddlAge.getSelectedItem().toString();
+                String gender = ddlGender.getSelectedItem().toString();
                 boolean isSmoker = ddlRole.isSelected()
                         && getResources().getString(R.string.role_smoker).equals((String)ddlRole.getSelectedItem());
                 boolean isSupporter = ddlRole.isSelected()
@@ -121,7 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 // UI validation
                 // create UI info entity object
-                UserInfoEntity registerInfoUI = new UserInfoEntity(name, age, email, pwd, city, suburb, isSmoker, isSupporter);
+                UserInfoEntity registerInfoUI = new UserInfoEntity(name, age, gender, email, pwd, city, suburb, isSmoker, isSupporter);
                 // validate fields on UI
                 boolean isDataValidate = validateUIFields(registerInfoUI);
                 // if UI validation pass, do server-side validation
@@ -156,6 +173,8 @@ public class RegisterActivity extends AppCompatActivity {
         result = QuitSmokeClientUtils.validateEmpty(entity.getSuburb(), getResources().getString(R.string.register_suburb_empty_msg), msgSuburb) && result;
         // validate age
         result = QuitSmokeClientUtils.validateAge(entity.getAge(), getResources().getString(R.string.register_age), msgAge) && result;
+        // validate gender
+        result = QuitSmokeClientUtils.validateAge(entity.getGender(), getResources().getString(R.string.register_gender), msgGender) && result;
         // validate email
         result = QuitSmokeClientUtils.validateEmpty(entity.getEmail(), getResources().getString(R.string.register_email_empty_msg), msgEmail) && result;
         result = QuitSmokeClientUtils. validateEmailFormat(entity.getEmail(), getResources().getString(R.string.register_email_format_msg), msgEmail) && result;

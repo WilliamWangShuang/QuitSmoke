@@ -62,6 +62,24 @@
 
             <TableRow>
 
+                <Spinner
+                    android:id="@+id/ddlGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/lblGenderErrorMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/errorBackgound"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
                 <EditText
                     android:id="@+id/register_city"
                     android:layout_width="match_parent"

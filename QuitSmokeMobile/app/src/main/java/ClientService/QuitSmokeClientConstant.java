@@ -30,6 +30,7 @@ public class QuitSmokeClientConstant {
     public static String WS_JSON_USER_KEY_SUBURB = "suburb";
     public static String WS_JSON_USER_KEY_UID = "uid";
     public static String WS_JSON_USER_KEY_AGE = "age";
+    public static String WS_JSON_USER_KEY_GENDER = "gender";
 
     // update user json key
     public static String WS_JSON_UPDATE_PARTNER_KEY_SMOKER_UID = "smokerUID";

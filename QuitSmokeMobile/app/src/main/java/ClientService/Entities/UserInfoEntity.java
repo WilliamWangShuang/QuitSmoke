@@ -16,10 +16,11 @@ public class UserInfoEntity {
     private String planId;
     private String uid;
     private String age;
+    private String gender;
 
     public UserInfoEntity() {}
 
-    public UserInfoEntity(String name, String age, String email, String password, String city, String suburb, Boolean isSmoker, Boolean isSupporter) {
+    public UserInfoEntity(String name, String age, String gender, String email, String password, String city, String suburb, Boolean isSmoker, Boolean isSupporter) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -28,6 +29,7 @@ public class UserInfoEntity {
         this.suburb = suburb;
         this.isPartner = isSupporter;
         this.age = age;
+        this.gender = gender;
     }
 
     public UserInfoEntity(String name, String email, String password, String city, String partnerId, boolean isPartner, int point, String suburb, String registerDate, boolean isSmoker, String planId, String uid, String age) {
@@ -44,6 +46,14 @@ public class UserInfoEntity {
         this.planId = planId;
         this.uid = uid;
         this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getAge() {

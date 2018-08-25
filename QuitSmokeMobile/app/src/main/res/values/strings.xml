@@ -24,6 +24,7 @@
     <string name="supporter_not_found">The user with this email not found. Please change another one, or update your supporter later.</string>
     <string name="error_msg">Unexpected error occur. Please try again. If keep failing, smash your mobile immediately.</string>
     <string name="register_age">Please select age.</string>
+    <string name="register_gender">Please select a gender</string>
     <string name="login_pwd_hint">Password</string>
     <string name="i_am_a_smoker">I am a smoker</string>
     <string name="supporter">I am a supporter</string>
@@ -33,6 +34,7 @@
     <string name="city">city</string>
     <string name="suburb">Suburb</string>
     <string name="spinner_age_selector">Age</string>
+    <string name="spinner_gender_selector">Gender</string>
     <string name="supporter_label">Type in your supporter email</string>
 
     <array name="user_role">
