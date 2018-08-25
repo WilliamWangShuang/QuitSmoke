@@ -5,4 +5,5 @@ public class FRSData
     public int total_cholesterol { get; set; }
     public int hdl_cholesterol { get; set; }
     public int systolic_blood_pressure { get; set; }
+    public bool isTreated { get; set; }
 }

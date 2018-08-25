@@ -132,6 +132,82 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/AppUser'
+  /api/Values/calculatefrs:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesCalculatefrsPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: frsData
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/FRSData'
+      responses:
+        '200':
+          description: Success
+          schema:
+            format: int32
+            type: integer
+  /api/Values/checkEmail:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesCheckEmailPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: email
+          in: body
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
+  /api/Values/updatePartner:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesUpdatePartnerPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: updatePartner
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/UpdatePartner'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
 definitions:
   AppUser:
     type: object
@@ -161,6 +237,10 @@ definitions:
         type: integer
       uid:
         type: string
+      age:
+        type: string
+      gender:
+        type: string
   MyTestEntity:
     type: object
     properties:
@@ -174,4 +254,30 @@ definitions:
       fiT5046:
         type: string
       fiT5140:
+        type: string
+  FRSData:
+    type: object
+    properties:
+      age:
+        format: int32
+        type: integer
+      gender:
+        type: string
+      total_cholesterol:
+        format: int32
+        type: integer
+      hdl_cholesterol:
+        format: int32
+        type: integer
+      systolic_blood_pressure:
+        format: int32
+        type: integer
+      isTreated:
+        type: boolean
+  UpdatePartner:
+    type: object
+    properties:
+      smokerUID:
+        type: string
+      partnerEmail:
         type: string

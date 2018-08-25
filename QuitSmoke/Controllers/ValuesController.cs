@@ -121,6 +121,7 @@ namespace QuitSmokeWebAPI.Controllers
                             result.smoker_indicator = userInfo.smoker_indicator;
                             result.suburb = userInfo.suburb;
                             result.city = userInfo.city;
+                            result.age = userInfo.age.ToString();
                         } 
                     }
                 }
@@ -133,28 +134,15 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
-        // POST api/Values/Calculatefrs
-        [HttpPost("Calculatefrs")]
+        // POST api/Values/calculatefrs
+        [HttpPost("calculatefrs")]
         public int calculateFRS([FromBody] FRSData frsData)
         {
             int result = 0;
             try
             {
-                int age = frsData.age;
-                string gender = frsData.gender;
-                int total_cholesterol = frsData.total_cholesterol;
-                int hdl_cholesterol = frsData.hdl_cholesterol;
-                int systolic_blood_pressure = frsData.systolic_blood_pressure;
-
-                // // calculate age
-                // switch(age)
-                // {
-                //     case 20 <= age && age <= 34:
-                //         result = -7;
-                //         break;
-                //     case 
-
-                // }
+                // calculate age
+                result = calculateFRSResult(frsData);
             } 
             catch (Exception ex)
             {
@@ -163,11 +151,233 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        private int calculateFRSResult(FRSData frsData) 
+        {
+            int result = 0;
+
+            int age = frsData.age;
+            string gender = frsData.gender;
+            int total_cholesterol = frsData.total_cholesterol;
+            int hdl_cholesterol = frsData.hdl_cholesterol;
+            int systolic_blood_pressure = frsData.systolic_blood_pressure;
+            bool isTreated = frsData.isTreated;
+            bool isMale = Constant.GENDER_M.Equals(gender, StringComparison.InvariantCultureIgnoreCase);
+
+            // check age point
+            #region <<age>>
+            if (20 <= age && age <= 34)
+                result = result + (isMale ? -9 : -7);
+            else if(35 <= age && age <= 39)
+                result = result + (isMale ? -4 : -3);
+            else if(40 <= age && age <= 44)
+                result = result + (isMale ? 0 : 0);
+            else if(45 <= age && age <= 49)
+                result = result + (isMale ? 3 : 3);
+            else if(50 <= age && age <= 54)
+                result = result + (isMale ? 6 : 6);
+            else if(55 <= age && age <= 59)
+                result = result + (isMale ? 8 : 8);
+            else if(60 <= age && age <= 64)
+                result = result + (isMale ? 10 : 10);
+            else if(65 <= age && age <= 69)
+                result = result + (isMale ? 11 : 12);
+            else if(70 <= age && age <= 74)
+                result = result + (isMale ? 12 : 14);
+            else if(75 <= age && age <= 79)
+                result = result + (isMale ? 13 : 16);
+            #endregion
+            #region <<Total cholesterol, mg/dL>>
+            if(20 <= age && age <= 29)
+            {
+                if(total_cholesterol < 160)
+                {
+                    result = result + (isMale ? 0 : 0);
+                }
+                else if(160 <= total_cholesterol && total_cholesterol <= 199)
+                {
+                    result = result + (isMale ? 4 : 4);
+                }
+                else if(200 <= total_cholesterol && total_cholesterol <= 239)
+                {
+                    result = result + (isMale ? 7 : 8);
+                }
+                else if(240 <= total_cholesterol && total_cholesterol <= 279)
+                {
+                    result = result + (isMale ? 9 : 11);
+                }
+                else if(total_cholesterol >= 280)
+                {
+                    result = result + (isMale ? 11 : 13);
+                }
+            }
+            else if(40 <= age && age <= 49)
+            {
+                if(total_cholesterol < 160)
+                {
+                    result = result + (isMale ? 0 : 0);
+                }
+                else if(160 <= total_cholesterol && total_cholesterol <= 199)
+                {
+                    result = result + (isMale ? 3 : 3);
+                }
+                else if(200 <= total_cholesterol && total_cholesterol <= 239)
+                {
+                    result = result + (isMale ? 5 : 6);
+                }
+                else if(240 <= total_cholesterol && total_cholesterol <= 279)
+                {
+                    result = result + (isMale ? 6 : 8);
+                }
+                else if(total_cholesterol >= 280)
+                {
+                    result = result + (isMale ? 8 : 10);
+                }
+            }
+            else if(50 <= age && age <= 59)
+            {
+                if(total_cholesterol < 160)
+                {
+                    result = result + (isMale ? 0 : 0);
+                }
+                else if(160 <= total_cholesterol && total_cholesterol <= 199)
+                {
+                    result = result + (isMale ? 2 : 2);
+                }
+                else if(200 <= total_cholesterol && total_cholesterol <= 239)
+                {
+                    result = result + (isMale ? 3 : 4);
+                }
+                else if(240 <= total_cholesterol && total_cholesterol <= 279)
+                {
+                    result = result + (isMale ? 4 : 5);
+                }
+                else if(total_cholesterol >= 280)
+                {
+                    result = result + (isMale ? 5 : 7);
+                }
+            }
+            else if(60 <= age && age <= 69)
+            {
+                if(total_cholesterol < 160)
+                {
+                    result = result + (isMale ? 0 : 0);
+                }
+                else if(160 <= total_cholesterol && total_cholesterol <= 199)
+                {
+                    result = result + (isMale ? 1 : 1);
+                }
+                else if(200 <= total_cholesterol && total_cholesterol <= 239)
+                {
+                    result = result + (isMale ? 1 : 2);
+                }
+                else if(240 <= total_cholesterol && total_cholesterol <= 279)
+                {
+                    result = result + (isMale ? 2 : 3);
+                }
+                else if(total_cholesterol >= 280)
+                {
+                    result = result + (isMale ? 3 : 4);
+                }
+            }
+            else if(70 <= age && age <= 79)
+            {
+                if(total_cholesterol < 160)
+                {
+                    result = result + (isMale ? 0 : 0);
+                }
+                else if(160 <= total_cholesterol && total_cholesterol <= 199)
+                {
+                    result = result + (isMale ? 0 : 1);
+                }
+                else if(200 <= total_cholesterol && total_cholesterol <= 239)
+                {
+                    result = result + (isMale ? 0 : 1);
+                }
+                else if(240 <= total_cholesterol && total_cholesterol <= 279)
+                {
+                    result = result + (isMale ? 1 : 2);
+                }
+                else if(total_cholesterol >= 280)
+                {
+                    result = result + (isMale ? 1 : 2);
+                }
+            }
+            #endregion
+            #region <<If cigarette smoker>>
+            if(20 <= age && age <= 39)
+                result = result + (isMale ? 8 : 9);
+            else if(40 <= age && age <= 49)
+                result = result + (isMale ? 5 : 7);
+            else if(50 <= age && age <= 59)
+                result = result + (isMale ? 3 : 4);
+            else if(60 <= age && age <= 69)
+                result = result + (isMale ? 1 : 2);
+            else if(70 <= age && age <= 79)
+                result = result + (isMale ? 1 : 1);
+            #endregion
+            #region <<HDL cholesterol, mg/dL>>
+            if(hdl_cholesterol >= 60)
+                result = result + (isMale ? -1 : -1);
+            else if(50 <= hdl_cholesterol && hdl_cholesterol <= 59)
+                result = result + (isMale ? 0 : 0);
+            else if(40 <= hdl_cholesterol && hdl_cholesterol <= 49)
+                result = result + (isMale ? 1 : 1);
+            else if(hdl_cholesterol < 40)
+                result = result + (isMale ? 2 : 2);
+            #endregion
+            #region <<Systolic blood pressure, mm Hg>>
+            if(isTreated) 
+            {
+                if(systolic_blood_pressure < 120)
+                    result = result + (isMale ? 0 : 0);
+                else if(120 <= systolic_blood_pressure && systolic_blood_pressure <= 129)
+                {
+                    result = result + (isMale ? 1 : 3);
+                }
+                else if(130 <= systolic_blood_pressure && systolic_blood_pressure <= 139)
+                {
+                    result = result + (isMale ? 2 : 4);
+                }
+                else if(140 <= systolic_blood_pressure && systolic_blood_pressure <= 159)
+                {
+                    result = result + (isMale ? 2 : 5);
+                }
+                else if(160 <= systolic_blood_pressure)
+                {
+                    result = result + (isMale ? 3 : 6);
+                }
+            }
+            else
+            {
+                if(systolic_blood_pressure < 120)
+                    result = result + (isMale ? 0 : 0);
+                else if(120 <= systolic_blood_pressure && systolic_blood_pressure <= 129)
+                {
+                    result = result + (isMale ? 0 : 1);
+                }
+                else if(130 <= systolic_blood_pressure && systolic_blood_pressure <= 139)
+                {
+                    result = result + (isMale ? 1 : 2);
+                }
+                else if(140 <= systolic_blood_pressure && systolic_blood_pressure <= 159)
+                {
+                    result = result + (isMale ? 1 : 3);
+                }
+                else if(160 <= systolic_blood_pressure)
+                {
+                    result = result + (isMale ? 2 : 4);
+                }
+            }
+            #endregion
+            
+            return result;
+        }
+
         // POST api/Values/checkEmail
         [HttpPost("checkEmail")]
         public bool CheckEmail([FromBody] String email) 
         {
-            bool result = false;
+            bool result = false;    
             String response = null;
             JObject responseAuth = null;
             CheckEmailEntity checkEmailEntity = new CheckEmailEntity();
@@ -193,6 +403,81 @@ namespace QuitSmokeWebAPI.Controllers
             {
                 QuitSmokeUtils.WriteErrorStackTrace(ex);
             }
+            return result;
+        }
+
+        [HttpPost("updatePartner")]
+        public bool updatePartner([FromBody] UpdatePartner updatePartner)
+        {
+            bool result = false;
+            string nodeName = string.Empty;
+
+            try
+            {
+                // get smoker node name
+                using (var client = new HttpClient()) 
+                {
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+
+                    // construct request uri
+                    string uri = Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_APP_USERS 
+                        + Constant.FIREBASE_SUFFIX_JSON 
+                        + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, updatePartner.smokerUID);
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(uri).Result;
+                    // if can get user properly, procceed to get node name
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject firebaseQueryResult = response.Content.ReadAsAsync<JObject>().Result;
+                        // loop each node under this result json and get its name which is name of the user node
+                        foreach (JProperty prop in firebaseQueryResult.Properties())
+                        {
+                            // only need to loop once. Because result json only have one child token and it is the name system want
+                            nodeName = prop.Name;
+                            break;
+                        }
+                    }
+                }
+
+                // if node name is not empty, start update
+                if (!string.IsNullOrEmpty(nodeName))
+                {
+                    // construct patch uri
+                    string uri = Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_APP_USERS + "/"
+                        + nodeName + "/"
+                        + Constant.FIREBASE_SUFFIX_JSON;
+                    
+                    using (var client = new HttpClient())
+                    {
+                        var method = new HttpMethod("PATCH");
+                        // make patch request content
+                        string json = "{\"" + Constant.JSON_KEY_PARTNER_EMAIL + "\":\"" + updatePartner.partnerEmail +"\"}";
+                        HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                        var request = new HttpRequestMessage(method, uri)
+                        {
+                            Content = httpContent
+                        };
+
+                        HttpResponseMessage response = new HttpResponseMessage();
+                        response = client.SendAsync(request).Result;
+                        result = response.IsSuccessStatusCode;
+                    }
+                    
+                }
+                
+            } catch (Exception ex) {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+                result = false;
+            }
+
             return result;
         }
 
@@ -255,6 +540,7 @@ namespace QuitSmokeWebAPI.Controllers
                 userInfo.suburb = newUser.suburb;
                 userInfo.uid = uid;
                 userInfo.age = Int32.Parse(newUser.age);
+                userInfo.gender = newUser.gender;
 
                 // specify encoding 
                 client.Encoding = Encoding.UTF8;
