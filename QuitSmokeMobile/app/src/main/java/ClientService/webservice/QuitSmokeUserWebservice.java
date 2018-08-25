@@ -2,6 +2,7 @@ package ClientService.webservice;
 
 import android.util.Log;
 
+import ClientService.Entities.UpdatePartnerEntity;
 import ClientService.Entities.UserInfoEntity;
 import ClientService.QuitSmokeClientConstant;
 import org.json.JSONArray;
@@ -18,32 +19,8 @@ import ClientService.Factory.RegisterFactorial;
 import ClientService.QuitSmokeClientUtils;
 
 public class QuitSmokeUserWebservice {
-    //    // get profile of all users
-//    public static List<UserProfile> findAllUsers() throws IOException, JSONException, ParseException {
-//        List<UserProfile> users = new ArrayList<>();
-//
-//        // ws query result object
-//        JSONArray jsonArray = new JSONArray();
-//        try {
-//            jsonArray = webservice.requestWebServiceArray(Constant.FIND_ALL_USERS);
-//
-//            // construct return list
-//            int position = 0;
-//            while (position < jsonArray.length()) {
-//                JSONObject jsonObj = jsonArray.getJSONObject(position);
-//                UserProfile userProfile = new UserProfile(jsonObj);
-//                users.add(userProfile);
-//                position ++;
-//            }
-//        } catch (Exception ex) {
-//            throw ex;
-//        }
-//
-//        //return result
-//        return users;
-//    }
-//
-    // find resident by username and passwords
+
+    // find user by username and passwords
     public static UserInfoEntity findUserByEmailAndPwd(String email, String pwd) throws IOException, JSONException, ParseException {
         UserInfoEntity result = null;
         JSONObject appUserJson = null;
@@ -79,6 +56,39 @@ public class QuitSmokeUserWebservice {
         return result;
     }
 
+    // check if a user exist by email
+    public static boolean checkUserExistByEmail(String email) throws IOException, JSONException, ParseException {
+        boolean result = false;
+        // construct json
+        JSONObject json = new JSONObject();
+        json.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_EMAIL, email);
+
+        // call ws to check
+        String jsonResult = BaseWebservice.postWSForGetRestrievePlainText(QuitSmokeClientConstant.WEB_SERVER_BASE_URI
+                    + QuitSmokeClientConstant.REGISTER_WS
+                    + QuitSmokeClientConstant.CHECK_USER_EXIST_WS, json);
+        Log.d("QuitSmokeDebug", "result from backend:" + jsonResult);
+        result = Boolean.parseBoolean(jsonResult);
+        return  result;
+    }
+
+    // update partner association
+    public static boolean updatePartner(UpdatePartnerEntity updatePartnerEntity) throws JSONException, IOException, ParseException  {
+        boolean isUpdateSucc = false;
+        // construct update partner request json
+        JSONObject json = new JSONObject();
+        json.put(QuitSmokeClientConstant.WS_JSON_UPDATE_PARTNER_KEY_SMOKER_UID, updatePartnerEntity.getSmokerUID());
+        json.put(QuitSmokeClientConstant.WS_JSON_UPDATE_PARTNER_KEY_SMOKER_PARTNER_EMAIL, updatePartnerEntity.getPartnerEmail());
+        Log.d("QuitSmokeDebug", "parsed update partner json to post:" + json.toString());
+
+        // call ws to save
+        String updatePartnerResult = BaseWebservice.postWebService(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.UPDATE_PARTNER_WS, json);
+        Log.d("QuitSmokeDebug", "result from backend:" + updatePartnerResult);
+        isUpdateSucc = Boolean.parseBoolean(updatePartnerResult);
+
+        return isUpdateSucc;
+    }
+
     // post to server to store register user
     public static boolean saveRegisterResident(UserInfoEntity registerInfoUI) throws JSONException, IOException, ParseException {
         boolean isSuccessSave = false;
@@ -95,7 +105,7 @@ public class QuitSmokeUserWebservice {
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT, QuitSmokeClientUtils.convertDateToString(new Date()));
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_SUBURB, registerInfoUI.getSuburb());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_AGE, registerInfoUI.getAge());
-        Log.d("QuitSmokeDebug", "parsed resident json to post:" + jsonResident.toString());
+        Log.d("QuitSmokeDebug", "parsed user json to post:" + jsonResident.toString());
         // call ws to save
         String saveResidentResult = BaseWebservice.postWebService(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.REGISTER_WS, jsonResident);
         Log.d("QuitSmokeDebug", "result from backend:" + saveResidentResult);

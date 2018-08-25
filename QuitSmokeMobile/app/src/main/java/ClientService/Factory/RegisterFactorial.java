@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.william.quitsmokeappclient.CreateSupporterActivity;
 import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
 import org.json.JSONArray;
@@ -76,12 +77,13 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                     // set resident info to application level
                     QuitSmokeClientUtils.setEmail(registerInfoUI.getEmail());
                     QuitSmokeClientUtils.setPassword(registerInfoUI.getPassword());
+                    QuitSmokeClientUtils.setUid(registerInfoUI.getUid());
 
                     // clear text field background color and error message
                     tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.whiteBg));
                     ((TextView)activity.findViewById(R.id.lblEmailErrorMsg)).setText("");
                     // go to main activity
-                    Intent intent = new Intent(activity, MainActivity.class);
+                    Intent intent = new Intent(activity, CreateSupporterActivity.class);
                     activity.startActivityForResult(intent, 1);
                 } catch (Exception ex) {
                     Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));

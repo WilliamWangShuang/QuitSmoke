@@ -3,9 +3,10 @@ package ClientService;
 public class QuitSmokeClientConstant {
     // web service URL
     public static String WEB_SERVER_BASE_URI = "https://quit-smoke-web-api.appspot.com/";
-    public static String FIND_USER_BY_EMAIL_WS = "api/Values/email/";
     public static String LOGIN_URI_WS = "api/Values/login";
     public static String REGISTER_WS = "api/Values";
+    public static String UPDATE_PARTNER_WS = "api/Values/updatePartner";
+    public static String CHECK_USER_EXIST_WS = "checkEmail";
 
     public static String WS_KEY_EXCEPTION = "Exception";
     public static String MSG_401 = "401 Unauthorized. Please check your identity";
@@ -29,4 +30,8 @@ public class QuitSmokeClientConstant {
     public static String WS_JSON_USER_KEY_SUBURB = "suburb";
     public static String WS_JSON_USER_KEY_UID = "uid";
     public static String WS_JSON_USER_KEY_AGE = "age";
+
+    // update user json key
+    public static String WS_JSON_UPDATE_PARTNER_KEY_SMOKER_UID = "smokerUID";
+    public static String WS_JSON_UPDATE_PARTNER_KEY_SMOKER_PARTNER_EMAIL = "partnerEmail";
 }

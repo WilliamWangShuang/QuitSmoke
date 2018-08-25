@@ -322,6 +322,59 @@ public class BaseWebservice {
         }
     }
 
+    public static String postWSForGetRestrievePlainText(String serviceUrl, JSONObject jsonParam) throws IOException {
+        // response result
+        String result = null;
+
+        // declare a url connection
+        HttpURLConnection urlConnection=null;
+
+        try {
+            // create connection
+            URL urlToRequest = new URL(serviceUrl);
+            urlConnection = (HttpURLConnection)urlToRequest.openConnection();
+            // set http request is POST
+            urlConnection.setRequestMethod("POST");
+            // disable caches
+            urlConnection.setUseCaches(false);
+            // set time out in case net is slow
+            urlConnection.setConnectTimeout(10000);
+            urlConnection.setReadTimeout(10000);
+            // set post request header
+            urlConnection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+            // set post send true. allow to send to ws
+            urlConnection.setDoOutput(true);
+
+            // set stream sent to server
+            OutputStream outputPost = new BufferedOutputStream(urlConnection.getOutputStream());
+            outputPost.write(jsonParam.toString().getBytes());
+            outputPost.flush();
+            outputPost.close();
+
+            // connect url
+            urlConnection.connect();
+
+            // get server response status
+            int HttpResult = urlConnection.getResponseCode();
+            if(HttpResult == HttpURLConnection.HTTP_OK) {
+                // get response stream from web service
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                // put the stream content into string
+                String responseFromWS = getResponseText(in);
+                result = responseFromWS;
+            }
+        } catch (IOException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            // close connection
+            if(urlConnection!=null)
+                urlConnection.disconnect();
+            return result;
+        }
+    }
+
     // make a POST http request to a web service
     public static String postWebServiceSyncAllData(String serviceUrl, JSONArray jsonParam) throws IOException {
         // response result
