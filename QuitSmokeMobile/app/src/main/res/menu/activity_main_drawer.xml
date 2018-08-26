@@ -7,9 +7,13 @@
         <item android:title="Interaction">
             <menu>
                 <item
-                    android:id="@+id/nav_camera"
-                    android:icon="@drawable/ic_menu_camera"
-                    android:title="Create Plan" />
+                    android:id="@+id/home_fragment"
+                    android:icon="@drawable/home"
+                    android:title="Home" />
+                <item
+                    android:id="@+id/calculate_frs"
+                    android:icon="@drawable/frs"
+                    android:title="Framingham Score" />
                 <item
                     android:id="@+id/nav_gallery"
                     android:icon="@drawable/ic_menu_gallery"

@@ -22,9 +22,26 @@ public class QuitSmokeClientUtils extends Application {
     private static String email;
     private static String password;
     private static String uid;
+    private static int age;
     private static String smokerNodeName;
+    private static String gender;
 
     // setters and getters
+    public static String getGender() {
+        return gender;
+    }
+
+    public static void setGender(String gender) {
+        QuitSmokeClientUtils.gender = gender;
+    }
+
+    public static int getAge() {
+        return age;
+    }
+
+    public static void setAge(int age) {
+        QuitSmokeClientUtils.age = age;
+    }
 
     public static String getSmokerNodeName() {
         return smokerNodeName;

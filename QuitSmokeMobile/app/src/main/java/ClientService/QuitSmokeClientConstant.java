@@ -6,6 +6,7 @@ public class QuitSmokeClientConstant {
     public static String LOGIN_URI_WS = "api/Values/login";
     public static String REGISTER_WS = "api/Values";
     public static String UPDATE_PARTNER_WS = "api/Values/updatePartner";
+    public static String CALCULATE_FRS = "api/Values/calculatefrs";
     public static String CHECK_USER_EXIST_WS = "/checkEmail";
 
     public static String WS_KEY_EXCEPTION = "Exception";
@@ -35,4 +36,10 @@ public class QuitSmokeClientConstant {
     // update user json key
     public static String WS_JSON_UPDATE_PARTNER_KEY_SMOKER_NODE_NAME = "smokerNodeName";
     public static String WS_JSON_UPDATE_PARTNER_KEY_SMOKER_PARTNER_EMAIL = "partnerEmail";
+
+    // calculate Framingham Risk Score json key
+    public static String WS_CALCULATE_FRS_KEY_CHOL = "total_cholesterol";
+    public static String WS_CALCULATE_FRS_KEY_HDL = "hdl_cholesterol";
+    public static String WS_CALCULATE_FRS_KEY_SBP = "systolic_blood_pressure";
+    public static String WS_CALCULATE_FRS_KEY_TREATED_I = "isTreated";
 }

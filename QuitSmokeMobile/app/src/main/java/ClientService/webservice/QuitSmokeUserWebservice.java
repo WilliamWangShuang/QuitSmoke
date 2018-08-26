@@ -1,21 +1,14 @@
 package ClientService.webservice;
 
 import android.util.Log;
-
 import ClientService.Entities.UpdatePartnerEntity;
 import ClientService.Entities.UserInfoEntity;
 import ClientService.QuitSmokeClientConstant;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import ClientService.Factory.RegisterFactorial;
 import ClientService.QuitSmokeClientUtils;
 
 public class QuitSmokeUserWebservice {
@@ -49,6 +42,8 @@ public class QuitSmokeUserWebservice {
                 result.setPartnerId(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_ID));
                 result.setPlanId(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_PLAN_ID));
                 result.setUid(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID));
+                result.setAge(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_AGE));
+                result.setGender(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_GENDER));
             }
         } catch (Exception ex) {
             throw ex;

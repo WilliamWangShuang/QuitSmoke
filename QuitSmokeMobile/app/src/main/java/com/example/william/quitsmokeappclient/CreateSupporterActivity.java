@@ -1,5 +1,6 @@
 package com.example.william.quitsmokeappclient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -43,6 +44,14 @@ public class CreateSupporterActivity extends AppCompatActivity {
                 CreateSupporterFactorial createSupporterFactorial = new CreateSupporterFactorial(CreateSupporterActivity.this, supporterEmail);
 
                 createSupporterFactorial.execute();
+            }
+        });
+
+        btnLater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateSupporterActivity.this, MainActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
     }

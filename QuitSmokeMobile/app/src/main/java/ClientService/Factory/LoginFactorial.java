@@ -32,7 +32,7 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected void onPreExecute() {
+        protected void onPreExecute() {
         super.onPreExecute();
         isFound = false;
         isError = false;
@@ -69,6 +69,8 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
             QuitSmokeClientUtils.setEmail(email);
             QuitSmokeClientUtils.setPassword(encryptPwdFromUI);
             QuitSmokeClientUtils.setUid(userProfile.getUid());
+            QuitSmokeClientUtils.setAge(Integer.parseInt(userProfile.getAge()));
+            QuitSmokeClientUtils.setGender(userProfile.getGender());
             h.sendEmptyMessage(2);
         } else {
             if (isError) {

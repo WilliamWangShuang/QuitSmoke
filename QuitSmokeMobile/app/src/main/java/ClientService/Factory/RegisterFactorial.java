@@ -78,11 +78,13 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                     QuitSmokeClientUtils.setEmail(registerInfoUI.getEmail());
                     QuitSmokeClientUtils.setPassword(registerInfoUI.getPassword());
                     QuitSmokeClientUtils.setSmokerNodeName(QuitSmokeClientUtils.getSmokerNodeName());
+                    QuitSmokeClientUtils.setAge(Integer.parseInt(registerInfoUI.getAge()));
+                    QuitSmokeClientUtils.setGender(registerInfoUI.getGender());
 
                     // clear text field background color and error message
                     tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.whiteBg));
                     ((TextView)activity.findViewById(R.id.lblEmailErrorMsg)).setText("");
-                    // go to main activity
+                    // go to create partner activity
                     Intent intent = new Intent(activity, CreateSupporterActivity.class);
                     activity.startActivityForResult(intent, 1);
                 } catch (Exception ex) {

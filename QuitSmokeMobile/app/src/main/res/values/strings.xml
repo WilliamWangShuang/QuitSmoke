@@ -37,6 +37,15 @@
     <string name="spinner_age_selector">Age</string>
     <string name="spinner_gender_selector">Gender</string>
     <string name="supporter_label">Type in your supporter email</string>
+    <string name="tvChol_title">Chol.</string>
+    <string name="tvSBP_title">SBP</string>
+    <string name="tvHDL_title">HDL</string>
+    <string name="lbl_chol_msg">(140&lt;x&lt;300)</string>
+    <string name="lbl_SBP_msg">(105&lt;x&lt;200)</string>
+    <string name="lbl_HDL_msg">(30&lt;x&lt;150)</string>
+    <string name="txtChol_hint">mg / dL</string>
+    <string name="txtSBP_hint">mmHg</string>
+    <string name="txtHDL_hint">mg / dL</string>
 
     <array name="user_role">
         <item>Smoker</item>
