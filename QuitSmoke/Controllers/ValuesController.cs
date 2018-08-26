@@ -121,6 +121,7 @@ namespace QuitSmokeWebAPI.Controllers
                             result.smoker_indicator = userInfo.smoker_indicator;
                             result.suburb = userInfo.suburb;
                             result.city = userInfo.city;
+                            result.gender = userInfo.gender;
                             result.age = userInfo.age.ToString();
                         } 
                     }
