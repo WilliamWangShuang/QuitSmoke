@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="#33CCCC" >
+
+    <TextView
+        android:id="@+id/lblErrorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#CB4335"
+        android:textStyle="bold"
+        android:paddingLeft="10dp"/>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1">
+
+        <TableRow
+            android:background="#FFFFFF"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_height="199dp"
+                android:contentDescription="@string/launch_logo"
+                android:src="@drawable/launch_logo" />
+        </TableRow>
+
+        <TableRow
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/lblAppName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:color="#FF2345"
+                android:fontFamily="@font/nanum_brush_script"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/quit_together"
+                android:textSize="180px" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/how_many_cigarettes_do_you_smoke_a_day" />
+    <EditText
+        android:id="@+id/survey_smoke_per_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:inputType="number"
+        android:hint="@string/smoke_per_day" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/what_is_your_age" />
+    <Spinner
+        android:id="@+id/survey_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="What is your gender?" />
+    <Spinner
+        android:id="@+id/survey_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_servey_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

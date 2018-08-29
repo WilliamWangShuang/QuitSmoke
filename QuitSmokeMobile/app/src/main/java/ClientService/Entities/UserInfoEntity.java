@@ -6,11 +6,9 @@ public class UserInfoEntity {
     private String name;
     private String email;
     private String password;
-    private String city;
     private String partnerId;
     private boolean isPartner;
     private int point;
-    private String suburb;
     private String registerDate;
     private boolean isSmoker;
     private String planId;
@@ -20,27 +18,23 @@ public class UserInfoEntity {
 
     public UserInfoEntity() {}
 
-    public UserInfoEntity(String name, String age, String gender, String email, String password, String city, String suburb, Boolean isSmoker, Boolean isSupporter) {
+    public UserInfoEntity(String name, String age, String gender, String email, String password, Boolean isSmoker, Boolean isSupporter) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.isSmoker = isSmoker;
-        this.city = city;
-        this.suburb = suburb;
         this.isPartner = isSupporter;
         this.age = age;
         this.gender = gender;
     }
 
-    public UserInfoEntity(String name, String email, String password, String city, String partnerId, boolean isPartner, int point, String suburb, String registerDate, boolean isSmoker, String planId, String uid, String age) {
+    public UserInfoEntity(String name, String email, String password, String partnerId, boolean isPartner, int point, String registerDate, boolean isSmoker, String planId, String uid, String age) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.city = city;
         this.partnerId = partnerId;
         this.isPartner = isPartner;
         this.point = point;
-        this.suburb = suburb;
         this.registerDate = registerDate;
         this.isSmoker = isSmoker;
         this.planId = planId;
@@ -62,14 +56,6 @@ public class UserInfoEntity {
 
     public void setAge(String age) {
         this.age = age;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getPartnerId() {
@@ -94,14 +80,6 @@ public class UserInfoEntity {
 
     public void setPoint(int point) {
         this.point = point;
-    }
-
-    public String getSuburb() {
-        return suburb;
-    }
-
-    public void setSuburb(String suburb) {
-        this.suburb = suburb;
     }
 
     public String getRegisterDate() {

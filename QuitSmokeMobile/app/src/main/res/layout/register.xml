@@ -1,205 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
-
-    <android.support.design.widget.AppBarLayout
+    <android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:stretchColumns="0">
+            android:background="#ffffff"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-            <TableRow>
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:fillViewport="true">
 
-                <EditText
-                    android:id="@+id/register_name"
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:textColor="#000000"
-                    android:textColorHint="@color/grey" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/lblNameNoErrorMsg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/errorBackgound"
-                    android:textStyle="bold" />
-            </TableRow>
+                    android:padding="10dp"
+                    android:stretchColumns="0">
 
-            <TableRow>
+                    <TableRow>
 
-                <Spinner
-                    android:id="@+id/ddlAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/lblAgeErrorMsg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/errorBackgound"
-                    android:textStyle="bold" />
-            </TableRow>
+                        <EditText
+                            android:id="@+id/register_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:textColor="#000000"
+                            android:hint="@string/register_hint_name"
+                            android:textColorHint="@color/grey" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/lblNameNoErrorMsg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/errorBackgound"
+                            android:textStyle="bold" />
+                    </TableRow>
 
-            <TableRow>
+                    <TableRow>
 
-                <Spinner
-                    android:id="@+id/ddlGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/lblGenderErrorMsg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/errorBackgound"
-                    android:textStyle="bold" />
-            </TableRow>
+                        <Spinner
+                            android:id="@+id/ddlAge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/lblAgeErrorMsg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/errorBackgound"
+                            android:textStyle="bold" />
+                    </TableRow>
 
-            <TableRow>
+                    <TableRow>
 
-                <EditText
-                    android:id="@+id/register_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:textColor="#000000"
-                    android:hint="@string/city"
-                    android:textColorHint="@color/grey" />
-            </TableRow>
-            <TableRow>
+                        <Spinner
+                            android:id="@+id/ddlGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/lblGenderErrorMsg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/errorBackgound"
+                            android:textStyle="bold" />
+                    </TableRow>
 
-                <TextView
-                    android:id="@+id/lblCityErrorMsg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/errorBackgound"
-                    android:textStyle="bold" />
-            </TableRow>
+                    <TableRow>
 
-            <TableRow>
+                        <EditText
+                            android:id="@+id/register_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:textColor="#000000"
+                            android:hint="@string/register_email"
+                            android:textColorHint="@color/grey"
+                            android:inputType="textEmailAddress" />
+                    </TableRow>
+                    <TableRow>
 
-                <EditText
-                    android:id="@+id/register_suburb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:textColor="#000000"
-                    android:hint="@string/suburb"
-                    android:textColorHint="@color/grey" />
-            </TableRow>
-            <TableRow>
+                        <TextView
+                            android:id="@+id/lblEmailErrorMsg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/errorBackgound"
+                            android:textStyle="bold" />
+                    </TableRow>
 
-                <TextView
-                    android:id="@+id/lblSuburbErrorMsg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/errorBackgound"
-                    android:textStyle="bold" />
-            </TableRow>
+                    <TableRow>
 
-            <TableRow>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            app:passwordToggleEnabled="true"
+                            app:hintEnabled="true"
+                            android:textColorHint="@color/grey"
+                            android:hint="@string/login_pwd_hint"
+                            app:passwordToggleTint="@color/colorAccent">
 
-                <EditText
-                    android:id="@+id/register_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:textColor="#000000"
-                    android:hint="@string/register_email"
-                    android:textColorHint="@color/grey"
-                    android:inputType="textEmailAddress" />
-            </TableRow>
-            <TableRow>
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/register_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000"
+                                android:inputType="textPassword" />
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
 
-                <TextView
-                    android:id="@+id/lblEmailErrorMsg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/errorBackgound"
-                    android:textStyle="bold" />
-            </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/lblPwdErrorMsg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/errorBackgound"
+                            android:textStyle="bold" />
+                    </TableRow>
 
-            <TableRow>
+                    <TableRow>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    app:passwordToggleEnabled="true"
-                    app:hintEnabled="true"
-                    android:textColorHint="@color/grey"
-                    android:hint="@string/login_pwd_hint"
-                    app:passwordToggleTint="@color/colorAccent">
+                        <Spinner
+                            android:id="@+id/ddlRole"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </TableRow>
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/register_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000000"
-                        android:inputType="textPassword" />
-                </android.support.design.widget.TextInputLayout>
-            </TableRow>
+                    <TableRow>
+                        <Button
+                            android:id="@+id/btn_confirm_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_span="2"
+                            android:text="@string/register_title"
+                            android:textStyle="bold" />
+                    </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/lblPwdErrorMsg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/errorBackgound"
-                    android:textStyle="bold" />
-            </TableRow>
+                </TableLayout>
+            </ScrollView>
+        </android.support.design.widget.AppBarLayout>
 
-            <TableRow>
-
-                <Spinner
-                    android:id="@+id/ddlRole"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </TableRow>
-
-            <TableRow>
-                <Button
-                    android:id="@+id/btn_confirm_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_span="2"
-                    android:text="@string/register_title"
-                    android:textStyle="bold" />
-            </TableRow>
-
-        </TableLayout>
-    </android.support.design.widget.AppBarLayout>
-
-</android.support.v4.widget.DrawerLayout>
+    </android.support.v4.widget.DrawerLayout>

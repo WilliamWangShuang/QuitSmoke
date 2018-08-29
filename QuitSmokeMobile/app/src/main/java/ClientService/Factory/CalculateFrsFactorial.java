@@ -35,6 +35,7 @@ public class CalculateFrsFactorial extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         try {
+            //TODO: UI validation
             // call backend service method to get calculation result
             calculateResult = QuitSmokerReportWebservice.calculateFRS(calculateFrsEntity);
             h.sendEmptyMessage(0);
@@ -57,7 +58,7 @@ public class CalculateFrsFactorial extends AsyncTask<Void, Void, Void> {
         public void handleMessage(Message msg){
             if(msg.what == 0) {
                 // calculate successfully, update UI result textView
-                ((TextView)calculateFrsActivity.findViewById(R.id.tvRiskResult)).setText(calculateResult + "%");
+                ((TextView)calculateFrsActivity.findViewById(R.id.tvRiskResult)).setText("10-Year Risk:"+ calculateResult + "%");
             } else {
                 Toast.makeText(calculateFrsActivity, calculateFrsActivity.getResources().getString(R.string.error_msg), Toast.LENGTH_LONG);
             }

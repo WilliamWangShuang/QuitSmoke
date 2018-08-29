@@ -5,6 +5,10 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.series.BarGraphSeries;
+import com.jjoe64.graphview.series.BaseSeries;
+import com.jjoe64.graphview.series.DataPoint;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -120,7 +124,7 @@ public class QuitSmokeClientUtils extends Application {
     public static boolean validateGender(String gender, String message, TextView msgView) {
         boolean result = false;
         try {
-            if (gender != null && "" != gender) {
+            if ("M".equals(gender) || "F".equals(gender)) {
                 result = true;
                 msgView.setText("");
             } else {
@@ -254,4 +258,5 @@ public class QuitSmokeClientUtils extends Application {
         }
         return sb.toString();
     }
+
 }

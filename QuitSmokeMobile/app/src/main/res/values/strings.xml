@@ -46,6 +46,28 @@
     <string name="txtChol_hint">mg / dL</string>
     <string name="txtSBP_hint">mmHg</string>
     <string name="txtHDL_hint">mg / dL</string>
+    <string name="how_many_cigarettes_do_you_smoke_a_day">How many cigarettes do you smoke a day?</string>
+    <string name="smoke_per_day">Smoke per day</string>
+    <string name="what_is_your_age">What is your age?</string>
+    <string name="survey_smoke">smoke</string>
+    <string name="survery_age">age</string>
+    <string name="survey_gender">gender</string>
+    <string name="lbl_quit_reason">At your age, people quit because of...</string>
+    <string name="survey_smoke_err_msg">Smoke No. cannot be 0.</string>
+    <string name="survey_age_err_msg">Please choose your age</string>
+    <string name="survey_gender_err_msg">Please choose your gender</string>
+    <string name="calculate_chol_err_msg">Chol is not in valid range</string>
+    <string name="calculate_sbp_err_msg">SBP is not in valid range</string>
+    <string name="calculate_hdl_err_msg">HDL is not in valid range</string>
+    <string name="mean_higher_than_avg">At your cigarette consumption, you approximately smoke %d more cigarettes compared to the population average.</string>
+    <string name="mean_lower_than_avg">At your cigarette consumption, you approximately smoke %d less cigarettes compared to the population average.</string>
+    <string name="succ_chance">At your age, you are %s likely to reduce your consumption (%s) compared to quitting cold turkey (%s)</string>
+    <string name="fail_chance">At your age, you are %s likely to fail to quit cold turkey (%s) compared to reducing consumption (%s) </string>
+    <string name="succ_cold_turkey_behaviour">successfully quit cold turkey</string>
+    <string name="succ_reduce_behaviour">successfully reduced amount</string>
+    <string name="fail_cold_turkey_behaviour">failed to quit cold turkey</string>
+    <string name="fail_reduce_behaviour">failed to reduce amount</string>
+    <string name="register_hint_name">Name</string>
 
     <array name="user_role">
         <item>Smoker</item>

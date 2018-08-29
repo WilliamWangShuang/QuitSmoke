@@ -10,11 +10,11 @@
         android:id="@+id/tvRiskResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
         android:text="0.0%"
         android:textColor="#FFFFFF"
-        android:textSize="90dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/table_calculate_frs" />
 
     <TableLayout
@@ -44,6 +44,7 @@
                 android:layout_height="30dp"
                 android:paddingLeft="10dp"
                 android:layout_weight="7"
+                android:inputType="number"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtChol_hint" />
         </TableRow>
@@ -79,6 +80,7 @@
                 android:layout_height="30dp"
                 android:paddingLeft="10dp"
                 android:layout_weight="7"
+                android:inputType="number"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtSBP_hint" />
         </TableRow>
@@ -114,6 +116,7 @@
                 android:layout_height="30dp"
                 android:paddingLeft="10dp"
                 android:layout_weight="7"
+                android:inputType="number"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtHDL_hint" />
         </TableRow>

@@ -1,11 +1,13 @@
 package com.example.william.quitsmokeappclient.Fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,16 @@ public class CalculateFrsFragment extends Fragment {
     private EditText txtHDL;
     private Button btnSubmit;
     private CalculateFrsEntity calculateFrsEntity;
+    private boolean isCholValid;
+    private boolean isSBPValid;
+    private boolean isHDLValid;
+    private FragmentActivity myContext;
+
+    @Override
+    public void onAttach(Activity activity) {
+        myContext=(FragmentActivity) activity;
+        super.onAttach(activity);
+    }
 
     @Nullable
     @Override
@@ -54,21 +66,54 @@ public class CalculateFrsFragment extends Fragment {
             btnSubmit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     // get values from fields and application level constants for request
-                    int chol = Integer.parseInt(txtChol.getText().toString());
-                    int sbp = Integer.parseInt(txtSBP.getText().toString());
-                    int hdl = Integer.parseInt(txtHDL.getText().toString());
-                    int age = QuitSmokeClientUtils.getAge();
-                    final String gender = QuitSmokeClientUtils.getGender();
-                    final boolean isTreated = false; //TODO: should come from UI
-                    // construct UI entity
-                    calculateFrsEntity = new CalculateFrsEntity(age, gender, chol, hdl, sbp, isTreated);
+                    String cholFromUI = txtChol.getText().toString();
+                    String sbpFromUI = txtSBP.getText().toString();
+                    String hdlFromUI = txtHDL.getText().toString();
+                    if(validateUI(cholFromUI, sbpFromUI, hdlFromUI)) {
+                        int chol = Integer.parseInt(cholFromUI);
+                        int sbp = Integer.parseInt(sbpFromUI);
+                        int hdl = Integer.parseInt(hdlFromUI);
+                        int age = QuitSmokeClientUtils.getAge();
+                        final String gender = QuitSmokeClientUtils.getGender();
+                        final boolean isTreated = false;
+                        // construct UI entity
+                        calculateFrsEntity = new CalculateFrsEntity(age, gender, chol, hdl, sbp, isTreated);
 
-                    CalculateFrsFactorial registerFactorial = new CalculateFrsFactorial(getActivity(), calculateFrsEntity);
-                    registerFactorial.execute();
+                        CalculateFrsFactorial registerFactorial = new CalculateFrsFactorial(getActivity(), calculateFrsEntity);
+                        registerFactorial.execute();
+                    } else {
+                        CalculateFRSErrorFragment newFragment = new CalculateFRSErrorFragment();
+                        Bundle bundle = new Bundle();
+                        // pass validation result to dialog
+                        bundle.putBoolean("isSBPValid", isSBPValid);
+                        bundle.putBoolean("isCholValid", isCholValid);
+                        bundle.putBoolean("isHDLValid", isHDLValid);
+                        newFragment.setArguments(bundle);
+                        newFragment.show(myContext.getSupportFragmentManager(), "calculateFRS");
+                    }
                 }
             });
         } catch (Exception ex) {
             Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
         }
+    }
+
+    private boolean validateUI(String chol, String sbp, String hdl) {
+        boolean isValid = false;
+        // check chol
+        isCholValid = chol != null && !chol.isEmpty();
+        if (isCholValid)
+            isCholValid = Integer.parseInt(chol) >= 140 && Integer.parseInt(chol) <= 300;
+        // check sbp
+        isSBPValid = sbp != null && !sbp.isEmpty();
+        if (isSBPValid)
+            isSBPValid = Integer.parseInt(sbp) >= 105 && Integer.parseInt(sbp) <= 200;
+        // check hdl
+        isHDLValid = hdl != null && !hdl.isEmpty();
+        if (isHDLValid)
+            isHDLValid = Integer.parseInt(hdl) >= 30 && Integer.parseInt(hdl) <= 150;
+
+        isValid = isCholValid && isSBPValid && isHDLValid;
+        return isValid;
     }
 }

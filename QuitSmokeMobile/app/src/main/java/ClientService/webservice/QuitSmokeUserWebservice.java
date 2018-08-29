@@ -36,8 +36,6 @@ public class QuitSmokeUserWebservice {
                 result.setSmoker(appUserJson.getBoolean(QuitSmokeClientConstant.WS_JSON_USER_KEY_SMOKER_I));
                 result.setPartner(appUserJson.getBoolean(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_I));
                 result.setRegisterDate(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT));
-                result.setSuburb(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_SUBURB));
-                result.setCity(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_CITY));
                 result.setPoint(appUserJson.getInt(QuitSmokeClientConstant.WS_JSON_USER_KEY_POINT));
                 result.setPartnerId(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_ID));
                 result.setPlanId(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_PLAN_ID));
@@ -85,7 +83,6 @@ public class QuitSmokeUserWebservice {
         boolean isSuccessSave = false;
         // construct user json
         JSONObject jsonResident = new JSONObject();
-        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_CITY, registerInfoUI.getCity());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_EMAIL, registerInfoUI.getEmail());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_NAME, registerInfoUI.getName());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_ID, registerInfoUI.getPartnerId());
@@ -94,7 +91,6 @@ public class QuitSmokeUserWebservice {
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_PASSWORD, QuitSmokeClientUtils.encryptPwd(registerInfoUI.getPassword()));
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_POINT, registerInfoUI.getPoint());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT, QuitSmokeClientUtils.convertDateToString(new Date()));
-        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_SUBURB, registerInfoUI.getSuburb());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_AGE, registerInfoUI.getAge());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_GENDER, registerInfoUI.getGender());
         Log.d("QuitSmokeDebug", "parsed user json to post:" + jsonResident.toString());

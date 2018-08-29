@@ -5,6 +5,7 @@ public class QuitSmokeClientConstant {
     public static String WEB_SERVER_BASE_URI = "https://quit-smoke-web-api.appspot.com/";
     public static String LOGIN_URI_WS = "api/Values/login";
     public static String REGISTER_WS = "api/Values";
+    public static String GET_SERVEY_DATA ="api/Values/GetSurveyData";
     public static String UPDATE_PARTNER_WS = "api/Values/updatePartner";
     public static String CALCULATE_FRS = "api/Values/calculatefrs";
     public static String CHECK_USER_EXIST_WS = "/checkEmail";
@@ -42,4 +43,19 @@ public class QuitSmokeClientConstant {
     public static String WS_CALCULATE_FRS_KEY_HDL = "hdl_cholesterol";
     public static String WS_CALCULATE_FRS_KEY_SBP = "systolic_blood_pressure";
     public static String WS_CALCULATE_FRS_KEY_TREATED_I = "isTreated";
+
+    // survey json key
+    public static String WS_SURVEY_KEY_SMOKE_NO = "smokeNo";
+    public static String WS_SURVEY_KEY_MY_MEAN_GROUP = "myMeanGroupEntity";
+    public static String WS_SURVEY_KEY_AGE_END = "age_end";
+    public static String WS_SURVEY_KEY_AGE_START = "age_start";
+    public static String WS_SURVEY_KEY_MEAN_CONSUME = "mean_consume";
+    public static String WS_SURVEY_KEY_MEAN_LIST = "meanEntityList";
+    public static String WS_SURVEY_KEY_CHANCE = "chanceAgeList";
+    public static String WS_SURVEY_KEY_BEHAVIOUR = "behaviour";
+    public static String WS_SURVEY_KEY_PROPORTION = "population_proportion";
+    public static String WS_SURVEY_KEY_MOTIVATION_AGE = "motivationAgeList";
+    public static String WS_SURVEY_KEY_RANK = "rank";
+    public static String WS_SURVEY_KEY_MOTIVATION_GENDER = "motivationGenderList";
+    public static String WS_SURVEY_KEY_CLASSIFICATION = "variable_classification_to_age";
 }
