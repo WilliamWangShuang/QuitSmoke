@@ -7,11 +7,11 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SurveyResultEntity {
-    private static MeanEntity myMeanGroupEntity;
-    private static List<MeanEntity> meanEntityList;
-    private static List<ChanceAgeEntity> chanceAgeEntityList;
-    private static List<MotivationAgeEntity> motivationAgeEntityList;
-    private static List<MotivationGenderEntity> motivationGenderEntityList;
+    private MeanEntity myMeanGroupEntity;
+    private List<MeanEntity> meanEntityList;
+    private List<ChanceAgeEntity> chanceAgeEntityList;
+    private List<MotivationAgeEntity> motivationAgeEntityList;
+    private List<MotivationGenderEntity> motivationGenderEntityList;
 
     public SurveyResultEntity() {
         myMeanGroupEntity = myMeanGroupEntity == null ? new MeanEntity() : myMeanGroupEntity;

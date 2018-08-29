@@ -17,7 +17,6 @@ public class SurveyResultActivity extends AppCompatActivity {
     private TextView tvMeanSmoke;
     private TextView tvChanceQuitting;
     private Button btnStart;
-    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
