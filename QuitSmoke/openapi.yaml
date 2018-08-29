@@ -158,6 +158,31 @@ paths:
           schema:
             format: int32
             type: integer
+  /api/Values/GetSurveyData:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesGetSurveyDataPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: surveyReq
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/SurveyRequest'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/SurveyData'
   /api/Values/checkEmail:
     post:
       tags:
@@ -274,10 +299,101 @@ definitions:
         type: integer
       isTreated:
         type: boolean
+  SurveyRequest:
+    type: object
+    properties:
+      age:
+        type: string
+      gender:
+        type: string
+      smokeNo:
+        type: string
+  SurveyData:
+    type: object
+    properties:
+      myMeanGroupEntity:
+        $ref: '#/definitions/MeanEntity'
+      meanEntityList:
+        uniqueItems: false
+        type: array
+        items:
+          $ref: '#/definitions/MeanEntity'
+      chanceAgeList:
+        uniqueItems: false
+        type: array
+        items:
+          $ref: '#/definitions/ChanceAge'
+      motivationAgeList:
+        uniqueItems: false
+        type: array
+        items:
+          $ref: '#/definitions/MotivationAge'
+      motivationGenderList:
+        uniqueItems: false
+        type: array
+        items:
+          $ref: '#/definitions/MotivationGender'
+  MeanEntity:
+    type: object
+    properties:
+      age_end:
+        format: int32
+        type: integer
+      age_start:
+        format: int32
+        type: integer
+      gender:
+        type: string
+      mean_consume:
+        format: int32
+        type: integer
+  ChanceAge:
+    type: object
+    properties:
+      behaviour:
+        type: string
+      age_end:
+        format: int32
+        type: integer
+      age_start:
+        format: int32
+        type: integer
+      population_proportion:
+        format: double
+        type: number
+  MotivationAge:
+    type: object
+    properties:
+      age_start:
+        format: int32
+        type: integer
+      age_end:
+        format: int32
+        type: integer
+      behaviour:
+        type: string
+      population_proportion:
+        format: double
+        type: number
+  MotivationGender:
+    type: object
+    properties:
+      rank:
+        format: int32
+        type: integer
+      gender:
+        type: string
+      behaviour:
+        type: string
+      population_proportion:
+        format: double
+        type: number
+      variable_classification_to_age:
+        type: string
   UpdatePartner:
     type: object
     properties:
-      smokerUID:
+      smokerNodeName:
         type: string
       partnerEmail:
         type: string

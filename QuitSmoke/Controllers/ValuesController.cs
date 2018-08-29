@@ -374,6 +374,97 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("GetSurveyData")]
+        public ActionResult<SurveyData> getSurveyData([FromBody] SurveyRequest surveyReq)
+        {
+            SurveyData surveyData = new SurveyData();
+            try
+            {
+                // get value from request parameters
+                string gender = surveyReq.Gender;
+                int age = Int32.Parse(surveyReq.Age);
+                int smokeNo = Int32.Parse(surveyReq.smokeNo);
+
+                // do mean logic
+                using(var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+                    // get age range number
+                    int endAge = 0;
+                    int startAge = getAgeRange(Int32.Parse(surveyReq.Age), out endAge);
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT + Constant.FIREBASE_SUFFIX_JSON).Result;
+ 
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // get the response json object (top-level)
+                        JObject topJObject = response.Content.ReadAsAsync<JObject>().Result;;
+                        #region <<mean logic>> 
+                        // get mean json object
+                        JObject meanJson = topJObject.GetValue(Constant.JSON_NODE_NAME_MEAN_AGE_GENDER).ToObject<JObject>();
+                        List<MeanEntity> meanList = new List<MeanEntity>();
+                        foreach (JToken token in meanJson.Children())
+                        {
+                            MeanEntity entity = token.First.ToObject<MeanEntity>();
+                            meanList.Add(entity);
+                        }
+                        surveyData.MeanEntityList = meanList.FindAll(m => surveyReq.Gender.Equals(m.gender, StringComparison.InvariantCultureIgnoreCase));
+                        surveyData.MyMeanGroupEntity = surveyData.MeanEntityList.Find(
+                            m => m.age_start == startAge && m.age_end == endAge && m.gender.Equals(surveyReq.Gender));
+                        #endregion
+                        #region <<quit chance logic>>
+                        JObject chanceAgeJson = topJObject.GetValue(Constant.JSON_NODE_CHANCE_AGE).ToObject<JObject>();
+                        List<ChanceAge> chanceAgeList = new List<ChanceAge>();
+                        foreach (JToken token in chanceAgeJson.Children())
+                        {
+                            ChanceAge entity = token.First.ToObject<ChanceAge>();
+                            chanceAgeList.Add(entity);
+                        }
+                        surveyData.ChanceAgeList = chanceAgeList.FindAll(
+                            ca => Constant.FAIL_REDUCE_AMOUNT.Equals(ca.behaviour, StringComparison.InvariantCultureIgnoreCase)
+                                    || Constant.FAIL_COLD_TURKEY.Equals(ca.behaviour, StringComparison.InvariantCultureIgnoreCase)
+                                    || Constant.SUCC_COLD_TURKEY.Equals(ca.behaviour, StringComparison.InvariantCultureIgnoreCase)
+                                    || Constant.SUCC_REDUCE_AMOUNT.Equals(ca.behaviour, StringComparison.InvariantCultureIgnoreCase));
+                        #endregion
+                        #region <<motivation age logic>>
+                        JObject motivationAgeJson = topJObject.GetValue(Constant.JSON_NODE_MOTIVATION_AGE).ToObject<JObject>();
+                        List<MotivationAge> motivationAgeList = new List<MotivationAge>();
+                        foreach (JToken token in motivationAgeJson.Children())
+                        {
+                            MotivationAge entity = token.First.ToObject<MotivationAge>();
+                            motivationAgeList.Add(entity);
+                        }
+                        surveyData.MotivationAgeList = motivationAgeList.FindAll(ma => ma.age_start == startAge && ma.age_end == endAge);
+                        #endregion
+                        #region <<motivation gender logic>>
+                        JObject motivationGenderJson = topJObject.GetValue(Constant.JSON_NODE_MOTIVATION_GENDER).ToObject<JObject>();
+                        List<MotivationGender> motivationGenderList = new List<MotivationGender>();
+                        foreach (JToken token in motivationGenderJson.Children())
+                        {
+                            MotivationGender entity = token.First.ToObject<MotivationGender>();
+                            motivationGenderList.Add(entity);
+                        }
+                        surveyData.MotivationGenderList = motivationGenderList.FindAll(mg => mg.gender.Equals(surveyReq.Gender, StringComparison.InvariantCultureIgnoreCase));
+                        #endregion
+                    } else {
+                        throw new Exception(response.RequestMessage + "\n" + response.Content.ToString());
+                    }
+                    
+                }                
+            } 
+            catch (Exception ex)
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+                surveyData = null;
+            }
+
+            return surveyData;
+        }
+
         // POST api/Values/checkEmail
         [HttpPost("checkEmail")]
         public bool CheckEmail([FromBody] String email) 
@@ -523,6 +614,49 @@ namespace QuitSmokeWebAPI.Controllers
             }
 
             return responseString;
+        }
+
+        private int getAgeRange(int age, out int endAge)
+        {
+            int result = 0;
+            endAge = 0;
+            if (age >= 18 && age <= 24)
+            {
+                result = 18;
+                endAge = 24;
+            }
+            else if (age >= 25 && age <= 29)
+            {
+                result = 25;
+                endAge = 29;
+            }
+            else if (age >= 30 && age <= 39)
+            {
+                result = 30;
+                endAge = 39;
+            }
+            else if (age >= 40 && age <= 49)
+            {
+                result = 40;
+                endAge = 49;
+            }
+            else if (age >= 50 && age <= 59)
+            {
+                result = 50;
+                endAge = 59;
+            }
+            else if (age >= 60 && age <= 69)
+            {
+                result = 60;
+                endAge = 69;
+            }
+            else if (age >= 70)
+            {
+                result = 70;
+                endAge = 200;
+            }
+
+            return result;
         }
 
 
