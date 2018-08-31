@@ -8,14 +8,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:paddingLeft="35sp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:paddingLeft="35sp" />
 
     <TextView
         android:id="@+id/childItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/sequence" />
+        android:layout_toRightOf="@id/sequence"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
 
 </RelativeLayout>

@@ -9,6 +9,17 @@
     android:background="#33CCCC" >
 
     <TextView
+        android:id="@+id/main_page_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="@string/sign_in"
+        android:textSize="15dp"
+        android:layout_gravity="right"
+        android:paddingRight="4dp"
+        android:textColor="#0D47A1"/>
+
+    <TextView
         android:id="@+id/lblErrorMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,7 +96,7 @@
         android:id="@+id/btn_servey_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/next"
         android:layout_marginTop="10dp"/>
 
 </LinearLayout>

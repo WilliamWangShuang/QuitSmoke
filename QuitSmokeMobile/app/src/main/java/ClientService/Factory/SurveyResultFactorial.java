@@ -6,11 +6,10 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.william.quitsmokeappclient.Interface.ISurveyResultAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
@@ -22,14 +21,12 @@ import com.jjoe64.graphview.series.Series;;import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import ClientService.Entities.GroupInfo;
-import ClientService.Entities.SurveyResultEntity;
+import ClientService.Entities.*;
 import ClientService.QuitSmokeClientUtils;
 import ClientService.webservice.QuitSmokerReportWebservice;
 
-public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
+public class SurveyResultFactorial  extends AsyncTask<Void, Void, SurveyResultEntity>  {
 
     private Activity SurveyResultActivity;
     private int age;
@@ -44,10 +41,7 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
     private String strReduceSucc;
     private String strColdTurkeyFail;
     private String strReduceyFail;
-    private ExpandableListAdapter listAdapter;
-    private ExpandableListView simpleExpandableListView;
-    private LinkedHashMap<String, GroupInfo> subjects = new LinkedHashMap<String, GroupInfo>();
-    private ArrayList<GroupInfo> topLevelList = new ArrayList<GroupInfo>();
+    public ISurveyResultAsyncResponse delegate = null;
 
 
     public SurveyResultFactorial(Activity surveyResultActivity, int age, String gender, int smokeNo) {
@@ -68,12 +62,12 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected SurveyResultEntity doInBackground(Void... params) {
         try {
             surveyResultEntity = QuitSmokerReportWebservice.getSurveyResult(age, gender, smokeNo);
 
             // successfully done, go to manipulate UI logic
-            for (SurveyResultEntity.ChanceAgeEntity entity : surveyResultEntity.getChanceAgeEntityList()) {
+            for (ChanceAgeEntity entity : surveyResultEntity.getChanceAgeEntityList()) {
                 if (strColdTurkeySucc.equals(entity.getBehaviour()) && entity.getAgeStart() <= age && entity.getAgeEnd() >= age)
                     coldTurkeySucc = entity.getProportion();
                 else if(strReduceSucc.equals(entity.getBehaviour()) && entity.getAgeStart() <= age && entity.getAgeEnd() >= age)
@@ -94,68 +88,14 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
             h.sendEmptyMessage(1);
         }
 
-        return null;
+        return surveyResultEntity;
     }
 
     @Override
-    protected void onPostExecute(Void result) {
+    protected void onPostExecute(SurveyResultEntity result) {
         Log.d("QuitSmokeDebug", "survey result finish.");
-    }
-
-    //method to expand all groups
-    private void expandAll() {
-        int count = listAdapter.getGroupCount();
-        for (int i = 0; i < count; i++){
-            simpleExpandableListView.expandGroup(i);
-        }
-    }
-
-    //method to collapse all groups
-    private void collapseAll() {
-        int count = listAdapter.getGroupCount();
-        for (int i = 0; i < count; i++){
-            simpleExpandableListView.collapseGroup(i);
-        }
-    }
-
-    //load some initial data into out list
-    private void loadData(List<SurveyResultEntity.MotivationAgeEntity> topSet, List<SurveyResultEntity.MotivationGenderEntity> childSet){
-        for (SurveyResultEntity.MotivationAgeEntity group : topSet) {
-            for (SurveyResultEntity.MotivationGenderEntity child: childSet) {
-                if (group.getBehaviour().equals(child.getClassification()))
-                    addMotivationNode(group.getBehaviour() + "(" + group.getProportion() + "%)",
-                            child.getBehaviour() + "(" +child.getProportion() + "%)");
-            }
-        }
-    }
-
-    private int addMotivationNode(String topLevel, String product){
-        int groupPosition = 0;
-        //check the hash map if the group already exists
-        GroupInfo headerInfo = subjects.get(topLevel);
-        //add the group if doesn't exists
-        if(headerInfo == null){
-            headerInfo = new GroupInfo();
-            headerInfo.setName(topLevel);
-            subjects.put(topLevel, headerInfo);
-            topLevelList.add(headerInfo);
-        }
-
-        //get the children for the group
-        ArrayList<String> childList = headerInfo.getChildtList();
-        //size of the children list
-        int listSize = childList.size();
-        //add to the counter
-        listSize++;
-
-        //create a new child and add that to the group
-        String detailInfo = product;
-        childList.add(detailInfo);
-        headerInfo.setChildList(childList);
-
-        //find the group position inside the list
-        groupPosition = childList.indexOf(headerInfo);
-        return groupPosition;
+        // return query result from ws to activity
+        delegate.processFinish(result);
     }
 
     // create a handler to toast message on main thread according to the post result
@@ -190,11 +130,11 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
                 GraphView graph = (GraphView) SurveyResultActivity.findViewById(R.id.graph);
 
                 // construct line chart data source
-                List<SurveyResultEntity.ChanceAgeEntity> reduceSuccList = new ArrayList<>();
-                List<SurveyResultEntity.ChanceAgeEntity> coldTurkeySuccList = new ArrayList<>();
-                List<SurveyResultEntity.ChanceAgeEntity> reduceFailList = new ArrayList<>();
-                List<SurveyResultEntity.ChanceAgeEntity> coldTurkeyFailList = new ArrayList<>();
-                for (SurveyResultEntity.ChanceAgeEntity entity : surveyResultEntity.getChanceAgeEntityList()) {
+                List<ChanceAgeEntity> reduceSuccList = new ArrayList<>();
+                List<ChanceAgeEntity> coldTurkeySuccList = new ArrayList<>();
+                List<ChanceAgeEntity> reduceFailList = new ArrayList<>();
+                List<ChanceAgeEntity> coldTurkeyFailList = new ArrayList<>();
+                for (ChanceAgeEntity entity : surveyResultEntity.getChanceAgeEntityList()) {
                     if (entity.getBehaviour().equals(strReduceSucc))
                         reduceSuccList.add(entity);
                     else if (entity.getBehaviour().equals(strColdTurkeySucc))
@@ -212,7 +152,7 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
                 // convert chance age reduce amount success to DataPoint array
                 DataPoint[] reduceAmountSuccPointArray = new DataPoint[reduceSuccList.size()];
                 for (int i = 0; i < reduceSuccList.size(); i++) {
-                    SurveyResultEntity.ChanceAgeEntity entity = reduceSuccList.get(i);
+                    ChanceAgeEntity entity = reduceSuccList.get(i);
                     reduceAmountSuccPointArray[i] = new DataPoint(entity.getAgeStart() + 2, entity.getProportion());
                 }
                 LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(reduceAmountSuccPointArray);
@@ -224,7 +164,7 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
                 // convert chance age cold turkey success to DataPoint array
                 DataPoint[] coldTurkeySuccPointArray = new DataPoint[coldTurkeySuccList.size()];
                 for (int i = 0; i < coldTurkeySuccList.size(); i++) {
-                    SurveyResultEntity.ChanceAgeEntity entity = coldTurkeySuccList.get(i);
+                    ChanceAgeEntity entity = coldTurkeySuccList.get(i);
                     coldTurkeySuccPointArray[i] = new DataPoint(entity.getAgeStart() + 2, entity.getProportion());
                 }
                 LineGraphSeries<DataPoint> series3 = new LineGraphSeries<>(coldTurkeySuccPointArray);
@@ -236,7 +176,7 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
                 // convert chance age cold turkey fail to DataPoint array
                 DataPoint[] coldTurkeyFailPointArray = new DataPoint[coldTurkeyFailList.size()];
                 for (int i = 0; i < coldTurkeyFailList.size(); i++) {
-                    SurveyResultEntity.ChanceAgeEntity entity = coldTurkeyFailList.get(i);
+                    ChanceAgeEntity entity = coldTurkeyFailList.get(i);
                     coldTurkeyFailPointArray[i] = new DataPoint(entity.getAgeStart() + 2, entity.getProportion());
                 }
                 LineGraphSeries<DataPoint> series4 = new LineGraphSeries<>(coldTurkeyFailPointArray);
@@ -248,7 +188,7 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
                 // convert chance age reduce amount fail to DataPoint array
                 DataPoint[] reduceAmountFailPointArray = new DataPoint[reduceFailList.size()];
                 for (int i = 0; i < reduceFailList.size(); i++) {
-                    SurveyResultEntity.ChanceAgeEntity entity = reduceFailList.get(i);
+                    ChanceAgeEntity entity = reduceFailList.get(i);
                     reduceAmountFailPointArray[i] = new DataPoint(entity.getAgeStart() + 2, entity.getProportion());
                 }
                 LineGraphSeries<DataPoint> series5 = new LineGraphSeries<>(reduceAmountFailPointArray);
@@ -307,24 +247,6 @@ public class SurveyResultFactorial  extends AsyncTask<Void, Void, Void>  {
                 graph.getViewport().setScalableY(true);
                 graph.getLegendRenderer().setBackgroundColor(Color.TRANSPARENT);
                 graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
-
-                // motivation logic
-                List<String> myDataset = new ArrayList<>();
-                for (int i = 0; i < surveyResultEntity.getMotivationAgeEntityList().size(); i++) {
-                    SurveyResultEntity.MotivationAgeEntity entity = surveyResultEntity.getMotivationAgeEntityList().get(i);
-                    myDataset.add(entity.getBehaviour() + "\t\t(" + entity.getProportion() + "%)");
-                }
-                // add data for displaying in expandable list view
-                loadData(surveyResultEntity.getMotivationAgeEntityList(), surveyResultEntity.getMotivationGenderEntityList());
-                simpleExpandableListView = (ExpandableListView)SurveyResultActivity.findViewById(R.id.simpleExpandableListView);
-                // create the adapter by passing your ArrayList data
-                listAdapter = new ExpandableListAdapter(SurveyResultActivity, topLevelList);
-                // attach the adapter to the expandable list view
-                simpleExpandableListView.setAdapter(listAdapter);
-
-                //expand all the Groups
-                expandAll();
-
             } else if(msg.what == 1) {
                 Toast.makeText(SurveyResultActivity, SurveyResultActivity.getResources().getString(R.string.register_throw_exception), Toast.LENGTH_LONG);
             } else {

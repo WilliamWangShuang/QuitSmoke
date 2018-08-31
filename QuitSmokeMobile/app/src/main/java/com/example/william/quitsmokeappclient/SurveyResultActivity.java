@@ -3,20 +3,21 @@ package com.example.william.quitsmokeappclient;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.TextView;
+import com.example.william.quitsmokeappclient.Interface.ISurveyResultAsyncResponse;
+import ClientService.Entities.SurveyResultEntity;
 import ClientService.Factory.SurveyResultFactorial;
 
-public class SurveyResultActivity extends AppCompatActivity {
+public class SurveyResultActivity extends AppCompatActivity implements ISurveyResultAsyncResponse {
     private int age;
     private int smoke_per_day;
     private String gender;
     private TextView tvMeanSmoke;
     private TextView tvChanceQuitting;
     private Button btnStart;
+    private SurveyResultEntity resultFromFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +43,24 @@ public class SurveyResultActivity extends AppCompatActivity {
         int mean = smoke_per_day * 7;
         // call ws to get survey relevant data from backend
         SurveyResultFactorial surveyResultFactorial = new SurveyResultFactorial(this, age, gender, mean);
+        //this to set delegate/listener back to this class
+        surveyResultFactorial.delegate = this;
         surveyResultFactorial.execute();
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyResultActivity.this, LaunchActivity.class);
+                Intent intent = new Intent(SurveyResultActivity.this, TopMotivationActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable ("responsResult", resultFromFactory);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void processFinish(SurveyResultEntity reponseResult) {
+        resultFromFactory = reponseResult;
     }
 }

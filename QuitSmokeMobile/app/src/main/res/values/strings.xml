@@ -68,6 +68,7 @@
     <string name="fail_cold_turkey_behaviour">failed to quit cold turkey</string>
     <string name="fail_reduce_behaviour">failed to reduce amount</string>
     <string name="register_hint_name">Name</string>
+    <string name="next">Next</string>
 
     <array name="user_role">
         <item>Smoker</item>

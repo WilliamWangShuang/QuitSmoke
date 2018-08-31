@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import com.example.william.quitsmokeappclient.Fragments.SurveyErrorFragment;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +61,16 @@ public class SurveyActivity extends AppCompatActivity {
         // Initializing an ArrayAdapter
         spinnerGenderAdapter.setDropDownViewResource(R.layout.spinner_item);
         ddlGender.setAdapter(spinnerGenderAdapter);
+
+        TextView tvLaunch = findViewById(R.id.main_page_login);
+        tvLaunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // go to register activity
+                Intent intent = new Intent(SurveyActivity.this, LaunchActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
 
         // set onclick on button 'next'
         btnNext.setOnClickListener(new View.OnClickListener() {

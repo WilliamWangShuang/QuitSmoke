@@ -50,31 +50,13 @@
         <com.jjoe64.graphview.GraphView
             android:id="@+id/graph"
             android:layout_width="wrap_content"
-            android:layout_height="200dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Top Motivations" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_quit_reason"/>
-
-        <ExpandableListView
-            android:id="@+id/simpleExpandableListView"
-            android:layout_width="match_parent"
-            android:layout_height="196dp"
-            android:childDivider="#0f0"
-            android:divider="#f00"
-            android:dividerHeight="1dp" />
+            android:layout_height="400dp" />
 
         <Button
             android:id="@+id/btn_servey_result_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start"
+            android:text="@string/next"
             android:layout_marginTop="10dp"/>
 
     </LinearLayout>
