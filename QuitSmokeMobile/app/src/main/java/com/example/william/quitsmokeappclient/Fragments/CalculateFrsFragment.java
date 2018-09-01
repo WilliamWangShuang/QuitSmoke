@@ -36,6 +36,10 @@ public class CalculateFrsFragment extends Fragment {
     private boolean isSBPValid;
     private boolean isHDLValid;
     private FragmentActivity myContext;
+    private TextView tvHintChol;
+    private TextView tvHintSBP;
+    private TextView tvHintHDL;
+    private MessageDialogFragment messageFragment;
 
     @Override
     public void onAttach(Activity activity) {
@@ -61,6 +65,10 @@ public class CalculateFrsFragment extends Fragment {
             txtSBP = (EditText) getActivity().findViewById(R.id.txtSBP);
             txtHDL = (EditText) getActivity().findViewById(R.id.txtHDL);
             btnSubmit = (Button) getActivity().findViewById(R.id.btnCalculateFrs);
+            tvHintChol = (TextView) getActivity().findViewById(R.id.tvChol);
+            tvHintSBP = (TextView) getActivity().findViewById(R.id.tvSBP);
+            tvHintHDL = (TextView) getActivity().findViewById(R.id.tvHDL);
+            messageFragment = new MessageDialogFragment();
 
             //registering btnSubmit with onclicklistener
             btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +104,42 @@ public class CalculateFrsFragment extends Fragment {
         } catch (Exception ex) {
             Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
         }
+
+        // set hint dialog for chol
+        tvHintChol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                // pass message value to dialog
+                bundle.putString("message", getActivity().getResources().getString(R.string.hint_chol));
+                messageFragment.setArguments(bundle);
+                messageFragment.show(myContext.getSupportFragmentManager(), "showHintChol");
+            }
+        });
+
+        // set hint dialog for SBP
+        tvHintSBP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                // pass message value to dialog
+                bundle.putString("message", getActivity().getResources().getString(R.string.hint_sbp));
+                messageFragment.setArguments(bundle);
+                messageFragment.show(myContext.getSupportFragmentManager(), "showHintSBP");
+            }
+        });
+
+        // set hint dialog for HDL
+        tvHintHDL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                // pass message value to dialog
+                bundle.putString("message", getActivity().getResources().getString(R.string.hint_hdl));
+                messageFragment.setArguments(bundle);
+                messageFragment.show(myContext.getSupportFragmentManager(), "showHintHDL");
+            }
+        });
     }
 
     private boolean validateUI(String chol, String sbp, String hdl) {

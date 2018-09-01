@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_chol">Cholesterol is one of three major classes of lipids which all animal cells use to construct their membranes and is thus manufactured by all animal cells. High cholesterol, is the presence of high levels of cholesterol in the blood. It is a form of high blood lipids and hyperlipoproteinemia</string>
+    <string name="hint_sbp">Measures the pressure in your blood vessels when your heart rests between beats. If the measurement reads 120 systolic and 80 diastolic, you would say 120 over 80 or write 120/80 mmHg.</string>
+    <string name="hint_hdl">High density lipoprotein (HDL cholesterol) is called the ‘good cholesterol’ because it helps to keep cholesterol from building up in the arteries.</string>
+</resources>

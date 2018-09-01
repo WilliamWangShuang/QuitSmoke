@@ -35,7 +35,6 @@ public class CalculateFrsFactorial extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         try {
-            //TODO: UI validation
             // call backend service method to get calculation result
             calculateResult = QuitSmokerReportWebservice.calculateFRS(calculateFrsEntity);
             h.sendEmptyMessage(0);
@@ -58,7 +57,38 @@ public class CalculateFrsFactorial extends AsyncTask<Void, Void, Void> {
         public void handleMessage(Message msg){
             if(msg.what == 0) {
                 // calculate successfully, update UI result textView
-                ((TextView)calculateFrsActivity.findViewById(R.id.tvRiskResult)).setText("10-Year Risk:"+ calculateResult + "%");
+                int resulInt = Integer.parseInt(calculateResult);
+                if (resulInt > 17)
+                    calculateResult = "Over 30%";
+                else if (resulInt == 16)
+                    calculateResult = "25%";
+                else if (resulInt == 15)
+                    calculateResult = "20%";
+                else if (resulInt == 14)
+                    calculateResult = "16%";
+                else if (resulInt == 13)
+                    calculateResult = "12%";
+                else if (resulInt == 12)
+                    calculateResult = "10%";
+                else if (resulInt == 11)
+                    calculateResult = "8%";
+                else if (resulInt == 10)
+                    calculateResult = "6%";
+                else if (resulInt == 9)
+                    calculateResult = "5%";
+                else if (resulInt == 8)
+                    calculateResult = "4%";
+                else if (resulInt == 7)
+                    calculateResult = "3%";
+                else if (resulInt == 5 || resulInt == 6)
+                    calculateResult = "2%";
+                else if (resulInt >= 1 && resulInt <= 4)
+                    calculateResult = "1%";
+                else if (resulInt == 0)
+                    calculateResult = " <1%";
+                else
+                    calculateResult = "Unknown";
+                ((TextView)calculateFrsActivity.findViewById(R.id.tvRiskResult)).setText("10-Year Risk:"+ calculateResult);
             } else {
                 Toast.makeText(calculateFrsActivity, calculateFrsActivity.getResources().getString(R.string.error_msg), Toast.LENGTH_LONG);
             }

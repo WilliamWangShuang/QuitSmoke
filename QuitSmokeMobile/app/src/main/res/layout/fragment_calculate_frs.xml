@@ -7,6 +7,16 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tvFRSDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/frs_desc"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/tvRiskResult"
+        app:layout_constraintLeft_toLeftOf="@+id/table_calculate_frs"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
         android:id="@+id/tvRiskResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +47,8 @@
                 android:text="@string/tvChol_title"
                 android:textColor="#FFFFFF"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:clickable="true" />
             <EditText
                 android:id="@+id/txtChol"
                 android:layout_width="150dp"
