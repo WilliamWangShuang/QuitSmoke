@@ -208,6 +208,31 @@ paths:
           description: Success
           schema:
             type: boolean
+  /api/Values/checkPartner:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesCheckPartnerPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: uid
+          in: body
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
   /api/Values/updatePartner:
     post:
       tags:
@@ -233,6 +258,31 @@ paths:
           description: Success
           schema:
             type: boolean
+  /api/Values/createPlan:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesCreatePlanPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: plan
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/PlanEntity'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: string
 definitions:
   AppUser:
     type: object
@@ -396,4 +446,19 @@ definitions:
       smokerNodeName:
         type: string
       partnerEmail:
+        type: string
+  PlanEntity:
+    type: object
+    properties:
+      uid:
+        type: string
+      target_amount:
+        format: int32
+        type: integer
+      real_amount:
+        format: int32
+        type: integer
+      plan_create_date:
+        type: string
+      status:
         type: string

@@ -112,17 +112,20 @@ namespace QuitSmokeWebAPI.Controllers
                             UserInfo userInfo = firebaseQueryResult.First.First.ToObject<UserInfo>();
                             // parse AppUser object
                             result = new AppUser();
+                            // get somker node name when login
+                            foreach (JProperty prop in firebaseQueryResult.Properties())
+                            {
+                                result.smoker_node_name = prop.Name;
+                            }
                             result.uid = uid;
                             result.name = userInfo.name;
-                            result.partner_id = userInfo.partner_id;
                             result.partner_indicator = userInfo.partner_indicator;
                             result.point = userInfo.point;
                             result.register_date = userInfo.register_date;
                             result.smoker_indicator = userInfo.smoker_indicator;
-                            result.suburb = userInfo.suburb;
-                            result.city = userInfo.city;
                             result.gender = userInfo.gender;
                             result.age = userInfo.age.ToString();
+                            result.partner_email = userInfo.partner_email;
                         } 
                     }
                 }
@@ -498,6 +501,43 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("checkPartner")]
+        public bool checkPartner([FromBody] String uid)
+        {
+            bool result = false;
+
+            try 
+            {
+                using(var client = new HttpClient())
+                {   
+                    // specify encoding 
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                            + Constant.JSON_NODE_NAME_APP_USERS 
+                            + Constant.FIREBASE_SUFFIX_JSON
+                            + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, uid)).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject responseObj = response.Content.ReadAsAsync<JObject>().Result;
+                        JToken userInfoToken = responseObj.First;
+                        UserInfo userInfo = userInfoToken.First.ToObject<UserInfo>();
+                        result = !string.IsNullOrEmpty(userInfo.partner_email);
+                    } 
+                }
+            } 
+            catch (Exception ex)
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+            }
+
+            return result;
+        }
+
         [HttpPost("updatePartner")]
         public bool updatePartner([FromBody] UpdatePartner updatePartner)
         {
@@ -539,6 +579,44 @@ namespace QuitSmokeWebAPI.Controllers
             }
 
             return result;
+        }
+
+        [HttpPost("createPlan")]
+        public string Post([FromBody] PlanEntity plan)
+        {
+            string planNodeName = string.Empty;
+            string response = null;
+            JObject responseFromDB = null;
+
+            try
+            {
+                using (var authClient = new WebClient())
+                {
+                    // specify encoding 
+                    authClient.Encoding = Encoding.UTF8;
+                    // set headers
+                    authClient.Headers.Add("Accept", "application/json");
+                    response = authClient.UploadString(Constant.FIREBASE_ROOT
+                        + Constant.JSON_NODE_NAME_PLAN
+                        + Constant.FIREBASE_SUFFIX_JSON, JsonConvert.SerializeObject(
+                            new PlanEntity() { 
+                                        uid = plan.uid, 
+                                        target_amount = plan.target_amount, 
+                                        real_amount = plan.real_amount,
+                                        plan_create_date = plan.plan_create_date,
+                                        status = plan.status }));
+
+                    responseFromDB = JObject.Parse(response);
+                }
+                // turn json result to string which will be returned to frontend
+                planNodeName = responseFromDB[Constant.JSON_KEY_NAME].Value<string>();
+            }
+            catch (Exception ex)
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+            }
+
+            return planNodeName;
         }
 
         // POST api/values
@@ -590,14 +668,11 @@ namespace QuitSmokeWebAPI.Controllers
                 string uid = responseAuth.GetValue(Constant.JSON_KEY_UID).Value<string>();
                 // construct user info object association with the uid
                 UserInfo userInfo = new UserInfo();
-                userInfo.city = newUser.city;
                 userInfo.name = newUser.name;
-                userInfo.partner_id = newUser.partner_id;
                 userInfo.partner_indicator = newUser.partner_indicator;
                 userInfo.point = newUser.point;
                 userInfo.register_date = newUser.register_date;
                 userInfo.smoker_indicator = newUser.smoker_indicator;
-                userInfo.suburb = newUser.suburb;
                 userInfo.uid = uid;
                 userInfo.age = Int32.Parse(newUser.age);
                 userInfo.gender = newUser.gender;

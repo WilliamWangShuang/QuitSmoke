@@ -12,6 +12,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string AUTH_CONTINUE_URI = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri";
         public static string FIREBASE_SUFFIX_JSON = ".json";
         public static string JSON_NODE_NAME_APP_USERS = "app_users";
+        public static string JSON_NODE_NAME_PLAN = "plan";
         public static string JSON_NODE_NAME_MEAN_AGE_GENDER= "mean_age_gender";
         public static string JSON_NODE_CHANCE_AGE = "chance_age";
         public static string JSON_NODE_MOTIVATION_AGE = "motivation_age";
