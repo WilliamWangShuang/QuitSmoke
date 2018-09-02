@@ -33,7 +33,7 @@ public class CreatePlanErrorFragement extends DialogFragment {
                     }
                 });
 
-        // get textview in dialog
+        // get text view in dialog
         TextView tvIsTargetNoValid = (TextView)view.findViewById(R.id.tv_create_plan_empty_target);
         TextView tvIsPartnerSet = (TextView)view.findViewById((R.id.tv_create_plan_no_partner));
 

@@ -45,8 +45,8 @@ public class CreatePlanFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // get UI fields
-        btnCreatePlan = (Button)getActivity().findViewById(R.id.btnCreatePlan);
-        txtTargetAmount = (EditText)getActivity().findViewById(R.id.txtTargetAmount);
+        btnCreatePlan = (Button)view.findViewById(R.id.btnCreatePlan);
+        txtTargetAmount = (EditText)view.findViewById(R.id.txtTargetAmount);
         createPlanErrorFragement = new CreatePlanErrorFragement();
 
         // set create button listener
@@ -78,6 +78,7 @@ public class CreatePlanFragment extends Fragment {
     }
 
     private boolean validateUI() {
+        Log.d("QuitSmokeDebug", "start validate UI when create plan.");
         boolean isValid = true;
         if (txtTargetAmount.getText().toString() == null || txtTargetAmount.getText().toString().isEmpty())
             isTargetNoValid = false;

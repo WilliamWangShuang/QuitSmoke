@@ -82,7 +82,7 @@ public class CreatePlanFactorial extends AsyncTask<Void, Void, Void> {
                 bundle.putBoolean("isTargetNoValid", true);
                 bundle.putBoolean("isPartberSet", isPartnerSet);
                 createPlanErrorFragment.setArguments(bundle);
-                createPlanErrorFragment.show(fragmentManager, "createPlan");
+                createPlanErrorFragment.show(fragmentManager, "no partner");
             } else {
                 Toast.makeText(createPlanActivity, "Exception occurred when create plan. Try again. If not work, remove the shit app.", Toast.LENGTH_LONG).show();
             }

@@ -61,13 +61,13 @@ public class CalculateFrsFragment extends Fragment {
             super.onViewCreated(view, savedInstanceState);
 
             // get fields from UI
-            txtChol = (EditText) getActivity().findViewById(R.id.txtChol);
-            txtSBP = (EditText) getActivity().findViewById(R.id.txtSBP);
-            txtHDL = (EditText) getActivity().findViewById(R.id.txtHDL);
-            btnSubmit = (Button) getActivity().findViewById(R.id.btnCalculateFrs);
-            tvHintChol = (TextView) getActivity().findViewById(R.id.tvChol);
-            tvHintSBP = (TextView) getActivity().findViewById(R.id.tvSBP);
-            tvHintHDL = (TextView) getActivity().findViewById(R.id.tvHDL);
+            txtChol = (EditText) view.findViewById(R.id.txtChol);
+            txtSBP = (EditText) view.findViewById(R.id.txtSBP);
+            txtHDL = (EditText) view.findViewById(R.id.txtHDL);
+            btnSubmit = (Button) view.findViewById(R.id.btnCalculateFrs);
+            tvHintChol = (TextView) view.findViewById(R.id.tvChol);
+            tvHintSBP = (TextView) view.findViewById(R.id.tvSBP);
+            tvHintHDL = (TextView) view.findViewById(R.id.tvHDL);
             messageFragment = new MessageDialogFragment();
 
             //registering btnSubmit with onclicklistener
