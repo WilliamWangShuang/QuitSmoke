@@ -37,11 +37,11 @@ public class QuitSmokeUserWebservice {
                 result.setPartner(appUserJson.getBoolean(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_I));
                 result.setRegisterDate(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT));
                 result.setPoint(appUserJson.getInt(QuitSmokeClientConstant.WS_JSON_USER_KEY_POINT));
-                result.setPartnerId(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_ID));
-                result.setPlanId(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_PLAN_ID));
+                result.setPartnerEmail(appUserJson.optString(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_NAME));
                 result.setUid(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID));
                 result.setAge(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_AGE));
                 result.setGender(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_GENDER));
+                result.setSmokerNodeName(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_SMOKER_NODE_NAME));
             }
         } catch (Exception ex) {
             throw ex;
@@ -85,7 +85,6 @@ public class QuitSmokeUserWebservice {
         JSONObject jsonResident = new JSONObject();
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_EMAIL, registerInfoUI.getEmail());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_NAME, registerInfoUI.getName());
-        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_ID, registerInfoUI.getPartnerId());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_PARTNER_I, registerInfoUI.isPartner());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_SMOKER_I, registerInfoUI.isSmoker());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_PASSWORD, QuitSmokeClientUtils.encryptPwd(registerInfoUI.getPassword()));

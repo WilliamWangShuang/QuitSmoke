@@ -1,20 +1,13 @@
 package ClientService.webservice;
 
 import android.util.Log;
-
 import ClientService.Entities.CalculateFrsEntity;
 import ClientService.Entities.SurveyResultEntity;
-import ClientService.Entities.UpdatePartnerEntity;
-import ClientService.Entities.UserInfoEntity;
 import ClientService.QuitSmokeClientConstant;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.Date;
-import ClientService.QuitSmokeClientUtils;
 
 public class QuitSmokerReportWebservice {
 
@@ -39,6 +32,7 @@ public class QuitSmokerReportWebservice {
         return result;
     }
 
+    // get survey result for public
     public static SurveyResultEntity getSurveyResult(int age, String gender, int smokeNo) throws JSONException, IOException {
         SurveyResultEntity result = new SurveyResultEntity();
         // format uri

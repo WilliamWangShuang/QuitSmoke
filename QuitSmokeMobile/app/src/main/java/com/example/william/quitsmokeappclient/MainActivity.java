@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.william.quitsmokeappclient.Fragments.CalculateFrsFragment;
+import com.example.william.quitsmokeappclient.Fragments.CreatePlanFragment;
 import com.example.william.quitsmokeappclient.Fragments.MainFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -85,9 +86,12 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.calculate_frs) {
             // Handle map action
             nextFragment = new CalculateFrsFragment();
-        }else if (id == R.id.home_fragment) {
+        } else if (id == R.id.home_fragment) {
             // go back home page
             nextFragment = new MainFragment();
+        } else if (id == R.id.create_plan) {
+            // go to create plan page
+            nextFragment = new CreatePlanFragment();
         }
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();

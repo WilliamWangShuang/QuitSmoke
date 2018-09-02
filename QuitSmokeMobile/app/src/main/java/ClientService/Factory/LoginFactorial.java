@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;;import ClientService.Entities.UserInfoEntity;
+import ClientService.QuitSmokeClientConstant;
 import ClientService.QuitSmokeClientUtils;
 import ClientService.webservice.QuitSmokeUserWebservice;
 
@@ -71,6 +72,7 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
             QuitSmokeClientUtils.setUid(userProfile.getUid());
             QuitSmokeClientUtils.setAge(Integer.parseInt(userProfile.getAge()));
             QuitSmokeClientUtils.setGender(userProfile.getGender());
+            QuitSmokeClientUtils.setSmokerNodeName(userProfile.getSmokerNodeName());
             h.sendEmptyMessage(2);
         } else {
             if (isError) {

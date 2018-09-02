@@ -29,8 +29,18 @@ public class QuitSmokeClientUtils extends Application {
     private static int age;
     private static String smokerNodeName;
     private static String gender;
+    private static String planNodeName;
 
     // setters and getters
+
+    public static String getPlanNodeName() {
+        return planNodeName;
+    }
+
+    public static void setPlanNodeName(String planNodeName) {
+        QuitSmokeClientUtils.planNodeName = planNodeName;
+    }
+
     public static String getGender() {
         return gender;
     }

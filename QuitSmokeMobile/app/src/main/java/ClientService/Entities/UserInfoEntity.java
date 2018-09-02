@@ -6,15 +6,15 @@ public class UserInfoEntity {
     private String name;
     private String email;
     private String password;
-    private String partnerId;
+    private String partnerEmail;
     private boolean isPartner;
     private int point;
     private String registerDate;
     private boolean isSmoker;
-    private String planId;
     private String uid;
     private String age;
     private String gender;
+    private String smokerNodeName;
 
     public UserInfoEntity() {}
 
@@ -28,18 +28,25 @@ public class UserInfoEntity {
         this.gender = gender;
     }
 
-    public UserInfoEntity(String name, String email, String password, String partnerId, boolean isPartner, int point, String registerDate, boolean isSmoker, String planId, String uid, String age) {
+    public UserInfoEntity(String name, String email, String password, String partnerEmail, boolean isPartner, int point, String registerDate, boolean isSmoker, String uid, String age) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.partnerId = partnerId;
+        this.partnerEmail = partnerEmail;
         this.isPartner = isPartner;
         this.point = point;
         this.registerDate = registerDate;
         this.isSmoker = isSmoker;
-        this.planId = planId;
         this.uid = uid;
         this.age = age;
+    }
+
+    public String getSmokerNodeName() {
+        return smokerNodeName;
+    }
+
+    public void setSmokerNodeName(String smokerNodeName) {
+        this.smokerNodeName = smokerNodeName;
     }
 
     public String getGender() {
@@ -58,12 +65,12 @@ public class UserInfoEntity {
         this.age = age;
     }
 
-    public String getPartnerId() {
-        return partnerId;
+    public String getPartnerEmail() {
+        return partnerEmail;
     }
 
-    public void setPartnerId(String partnerId) {
-        this.partnerId = partnerId;
+    public void setPartnerEmail(String partnerEmail) {
+        this.partnerEmail = partnerEmail;
     }
 
     public boolean isPartner() {
@@ -128,13 +135,5 @@ public class UserInfoEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPlanId() {
-        return planId;
-    }
-
-    public void setPlanId(String planId) {
-        this.planId = planId;
     }
 }

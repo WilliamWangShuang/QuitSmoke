@@ -2,18 +2,15 @@ package ClientService.Factory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.william.quitsmokeappclient.MainActivity;
-import com.example.william.quitsmokeappclient.R;;import ClientService.Entities.CalculateFrsEntity;
-import ClientService.Entities.UserInfoEntity;
+import com.example.william.quitsmokeappclient.R;
+import ClientService.Entities.CalculateFrsEntity;
 import ClientService.QuitSmokeClientUtils;
-import ClientService.webservice.QuitSmokeUserWebservice;
 import ClientService.webservice.QuitSmokerReportWebservice;
 
 public class CalculateFrsFactorial extends AsyncTask<Void, Void, Void> {
