@@ -11,18 +11,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
 
+import ClientService.Entities.SurveyResultEntity;
 import ClientService.Factory.CreatePlanFactorial;
 import ClientService.QuitSmokeClientUtils;
 
 public class CreatePlanFragment extends Fragment {
     private View vCreatePlanFragment;
     private Button btnCreatePlan;
-    private String partner_email;
+    private Button btnSetPartner;
     private int targetAmount;
     private EditText txtTargetAmount;
     private CreatePlanErrorFragement createPlanErrorFragement;
+    private SetPartnerDialogFragement setPartnerDialogFragement;
     private FragmentActivity myContext;
     private boolean isTargetNoValid;
 
@@ -46,8 +50,11 @@ public class CreatePlanFragment extends Fragment {
 
         // get UI fields
         btnCreatePlan = (Button)view.findViewById(R.id.btnCreatePlan);
+        btnSetPartner = (Button)view.findViewById(R.id.btnSetPartner);
         txtTargetAmount = (EditText)view.findViewById(R.id.txtTargetAmount);
+        // initial pop out dialogs on this view
         createPlanErrorFragement = new CreatePlanErrorFragement();
+        setPartnerDialogFragement = new SetPartnerDialogFragement();
 
         // set create button listener
         btnCreatePlan.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +80,14 @@ public class CreatePlanFragment extends Fragment {
                     QuitSmokeClientUtils.getExceptionInfo(ex);
                     Log.d("QuitSmokeDebug", "error occur when create plan.\n" + ex);
                 }
+            }
+        });
+
+        // set set partner button listner
+        btnSetPartner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setPartnerDialogFragement.show(myContext.getSupportFragmentManager(), "setPartner");
             }
         });
     }

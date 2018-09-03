@@ -21,7 +21,7 @@
     <string name="register_success">Register successfully.</string>
     <string name="register_pwd_empty_msg">Password cannot be empty</string>
     <string name="register_pwd_format_msg">Password at least has 8 length. Contains at least 1 special character, 1 lower and upper letter, and 1 number</string>
-    <string name="supporter_not_found">The user with this email not found. Please change another one, or update your supporter later.</string>
+    <string name="supporter_not_found">The user with this email not found. Please change another one.</string>
     <string name="supporter_is_smoker">Cannot designate yourself as your supporter. Please change another email.</string>
     <string name="error_msg">Unexpected error occur. Please try again. If keep failing, smash your mobile immediately.</string>
     <string name="register_age">Please select age.</string>
@@ -75,6 +75,7 @@
     <string name="frs_desc">The Framingham Risk Score is a gender-specific algorithm used to estimate the 10-year cardiovascular risk of an individual. The Framingham Risk Score was first developed based on data obtained from the Framingham Heart Study, to estimate the 10-year risk of developing coronary heart disease. In order to assess the 10-year cardiovascular disease risk</string>
     <string name="create_plan_empty_target">Target number cannot be blank.</string>
     <string name="create_plan_no_partner">You have not designate your supporter. Please designate your supporter first.</string>
+    <string name="partner_set">Supporter has been set</string>
 
     <array name="user_role">
         <item>Smoker</item>

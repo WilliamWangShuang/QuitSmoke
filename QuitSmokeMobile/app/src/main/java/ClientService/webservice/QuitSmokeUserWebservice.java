@@ -50,7 +50,7 @@ public class QuitSmokeUserWebservice {
     }
 
     // check if a user exist by email
-    public static boolean checkUserExistByEmail(String email) throws IOException, JSONException, ParseException {
+    public static boolean checkUserExistByEmail(String email) throws Exception {
         boolean result = false;
         // call ws to check
         String jsonResult = BaseWebservice.postWSForGetRestrievePlainText(QuitSmokeClientConstant.WEB_SERVER_BASE_URI

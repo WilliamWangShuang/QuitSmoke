@@ -426,8 +426,10 @@ public class BaseWebservice {
                 result = responseFromWS;
             }
         } catch (IOException ex) {
+            Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
             throw ex;
         } catch (Exception ex) {
+            Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
             throw ex;
         } finally {
             // close connection
