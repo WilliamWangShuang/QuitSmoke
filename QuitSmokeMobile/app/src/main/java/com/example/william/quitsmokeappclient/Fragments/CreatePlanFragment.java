@@ -11,11 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
-import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
-
-import ClientService.Entities.SurveyResultEntity;
 import ClientService.Factory.CreatePlanFactorial;
 import ClientService.QuitSmokeClientUtils;
 

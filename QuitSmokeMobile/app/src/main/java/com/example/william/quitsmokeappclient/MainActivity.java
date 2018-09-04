@@ -2,6 +2,9 @@ package com.example.william.quitsmokeappclient;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,8 +22,14 @@ import com.example.william.quitsmokeappclient.Fragments.CalculateFrsFragment;
 import com.example.william.quitsmokeappclient.Fragments.CreatePlanFragment;
 import com.example.william.quitsmokeappclient.Fragments.MainFragment;
 
+import ClientService.webservice.Receiver.CheckPlanReceiver;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    // set check create plan receiver
+    private CheckPlanReceiver checkPlanReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // set notification channel
+        createNotificationChannel();
+        // start receiver
+        checkPlanReceiver = new CheckPlanReceiver(this);
     }
 
     @Override
@@ -99,5 +113,22 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    // create notification channel
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= 26) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = "";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(getString(R.string.channel_id), name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

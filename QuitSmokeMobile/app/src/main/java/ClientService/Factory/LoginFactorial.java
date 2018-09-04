@@ -14,6 +14,7 @@ import com.example.william.quitsmokeappclient.R;;import ClientService.Entities.U
 import ClientService.QuitSmokeClientConstant;
 import ClientService.QuitSmokeClientUtils;
 import ClientService.webservice.QuitSmokeUserWebservice;
+import ClientService.webservice.Receiver.CheckPlanReceiver;
 
 public class LoginFactorial extends AsyncTask<Void, Void, Void> {
     private String email;
@@ -106,7 +107,6 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
                 // refresh message textview
                 TextView tvMsg = loginActivity.findViewById(R.id.lblErrorMsg);
                 tvMsg.setText("");
-
                 // go to main activity
                 Intent intent = new Intent(loginActivity, MainActivity.class);
                 loginActivity.startActivityForResult(intent, 1);
