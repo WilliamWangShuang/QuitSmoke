@@ -9,6 +9,7 @@ public class QuitSmokeClientConstant {
     public static String UPDATE_PARTNER_WS = "api/Values/updatePartner";
     public static String CALCULATE_FRS = "api/Values/calculatefrs";
     public static String CHECK_USER_EXIST_WS = "/checkEmail";
+    public static String CREATE_PLAN_WS = "api/Values/createPlan";
     public static String CHECK_PARTNER = "api/Values/checkPartner";
 
     // general constants

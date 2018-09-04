@@ -9,20 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
 
-import ClientService.Entities.UpdatePartnerEntity;
+import org.w3c.dom.Text;
+
 import ClientService.Factory.UpdatePartnerFactorial;
-import ClientService.QuitSmokeClientUtils;
-import ClientService.webservice.QuitSmokeUserWebservice;
 
 public class SetPartnerDialogFragement extends DialogFragment implements IUpdatePartnerAsyncResponse {
     private TextView tvErrorMsg;
     private EditText txtSetPartner;
     private UpdatePartnerFactorial updatePartnerFactorial;
     private String errorMessage;
+    private TextView tvParternerSet;
+    private String succ_msg;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -34,11 +34,12 @@ public class SetPartnerDialogFragement extends DialogFragment implements IUpdate
 
         // get text view in dialog
         txtSetPartner = (EditText)view.findViewById(R.id.txtSetSupporter);
-        //tvErrorMsg = (TextView)getParentFragment().getView().findViewById(R.id.tvMessage);
+        tvParternerSet = getActivity().findViewById(R.id.tvParternerSet);
         tvErrorMsg = (TextView)getActivity().findViewById(R.id.tvMessage);
+        succ_msg = getActivity().getResources().getString(R.string.partner_set);
 
         // Inflate and set the layout for the dialog
-        updatePartnerFactorial = new UpdatePartnerFactorial(txtSetPartner, getParentFragment(), getActivity());
+        updatePartnerFactorial = new UpdatePartnerFactorial(txtSetPartner, getActivity());
         updatePartnerFactorial.delegate = this;
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(view)
@@ -60,6 +61,8 @@ public class SetPartnerDialogFragement extends DialogFragment implements IUpdate
 
     @Override
     public void processFinish(String reponseResult) {
+        if (succ_msg.equals(reponseResult))
+            tvParternerSet.setText(reponseResult);
         errorMessage = reponseResult;
         tvErrorMsg.setText(errorMessage);
     }

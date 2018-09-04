@@ -30,7 +30,7 @@ public class InteractWebservice {
     public static String createPlan(int targetAmount) throws JSONException, IOException {
         String newPlanNodeName = "";
         // format uri
-        String uri = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.CALCULATE_FRS;
+        String uri = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.CREATE_PLAN_WS;
         // construct json for request
         JSONObject json = new JSONObject();
         json.put(QuitSmokeClientConstant.WS_INTERACT_PLAN_TARGET_AMOUNT, targetAmount);
