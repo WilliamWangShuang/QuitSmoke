@@ -40,7 +40,7 @@ public class CreatePlanFactorial extends AsyncTask<Void, Void, Void> {
             // do server side validation check if the smoker has set a supporter
             isPartnerSet = InteractWebservice.isSupporterSet();
             if (isPartnerSet) {
-                String newPlanNodeName = InteractWebservice.createPlan(targetAmount);
+                    String newPlanNodeName = InteractWebservice.createPlan(targetAmount);
                 QuitSmokeClientUtils.setPlanNodeName(newPlanNodeName);
                 h.sendEmptyMessage(0);
             } else {

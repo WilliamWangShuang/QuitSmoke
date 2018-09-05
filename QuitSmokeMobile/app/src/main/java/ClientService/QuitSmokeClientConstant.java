@@ -21,6 +21,7 @@ public class QuitSmokeClientConstant {
     public static String SUCCESS_MSG = "Success";
     public static String EMAIL_EXIST = "EMAIL_EXISTS";
     public static String STATUS_OPEN = "open";
+    public static String STATUS_PENDING = "pending";
     public static String STATUS_APPROVE = "approve";
     public static String STATUS_CLOSE = "close";
 

@@ -35,7 +35,7 @@ public class InteractWebservice {
         json.put(QuitSmokeClientConstant.WS_INTERACT_PLAN_TARGET_AMOUNT, targetAmount);
         json.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID, QuitSmokeClientUtils.getUid());
         json.put(QuitSmokeClientConstant.WS_INTERACT_PLAN_CREATE_DT, QuitSmokeClientUtils.convertDateToString(new Date()));
-        json.put(QuitSmokeClientConstant.WS_INTERACT_PLAN_STATUS, QuitSmokeClientConstant.STATUS_OPEN);
+        json.put(QuitSmokeClientConstant.WS_INTERACT_PLAN_STATUS, QuitSmokeClientConstant.STATUS_PENDING);
         json.put(QuitSmokeClientConstant.WS_INTERACT_PLAN_REAL_AMOUNT, 0);
         Log.d("QuitSmokeDebug", "parsed json to post:" + json.toString());
 

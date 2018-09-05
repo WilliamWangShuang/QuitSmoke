@@ -78,6 +78,7 @@
     <string name="partner_set">Supporter has been set</string>
     <string name="channel_name">quit smoke</string>
     <string name="channel_id">check_plan_create</string>
+    <string name="target_from_smoker">Target Amount Set By Your Partner:</string>
 
     <array name="user_role">
         <item>Smoker</item>
