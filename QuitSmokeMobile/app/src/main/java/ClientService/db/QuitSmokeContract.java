@@ -1,4 +1,4 @@
-package ClientService.db;
+package clientservice.db;
 
 import android.provider.BaseColumns;
 

@@ -1,4 +1,4 @@
-package ClientService.Factory;
+package clientservice.factory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -8,12 +8,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.example.william.quitsmokeappclient.MainActivity;
-import com.example.william.quitsmokeappclient.R;;import ClientService.Entities.UpdatePartnerEntity;
-import ClientService.Entities.UserInfoEntity;
-import ClientService.QuitSmokeClientUtils;
-import ClientService.webservice.QuitSmokeUserWebservice;
+import com.example.william.quitsmokeappclient.R;
+import clientservice.entities.UpdatePartnerEntity;
+import clientservice.QuitSmokeClientUtils;
+import clientservice.webservice.QuitSmokeUserWebservice;
 
 public class CreateSupporterFactorial extends AsyncTask<Void, Void, Void> {
     private Activity createSupporterActivity;

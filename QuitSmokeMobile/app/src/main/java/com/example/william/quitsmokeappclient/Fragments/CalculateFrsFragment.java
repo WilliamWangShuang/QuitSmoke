@@ -15,15 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.example.william.quitsmokeappclient.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import ClientService.Entities.CalculateFrsEntity;
-import ClientService.Factory.CalculateFrsFactorial;
-import ClientService.QuitSmokeClientUtils;
+import clientservice.entities.CalculateFrsEntity;
+import clientservice.factory.CalculateFrsFactorial;
+import clientservice.QuitSmokeClientUtils;
 
 public class CalculateFrsFragment extends Fragment {
     private View vCalculateFrsFragment;

@@ -1,14 +1,12 @@
-package ClientService;
+package clientservice;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.TextView;
-
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.BaseSeries;
 import com.jjoe64.graphview.series.DataPoint;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;

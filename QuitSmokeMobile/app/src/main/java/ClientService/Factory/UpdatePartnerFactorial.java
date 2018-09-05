@@ -1,4 +1,4 @@
-package ClientService.Factory;
+package clientservice.factory;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
-import ClientService.Entities.UpdatePartnerEntity;
-import ClientService.QuitSmokeClientUtils;
-import ClientService.webservice.QuitSmokeUserWebservice;
+import clientservice.entities.UpdatePartnerEntity;
+import clientservice.QuitSmokeClientUtils;
+import clientservice.webservice.QuitSmokeUserWebservice;
 
 public class UpdatePartnerFactorial extends AsyncTask<Void, Void, String> {
     private EditText txtSetPartner;

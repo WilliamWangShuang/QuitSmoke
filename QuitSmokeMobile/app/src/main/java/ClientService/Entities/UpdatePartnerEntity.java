@@ -1,4 +1,4 @@
-package ClientService.Entities;
+package clientservice.entities;
 
 public class UpdatePartnerEntity {
     private String smokerNodeName;

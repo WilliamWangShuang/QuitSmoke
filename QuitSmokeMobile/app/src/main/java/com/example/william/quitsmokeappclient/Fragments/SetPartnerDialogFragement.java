@@ -11,10 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
-
 import org.w3c.dom.Text;
-
-import ClientService.Factory.UpdatePartnerFactorial;
+import clientservice.factory.UpdatePartnerFactorial;
 
 public class SetPartnerDialogFragement extends DialogFragment implements IUpdatePartnerAsyncResponse {
     private TextView tvErrorMsg;

@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.example.william.quitsmokeappclient.Fragments.SurveyErrorFragment;
 import java.util.ArrayList;
 import java.util.List;

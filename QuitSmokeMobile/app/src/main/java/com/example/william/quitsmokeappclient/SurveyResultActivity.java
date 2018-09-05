@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.william.quitsmokeappclient.Interface.ISurveyResultAsyncResponse;
-import ClientService.Entities.SurveyResultEntity;
-import ClientService.Factory.SurveyResultFactorial;
+import clientservice.entities.SurveyResultEntity;
+import clientservice.factory.SurveyResultFactorial;
 
 public class SurveyResultActivity extends AppCompatActivity implements ISurveyResultAsyncResponse {
     private int age;

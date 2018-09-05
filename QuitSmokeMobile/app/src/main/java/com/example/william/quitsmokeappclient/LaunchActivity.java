@@ -17,8 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import ClientService.Factory.LoginFactorial;
+import clientservice.factory.LoginFactorial;
 
 public class LaunchActivity extends AppCompatActivity {
 

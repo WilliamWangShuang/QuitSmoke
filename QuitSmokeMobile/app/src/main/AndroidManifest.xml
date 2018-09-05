@@ -63,7 +63,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="ClientService.webservice.Receiver.CheckPlanReceiver">
+        <receiver android:name="clientservice.webservice.receiver.CheckPlanReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

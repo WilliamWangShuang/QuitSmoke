@@ -10,13 +10,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import ClientService.Entities.UserInfoEntity;
-import ClientService.Factory.RegisterFactorial;
-import ClientService.QuitSmokeClientUtils;
+import clientservice.entities.UserInfoEntity;
+import clientservice.factory.RegisterFactorial;
+import clientservice.QuitSmokeClientUtils;
 
 public class RegisterActivity extends AppCompatActivity {
 

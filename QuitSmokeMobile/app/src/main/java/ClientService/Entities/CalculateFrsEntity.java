@@ -1,4 +1,4 @@
-package ClientService.Entities;
+package clientservice.entities;
 
 public class CalculateFrsEntity {
     private int age;

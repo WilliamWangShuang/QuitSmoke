@@ -1,4 +1,4 @@
-package ClientService.Factory;
+package clientservice.factory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -22,9 +22,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import ClientService.Entities.*;
-import ClientService.QuitSmokeClientUtils;
-import ClientService.webservice.QuitSmokerReportWebservice;
+import clientservice.entities.*;
+import clientservice.QuitSmokeClientUtils;
+import clientservice.webservice.QuitSmokerReportWebservice;
 
 public class SurveyResultFactorial  extends AsyncTask<Void, Void, SurveyResultEntity>  {
 

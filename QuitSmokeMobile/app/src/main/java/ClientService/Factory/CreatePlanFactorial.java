@@ -1,4 +1,4 @@
-package ClientService.Factory;
+package clientservice.factory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,8 +12,8 @@ import android.util.Log;
 import android.widget.Toast;
 import com.example.william.quitsmokeappclient.Fragments.CreatePlanErrorFragement;
 import com.example.william.quitsmokeappclient.MainActivity;
-import ClientService.QuitSmokeClientUtils;
-import ClientService.webservice.InteractWebservice;
+import clientservice.QuitSmokeClientUtils;
+import clientservice.webservice.InteractWebservice;
 
 public class CreatePlanFactorial extends AsyncTask<Void, Void, Void> {
     private Activity createPlanActivity;

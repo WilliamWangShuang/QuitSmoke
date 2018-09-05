@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.william.quitsmokeappclient.R;
-import ClientService.Factory.CreatePlanFactorial;
-import ClientService.QuitSmokeClientUtils;
+import clientservice.factory.CreatePlanFactorial;
+import clientservice.QuitSmokeClientUtils;
 
 public class CreatePlanFragment extends Fragment {
     private View vCreatePlanFragment;

@@ -1,4 +1,4 @@
-package ClientService;
+package clientservice;
 
 public class QuitSmokeClientConstant {
     // web service URL

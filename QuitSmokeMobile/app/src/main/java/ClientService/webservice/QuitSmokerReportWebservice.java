@@ -1,9 +1,9 @@
-package ClientService.webservice;
+package clientservice.webservice;
 
 import android.util.Log;
-import ClientService.Entities.CalculateFrsEntity;
-import ClientService.Entities.SurveyResultEntity;
-import ClientService.QuitSmokeClientConstant;
+import clientservice.entities.CalculateFrsEntity;
+import clientservice.entities.SurveyResultEntity;
+import clientservice.QuitSmokeClientConstant;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

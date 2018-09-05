@@ -6,16 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-
-import ClientService.Entities.GroupInfo;
-import ClientService.Entities.MotivationAgeEntity;
-import ClientService.Entities.MotivationGenderEntity;
-import ClientService.Entities.SurveyResultEntity;
-import ClientService.Factory.ExpandableListAdapter;
+import clientservice.entities.GroupInfo;
+import clientservice.entities.MotivationAgeEntity;
+import clientservice.entities.MotivationGenderEntity;
+import clientservice.entities.SurveyResultEntity;
+import clientservice.factory.ExpandableListAdapter;
 
 public class TopMotivationActivity extends AppCompatActivity {
 

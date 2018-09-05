@@ -1,4 +1,4 @@
-package ClientService.webservice.Receiver;
+package clientservice.webservice.receiver;
 
 import android.app.AlarmManager;
 import android.app.NotificationManager;
@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
-
 import com.example.william.quitsmokeappclient.R;
 
 public class CheckPlanReceiver extends BroadcastReceiver {

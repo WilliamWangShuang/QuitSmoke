@@ -1,4 +1,4 @@
-package ClientService.Entities;
+package clientservice.entities;
 
 import java.util.ArrayList;
 

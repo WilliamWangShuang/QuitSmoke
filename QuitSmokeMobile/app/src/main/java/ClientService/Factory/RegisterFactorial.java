@@ -1,4 +1,4 @@
-package ClientService.Factory;
+package clientservice.factory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -7,21 +7,13 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.william.quitsmokeappclient.CreateSupporterActivity;
-import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.Date;
-
-import ClientService.Entities.UserInfoEntity;
-import ClientService.QuitSmokeClientUtils;
-import ClientService.webservice.QuitSmokeUserWebservice;
+import clientservice.entities.UserInfoEntity;
+import clientservice.QuitSmokeClientUtils;
+import clientservice.webservice.QuitSmokeUserWebservice;
 
 public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
     // user email variables

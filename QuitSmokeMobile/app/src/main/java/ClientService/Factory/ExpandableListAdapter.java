@@ -1,9 +1,9 @@
-package ClientService.Factory;
+package clientservice.factory;
 
 import android.content.Context;
 import android.widget.BaseExpandableListAdapter;
 import java.util.ArrayList;
-import ClientService.Entities.GroupInfo;
+import clientservice.entities.GroupInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -1,4 +1,4 @@
-package ClientService.webservice;
+package clientservice.webservice;
 
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -19,9 +19,8 @@ import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.Scanner;
-
-import ClientService.QuitSmokeClientConstant;
-import ClientService.QuitSmokeClientUtils;
+import clientservice.QuitSmokeClientConstant;
+import clientservice.QuitSmokeClientUtils;
 
 public class BaseWebservice {
 

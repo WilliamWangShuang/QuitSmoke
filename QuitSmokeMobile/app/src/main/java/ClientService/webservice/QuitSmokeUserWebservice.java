@@ -1,15 +1,15 @@
-package ClientService.webservice;
+package clientservice.webservice;
 
 import android.util.Log;
-import ClientService.Entities.UpdatePartnerEntity;
-import ClientService.Entities.UserInfoEntity;
-import ClientService.QuitSmokeClientConstant;
+import clientservice.entities.UpdatePartnerEntity;
+import clientservice.entities.UserInfoEntity;
+import clientservice.QuitSmokeClientConstant;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
-import ClientService.QuitSmokeClientUtils;
+import clientservice.QuitSmokeClientUtils;
 
 public class QuitSmokeUserWebservice {
 

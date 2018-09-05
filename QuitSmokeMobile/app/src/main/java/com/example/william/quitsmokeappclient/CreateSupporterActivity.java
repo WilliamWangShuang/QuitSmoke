@@ -16,8 +16,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import ClientService.Factory.CreateSupporterFactorial;
+import clientservice.factory.CreateSupporterFactorial;
 
 public class CreateSupporterActivity extends AppCompatActivity {
     private TextView tvSupporterEmailErrorMsg;

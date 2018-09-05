@@ -1,4 +1,4 @@
-package ClientService.Factory;
+package clientservice.factory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,11 +10,10 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.william.quitsmokeappclient.MainActivity;
-import com.example.william.quitsmokeappclient.R;;import ClientService.Entities.UserInfoEntity;
-import ClientService.QuitSmokeClientConstant;
-import ClientService.QuitSmokeClientUtils;
-import ClientService.webservice.QuitSmokeUserWebservice;
-import ClientService.webservice.Receiver.CheckPlanReceiver;
+import com.example.william.quitsmokeappclient.R;
+import clientservice.entities.UserInfoEntity;
+import clientservice.QuitSmokeClientUtils;
+import clientservice.webservice.QuitSmokeUserWebservice;
 
 public class LoginFactorial extends AsyncTask<Void, Void, Void> {
     private String email;

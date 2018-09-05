@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.app.AlertDialog;
 import android.view.View;
 import android.widget.TextView;
-
 import com.example.william.quitsmokeappclient.R;
 
 public class SurveyErrorFragment extends DialogFragment {
