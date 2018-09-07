@@ -23,7 +23,6 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView msgEmail;
     private TextView msgPwd;
     private TextView msgCity;
-    private TextView msgSuburb;
     private TextView msgAge;
     private TextView msgGender;
     // declare text fields
@@ -41,10 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
-
-        // set tool bar
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // get drop down lists
         ddlRole = (Spinner)findViewById(R.id.ddlRole);
@@ -110,10 +105,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String pwd = txtPwd.getText().toString();
                 String age = ddlAge.getSelectedItem().toString();
                 String gender = ddlGender.getSelectedItem().toString();
-                boolean isSmoker = ddlRole.isSelected()
-                        && getResources().getString(R.string.role_smoker).equals((String)ddlRole.getSelectedItem());
-                boolean isSupporter = ddlRole.isSelected()
-                        && getResources().getString(R.string.role_supporter).equals((String)ddlRole.getSelectedItem());
+                boolean isSmoker = getResources().getString(R.string.role_smoker).equals(ddlRole.getSelectedItem().toString());
+                boolean isSupporter = getResources().getString(R.string.role_supporter).equals(ddlRole.getSelectedItem().toString());
 
                 // UI validation
                 // create UI info entity object
@@ -128,18 +121,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-//        if (keyCode == KeyEvent.KEYCODE_BACK ) {
-//            // go to home activity
-//            Intent intent = new Intent(getApplicationContext(), LaunchActivity.class);
-//            startActivityForResult(intent, 1);
-//            return true;
-//        }
-//
-//        return super.onKeyDown(keyCode, event);
-//    }
 
     // validate UI fields
     private boolean validateUIFields(UserInfoEntity entity) {

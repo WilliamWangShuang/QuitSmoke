@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.william.quitsmokeappclient.CreateSupporterActivity;
+import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
 import clientservice.entities.UserInfoEntity;
 import clientservice.QuitSmokeClientUtils;
@@ -77,8 +78,16 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                     tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.whiteBg));
                     ((TextView)activity.findViewById(R.id.lblEmailErrorMsg)).setText("");
                     // go to create partner activity
-                    Intent intent = new Intent(activity, CreateSupporterActivity.class);
-                    activity.startActivityForResult(intent, 1);
+
+                    // if smoker, go to designate partner activity, otherwise, directly go to main activity
+                    if (registerInfoUI.isSmoker()) {
+                        Intent intent = new Intent(activity, CreateSupporterActivity.class);
+                        activity.startActivityForResult(intent, 1);
+                    } else {
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivityForResult(intent, 1);
+                    }
+
                 } catch (Exception ex) {
                     Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
                     Toast.makeText(activity, activity.getResources().getString(R.string.register_throw_exception), Toast.LENGTH_LONG);
