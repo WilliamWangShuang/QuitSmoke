@@ -4,17 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/bg_pict"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvFRSDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/frs_desc"
         android:gravity="center"
+        android:text="@string/frs_desc"
         app:layout_constraintBottom_toTopOf="@+id/tvRiskResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/table_calculate_frs"
-        android:layout_marginBottom="20dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvRiskResult"
@@ -31,9 +34,10 @@
         android:id="@+id/table_calculate_frs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/calculate_frs_tvAdjustLayout">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvRiskResult"
+        tools:layout_editor_absoluteY="149dp">
 
         <TableRow>
 
@@ -42,113 +46,124 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="3"
+                android:clickable="true"
                 android:gravity="end"
                 android:paddingRight="20dp"
                 android:text="@string/tvChol_title"
                 android:textColor="#FFFFFF"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:clickable="true" />
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/txtChol"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:paddingLeft="10dp"
                 android:layout_weight="7"
-                android:inputType="number"
                 android:background="@drawable/edit_text_style"
-                android:hint="@string/txtChol_hint" />
+                android:hint="@string/txtChol_hint"
+                android:inputType="number"
+                android:paddingLeft="10dp" />
         </TableRow>
+
         <TableRow>
+
             <TextView
                 android:id="@+id/lblCholMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_chol_msg"
+                android:layout_column="1"
+                android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:textSize="12dp"
+                android:text="@string/lbl_chol_msg"
                 android:textColor="#FFFFFF"
-                android:layout_column="1"/>
+                android:textSize="12dp" />
         </TableRow>
 
         <TableRow>
+
             <TextView
                 android:id="@+id/tvSBP"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="@string/tvSBP_title"
-                android:textSize="18dp"
-                android:textStyle="bold"
                 android:layout_weight="3"
+                android:gravity="end"
                 android:paddingRight="20dp"
+                android:text="@string/tvSBP_title"
                 android:textColor="#FFFFFF"
-                android:gravity="end" />
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/txtSBP"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:paddingLeft="10dp"
                 android:layout_weight="7"
-                android:inputType="number"
                 android:background="@drawable/edit_text_style"
-                android:hint="@string/txtSBP_hint" />
+                android:hint="@string/txtSBP_hint"
+                android:inputType="number"
+                android:paddingLeft="10dp" />
         </TableRow>
+
         <TableRow>
+
             <TextView
                 android:id="@+id/lbSBPMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:text="@string/lbl_SBP_msg"
+                android:layout_column="1"
+                android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:textSize="12dp"
-                android:layout_column="1"/>
+                android:text="@string/lbl_SBP_msg"
+                android:textColor="#FFFFFF"
+                android:textSize="12dp" />
         </TableRow>
 
         <TableRow>
+
             <TextView
                 android:id="@+id/tvHDL"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:paddingRight="20dp"
                 android:layout_weight="3"
+                android:gravity="end"
+                android:paddingRight="20dp"
                 android:text="@string/tvHDL_title"
                 android:textColor="#FFFFFF"
-                android:gravity="end" />
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/txtHDL"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:paddingLeft="10dp"
                 android:layout_weight="7"
-                android:inputType="number"
                 android:background="@drawable/edit_text_style"
-                android:hint="@string/txtHDL_hint" />
+                android:hint="@string/txtHDL_hint"
+                android:inputType="number"
+                android:paddingLeft="10dp" />
         </TableRow>
+
         <TableRow>
+
             <TextView
                 android:id="@+id/lbHDLMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_HDL_msg"
+                android:layout_column="1"
+                android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:textSize="12dp"
+                android:text="@string/lbl_HDL_msg"
                 android:textColor="#FFFFFF"
-                android:layout_column="1"/>
+                android:textSize="12dp" />
         </TableRow>
 
         <TableRow
-            android:paddingTop="40dp"
             android:layout_span="2"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingTop="40dp">
 
             <Button
                 android:id="@+id/btnCalculateFrs"
@@ -157,9 +172,5 @@
                 android:theme="@style/AppTheme.Button" />
         </TableRow>
     </TableLayout>
-    <TextView
-        android:id="@+id/calculate_frs_tvAdjustLayout"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

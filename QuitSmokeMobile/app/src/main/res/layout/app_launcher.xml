@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="#33CCCC" >
+    android:background="@drawable/bg_pic" >
 
     <TextView
         android:id="@+id/lblErrorMsg"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="#33CCCC" >
+    android:background="@drawable/bg_pict" >
 
     <TextView
         android:id="@+id/main_page_login"
@@ -33,7 +33,7 @@
         android:stretchColumns="1">
 
         <TableRow
-            android:background="#FFFFFF"
+            android:background="#00000000"
             android:gravity="center">
 
             <ImageView
