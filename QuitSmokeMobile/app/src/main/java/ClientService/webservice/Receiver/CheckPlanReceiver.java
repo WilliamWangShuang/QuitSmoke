@@ -9,14 +9,26 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+
+import com.example.william.quitsmokeappclient.Interface.IGetPendingPlanResultAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
 
-public class CheckPlanReceiver extends BroadcastReceiver {
+import java.util.ArrayList;
+
+import clientservice.QuitSmokeClientUtils;
+import clientservice.entities.PlanEntity;
+import clientservice.factory.InitialPartnerFragmentFactorial;
+import clientservice.webservice.InteractWebservice;
+
+public class CheckPlanReceiver extends BroadcastReceiver implements IGetPendingPlanResultAsyncResponse {
     private AlarmManager alarmMgr;
     private Intent i;
     private PendingIntent pi;
     private Context context;
     private NotificationCompat.Builder mBuilder;
+    private ArrayList<PlanEntity> pendingPlanList;
+    private NotificationManagerCompat notificationManager;
+    private InitialPartnerFragmentFactorial initialPartnerFragmentFactorial;
 
     public CheckPlanReceiver() {}
 
@@ -37,7 +49,7 @@ public class CheckPlanReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("QuitSmokeDebug", "start check plan create receiver");
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager = NotificationManagerCompat.from(context);
         Log.d("QuitSmokeDebug", "notificationManager is null or not:" + (notificationManager == null));
         // define notification builder
         mBuilder = new NotificationCompat.Builder(context, context.getResources().getString(R.string.channel_id))
@@ -48,6 +60,20 @@ public class CheckPlanReceiver extends BroadcastReceiver {
                 .setAutoCancel(true);
         // notificationId is a unique int for each notification that you must define
         Log.d("QuitSmokeDebug", "mbuilder in onReceive is null or not:" + (mBuilder == null));
-        notificationManager.notify(0, mBuilder.build());
+        // check if there is pending plan, if yes, send notification.
+        try {
+            initialPartnerFragmentFactorial =  new InitialPartnerFragmentFactorial(QuitSmokeClientUtils.getEmail());
+            initialPartnerFragmentFactorial.delegate = this;
+            initialPartnerFragmentFactorial.execute();
+        } catch (Exception ex) {
+            Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
+        }
+    }
+
+    @Override
+    public void processFinish(ArrayList<PlanEntity> reponseResult) {
+        pendingPlanList = reponseResult;
+        if (pendingPlanList != null && pendingPlanList.size() > 0)
+            notificationManager.notify(0, mBuilder.build());
     }
 }
