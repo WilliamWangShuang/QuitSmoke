@@ -14,8 +14,6 @@ public class SurveyResultActivity extends AppCompatActivity implements ISurveyRe
     private int age;
     private int smoke_per_day;
     private String gender;
-    private TextView tvMeanSmoke;
-    private TextView tvChanceQuitting;
     private Button btnStart;
     private SurveyResultEntity resultFromFactory;
 
@@ -25,8 +23,6 @@ public class SurveyResultActivity extends AppCompatActivity implements ISurveyRe
         setContentView(R.layout.survey_result);
 
         // get text views on page
-        tvMeanSmoke = (TextView)findViewById(R.id.tvMeanSmoke);
-        tvChanceQuitting = (TextView)findViewById((R.id.tvChanceQuitting));
         btnStart = (Button)findViewById(R.id.btn_servey_result_next);
 
         Bundle bundle = this.getIntent().getExtras();

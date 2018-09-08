@@ -11,6 +11,8 @@ public class QuitSmokeClientConstant {
     public static String CHECK_USER_EXIST_WS = "/checkEmail";
     public static String CREATE_PLAN_WS = "api/Values/createPlan";
     public static String CHECK_PARTNER = "api/Values/checkPartner";
+    public static String GET_PENDING_PLAN = "api/Values/getPendingPlan";
+    public static String APPROVE_PLAN = "api/Values/approvePlan";
 
     // general constants
     public static String WS_KEY_EXCEPTION = "Exception";
@@ -69,4 +71,6 @@ public class QuitSmokeClientConstant {
     public static String WS_INTERACT_PLAN_CREATE_DT = "plan_create_date";
     public static String WS_INTERACT_PLAN_STATUS = "status";
     public static String WS_INTERACT_PLAN_REAL_AMOUNT = "real_amount";
+    public static String WS_INTERACT_QUERY_PLAN_EMAIL = "email";
+    public static String WS_INTERACT_APPROVE_PLAN_AMOUNT = "targetAmount";
 }

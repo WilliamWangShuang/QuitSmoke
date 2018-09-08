@@ -28,8 +28,26 @@ public class QuitSmokeClientUtils extends Application {
     private static String smokerNodeName;
     private static String gender;
     private static String planNodeName;
+    private static boolean isSmoker;
+    private static boolean isPartner;
 
     // setters and getters
+
+    public static boolean isIsSmoker() {
+        return isSmoker;
+    }
+
+    public static void setIsSmoker(boolean isSmoker) {
+        QuitSmokeClientUtils.isSmoker = isSmoker;
+    }
+
+    public static boolean isIsPartner() {
+        return isPartner;
+    }
+
+    public static void setIsPartner(boolean isPartner) {
+        QuitSmokeClientUtils.isPartner = isPartner;
+    }
 
     public static String getPlanNodeName() {
         return planNodeName;

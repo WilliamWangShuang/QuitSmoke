@@ -2,6 +2,7 @@ package clientservice.webservice;
 
 import android.util.Log;
 import clientservice.entities.CalculateFrsEntity;
+import clientservice.entities.PlanEntity;
 import clientservice.entities.SurveyResultEntity;
 import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
@@ -9,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class InteractWebservice {
@@ -43,5 +45,44 @@ public class InteractWebservice {
         newPlanNodeName = BaseWebservice.postWSForGetRestrievePlainText(uri, json);
         Log.d("QuitSmokeDebug", "ws result from server:" + newPlanNodeName);
         return newPlanNodeName;
+    }
+
+    // get pending plan based on partner email
+    public static ArrayList<PlanEntity> getPendingPlanByPartnerEmail(String email) throws JSONException, IOException{
+        ArrayList<PlanEntity> resultList = new ArrayList<>();
+        JSONObject reqJson = new JSONObject();
+        reqJson.put(QuitSmokeClientConstant.WS_INTERACT_QUERY_PLAN_EMAIL, email);
+        JSONArray jsonArray = BaseWebservice.postWebServiceForGetRestrieveJSONArray(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.GET_PENDING_PLAN, reqJson);
+
+        // if ws result not null, construct domain returned object
+        if (jsonArray != null) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject json = jsonArray.getJSONObject(i);
+                PlanEntity result = new PlanEntity();
+                result.setCreateDate(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_CREATE_DT));
+                result.setStatus(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_STATUS));
+                result.setTargetAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_TARGET_AMOUNT));
+                result.setRealAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_REAL_AMOUNT));
+                result.setUid(json.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID));
+                resultList.add(result);
+            }
+        }
+
+        return resultList;
+    }
+
+    public static boolean approvePlan(String uid, int amount) throws JSONException, IOException {
+        boolean result = false;
+        // url
+        String url = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.APPROVE_PLAN;
+        // construct request json
+        JSONObject reqJson = new JSONObject();
+        reqJson.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID, uid);
+        reqJson.put(QuitSmokeClientConstant.WS_INTERACT_APPROVE_PLAN_AMOUNT, amount);
+
+        // call ws to get response result
+        result = Boolean.parseBoolean(BaseWebservice.postWSForGetRestrievePlainText(url, reqJson));
+
+        return result;
     }
 }

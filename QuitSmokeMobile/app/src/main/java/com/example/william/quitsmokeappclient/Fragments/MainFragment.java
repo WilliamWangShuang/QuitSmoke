@@ -10,8 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.example.william.quitsmokeappclient.R;
 
+import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.SwitchMainAdapter;
 
 public class MainFragment extends Fragment {
@@ -37,8 +40,14 @@ public class MainFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Smoker"));
-        tabLayout.addTab(tabLayout.newTab().setText("Supporter"));
+        TabLayout.Tab smokerTab = tabLayout.newTab();
+        TabLayout.Tab supporterTab = tabLayout.newTab();
+        smokerTab.setCustomView(R.layout.tab_item);
+        ((TextView)smokerTab.getCustomView().findViewById(R.id.tabTextView)).setText("Quitter");
+        supporterTab.setCustomView(R.layout.tab_item);
+        ((TextView)supporterTab.getCustomView().findViewById(R.id.tabTextView)).setText("Supporter");
+        tabLayout.addTab(smokerTab);
+        tabLayout.addTab(supporterTab);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
@@ -62,5 +71,11 @@ public class MainFragment extends Fragment {
 
             }
         });
+
+        // change tab based on user role
+        TabLayout.Tab tab = tabLayout.getTabAt(0); // if is smoker
+        if (QuitSmokeClientUtils.isIsPartner())
+            tab = tabLayout.getTabAt(1); // if isPartner
+        tab.select();
     }
 }
