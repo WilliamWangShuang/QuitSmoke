@@ -5,6 +5,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         #region <<url constants>>
         public static string FIREBASE_ROOT = "https://quit-smoke-web-api.firebaseio.com/";
         public static string FIREBASE_GET_BY_UID_FORMAT = "?orderBy=\"{0}\"&equalTo=\"{1}\"";
+        public static string FIREBASE_GET_SECOND_LEVEL_QUERY_PARAMETER = "&orderBy=\"{0}\"&equalTo=\"{1}\"";
         public static string FIREBASE_GET_MEAN_BY_AGE_GENDER = "?orderBy=\"{0}\"&startAt={1}&orderBy=\"{2}\"&endAt={3}&orderBy=\"{4}\"";
         public static string AUTH_ROOT_SIGN_UP = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=";
         public static string AUTH_ROOT_SIGN_IN = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=";
@@ -49,6 +50,8 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string JSON_KEY_MEAN_AGE_END = "age_end";
         public static string JSON_KEY_GENDER = "gender";
         public static string JSON_KEY_MEAN_CONSUME = "mean_consume";
+        public static string JSON_KEY_STATUS = "status";
+        public static string JSON_KEY_TARGET_AMOUNT ="target_amount";
         
         #endregion
 
@@ -59,6 +62,11 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string SUCC_REDUCE_AMOUNT = "successfully reduced amount";
         public static string FAIL_COLD_TURKEY = "failed to quit cold turkey";
         public static string SUCC_COLD_TURKEY = "successfully quit cold turkey";
+        public static string STATUS_OPEN = "open";
+        public static string STATUS_PENDING = "pending";
+        public static string STATUS_APPROVE = "approve";
+        public static string STATUS_CLOSE = "close";
+
         #endregion
     }
 }
