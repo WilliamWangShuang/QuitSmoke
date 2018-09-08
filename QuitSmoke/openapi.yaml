@@ -258,6 +258,31 @@ paths:
           description: Success
           schema:
             type: boolean
+  /api/Values/approvePlan:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesApprovePlanPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: approvePlan
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/ApprovePlanEntity'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
   /api/Values/createPlan:
     post:
       tags:
@@ -283,6 +308,34 @@ paths:
           description: Success
           schema:
             type: string
+  /api/Values/getPendingPlan:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesGetPendingPlanPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: partnerEmailObj
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/GetingPendingPlanReq'
+      responses:
+        '200':
+          description: Success
+          schema:
+            uniqueItems: false
+            type: array
+            items:
+              $ref: '#/definitions/PlanEntity'
 definitions:
   AppUser:
     type: object
@@ -299,13 +352,9 @@ definitions:
         type: string
       register_date:
         type: string
-      suburb:
-        type: string
-      city:
-        type: string
       plan_id:
         type: string
-      partner_id:
+      partner_email:
         type: string
       point:
         format: int32
@@ -315,6 +364,8 @@ definitions:
       age:
         type: string
       gender:
+        type: string
+      smoker_node_name:
         type: string
   MyTestEntity:
     type: object
@@ -447,6 +498,14 @@ definitions:
         type: string
       partnerEmail:
         type: string
+  ApprovePlanEntity:
+    type: object
+    properties:
+      uid:
+        type: string
+      targetAmount:
+        format: int32
+        type: integer
   PlanEntity:
     type: object
     properties:
@@ -461,4 +520,9 @@ definitions:
       plan_create_date:
         type: string
       status:
+        type: string
+  GetingPendingPlanReq:
+    type: object
+    properties:
+      email:
         type: string
