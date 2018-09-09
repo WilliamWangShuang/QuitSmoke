@@ -107,4 +107,16 @@ public class InteractWebservice {
         }
         return result;
     }
+
+    public static boolean addRealAmount(String uid) throws JSONException, IOException {
+        boolean result = false;
+        String url = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.ADD_REAL_AMOUNT;
+
+        // call ws to get response result
+        String json = BaseWebservice.postWSForGetRestrievePlainText(url, uid);
+        Log.d("QuitSmokeDebug","add real amount result from backend ws:" + json);
+        result = Boolean.parseBoolean(json);
+
+        return result;
+    }
 }

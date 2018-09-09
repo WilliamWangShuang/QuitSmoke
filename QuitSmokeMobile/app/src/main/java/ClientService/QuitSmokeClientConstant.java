@@ -14,6 +14,7 @@ public class QuitSmokeClientConstant {
     public static String GET_PENDING_PLAN = "api/Values/getPendingPlan";
     public static String APPROVE_PLAN = "api/Values/approvePlan";
     public static String GET_CURRENT_PLAN = "api/Values/getCurrentPlan";
+    public static String ADD_REAL_AMOUNT = "api/Values/addSmokeAmount";
 
     // general constants
     public static String WS_KEY_EXCEPTION = "Exception";

@@ -14,6 +14,7 @@ import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.R;
 
 import clientservice.QuitSmokeClientUtils;
+import clientservice.factory.AddSmokeAmountFactorial;
 import clientservice.factory.GetCurrentPlanFactorial;
 
 public class EncourageFragment extends Fragment {
@@ -46,7 +47,8 @@ public class EncourageFragment extends Fragment {
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AddSmokeAmountFactorial addSmokeAmountFactorial = new AddSmokeAmountFactorial(QuitSmokeClientUtils.getUid(), getFragmentManager(), getContext());
+                addSmokeAmountFactorial.execute();
             }
         });
     }
