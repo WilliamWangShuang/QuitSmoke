@@ -75,6 +75,7 @@
     <string name="frs_desc">The Framingham Risk Score is a gender-specific algorithm used to estimate the 10-year cardiovascular risk of an individual. The Framingham Risk Score was first developed based on data obtained from the Framingham Heart Study, to estimate the 10-year risk of developing coronary heart disease. In order to assess the 10-year cardiovascular disease risk</string>
     <string name="create_plan_empty_target">Target number cannot be blank.</string>
     <string name="create_plan_no_partner">You have not designate your supporter. Please designate your supporter first.</string>
+    <string name="create_plan_proceeding_task_exist">You have a proceeding plan and cannot create new plan before completion.</string>
     <string name="partner_set">Supporter has been set</string>
     <string name="channel_name">quit smoke</string>
     <string name="channel_id">check_plan_create</string>

@@ -40,9 +40,13 @@ public class CreatePlanFactorial extends AsyncTask<Void, Void, Void> {
             // do server side validation check if the smoker has set a supporter
             isPartnerSet = InteractWebservice.isSupporterSet();
             if (isPartnerSet) {
-                    String newPlanNodeName = InteractWebservice.createPlan(targetAmount);
-                QuitSmokeClientUtils.setPlanNodeName(newPlanNodeName);
-                h.sendEmptyMessage(0);
+                String newPlanNodeName = InteractWebservice.createPlan(targetAmount);
+                if (newPlanNodeName == null || "".equals(newPlanNodeName)) {
+                    h.sendEmptyMessage(2);
+                } else {
+                    QuitSmokeClientUtils.setPlanNodeName(newPlanNodeName);
+                    h.sendEmptyMessage(0);
+                }
             } else {
                 h.sendEmptyMessage(1);
             }
@@ -70,9 +74,18 @@ public class CreatePlanFactorial extends AsyncTask<Void, Void, Void> {
                 Bundle bundle = new Bundle();
                 // set empty input target amount error message indicator is true. This is for hiding empty input error message during server side validation phase
                 bundle.putBoolean("isTargetNoValid", true);
+                bundle.putBoolean("isProceedingPlanExist", false);
                 bundle.putBoolean("isPartberSet", isPartnerSet);
                 createPlanErrorFragment.setArguments(bundle);
                 createPlanErrorFragment.show(fragmentManager, "no partner");
+            } else if (msg.what == 2) {
+                // get validation value to bundle to pass to error dialog entity
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isTargetNoValid", true);
+                bundle.putBoolean("isPartberSet", true);
+                bundle.putBoolean("isProceedingPlanExist", true);
+                createPlanErrorFragment.setArguments(bundle);
+                createPlanErrorFragment.show(fragmentManager, "existing plan proceeding");
             } else {
                 Toast.makeText(createPlanActivity, "Exception occurred when create plan. Try again. If not work, remove the shit app.", Toast.LENGTH_LONG).show();
             }

@@ -13,11 +13,13 @@ import com.example.william.quitsmokeappclient.R;
 public class CreatePlanErrorFragement extends DialogFragment {
     private boolean isTargetNoValid;
     private boolean isPartberSet;
+    private boolean isProceedingPlanExist;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         isTargetNoValid = getArguments().getBoolean("isTargetNoValid");
         isPartberSet = getArguments().getBoolean("isPartberSet");
+        isProceedingPlanExist = getArguments().getBoolean("isProceedingPlanExist");;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
@@ -39,6 +41,7 @@ public class CreatePlanErrorFragement extends DialogFragment {
 
         tvIsTargetNoValid.setText(isTargetNoValid ? "" : getActivity().getResources().getString(R.string.create_plan_empty_target));
         tvIsPartnerSet.setText(isPartberSet ? "" : getActivity().getResources().getString(R.string.create_plan_no_partner));
+        tvIsPartnerSet.setText(isProceedingPlanExist ? getActivity().getResources().getString(R.string.create_plan_proceeding_task_exist) : "");
 
         return builder.create();
     }
