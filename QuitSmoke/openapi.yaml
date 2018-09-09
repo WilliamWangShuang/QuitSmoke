@@ -336,6 +336,31 @@ paths:
             type: array
             items:
               $ref: '#/definitions/PlanEntity'
+  /api/Values/getCurrentPlan:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesGetCurrentPlanPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: requestJson
+          in: body
+          required: false
+          schema:
+            type: object
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/PlanEntity'
 definitions:
   AppUser:
     type: object

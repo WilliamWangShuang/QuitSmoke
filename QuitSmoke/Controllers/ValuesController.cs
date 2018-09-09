@@ -805,6 +805,52 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("getCurrentPlan")]
+        public ActionResult<PlanEntity> Post([FromBody] JObject requestJson)
+        {
+            PlanEntity result = null;
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+                    // get uid from request json
+                    string uid = requestJson.Property(Constant.JSON_KEY_USER_UID).Value.ToObject<string>();
+
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                            + Constant.JSON_NODE_NAME_PLAN
+                            + Constant.FIREBASE_SUFFIX_JSON
+                            + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, uid)).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject objects = response.Content.ReadAsAsync<JObject>().Result;
+                        // fetch all uids of smokers whose supporter is the current user
+                        foreach (JToken token in objects.Children())
+                        {
+                            PlanEntity entity = token.First.ToObject<PlanEntity>();
+                            if (Constant.STATUS_APPROVE.Equals(entity.status, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                result = entity;
+                                break;
+                            }
+                        }
+                    }
+                }
+            } 
+            catch (Exception ex)
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+            }
+            return result;
+        }
+
         // POST api/values
         [HttpPost]
         public string Post([FromBody] AppUser newUser)

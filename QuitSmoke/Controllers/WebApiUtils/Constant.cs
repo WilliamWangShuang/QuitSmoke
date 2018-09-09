@@ -64,7 +64,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string SUCC_COLD_TURKEY = "successfully quit cold turkey";
         public static string STATUS_OPEN = "open";
         public static string STATUS_PENDING = "pending";
-        public static string STATUS_APPROVE = "approve";
+        public static string STATUS_APPROVE = "agree";
         public static string STATUS_CLOSE = "close";
 
         #endregion
