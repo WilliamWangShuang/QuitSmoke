@@ -6,6 +6,35 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_pic">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/yourProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:paddingBottom="23dp"
+            android:text="@string/title_your_progress"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <com.dinuscxj.progressbar.CircleProgressBar
+            android:id="@+id/custom_progress"
+            android:layout_width="500dp"
+            android:layout_height="250dp"
+            app:drawBackgroundOutsideProgress="true"
+            app:progress_background_color="@color/holo_darker_gray"
+            app:progress_end_color="@android:color/transparent"
+            app:progress_start_color="@android:color/transparent"
+            app:progress_stroke_width="1dp"
+            app:progress_text_color="@color/holo_blue_light"
+            app:style="line" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/buttonforquitter"
         android:layout_width="49dp"
@@ -13,20 +42,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="139dp"
-        android:background="@drawable/buttonforquitter"
+        android:background="@drawable/buttonforquitter" />
 
-        />
-
-    <TextView
-        android:id="@+id/yourProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:text="Your Progress"
-        android:textColor="@color/colorWhite"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
     <TextView
         android:id="@+id/pressButton"
         android:layout_width="wrap_content"
@@ -34,7 +51,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="200dp"
-        android:text="Press the button if you want to smoke"
+        android:text="@string/title_panic_button"
         android:textSize="12sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 

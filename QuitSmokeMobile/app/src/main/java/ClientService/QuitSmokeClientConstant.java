@@ -13,6 +13,7 @@ public class QuitSmokeClientConstant {
     public static String CHECK_PARTNER = "api/Values/checkPartner";
     public static String GET_PENDING_PLAN = "api/Values/getPendingPlan";
     public static String APPROVE_PLAN = "api/Values/approvePlan";
+    public static String GET_CURRENT_PLAN = "api/Values/getCurrentPlan";
 
     // general constants
     public static String WS_KEY_EXCEPTION = "Exception";
@@ -24,7 +25,7 @@ public class QuitSmokeClientConstant {
     public static String EMAIL_EXIST = "EMAIL_EXISTS";
     public static String STATUS_OPEN = "open";
     public static String STATUS_PENDING = "pending";
-    public static String STATUS_APPROVE = "approve";
+    public static String STATUS_APPROVE = "agree";
     public static String STATUS_CLOSE = "close";
 
     // app user json key

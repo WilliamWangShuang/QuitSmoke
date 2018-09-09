@@ -85,4 +85,25 @@ public class InteractWebservice {
 
         return result;
     }
+
+    public static PlanEntity getProceedingPlan(String uid) throws JSONException, IOException {
+        PlanEntity result = null;
+        String url = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.GET_CURRENT_PLAN;
+        // construct request json
+        JSONObject reqJson = new JSONObject();
+        reqJson.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID, uid);
+
+        // call ws to get response result
+        JSONObject json = BaseWebservice.postWebServiceForGetRestrieveJSON(url, reqJson);
+        // construct result plan object
+        if (json != null) {
+            result = new PlanEntity();
+            result.setUid(uid);
+            result.setTargetAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_TARGET_AMOUNT));
+            result.setRealAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_REAL_AMOUNT));
+            result.setStatus(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_STATUS));
+            result.setCreateDate(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_CREATE_DT));
+        }
+        return result;
+    }
 }
