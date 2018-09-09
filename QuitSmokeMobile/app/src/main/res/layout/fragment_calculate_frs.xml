@@ -50,7 +50,7 @@
                 android:gravity="end"
                 android:paddingRight="20dp"
                 android:text="@string/tvChol_title"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:text="@string/lbl_chol_msg"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="12dp" />
         </TableRow>
 
@@ -90,7 +90,7 @@
                 android:gravity="end"
                 android:paddingRight="20dp"
                 android:text="@string/tvSBP_title"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -116,7 +116,7 @@
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:text="@string/lbl_SBP_msg"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="12dp" />
         </TableRow>
 
@@ -130,7 +130,7 @@
                 android:gravity="end"
                 android:paddingRight="20dp"
                 android:text="@string/tvHDL_title"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
