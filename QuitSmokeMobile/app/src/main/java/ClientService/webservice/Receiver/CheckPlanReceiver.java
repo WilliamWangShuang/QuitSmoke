@@ -9,16 +9,12 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
-
 import com.example.william.quitsmokeappclient.Interface.IGetPendingPlanResultAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
-
 import java.util.ArrayList;
-
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;
 import clientservice.factory.InitialPartnerFragmentFactorial;
-import clientservice.webservice.InteractWebservice;
 
 public class CheckPlanReceiver extends BroadcastReceiver implements IGetPendingPlanResultAsyncResponse {
     private AlarmManager alarmMgr;

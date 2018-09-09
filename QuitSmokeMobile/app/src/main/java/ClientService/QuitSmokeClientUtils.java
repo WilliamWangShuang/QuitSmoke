@@ -1,9 +1,12 @@
 package clientservice;
 
+import android.animation.ValueAnimator;
 import android.app.Application;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.dinuscxj.progressbar.CircleProgressBar;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.BaseSeries;
 import com.jjoe64.graphview.series.DataPoint;
@@ -30,6 +33,7 @@ public class QuitSmokeClientUtils extends Application {
     private static String planNodeName;
     private static boolean isSmoker;
     private static boolean isPartner;
+    private static CircleProgressBar mCustomProgressBar;
 
     // setters and getters
 
@@ -285,4 +289,19 @@ public class QuitSmokeClientUtils extends Application {
         return sb.toString();
     }
 
+    public static void simulateProgress(CircleProgressBar mCustomProgressBar, int progress) {
+        // get progress bar
+        QuitSmokeClientUtils.mCustomProgressBar = mCustomProgressBar;
+        ValueAnimator animator = ValueAnimator.ofInt(0, progress);
+        Log.d("QuitSmokeDebug", "progress from frontend is " + progress);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                QuitSmokeClientUtils.mCustomProgressBar.setProgress((int)animation.getAnimatedValue());
+            }
+        });
+        animator.setRepeatCount(-2);
+        animator.setDuration(4000);
+        animator.start();
+    }
 }

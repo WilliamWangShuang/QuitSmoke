@@ -95,6 +95,7 @@ public class InteractWebservice {
 
         // call ws to get response result
         JSONObject json = BaseWebservice.postWebServiceForGetRestrieveJSON(url, reqJson);
+        Log.d("QuitSmokeDebug","Get current plan result from backend ws is null:" + (json == null));
         // construct result plan object
         if (json != null) {
             result = new PlanEntity();

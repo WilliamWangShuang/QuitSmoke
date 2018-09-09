@@ -40,6 +40,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         try {
             currentPlan = InteractWebservice.getProceedingPlan(uid);
+            Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));
             if (currentPlan != null) {
                 h.sendEmptyMessage(0);
             } else {
@@ -65,8 +66,8 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, Void> {
                 mCustomProgressBar.setVisibility(View.VISIBLE);
                 int realAmount = currentPlan.getRealAmount();
                 int targetAmount = currentPlan.getTargetAmount();
-                int progress = (int)(realAmount / targetAmount * 100);
-                mCustomProgressBar.setProgress(progress);
+                int progress = (int)(realAmount * 100 / targetAmount);
+                QuitSmokeClientUtils.simulateProgress(mCustomProgressBar, progress);
             } else if (msg.what == 1) {
                 mCustomProgressBar.setVisibility(View.INVISIBLE);
             } else {

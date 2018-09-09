@@ -28,11 +28,13 @@
             android:layout_height="250dp"
             app:drawBackgroundOutsideProgress="true"
             app:progress_background_color="@color/holo_darker_gray"
-            app:progress_end_color="@android:color/transparent"
-            app:progress_start_color="@android:color/transparent"
-            app:progress_stroke_width="1dp"
+            app:progress_end_color="@android:color/holo_red_dark"
+            app:progress_start_color="@android:color/holo_green_dark"
+            app:progress_stroke_width="15dp"
+            app:progress_shader="sweep"
             app:progress_text_color="@color/holo_blue_light"
-            app:style="line" />
+            app:style="solid_line" />
+
     </LinearLayout>
 
     <Button

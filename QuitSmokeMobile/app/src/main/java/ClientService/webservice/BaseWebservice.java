@@ -277,7 +277,7 @@ public class BaseWebservice {
     public static JSONObject postWebServiceForGetRestrieveJSON(String serviceUrl, JSONObject jsonParam) throws IOException {
         // response result
         JSONObject result = null;
-
+        Log.d("QuitSmokeDebug", "url:" + serviceUrl + ",json:" + jsonParam.toString());
         // declare a url connection
         HttpURLConnection urlConnection=null;
 
