@@ -662,29 +662,67 @@ namespace QuitSmokeWebAPI.Controllers
             string planNodeName = string.Empty;
             string response = null;
             JObject responseFromDB = null;
+            bool isProceedingPlanExist = false;
 
             try
             {
-                using (var authClient = new WebClient())
+                // check if user has a proceeding plan. if yes, stop creating.
+                string uid = plan.uid;
+                using (var client = new HttpClient())
                 {
-                    // specify encoding 
-                    authClient.Encoding = Encoding.UTF8;
-                    // set headers
-                    authClient.Headers.Add("Accept", "application/json");
-                    response = authClient.UploadString(Constant.FIREBASE_ROOT
-                        + Constant.JSON_NODE_NAME_PLAN
-                        + Constant.FIREBASE_SUFFIX_JSON, JsonConvert.SerializeObject(
-                            new PlanEntity() { 
-                                        uid = plan.uid, 
-                                        target_amount = plan.target_amount, 
-                                        real_amount = plan.real_amount,
-                                        plan_create_date = plan.plan_create_date,
-                                        status = plan.status }));
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
 
-                    responseFromDB = JObject.Parse(response);
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+
+                    // retrieve data response
+                    HttpResponseMessage checkProceedingPlanResponse = client.GetAsync(Constant.FIREBASE_ROOT 
+                            + Constant.JSON_NODE_NAME_PLAN
+                            + Constant.FIREBASE_SUFFIX_JSON
+                            + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, uid)).Result;
+                    if (checkProceedingPlanResponse.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject responseJson = checkProceedingPlanResponse.Content.ReadAsAsync<JObject>().Result;
+                        // loop response json to find out if there is a unclosed plan
+                        foreach (JToken token in responseJson.Children())
+                        {
+                            PlanEntity entity = token.First.ToObject<PlanEntity>();
+                            if (!Constant.STATUS_CLOSE.Equals(entity.status, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                isProceedingPlanExist = true;
+                                break;
+                            }
+                        }
+                    }
                 }
-                // turn json result to string which will be returned to frontend
-                planNodeName = responseFromDB[Constant.JSON_KEY_NAME].Value<string>();
+
+                // if no proceeding plan, create a new plan for current user
+                if (!isProceedingPlanExist) 
+                {
+                    using (var authClient = new WebClient())
+                    {
+                        // specify encoding 
+                        authClient.Encoding = Encoding.UTF8;
+                        // set headers
+                        authClient.Headers.Add("Accept", "application/json");
+                        response = authClient.UploadString(Constant.FIREBASE_ROOT
+                            + Constant.JSON_NODE_NAME_PLAN
+                            + Constant.FIREBASE_SUFFIX_JSON, JsonConvert.SerializeObject(
+                                new PlanEntity() { 
+                                            uid = plan.uid, 
+                                            target_amount = plan.target_amount, 
+                                            real_amount = plan.real_amount,
+                                            plan_create_date = plan.plan_create_date,
+                                            status = plan.status }));
+
+                        responseFromDB = JObject.Parse(response);
+                    }
+                    // turn json result to string which will be returned to frontend
+                    planNodeName = responseFromDB[Constant.JSON_KEY_NAME].Value<string>();
+                }
             }
             catch (Exception ex)
             {
