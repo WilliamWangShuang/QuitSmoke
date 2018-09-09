@@ -233,6 +233,31 @@ paths:
           description: Success
           schema:
             type: boolean
+  /api/Values/addSmokeAmount:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesAddSmokeAmountPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: uid
+          in: body
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
   /api/Values/updatePartner:
     post:
       tags:

@@ -538,6 +538,81 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("addSmokeAmount")]
+        public bool addSmokeAmount([FromBody] String uid)
+        {
+            bool result = false;
+            JToken currentPlan = null;
+            PlanEntity entity = null;
+
+            try
+            {
+                // get current plan token
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                            + Constant.JSON_NODE_NAME_PLAN
+                            + Constant.FIREBASE_SUFFIX_JSON
+                            + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, uid)).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject objects = response.Content.ReadAsAsync<JObject>().Result;
+                        // fetch all uids of smokers whose supporter is the current user
+                        foreach (JToken token in objects.Children())
+                        {
+                            entity = token.First.ToObject<PlanEntity>();
+                            if (Constant.STATUS_APPROVE.Equals(entity.status, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                currentPlan = token;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                // update real amount
+                if (currentPlan != null)
+                {
+                    // get node name
+                    string nodeName = currentPlan.ToObject<JProperty>().Name;
+                    // construct patch uri
+                    string uri = Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_PLAN + "/"
+                        + nodeName + "/"
+                        + Constant.FIREBASE_SUFFIX_JSON;
+                    
+                    using (var client = new HttpClient())
+                    {
+                        var method = new HttpMethod("PATCH");
+                        // make patch request content
+                        string json = "{\"" + Constant.JSON_KEY_REAL_AMOUNT + "\":" + (entity.real_amount + 1) +"}";
+                        HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                        var request = new HttpRequestMessage(method, uri)
+                        {
+                            Content = httpContent
+                        };
+
+                        HttpResponseMessage response = new HttpResponseMessage();
+                        response = client.SendAsync(request).Result;
+                        result = response.IsSuccessStatusCode;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+            }
+            return result;
+        }
+
         [HttpPost("updatePartner")]
         public bool updatePartner([FromBody] UpdatePartner updatePartner)
         {

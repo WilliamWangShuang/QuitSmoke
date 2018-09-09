@@ -51,7 +51,8 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string JSON_KEY_GENDER = "gender";
         public static string JSON_KEY_MEAN_CONSUME = "mean_consume";
         public static string JSON_KEY_STATUS = "status";
-        public static string JSON_KEY_TARGET_AMOUNT ="target_amount";
+        public static string JSON_KEY_TARGET_AMOUNT = "target_amount";
+        public static string JSON_KEY_REAL_AMOUNT = "real_amount";
         
         #endregion
 
