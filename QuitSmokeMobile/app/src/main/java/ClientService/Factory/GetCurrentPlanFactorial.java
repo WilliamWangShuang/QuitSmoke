@@ -40,10 +40,12 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... params) {
+        int realAmount = 0;
         try {
             currentPlan = InteractWebservice.getProceedingPlan(uid);
             Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));
             if (currentPlan != null) {
+                realAmount = currentPlan.getRealAmount();
                 h.sendEmptyMessage(0);
             } else {
                 h.sendEmptyMessage(1);
@@ -53,7 +55,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
             h.sendEmptyMessage(2);
         }
 
-        return "" + currentPlan.getRealAmount();
+        return "" + realAmount;
     }
 
     @Override

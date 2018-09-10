@@ -37,11 +37,12 @@ public class CreatePlanErrorFragement extends DialogFragment {
 
         // get text view in dialog
         TextView tvIsTargetNoValid = (TextView)view.findViewById(R.id.tv_create_plan_empty_target);
-        TextView tvIsPartnerSet = (TextView)view.findViewById((R.id.tv_create_plan_no_partner));
+        TextView tvIsPartnerSet = (TextView)view.findViewById(R.id.tv_create_plan_no_partner);
+        TextView tvProceedingPlan = view.findViewById(R.id.tv_create_plan_proceeding_plan_exist);
 
         tvIsTargetNoValid.setText(isTargetNoValid ? "" : getActivity().getResources().getString(R.string.create_plan_empty_target));
         tvIsPartnerSet.setText(isPartberSet ? "" : getActivity().getResources().getString(R.string.create_plan_no_partner));
-        tvIsPartnerSet.setText(isProceedingPlanExist ? getActivity().getResources().getString(R.string.create_plan_proceeding_task_exist) : "");
+        tvProceedingPlan.setText(isProceedingPlanExist ? getActivity().getResources().getString(R.string.create_plan_proceeding_task_exist) : "");
 
         return builder.create();
     }

@@ -13,18 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.william.quitsmokeappclient.Interface.IApprovePlanAsyncResponse;
 import com.example.william.quitsmokeappclient.Interface.IPlanRecycleItemClick;
 import com.example.william.quitsmokeappclient.R;
-
 import java.util.ArrayList;
-
 import clientservice.QuitSmokeClientConstant;
 import clientservice.entities.PlanEntity;
 import clientservice.factory.ApprovePlanFactorial;
 import clientservice.factory.PendingPlanRecycleViewAdapter;
-import clientservice.factory.UpdatePartnerFactorial;
 
 public class ApprovePlanDialogFragment extends DialogFragment implements IApprovePlanAsyncResponse {
     private EditText txtTargetAmount;
@@ -63,11 +59,17 @@ public class ApprovePlanDialogFragment extends DialogFragment implements IApprov
                 .setPositiveButton("Approve", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        amount = Integer.parseInt(txtTargetAmount.getText().toString());
-                        // Inflate and set the layout for the dialog
-                        approvePlanFactorial = new ApprovePlanFactorial(uid, amount);
-                        approvePlanFactorial.delegate = ApprovePlanDialogFragment.this;
-                        approvePlanFactorial.execute();
+                        String userInputAmount = txtTargetAmount.getText().toString();
+                        // if supporter not type in a numbear, show error mesgage. Otherwise, approve the plan
+                        if (userInputAmount == null || "".equals(userInputAmount)) {
+                            Toast.makeText(myContext, "Please enater a number.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            amount = Integer.parseInt(userInputAmount);
+                            // Inflate and set the layout for the dialog
+                            approvePlanFactorial = new ApprovePlanFactorial(uid, amount);
+                            approvePlanFactorial.delegate = ApprovePlanDialogFragment.this;
+                            approvePlanFactorial.execute();
+                        }
                     }
                 })
                 .setNegativeButton("Close", new DialogInterface.OnClickListener() {
