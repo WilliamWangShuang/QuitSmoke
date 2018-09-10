@@ -21,45 +21,42 @@
         android:layout_height="wrap_content"
         android:stretchColumns="1">
 
-        <TableRow
-            android:background="#FFFFFF"
-            android:gravity="center">
 
-            <ImageView
-                android:layout_height="199dp"
-                android:contentDescription="@string/launch_logo"
-                android:src="@drawable/launch_logo" />
-        </TableRow>
 
         <TableRow
             android:gravity="center_horizontal"
-            android:paddingTop="10dp">
+            >
 
             <TextView
                 android:id="@+id/lblAppName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:color="#FF2345"
+
                 android:fontFamily="@font/nanum_brush_script"
                 android:gravity="center"
                 android:padding="0dp"
                 android:text="@string/quit_together"
-                android:textSize="180px" />
+                android:textSize="155px" />
         </TableRow>
     </TableLayout>
 
     <EditText
         android:id="@+id/emailEditText"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_gravity="center"
         android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text_style"
         android:hint="Email" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_column="0"
+        android:layout_gravity="center"
         app:passwordToggleEnabled="true"
         app:hintEnabled="true"
         android:textColorHint="@color/grey"
@@ -68,17 +65,23 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:textColor="#000000"
+            android:background="@drawable/edit_text_style"
+            android:layout_gravity="center"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btnSignIn"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Login"
+
+        android:layout_gravity="center"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/buttonforwhitebg"
         android:layout_marginTop="10dp"/>
 
 
