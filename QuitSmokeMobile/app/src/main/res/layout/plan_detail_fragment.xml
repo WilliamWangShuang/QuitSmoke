@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_pic">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/plan_detail_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:paddingBottom="23dp"
+            android:text="@string/title_plan_detail_progress"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <com.dinuscxj.progressbar.CircleProgressBar
+            android:id="@+id/custom_plan_detail_progress"
+            android:layout_width="500dp"
+            android:layout_height="250dp"
+            app:drawBackgroundOutsideProgress="true"
+            app:progress_background_color="@color/holo_darker_gray"
+            app:progress_end_color="@android:color/holo_red_dark"
+            app:progress_start_color="@android:color/holo_green_dark"
+            app:progress_stroke_width="15dp"
+            app:progress_shader="sweep"
+            app:progress_text_color="@color/holo_blue_light"
+            app:style="solid_line" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_update_encouragement"
+        android:layout_width="49dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="139dp"
+        android:background="@drawable/buttonforquitter" />
+
+    <TextView
+        android:id="@+id/pressButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        android:text="@string/title_update_encouragement"
+        android:textSize="12sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+</RelativeLayout>

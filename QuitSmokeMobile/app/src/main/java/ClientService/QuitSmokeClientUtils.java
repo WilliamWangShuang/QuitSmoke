@@ -21,6 +21,9 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import clientservice.entities.PlanEntity;
 
 public class QuitSmokeClientUtils extends Application {
     // global attributes
@@ -303,5 +306,18 @@ public class QuitSmokeClientUtils extends Application {
         animator.setRepeatCount(-2);
         animator.setDuration(4000);
         animator.start();
+    }
+
+    public static int getPlanPositionInPlanList(PlanEntity entity, List<PlanEntity> collection) {
+        int pos = 0;
+        for (PlanEntity item : collection) {
+            // if both uid and status are equal, means we found the item. Because in a plan list, for each user (uid) can only have two plan entity (pending & agree)
+            if (entity.getStatus().equals(item.getStatus()) && entity.getUid().equals(item.getUid())) {
+                break;
+            }
+            // otherwise, iterate pos
+            pos++;
+        }
+        return pos;
     }
 }

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.example.william.quitsmokeappclient.Interface.IPlanRecycleItemClick;
 import com.example.william.quitsmokeappclient.R;
 import java.util.ArrayList;
 import clientservice.QuitSmokeClientConstant;
+import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;
 import clientservice.factory.ApprovePlanFactorial;
 import clientservice.factory.PendingPlanRecycleViewAdapter;
@@ -25,6 +27,7 @@ import clientservice.factory.PendingPlanRecycleViewAdapter;
 public class ApprovePlanDialogFragment extends DialogFragment implements IApprovePlanAsyncResponse {
     private EditText txtTargetAmount;
     private String uid;
+    private int currentItemPos;
     private int amount;
     private ApprovePlanFactorial approvePlanFactorial;
     private RecyclerView mRecyclerView;
@@ -47,6 +50,8 @@ public class ApprovePlanDialogFragment extends DialogFragment implements IApprov
 
         // get uid
         uid = getArguments().getString("uid");
+        // get current plan item position
+        currentItemPos = getArguments().getInt("pos");
         // get view resource data set
         resultFromFactory = getArguments().getParcelableArrayList("resource");
         Log.d("QuitSmokeDebug", "uid from bundle is null:" + (uid == null) + ", result is null:" + (resultFromFactory == null || resultFromFactory.size() <= 0));
@@ -94,12 +99,8 @@ public class ApprovePlanDialogFragment extends DialogFragment implements IApprov
             mRecyclerView.setLayoutManager(mLayoutManager);
 
             // find out the updated plan item by uid and update adapter resource
-            for (PlanEntity plan : resultFromFactory) {
-                if (plan.getUid().equals(uid)) {
-                    plan.setStatus(QuitSmokeClientConstant.STATUS_APPROVE);
-                    plan.setTargetAmount(amount);
-                }
-            }
+            resultFromFactory.get(currentItemPos).setStatus(QuitSmokeClientConstant.STATUS_APPROVE);
+            resultFromFactory.get(currentItemPos).setTargetAmount(amount);
             // specify an adapter (see also next example)
             mAdapter = new PendingPlanRecycleViewAdapter(resultFromFactory, new IPlanRecycleItemClick() {
                 @Override
@@ -109,11 +110,17 @@ public class ApprovePlanDialogFragment extends DialogFragment implements IApprov
                         approvePlanDialogFragment = new ApprovePlanDialogFragment();
                         Bundle args = new Bundle();
                         args.putString("uid", item.getUid());
+                        args.putInt("pos", QuitSmokeClientUtils.getPlanPositionInPlanList(item, resultFromFactory));
                         args.putParcelableArrayList("resource", resultFromFactory);
                         approvePlanDialogFragment.setArguments(args);
                         approvePlanDialogFragment.show(myContext.getSupportFragmentManager(), "approvePlan");
                     } else {
-                        Toast.makeText(myContext,"Cannot update unpending plan.", Toast.LENGTH_LONG).show();
+                        PlanDetailFragment planDetailFragment = new PlanDetailFragment();
+                        Bundle args = new Bundle();
+                        args.putString("uid", item.getUid());
+                        planDetailFragment.setArguments(args);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, planDetailFragment).commit();
                     }
                 }
             });

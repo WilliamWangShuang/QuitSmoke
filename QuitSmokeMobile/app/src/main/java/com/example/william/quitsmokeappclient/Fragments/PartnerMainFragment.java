@@ -1,5 +1,6 @@
 package com.example.william.quitsmokeappclient.Fragments;
 
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
@@ -12,13 +13,10 @@ import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.william.quitsmokeappclient.Interface.IGetPendingPlanResultAsyncResponse;
 import com.example.william.quitsmokeappclient.Interface.IPlanRecycleItemClick;
 import com.example.william.quitsmokeappclient.R;
 import java.util.ArrayList;
-
 import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;
@@ -75,12 +73,18 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
                         approvePlanDialogFragment = new ApprovePlanDialogFragment();
                         Bundle args = new Bundle();
                         args.putString("uid", item.getUid());
+                        args.putInt("pos", QuitSmokeClientUtils.getPlanPositionInPlanList(item, resultFromFactory));
                         args.putParcelableArrayList("resource", resultFromFactory);
                         myContext = (FragmentActivity)getContext();
                         approvePlanDialogFragment.setArguments(args);
                         approvePlanDialogFragment.show(myContext.getSupportFragmentManager(), "approvePlan");
                     } else {
-                        Toast.makeText(getContext(),"Cannot update unpending plan.", Toast.LENGTH_LONG).show();
+                        PlanDetailFragment planDetailFragment = new PlanDetailFragment();
+                        Bundle args = new Bundle();
+                        args.putString("uid", item.getUid());
+                        planDetailFragment.setArguments(args);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, planDetailFragment).commit();
                     }
                 }
             });
