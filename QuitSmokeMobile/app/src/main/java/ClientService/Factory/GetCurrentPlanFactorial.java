@@ -14,16 +14,18 @@ import android.widget.Toast;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.Fragments.CreatePlanErrorFragement;
+import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.MainActivity;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;
 import clientservice.webservice.InteractWebservice;
 
-public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, Void> {
+public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     private Activity smokerMainActivity;
     private String uid;
     private CircleProgressBar mCustomProgressBar;
     private PlanEntity currentPlan;
+    public IUpdatePartnerAsyncResponse delegate = null;
 
     public GetCurrentPlanFactorial(Activity smokerMainActivity, String uid, CircleProgressBar mCustomProgressBar) {
         this.uid = uid;
@@ -37,7 +39,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected String doInBackground(Void... params) {
         try {
             currentPlan = InteractWebservice.getProceedingPlan(uid);
             Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));
@@ -51,12 +53,13 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, Void> {
             h.sendEmptyMessage(2);
         }
 
-        return null;
+        return "" + currentPlan.getRealAmount();
     }
 
     @Override
-    protected void onPostExecute(Void result) {
+    protected void onPostExecute(String result) {
         Log.d("QuitSmokeDebug", "current proceeding plan finish.");
+        delegate.processFinish(result);
     }
 
     @SuppressLint("HandlerLeak")

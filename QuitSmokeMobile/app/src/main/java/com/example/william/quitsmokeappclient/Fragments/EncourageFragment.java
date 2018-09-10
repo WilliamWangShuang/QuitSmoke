@@ -39,6 +39,7 @@ public class EncourageFragment extends Fragment {
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new SmokerMainFragment()).commit();
             }

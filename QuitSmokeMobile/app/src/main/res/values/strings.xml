@@ -84,6 +84,7 @@
     <string name="real_amount_from_smoker">Current Real Amount:</string>
     <string name="title_your_progress">Your Progress</string>
     <string name="title_panic_button">Press the button if you want to smoke</string>
+    <string name="panic_button_msg">You have smoked %s cigarettes for this month. Are you sure you want to smoke?</string>
 
     <array name="user_role">
         <item>Smoker</item>
