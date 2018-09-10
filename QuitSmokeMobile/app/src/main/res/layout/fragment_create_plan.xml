@@ -12,6 +12,10 @@
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="101dp"
         android:textColor="@color/errorBackgound" />
 
     <TableLayout
@@ -87,10 +91,6 @@
         android:text="Designate Supporter"
         android:textColor="@color/colorWhite"
         android:textSize="10sp" />
-
-
-
-
 
     <TextView
         android:id="@+id/CreatePlanTitle"
