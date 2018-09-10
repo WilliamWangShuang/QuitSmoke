@@ -15,11 +15,6 @@
                     android:icon="@drawable/frs"
                     android:title="Framingham Score" />
                 <item
-                    android:id="@+id/nav_gallery"
-                    android:icon="@drawable/ic_menu_slideshow"
-                    android:title="Write Report"
-                    android:enabled="false"/>
-                <item
                     android:id="@+id/nav_slideshow"
                     android:icon="@drawable/ic_menu_slideshow"
                     android:title="Report History"
@@ -27,13 +22,21 @@
             </menu>
         </item>
 
-        <item android:title="Interaction">
+        <item
+            android:id="@+id/interaction_sub_menu"
+            android:title="Interaction">
             <menu>
                 <item
                     android:id="@+id/create_plan"
                     android:title="Create Plan"
                     android:icon="@drawable/ic_menu_gallery"
                     />
+                <item
+                    android:id="@+id/write_report"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="Write Report"
+                    android:enabled="false"/>
+
             </menu>
         </item>
     </group>

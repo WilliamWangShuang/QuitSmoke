@@ -1,10 +1,7 @@
 package com.example.william.quitsmokeappclient.Fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;

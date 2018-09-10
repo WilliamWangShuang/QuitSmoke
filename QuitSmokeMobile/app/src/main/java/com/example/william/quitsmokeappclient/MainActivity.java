@@ -1,7 +1,8 @@
 package com.example.william.quitsmokeappclient;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
@@ -14,14 +15,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.example.william.quitsmokeappclient.Fragments.CalculateFrsFragment;
 import com.example.william.quitsmokeappclient.Fragments.CreatePlanFragment;
 import com.example.william.quitsmokeappclient.Fragments.MainFragment;
+import com.example.william.quitsmokeappclient.Fragments.PartnerMainFragment;
+import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
+import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.receiver.CheckPlanReceiver;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
     // set check create plan receiver
     private CheckPlanReceiver checkPlanReceiver;
@@ -34,8 +39,10 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         // get fragment manager
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        // show fragment according to current user role. If only smoker, show smoker main page, vice versa. If both role, show main page with switch
+
+        fragmentManager.beginTransaction().replace(R.id.content_frame, getMainPageByRole()).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,6 +53,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        changeDrawerItem(navigationView);
         // set notification channel
         createNotificationChannel();
         // start receiver
@@ -66,6 +74,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
@@ -98,12 +107,12 @@ public class MainActivity extends AppCompatActivity
             nextFragment = new CalculateFrsFragment();
         } else if (id == R.id.home_fragment) {
             // go back home page
-            nextFragment = new MainFragment();
+            nextFragment = getMainPageByRole();
         } else if (id == R.id.create_plan) {
             // go to create plan page
             nextFragment = new CreatePlanFragment();
         }
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -125,6 +134,36 @@ public class MainActivity extends AppCompatActivity
             // or other notification behaviors after this
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    // change fragment according to current user role
+    private Fragment getMainPageByRole() {
+        android.support.v4.app.Fragment fragment = null;
+        if (QuitSmokeClientUtils.isIsSmoker() && !QuitSmokeClientUtils.isIsPartner()) {
+            fragment = new SmokerMainFragment();
+        } else if (!QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
+            fragment = new PartnerMainFragment();
+        } else if (QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
+            fragment = new MainFragment();
+        }
+
+        return fragment;
+    }
+
+    // change drawer items according to current user role
+    private void changeDrawerItem(NavigationView drawer) {
+        Menu menu = drawer.getMenu();
+        if (QuitSmokeClientUtils.isIsSmoker() && !QuitSmokeClientUtils.isIsPartner()) {
+
+        } else if (!QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
+            if(Build.VERSION.SDK_INT > 11) {
+                invalidateOptionsMenu();
+                menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.create_plan).setVisible(false);
+                menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.write_report).setVisible(false);
+            }
+        } else if (QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
+
         }
     }
 }

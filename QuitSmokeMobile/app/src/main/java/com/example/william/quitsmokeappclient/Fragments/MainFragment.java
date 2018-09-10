@@ -2,7 +2,7 @@ package com.example.william.quitsmokeappclient.Fragments;
 
 import android.app.Activity;
 import android.support.design.widget.TabLayout;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -73,9 +73,9 @@ public class MainFragment extends Fragment {
         });
 
         // change tab based on user role
-        TabLayout.Tab tab = tabLayout.getTabAt(0); // if is smoker
-        if (QuitSmokeClientUtils.isIsPartner())
-            tab = tabLayout.getTabAt(1); // if isPartner
-        tab.select();
+//        TabLayout.Tab tab = tabLayout.getTabAt(0); // if is smoker
+//        if (QuitSmokeClientUtils.isIsPartner())
+//            tab = tabLayout.getTabAt(1); // if isPartner
+//        tab.select();
     }
 }

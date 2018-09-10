@@ -1,8 +1,5 @@
 package com.example.william.quitsmokeappclient.Fragments;
 
-import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
