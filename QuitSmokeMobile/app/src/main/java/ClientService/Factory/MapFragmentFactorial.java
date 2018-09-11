@@ -78,8 +78,8 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
     @Override
     protected void onPostExecute(MapWebservice.ResidentMapEntity result) {
         myLocation = new LatLng();
-        myLocation.setLatitude(144.951624374363);
-        myLocation.setLongitude(-37.807070342954);
+        myLocation.setLatitude(-37.807070342954);
+        myLocation.setLongitude(144.951624374363);
 
         residentInfo = result;
         // synchronize map view
@@ -95,7 +95,7 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
                     mMapboxMap.removeMarker(marker);
                 }
                 // add makers for all residents
-                addMarker(mMapboxMap, residentInfo, viewType);
+//                addMarker(mMapboxMap, residentInfo, viewType);
             }
         });
     }

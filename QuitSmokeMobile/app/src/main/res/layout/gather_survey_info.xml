@@ -76,6 +76,7 @@
         android:text="@string/what_is_your_age" />
     <Spinner
         android:id="@+id/survey_age"
+        android:dropDownWidth="70dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
