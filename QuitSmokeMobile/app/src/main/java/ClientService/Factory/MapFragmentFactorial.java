@@ -1,9 +1,17 @@
 package clientservice.factory;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.example.william.quitsmokeappclient.R;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
@@ -14,15 +22,20 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapquest.mapping.maps.MapView;
 import com.mapquest.mapping.maps.MapboxMap;
 import com.mapquest.mapping.maps.OnMapReadyCallback;
+
 import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
+import clientservice.GPSTracker;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.MapWebservice;
+
+import static android.content.Context.LOCATION_SERVICE;
 
 public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.ResidentMapEntity> {
     Bundle savedInstanceState = null;
@@ -31,17 +44,49 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
     LatLng myLocation = null;
     MapWebservice.ResidentMapEntity residentInfo = null;
     MapboxMap mMapboxMap = null;
-//    List<SmartERUserWebservice.UserProfile> users = null;
+    //    List<SmartERUserWebservice.UserProfile> users = null;
     List<JSONObject> dataJson = null;
     String viewType = "daily";
+    GPSTracker mGPS;
+    private double latitude;
+    private double longtitude;
+    private LocationManager mLocationManager;
 
     // constructor
-    public MapFragmentFactorial(MapView mMapView, Bundle savedInstanceState, Context mContext, String viewType){
+    public MapFragmentFactorial(MapView mMapView, Bundle savedInstanceState, Context mContext, String viewType) {
         this.savedInstanceState = savedInstanceState;
         this.mContext = mContext;
         this.mMapView = mMapView;
         this.viewType = viewType;
+        mGPS = new GPSTracker(mContext);
+        latitude = mGPS.getLocation().getLatitude();
+        longtitude = mGPS.getLocation().getLongitude();
     }
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            if (mGPS.canGetLocation()) {
+                latitude = mGPS.getLocation().getLatitude();
+                longtitude = mGPS.getLocation().getLongitude();
+            }
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
 
     @Override
     protected void onPreExecute() {
@@ -50,7 +95,7 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
 
     @Override
     protected MapWebservice.ResidentMapEntity doInBackground(Void... params) {
-        Log.d("SmartERDebug","****Set map****");
+        Log.d("SmartERDebug", "****Set map****");
 
         MapWebservice.ResidentMapEntity result = null;
 
@@ -62,7 +107,7 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
             //Calendar cal = Calendar.getInstance();
             //cal.add(Calendar.HOUR_OF_DAY, -24);
             //Date date = cal.getTime();
-            Calendar cal = new GregorianCalendar(2018,2,3);
+            Calendar cal = new GregorianCalendar(2018, 2, 3);
             Date date = cal.getTime();
 //            dataJson = SmartERUsageWebservice.getDailyTotalUsageOrHourlyUsagesForAllResident(viewType, date);
 //            Log.d("SmartERDebug", "dataJson size:" + dataJson.size());
@@ -77,9 +122,17 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
 
     @Override
     protected void onPostExecute(MapWebservice.ResidentMapEntity result) {
+        mLocationManager = (LocationManager)mContext.getSystemService(LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(mContext, "Please grant location access in your device settings for this app.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, mLocationListener);
         myLocation = new LatLng();
-        myLocation.setLatitude(-37.807070342954);
-        myLocation.setLongitude(144.951624374363);
+        Log.d("QuitSmokeDebug", "my position - " + "lat:" + latitude + ",long:" + longtitude);
+        myLocation.setLatitude(latitude);
+        myLocation.setLongitude(longtitude);
 
         residentInfo = result;
         // synchronize map view
@@ -88,7 +141,7 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
             public void onMapReady(MapboxMap mapboxMap) {
                 Log.d("SmartERDebug","my location:" + myLocation.getLatitude() + " : " + myLocation.getLongitude());
                 mMapboxMap = mapboxMap;
-                mMapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 11));
+                mMapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 15));
                 // remove all markers first
                 List<Marker> allMarkers = mMapboxMap.getMarkers();
                 for (Marker marker : allMarkers){
