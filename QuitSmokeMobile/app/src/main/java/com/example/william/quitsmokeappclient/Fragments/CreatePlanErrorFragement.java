@@ -14,12 +14,14 @@ public class CreatePlanErrorFragement extends DialogFragment {
     private boolean isTargetNoValid;
     private boolean isPartberSet;
     private boolean isProceedingPlanExist;
+    private boolean isPlanCreated;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         isTargetNoValid = getArguments().getBoolean("isTargetNoValid");
         isPartberSet = getArguments().getBoolean("isPartberSet");
-        isProceedingPlanExist = getArguments().getBoolean("isProceedingPlanExist");;
+        isProceedingPlanExist = getArguments().getBoolean("isProceedingPlanExist");
+        isPlanCreated = getArguments().getBoolean("isPlanCreated");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
@@ -39,10 +41,12 @@ public class CreatePlanErrorFragement extends DialogFragment {
         TextView tvIsTargetNoValid = (TextView)view.findViewById(R.id.tv_create_plan_empty_target);
         TextView tvIsPartnerSet = (TextView)view.findViewById(R.id.tv_create_plan_no_partner);
         TextView tvProceedingPlan = view.findViewById(R.id.tv_create_plan_proceeding_plan_exist);
+        TextView tvNoPlanCreate = view.findViewById(R.id.tv_not_create_plan);
 
         tvIsTargetNoValid.setText(isTargetNoValid ? "" : getActivity().getResources().getString(R.string.create_plan_empty_target));
         tvIsPartnerSet.setText(isPartberSet ? "" : getActivity().getResources().getString(R.string.create_plan_no_partner));
         tvProceedingPlan.setText(isProceedingPlanExist ? getActivity().getResources().getString(R.string.create_plan_proceeding_task_exist) : "");
+        tvNoPlanCreate.setText(isPlanCreated ? "" : getActivity().getResources().getString(R.string.not_create_plan_msg));
 
         return builder.create();
     }

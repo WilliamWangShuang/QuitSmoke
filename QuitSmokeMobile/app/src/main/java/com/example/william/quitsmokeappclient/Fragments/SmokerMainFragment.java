@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
+import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.GetCurrentPlanFactorial;
 
@@ -18,6 +19,7 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
     private CircleProgressBar mCustomProgressBar;
     private Button btnPanicButton;
     private String realAmountMsg;
+    private CreatePlanErrorFragement createPlanErrorFragment;
     private GoToEncourageDialogFragment messageDialogFragment;
 
     @Nullable
@@ -30,6 +32,7 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        createPlanErrorFragment = new CreatePlanErrorFragement();
         // set progress bar
         mCustomProgressBar = (CircleProgressBar)view.findViewById(R.id.custom_progress);
         // get current proceeding plan
@@ -42,14 +45,26 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
         btnPanicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // get real amount message
-                String msg = String.format(getResources().getString(R.string.panic_button_msg), realAmountMsg);
-                // initial pop out dialogs on this view
-                messageDialogFragment = new GoToEncourageDialogFragment();
-                Bundle args = new Bundle();
-                args.putString("message", msg);
-                messageDialogFragment.setArguments(args);
-                messageDialogFragment.show(getFragmentManager(), "go to encouragement");
+                // if user not set partner, give error message
+                if (!QuitSmokeClientConstant.INDICATOR_N.equals(realAmountMsg)) {
+                    // get real amount message
+                    String msg = String.format(getResources().getString(R.string.panic_button_msg), realAmountMsg);
+                    // initial pop out dialogs on this view
+                    messageDialogFragment = new GoToEncourageDialogFragment();
+                    Bundle args = new Bundle();
+                    args.putString("message", msg);
+                    messageDialogFragment.setArguments(args);
+                    messageDialogFragment.show(getFragmentManager(), "go to encouragement");
+                } else {
+                    // get validation value to bundle to pass to error dialog entity
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isTargetNoValid", true);
+                    bundle.putBoolean("isPartberSet", true);
+                    bundle.putBoolean("isPlanCreated", false);
+                    bundle.putBoolean("isProceedingPlanExist", false);
+                    createPlanErrorFragment.setArguments(bundle);
+                    createPlanErrorFragment.show(getFragmentManager(), "no partner");
+                }
             }
         });
     }

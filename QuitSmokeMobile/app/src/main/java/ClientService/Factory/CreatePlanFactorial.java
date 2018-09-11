@@ -74,6 +74,7 @@ public class CreatePlanFactorial extends AsyncTask<Void, Void, Void> {
                 Bundle bundle = new Bundle();
                 // set empty input target amount error message indicator is true. This is for hiding empty input error message during server side validation phase
                 bundle.putBoolean("isTargetNoValid", true);
+                bundle.putBoolean("isPlanCreated", true);
                 bundle.putBoolean("isProceedingPlanExist", false);
                 bundle.putBoolean("isPartberSet", isPartnerSet);
                 createPlanErrorFragment.setArguments(bundle);
@@ -83,6 +84,7 @@ public class CreatePlanFactorial extends AsyncTask<Void, Void, Void> {
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("isTargetNoValid", true);
                 bundle.putBoolean("isPartberSet", true);
+                bundle.putBoolean("isPlanCreated", true);
                 bundle.putBoolean("isProceedingPlanExist", true);
                 createPlanErrorFragment.setArguments(bundle);
                 createPlanErrorFragment.show(fragmentManager, "existing plan proceeding");

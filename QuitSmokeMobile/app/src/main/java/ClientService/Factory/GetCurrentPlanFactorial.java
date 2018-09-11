@@ -2,20 +2,17 @@ package clientservice.factory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
-import com.example.william.quitsmokeappclient.Fragments.CreatePlanErrorFragement;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
-import com.example.william.quitsmokeappclient.MainActivity;
+
+import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;
 import clientservice.webservice.InteractWebservice;
@@ -23,6 +20,7 @@ import clientservice.webservice.InteractWebservice;
 public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     private Activity smokerMainActivity;
     private String uid;
+    private boolean isPartnerSet;
     private CircleProgressBar mCustomProgressBar;
     private PlanEntity currentPlan;
     public IUpdatePartnerAsyncResponse delegate = null;
@@ -42,13 +40,20 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... params) {
         int realAmount = 0;
         try {
-            currentPlan = InteractWebservice.getProceedingPlan(uid);
-            Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));
-            if (currentPlan != null) {
-                realAmount = currentPlan.getRealAmount();
-                h.sendEmptyMessage(0);
+            // do server side validation check if the smoker has set a supporter
+            isPartnerSet = InteractWebservice.isSupporterSet();
+            if (isPartnerSet) {
+                currentPlan = InteractWebservice.getProceedingPlan(uid);
+                Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));
+                if (currentPlan != null) {
+                    realAmount = currentPlan.getRealAmount();
+                    h.sendEmptyMessage(0);
+                } else {
+                    h.sendEmptyMessage(1);
+                }
             } else {
-                h.sendEmptyMessage(1);
+                // if current user not set supporter yet. Set result empty
+                return QuitSmokeClientConstant.INDICATOR_N;
             }
         } catch (Exception ex) {
             Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));

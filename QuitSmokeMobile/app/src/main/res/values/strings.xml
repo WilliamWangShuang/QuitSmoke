@@ -87,9 +87,16 @@
     <string name="title_panic_button">Press the button if you want to smoke</string>
     <string name="title_update_encouragement">Press the button below to update your encouragement</string>
     <string name="panic_button_msg">You have smoked %s cigarettes for this month. Are you sure you want to smoke?</string>
+    <string name="access_token">HqENWLsTVnZCbCt0w8oWyn7NsAK7zVxp</string>
+    <string name="not_create_plan_msg">You have no running plan. Please create one first.</string>
 
     <array name="user_role">
         <item>Smoker</item>
         <item>Supporter</item>
+    </array>
+
+    <array name="map_view_type_array">
+        <item>Optiion 1</item>
+        <item>Optiion 2</item>
     </array>
 </resources>

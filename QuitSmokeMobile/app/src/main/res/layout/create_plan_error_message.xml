@@ -25,6 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/errorBackgound"/>
+
+        <TextView
+            android:id="@+id/tv_not_create_plan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/errorBackgound"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
