@@ -28,7 +28,7 @@
         android:id="@+id/custom_progress"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="72dp"
         app:drawBackgroundOutsideProgress="true"
         app:layout_constraintBottom_toTopOf="@+id/pressButton"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,11 +15,14 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="203dp"
+        android:layout_marginBottom="200dp"
         android:paddingTop="15dp"
         android:text="Are you sure you still want to smoke?"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
@@ -28,10 +32,15 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="21dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="8dp"
         android:paddingTop="15dp"
         android:text="Here is the encouragement from your supporter:"
-        android:textAppearance="@style/TextAppearance.AppCompat" />
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        app:layout_constraintBottom_toTopOf="@+id/tvEncouragementContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvEncouragementContent"
@@ -39,18 +48,25 @@
         android:layout_height="129dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
+        android:layout_marginBottom="80dp"
         android:paddingTop="15dp"
-        android:text="Content of Encouragement" />
+        android:text="Supporter Encouragement"
+        app:layout_constraintBottom_toTopOf="@+id/tvEncouragementConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/noforencouragement"
         android:layout_width="123dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/yesforencouragement"
-        android:layout_marginStart="19dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/buttonforall"
         android:paddingBottom="8dp"
         android:paddingLeft="25dp"
@@ -59,8 +75,10 @@
         android:text="No"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="19dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
+        app:layout_constraintVertical_bias="0.343" />
 
     <Button
         android:id="@+id/yesforencouragement"
@@ -68,8 +86,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="19dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/buttonforall"
         android:paddingBottom="8dp"
         android:paddingLeft="25dp"
@@ -78,8 +99,10 @@
         android:text="Yes"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="19dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
+        app:layout_constraintVertical_bias="0.343"
         tools:ignore="RtlCompat" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

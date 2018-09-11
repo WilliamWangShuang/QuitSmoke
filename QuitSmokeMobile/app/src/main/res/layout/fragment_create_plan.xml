@@ -10,22 +10,28 @@
 
     <TextView
         android:id="@+id/tvMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="101dp"
-        android:textColor="@color/errorBackgound" />
+        android:layout_marginBottom="91dp"
+        android:textColor="@color/errorBackgound"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="130dp"
+        android:layout_marginBottom="20dp"
         android:stretchColumns="1"
-        android:layout_alignParentLeft="true">
+        app:layout_constraintBottom_toTopOf="@+id/btnCreatePlan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -36,6 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/edit_text_style"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="Target Amount"
@@ -61,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="186dp"
+        android:layout_marginBottom="56dp"
         android:background="@drawable/buttonforwhitebg"
         android:paddingBottom="8dp"
         android:paddingLeft="25dp"
@@ -69,7 +76,23 @@
         android:paddingTop="8dp"
         android:text="Create Plan"
         android:textColor="@color/colorWhite"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvParternerSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvParternerSet"
@@ -78,19 +101,24 @@
 
     <Button
         android:id="@+id/btnSetPartner"
-        android:layout_width="wrap_content"
-        android:layout_height="31dp"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="151dp"
-        android:background="@drawable/buttonfortransparent"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/add_depth"
         android:paddingBottom="8dp"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
         android:paddingTop="8dp"
         android:text="Designate Supporter"
-        android:textColor="@color/colorWhite"
-        android:textSize="10sp" />
+        android:textColor="#1d1e1d"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvParternerSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/CreatePlanTitle"
@@ -98,9 +126,47 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:text="Your monthly target amount"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/colorWhite"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.367" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="How many cigarettes are you going to smoke this month?"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+
+        android:text="Don't have a supporter?"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSetPartner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView3"
