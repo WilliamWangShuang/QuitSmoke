@@ -865,7 +865,7 @@ namespace QuitSmokeWebAPI.Controllers
                             foreach (JToken token in tempObj.Children())
                             {
                                 PlanEntity plan = token.First.ToObject<PlanEntity>();
-                                if (Constant.STATUS_PENDING.Equals(plan.status, StringComparison.InvariantCultureIgnoreCase))
+                                if (!Constant.STATUS_CLOSE.Equals(plan.status, StringComparison.InvariantCultureIgnoreCase))
                                     result.Add(plan);
                             }
                             
