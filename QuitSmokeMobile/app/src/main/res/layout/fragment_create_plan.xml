@@ -1,126 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@drawable/bg_pic">
 
     <TextView
-        android:id="@+id/tvMessage"
+        android:id="@+id/tvEncouragementConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="101dp"
-        android:textColor="@color/errorBackgound" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="130dp"
-        android:stretchColumns="1"
-        android:layout_alignParentLeft="true">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvTargetAmount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Target Amount"
-                android:textAppearance="@style/TextAppearance.AppCompat" />
-
-            <EditText
-                android:id="@+id/txtTargetAmount"
-                android:layout_width="249dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start"
-
-
-                android:inputType="number" />
-        </TableRow>
-
-    </TableLayout>
-
-
-    <Button
-        android:id="@+id/btnCreatePlan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="186dp"
-        android:background="@drawable/buttonforwhitebg"
-        android:paddingBottom="8dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:paddingTop="8dp"
-        android:text="Create Plan"
-        android:textColor="@color/colorWhite"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/tvParternerSet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnSetPartner"
-        android:layout_width="wrap_content"
-        android:layout_height="31dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="151dp"
-        android:background="@drawable/buttonfortransparent"
-        android:paddingBottom="8dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:paddingTop="8dp"
-        android:text="Designate Supporter"
-        android:textColor="@color/colorWhite"
-        android:textSize="10sp" />
-
-    <TextView
-        android:id="@+id/CreatePlanTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Your monthly target amount"
-        android:textColor="@color/colorWhite"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="302dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:text="How many cigarettes are you going to smoke this month?"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@color/colorWhite" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="332dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="203dp"
-        android:text="Press the button below if don't have a supporter."
+        android:layout_gravity="center"
+        android:layout_marginBottom="200dp"
+        android:paddingTop="15dp"
+        android:text="Are you sure you still want to smoke?"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textSize="12sp" />
-</RelativeLayout>
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvEncouragement"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="8dp"
+        android:paddingTop="15dp"
+        android:text="Here is the encouragement from your supporter:"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        app:layout_constraintBottom_toTopOf="@+id/tvEncouragementContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEncouragementContent"
+        android:layout_width="287dp"
+        android:layout_height="129dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:paddingTop="15dp"
+        android:text="Supporter Encouragement"
+        app:layout_constraintBottom_toTopOf="@+id/tvEncouragementConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/noforencouragement"
+        android:layout_width="123dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/yesforencouragement"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttonforall"
+        android:paddingBottom="8dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="8dp"
+        android:text="No"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
+        app:layout_constraintVertical_bias="0.343" />
+
+    <Button
+        android:id="@+id/yesforencouragement"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttonforall"
+        android:paddingBottom="8dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="8dp"
+        android:text="Yes"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
+        app:layout_constraintVertical_bias="0.343"
+        tools:ignore="RtlCompat" />
+
+</android.support.constraint.ConstraintLayout>

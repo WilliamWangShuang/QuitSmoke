@@ -9,63 +9,68 @@
 
     <TextView
         android:id="@+id/tvFRSDesc"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/frs_desc"
         app:layout_constraintBottom_toTopOf="@+id/tvRiskResult"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/table_calculate_frs"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tvRiskResult"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="0.0%"
-        android:textColor="#000000"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/table_calculate_frs" />
+        android:textColor="#181717"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/table_calculate_frs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TableLayout
         android:id="@+id/table_calculate_frs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCalculateFrs"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tvRiskResult"
-        tools:layout_editor_absoluteY="149dp">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TableRow>
 
             <TextView
                 android:id="@+id/tvChol"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:clickable="true"
                 android:gravity="end"
                 android:paddingRight="20dp"
                 android:text="@string/tvChol_title"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp"
+                android:textColor="#181717"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtChol"
                 android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtChol_hint"
                 android:inputType="number"
                 android:paddingLeft="10dp" />
-        </TableRow>
-
-        <TableRow>
 
             <TextView
                 android:id="@+id/lblCholMsg"
@@ -76,8 +81,8 @@
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:text="@string/lbl_chol_msg"
-                android:textColor="@color/colorWhite"
-                android:textSize="12dp" />
+                android:textColor="#181717"
+                android:textSize="12sp" />
         </TableRow>
 
         <TableRow>
@@ -85,27 +90,24 @@
             <TextView
                 android:id="@+id/tvSBP"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:gravity="end"
                 android:paddingRight="20dp"
                 android:text="@string/tvSBP_title"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp"
+                android:textColor="#181717"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtSBP"
                 android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtSBP_hint"
                 android:inputType="number"
                 android:paddingLeft="10dp" />
-        </TableRow>
-
-        <TableRow>
 
             <TextView
                 android:id="@+id/lbSBPMsg"
@@ -116,8 +118,9 @@
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:text="@string/lbl_SBP_msg"
-                android:textColor="@color/colorWhite"
-                android:textSize="12dp" />
+                android:textColor="#181717"
+                android:textSize="12sp" />
+
         </TableRow>
 
         <TableRow>
@@ -125,27 +128,24 @@
             <TextView
                 android:id="@+id/tvHDL"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:gravity="end"
                 android:paddingRight="20dp"
                 android:text="@string/tvHDL_title"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp"
+                android:textColor="#181717"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtHDL"
                 android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtHDL_hint"
                 android:inputType="number"
                 android:paddingLeft="10dp" />
-        </TableRow>
-
-        <TableRow>
 
             <TextView
                 android:id="@+id/lbHDLMsg"
@@ -156,21 +156,26 @@
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:text="@string/lbl_HDL_msg"
-                android:textColor="@color/colorWhite"
-                android:textSize="12dp" />
+                android:textColor="#181717"
+                android:textSize="12sp" />
         </TableRow>
 
-        <TableRow
-            android:layout_span="2"
-            android:gravity="center"
-            android:paddingTop="40dp">
-
-            <Button
-                android:id="@+id/btnCalculateFrs"
-                android:layout_width="wrap_content"
-                android:text="Done"
-                android:theme="@style/AppTheme.Button" />
-        </TableRow>
     </TableLayout>
+
+    <Button
+        android:id="@+id/btnCalculateFrs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="96dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Done"
+        android:theme="@style/AppTheme.Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

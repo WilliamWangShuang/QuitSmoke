@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Adding pushing effect?-->
+    <item android:state_pressed="true">
+        <shape>
+            <!--色值-->
+            <solid android:color="#eae8e5" />
+            <!--圆角-->
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape = "rectangle">
+            <gradient android:angle="270"/>
+            <corners android:radius="3dp"/>
+            <!--This determines border colour and size-->
+            <stroke android:width="5px" android:color="@color/transparent"/>
+            <!--This determines colour fill-->
+            <solid android:color="#78fed44d"></solid>
+        </shape>
+    </item>
+
+</selector>
+
+

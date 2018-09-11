@@ -21,6 +21,51 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom|center">
+
+        <ImageButton
+            android:id="@+id/btnFrag_home_go"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:background="@drawable/menu_button_bg"
+            android:textColor="#090909"
+
+            app:srcCompat="@drawable/menu_home" />
+
+        <ImageButton
+            android:id="@+id/btnFrag_create_plan_go"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:background="@drawable/menu_button_bg"
+            app:srcCompat="@drawable/menu_create_plan" />
+
+        <ImageButton
+            android:id="@+id/btnFrag_frs_calc_go"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:background="@drawable/menu_button_bg"
+            app:srcCompat="@drawable/menu_heart_risk_calc" />
+
+        <ImageButton
+            android:id="@+id/btnFrag_map_go"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:background="@drawable/menu_button_bg"
+            app:srcCompat="@drawable/menu_map" />
+
+
+    </GridLayout>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
