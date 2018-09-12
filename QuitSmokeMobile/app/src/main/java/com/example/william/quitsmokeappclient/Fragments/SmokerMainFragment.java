@@ -36,7 +36,7 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
         // set progress bar
         mCustomProgressBar = (CircleProgressBar)view.findViewById(R.id.custom_progress);
         // get current proceeding plan
-        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), QuitSmokeClientUtils.getUid(), mCustomProgressBar);
+        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), QuitSmokeClientUtils.getUid(), mCustomProgressBar, true);
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
 

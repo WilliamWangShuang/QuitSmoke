@@ -23,10 +23,12 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     private boolean isPartnerSet;
     private CircleProgressBar mCustomProgressBar;
     private PlanEntity currentPlan;
+    private boolean isRequestFromSmokerFragement;
     public IUpdatePartnerAsyncResponse delegate = null;
 
-    public GetCurrentPlanFactorial(Activity smokerMainActivity, String uid, CircleProgressBar mCustomProgressBar) {
+    public GetCurrentPlanFactorial(Activity smokerMainActivity, String uid, CircleProgressBar mCustomProgressBar, boolean isRequestFromSmokerFragement) {
         this.uid = uid;
+        this.isRequestFromSmokerFragement = isRequestFromSmokerFragement;
         this.smokerMainActivity = smokerMainActivity;
         this.mCustomProgressBar = mCustomProgressBar;
     }
@@ -41,7 +43,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
         int realAmount = 0;
         try {
             // do server side validation check if the smoker has set a supporter
-            isPartnerSet = InteractWebservice.isSupporterSet();
+            isPartnerSet = isRequestFromSmokerFragement ? InteractWebservice.isSupporterSet() : true;
             if (isPartnerSet) {
                 currentPlan = InteractWebservice.getProceedingPlan(uid);
                 Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));

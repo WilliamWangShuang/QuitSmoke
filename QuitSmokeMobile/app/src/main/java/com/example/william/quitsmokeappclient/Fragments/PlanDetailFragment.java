@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,10 +34,11 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
 
         // get uid for this plan
         uid = getArguments().getString("uid");
+        Log.d("QuitSmokeDebug", "uid from previous view:" + uid);
         // set progress bar
         mCustomProgressBar = (CircleProgressBar)view.findViewById(R.id.custom_plan_detail_progress);
         // get current proceeding plan
-        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), uid, mCustomProgressBar);
+        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), uid, mCustomProgressBar, false);
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
 
