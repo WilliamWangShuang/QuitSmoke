@@ -17,9 +17,9 @@
             <gradient android:angle="270"/>
             <corners android:radius="3dp"/>
             <!--This determines border colour and size-->
-            <stroke android:width="5px" android:color="@color/transparent"/>
+            <stroke android:width="5px" android:color="#91383838"/>
             <!--This determines colour fill-->
-            <solid android:color="#78fed44d"></solid>
+            <solid android:color="#94013b77"></solid>
         </shape>
     </item>
 

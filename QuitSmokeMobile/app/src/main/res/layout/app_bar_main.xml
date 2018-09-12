@@ -57,7 +57,7 @@
 
         <ImageButton
             android:id="@+id/btnFrag_map_go"
-            android:layout_width="90dp"
+            android:layout_width="100dp"
             android:layout_height="35dp"
             android:layout_weight="1"
             android:background="@drawable/menu_button_bg"
