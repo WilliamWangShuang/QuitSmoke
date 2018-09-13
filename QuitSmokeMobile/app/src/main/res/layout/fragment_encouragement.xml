@@ -64,8 +64,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/yesforencouragement"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/buttonforall"
         android:paddingBottom="8dp"
@@ -78,7 +78,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
-        app:layout_constraintVertical_bias="0.343" />
+        app:layout_constraintVertical_bias="0.822" />
 
     <Button
         android:id="@+id/yesforencouragement"
@@ -88,8 +88,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/buttonforall"
         android:paddingBottom="8dp"
@@ -102,7 +102,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
-        app:layout_constraintVertical_bias="0.343"
+        app:layout_constraintVertical_bias="0.822"
         tools:ignore="RtlCompat" />
 
 </android.support.constraint.ConstraintLayout>
