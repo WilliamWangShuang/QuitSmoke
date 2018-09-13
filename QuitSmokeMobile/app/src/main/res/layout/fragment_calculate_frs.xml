@@ -55,12 +55,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:clickable="true"
-                android:gravity="end"
-                android:paddingRight="20dp"
+                android:gravity="center"
+                android:layout_marginRight="1.5dp"
                 android:text="@string/tvChol_title"
-                android:textColor="#181717"
+                android:textColor="#040404"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:background="@drawable/popout_background"
+                android:paddingRight="2dp"/>
 
             <EditText
                 android:id="@+id/txtChol"
@@ -69,20 +71,11 @@
                 android:layout_weight="7"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtChol_hint"
+                android:textSize="15sp"
                 android:inputType="number"
                 android:paddingLeft="10dp" />
 
-            <TextView
-                android:id="@+id/lblCholMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:text="@string/lbl_chol_msg"
-                android:textColor="#181717"
-                android:textSize="12sp" />
+
         </TableRow>
 
         <TableRow>
@@ -92,10 +85,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:gravity="end"
-                android:paddingRight="20dp"
+                android:gravity="center"
+                android:paddingRight="2dp"
+                android:layout_marginRight="1.5dp"
+                android:layout_marginTop="3dp"
                 android:text="@string/tvSBP_title"
-                android:textColor="#181717"
+                android:textColor="#171718"
+                android:background="@drawable/popout_background"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -104,22 +100,14 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtSBP_hint"
+                android:textSize="15sp"
                 android:inputType="number"
                 android:paddingLeft="10dp" />
 
-            <TextView
-                android:id="@+id/lbSBPMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:text="@string/lbl_SBP_msg"
-                android:textColor="#181717"
-                android:textSize="12sp" />
+
 
         </TableRow>
 
@@ -130,8 +118,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:gravity="end"
-                android:paddingRight="20dp"
+                android:gravity="center"
+                android:paddingRight="2dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="1.5dp"
+                android:background="@drawable/popout_background"
                 android:text="@string/tvHDL_title"
                 android:textColor="#181717"
                 android:textSize="18sp"
@@ -142,22 +133,14 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/edit_text_style"
                 android:hint="@string/txtHDL_hint"
+                android:textSize="15sp"
                 android:inputType="number"
                 android:paddingLeft="10dp" />
 
-            <TextView
-                android:id="@+id/lbHDLMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:text="@string/lbl_HDL_msg"
-                android:textColor="#181717"
-                android:textSize="12sp" />
+
         </TableRow>
 
     </TableLayout>
