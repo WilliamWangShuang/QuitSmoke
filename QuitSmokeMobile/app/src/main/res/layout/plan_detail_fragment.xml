@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_pic">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
 
-        <TextView
-            android:id="@+id/plan_detail_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
-            android:paddingBottom="23dp"
-            android:text="@string/title_plan_detail_progress"
-            android:textColor="@color/colorWhite"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+    <TextView
+        android:id="@+id/plan_detail_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/title_plan_detail_progress"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.dinuscxj.progressbar.CircleProgressBar
-            android:id="@+id/custom_plan_detail_progress"
-            android:layout_width="500dp"
-            android:layout_height="250dp"
-            app:drawBackgroundOutsideProgress="true"
-            app:progress_background_color="@color/holo_darker_gray"
-            app:progress_end_color="@android:color/holo_red_dark"
-            app:progress_start_color="@android:color/holo_green_dark"
-            app:progress_stroke_width="15dp"
-            app:progress_shader="sweep"
-            app:progress_text_color="@color/holo_blue_light"
-            app:style="solid_line" />
+    <com.dinuscxj.progressbar.CircleProgressBar
+        android:id="@+id/custom_plan_detail_progress"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        app:drawBackgroundOutsideProgress="true"
+        app:layout_constraintBottom_toTopOf="@+id/pressButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plan_detail_progress"
+        app:progress_background_color="@color/holo_darker_gray"
+        app:progress_end_color="@android:color/holo_red_dark"
+        app:progress_shader="sweep"
+        app:progress_start_color="@android:color/holo_green_dark"
+        app:progress_stroke_width="15dp"
+        app:progress_text_color="@color/holo_blue_light"
+        app:style="solid_line" />
 
-    </LinearLayout>
 
     <Button
         android:id="@+id/btn_update_encouragement"
         android:layout_width="49dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="139dp"
-        android:background="@drawable/buttonforquitter" />
+        android:layout_marginBottom="144dp"
+        android:background="@drawable/buttonforquitter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/pressButton"
@@ -52,9 +64,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:text="@string/title_update_encouragement"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="12sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_update_encouragement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

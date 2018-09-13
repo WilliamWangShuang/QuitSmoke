@@ -19,7 +19,7 @@
             <!--This determines border colour and size-->
             <stroke android:width="5px" android:color="#91383838"/>
             <!--This determines colour fill-->
-            <solid android:color="#94013b77"></solid>
+            <solid android:color="#94434333"></solid>
         </shape>
     </item>
 
