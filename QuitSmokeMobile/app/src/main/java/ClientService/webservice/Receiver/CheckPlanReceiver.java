@@ -39,7 +39,7 @@ public class CheckPlanReceiver extends BroadcastReceiver implements IGetPendingP
         // get current pending board cast intent in context
         pi = PendingIntent.getBroadcast(context,0, i,0);
         // Set repeater do the job of the intent every hour   AlarmManager.INTERVAL_HALF_HOUR
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),3000, pi);
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),3000, pi);//TODO: change interval value
     }
 
     @Override

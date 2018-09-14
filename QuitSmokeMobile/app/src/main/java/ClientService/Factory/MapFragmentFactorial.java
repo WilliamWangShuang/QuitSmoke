@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
@@ -23,44 +24,46 @@ import com.mapquest.mapping.maps.MapView;
 import com.mapquest.mapping.maps.MapboxMap;
 import com.mapquest.mapping.maps.OnMapReadyCallback;
 
-import org.json.JSONObject;
-
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
-
 import clientservice.GPSTracker;
 import clientservice.QuitSmokeClientUtils;
+import clientservice.db.QuitSmokeDbUtility;
+import clientservice.entities.NoSmokeItem;
+import clientservice.entities.NoSmokePlace;
 import clientservice.webservice.MapWebservice;
 
 import static android.content.Context.LOCATION_SERVICE;
 
-public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.ResidentMapEntity> {
-    Bundle savedInstanceState = null;
+public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
+    Bundle savedInstanceState;
     Context mContext;
-    MapView mMapView = null;
+    MapView mMapView;
     LatLng myLocation = null;
-    MapWebservice.ResidentMapEntity residentInfo = null;
     MapboxMap mMapboxMap = null;
-    //    List<SmartERUserWebservice.UserProfile> users = null;
-    List<JSONObject> dataJson = null;
-    String viewType = "daily";
     GPSTracker mGPS;
     private double latitude;
     private double longtitude;
     private LocationManager mLocationManager;
+    private List<NoSmokePlace> noSmokePlaceList;
+    private String viewType;
+    private final IconFactory iconFactory = IconFactory.getInstance(mContext);
+    private final Icon iconGreen = iconFactory.fromResource(R.drawable.marker_green);
+    private  final Icon iconRed = iconFactory.fromResource(R.drawable.marker_red);
 
     // constructor
     public MapFragmentFactorial(MapView mMapView, Bundle savedInstanceState, Context mContext, String viewType) {
         this.savedInstanceState = savedInstanceState;
         this.mContext = mContext;
         this.mMapView = mMapView;
-        this.viewType = viewType;
         mGPS = new GPSTracker(mContext);
         latitude = mGPS.getLocation().getLatitude();
         longtitude = mGPS.getLocation().getLongitude();
+        this.viewType = viewType;
     }
 
     private final LocationListener mLocationListener = new LocationListener() {
@@ -94,34 +97,23 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
     }
 
     @Override
-    protected MapWebservice.ResidentMapEntity doInBackground(Void... params) {
-        Log.d("SmartERDebug", "****Set map****");
-
-        MapWebservice.ResidentMapEntity result = null;
-
+    protected Void doInBackground(Void... params) {
+        Log.d("QuitSmokeDebug", "****Set map****");
         try {
-            // call ws to get all users
-//            users = SmartERUserWebservice.findAllUsers();
-            // get default view usage json data
-            // TODO: should be the date before current date, here for demo purpose, set 2018-3-3
-            //Calendar cal = Calendar.getInstance();
-            //cal.add(Calendar.HOUR_OF_DAY, -24);
-            //Date date = cal.getTime();
-            Calendar cal = new GregorianCalendar(2018, 2, 3);
-            Date date = cal.getTime();
-//            dataJson = SmartERUsageWebservice.getDailyTotalUsageOrHourlyUsagesForAllResident(viewType, date);
-//            Log.d("SmartERDebug", "dataJson size:" + dataJson.size());
-            // call ws to generate all Latlng and usage(hourly / daily) info for all users.
-//            result = MapWebservice.getLatLngAndUsageByAddress(users, dataJson, viewType);
+            // call webservice to get all no smoke places
+            QuitSmokeDbUtility quitSmokeDbUtility = new QuitSmokeDbUtility(mContext);
+            noSmokePlaceList = quitSmokeDbUtility.getAllExistingPlaces();
+            Log.d("QuitSmokeDebug", "noSmokePlaceList length:" + noSmokePlaceList.size());
+
         } catch (Exception e) {
             Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(e));
         }
 
-        return result;
+        return null;
     }
 
     @Override
-    protected void onPostExecute(MapWebservice.ResidentMapEntity result) {
+    protected void onPostExecute(Void aVoid) {
         mLocationManager = (LocationManager)mContext.getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -133,49 +125,61 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, MapWebservice.Re
         Log.d("QuitSmokeDebug", "my position - " + "lat:" + latitude + ",long:" + longtitude);
         myLocation.setLatitude(latitude);
         myLocation.setLongitude(longtitude);
+//        myLocation.setLatitude(-37.8169724245);
+//        myLocation.setLongitude(144.96413018);
 
-        residentInfo = result;
         // synchronize map view
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(MapboxMap mapboxMap) {
-                Log.d("SmartERDebug","my location:" + myLocation.getLatitude() + " : " + myLocation.getLongitude());
+                Log.d("QuitSmokeDebug","my location:" + myLocation.getLatitude() + " : " + myLocation.getLongitude());
                 mMapboxMap = mapboxMap;
-                mMapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 15));
+                mMapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 13));
                 // remove all markers first
                 List<Marker> allMarkers = mMapboxMap.getMarkers();
                 for (Marker marker : allMarkers){
                     mMapboxMap.removeMarker(marker);
                 }
+                // set maker for current user position
+                setMarker(mMapboxMap, iconGreen, "I am here", new LatLng(myLocation.getLatitude(), myLocation.getLongitude()));
                 // add makers for all residents
-//                addMarker(mMapboxMap, residentInfo, viewType);
+                addMarker(mMapboxMap, viewType);
             }
         });
     }
 
     // add maker on map
-    private void addMarker(MapboxMap mapboxMap, MapWebservice.ResidentMapEntity resInfo, String viewType) {
-        // Create an Icon object for the marker to use
-        IconFactory iconFactory = IconFactory.getInstance(mContext);
-        Icon iconGreen = iconFactory.fromResource(R.drawable.marker_green);
-        Icon iconRed = iconFactory.fromResource(R.drawable.marker_red);
-        // set makers for all resident
-        for (Map.Entry<Integer, LatLng> entity : resInfo.getLatLngMap().entrySet()) {
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(entity.getValue());
-            // if resident obj is null. it means for this resident, no usage data found matching the given time
-            double totalUsage = 0;
-            markerOptions.title("");
-            // set marker color based on view type and usage
-            if("daily".equals(viewType)) {
-                markerOptions.snippet("Daily Total Usage:" + (totalUsage == 0 ? "N.A." : totalUsage));
-                markerOptions.setIcon(totalUsage > 21 ? iconRed : iconGreen);
-            } else {
-                markerOptions.snippet("Daily Total Usage:" + (totalUsage == 0 ? "N.A." : totalUsage));
-                markerOptions.setIcon(totalUsage > 21 ? iconRed : iconGreen);
+    private void addMarker(MapboxMap mapboxMap, String viewType) {
+        // get LatLng list from no smoke place list
+        for(NoSmokePlace noSmokePlace : noSmokePlaceList) {
+            // get current place type
+            String noSmokePlaceType = noSmokePlace.getType();
+            // check place type, if same as selected, add all its place items' lat & long
+            if (viewType.equals(noSmokePlaceType)) {
+                // add latitude and longtitude of all this type of places
+                boolean isListNull = noSmokePlace.getList() == null;
+                Log.d("TestDebug", "if get list is null" + isListNull);
+                if (!isListNull) {
+                    for (NoSmokeItem item : noSmokePlace.getList()) {
+                        double lat = item.getLatitude();
+                        double lon = item.getLongitude();
+                        Log.d("QuitSmokeDebug", "latitude:" + lat + ",longitude:" + lon);
+                        LatLng latLng = new LatLng();
+                        latLng.setLatitude(lat);
+                        latLng.setLongitude(lon);
+                        // set marker
+                        setMarker(mapboxMap, iconGreen, item.getName(), latLng);
+                    }
+                }
             }
-            mapboxMap.addMarker(markerOptions);
         }
+    }
 
+    private void setMarker(MapboxMap mapboxMap, Icon iconGreen, String name, LatLng latLng) {
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.snippet(name);
+        markerOptions.position(latLng);
+        markerOptions.setIcon(iconGreen);
+        mapboxMap.addMarker(markerOptions);
     }
 }

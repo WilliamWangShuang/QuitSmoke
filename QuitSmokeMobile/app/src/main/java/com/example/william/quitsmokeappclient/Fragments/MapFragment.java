@@ -10,11 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import com.mapquest.mapping.maps.MapView;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.example.william.quitsmokeappclient.R;
 
+import java.util.List;
+
+import clientservice.db.QuitSmokeDbUtility;
 import clientservice.factory.MapFragmentFactorial;
 
 public class MapFragment extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -30,13 +34,29 @@ public class MapFragment extends Fragment implements AdapterView.OnItemSelectedL
         // create map view
         mMapView = (MapView)vMapFragment.findViewById(R.id.mapquestMapView);
         mMapView.onCreate(savedInstanceState);
-        // register listener to spinner
-        ((Spinner)vMapFragment.findViewById(R.id.spnnierMapViewType)).setOnItemSelectedListener(this);
+
         return vMapFragment;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        // register listener to spinner
+        Spinner viewType = (Spinner)vMapFragment.findViewById(R.id.spnnierMapViewType);
+        QuitSmokeDbUtility quitSmokeDbUtility = new QuitSmokeDbUtility(getContext());
+        // convert string list to array for creating adapter purpose
+        List<String> placeTypeList = quitSmokeDbUtility.getPlaceTypeList();
+        String[] array = new String[placeTypeList.size()];
+        array = placeTypeList.toArray(array);
+        Log.d("QuitSmokeDebug", "array length is " + array.length);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                getActivity(), R.layout.spinner_item, array
+        );
+        // Initializing an ArrayAdapter
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        viewType.setAdapter(spinnerArrayAdapter);
+        // set view drop down list select event listener
+        viewType.setOnItemSelectedListener(this);
+
         // start map view asynchronically
         MapFragmentFactorial mapFragmentFactorial = new MapFragmentFactorial(mMapView, savedInstanceState, getContext(),"daily");
         mapFragmentFactorial.execute();
@@ -47,15 +67,8 @@ public class MapFragment extends Fragment implements AdapterView.OnItemSelectedL
         // get view type from view
         String viewType = adapter.getItemAtPosition(position).toString();
         MapFragmentFactorial mapFragmentFactorial = null;
-        mapFragmentFactorial = new MapFragmentFactorial(mMapView, null, getContext(), "daily");
         // change map view according to the view type selected
-//        if (Constant.MAP_VIEW_HOURLY.equals(viewType)) {
-//            mapFragmentFactorial = new MapFragmentFactorial(mMapView, null, Constant.MAP_VIEW_HOURLY);
-//        } else if(Constant.MAP_VIEW_DAILY.equals(viewType)) {
-//            mapFragmentFactorial = new MapFragmentFactorial(mMapView, null, Constant.MAP_VIEW_DAILY);
-//        } else {
-//            mapFragmentFactorial = new MapFragmentFactorial(mMapView, null, Constant.MAP_VIEW_DAILY);
-//        }
+        mapFragmentFactorial = new MapFragmentFactorial(mMapView, null, getContext(), viewType);
         mapFragmentFactorial.execute();
     }
 
