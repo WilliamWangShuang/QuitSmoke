@@ -142,12 +142,19 @@
                     </TableRow>
 
                     <TableRow>
-
-                        <Spinner
-                            android:id="@+id/ddlRole"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="User Type"
+                            android:textColor="#5d5b5b"
+                            android:textSize="10sp"/>
                     </TableRow>
+
+                    <Spinner
+                        android:id="@+id/ddlRole"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/add_depth"/>
 
                     <TableRow>
                         <Button
