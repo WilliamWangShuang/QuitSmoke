@@ -15,6 +15,7 @@ public class QuitSmokeClientConstant {
     public static String APPROVE_PLAN = "api/Values/approvePlan";
     public static String GET_CURRENT_PLAN = "api/Values/getCurrentPlan";
     public static String ADD_REAL_AMOUNT = "api/Values/addSmokeAmount";
+    public static String MAP_GET_ALL_NO_SMOKE_PLACE = "api/Values/getNoSmokePlaces";
 
     // general constants
     public static String WS_KEY_EXCEPTION = "Exception";
@@ -24,7 +25,6 @@ public class QuitSmokeClientConstant {
     public static String DATE_FORMAT = "yyyy-MM-dd";
     public static String SUCCESS_MSG = "Success";
     public static String EMAIL_EXIST = "EMAIL_EXISTS";
-    public static String STATUS_OPEN = "open";
     public static String STATUS_PENDING = "pending";
     public static String STATUS_APPROVE = "agree";
     public static String STATUS_CLOSE = "close";
@@ -77,4 +77,11 @@ public class QuitSmokeClientConstant {
     public static String WS_INTERACT_PLAN_REAL_AMOUNT = "real_amount";
     public static String WS_INTERACT_QUERY_PLAN_EMAIL = "email";
     public static String WS_INTERACT_APPROVE_PLAN_AMOUNT = "targetAmount";
+
+    // map json key
+    public static String WS_MAP_TYPE = "type";
+    public static String WS_MAP_ADDRESS = "address";
+    public static String WS_MAP_LATITUDE = "latitude";
+    public static String WS_MAP_LONGTITUDE = "longitude";
+    public static String WS_MAP_NO_SMOKE_LIST = "noSmokeList";
 }

@@ -78,7 +78,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 mCustomProgressBar.setVisibility(View.VISIBLE);
                 int realAmount = currentPlan.getRealAmount();
                 int targetAmount = currentPlan.getTargetAmount();
-                int progress = (int)(realAmount * 100 / targetAmount);
+                int progress = targetAmount == 0 ? 0 : (int)(realAmount * 100 / targetAmount);
                 QuitSmokeClientUtils.simulateProgress(mCustomProgressBar, progress);
             } else if (msg.what == 1) {
                 mCustomProgressBar.setVisibility(View.INVISIBLE);

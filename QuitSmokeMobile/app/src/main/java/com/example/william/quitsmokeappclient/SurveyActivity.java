@@ -1,6 +1,8 @@
 package com.example.william.quitsmokeappclient;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +17,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import clientservice.webservice.receiver.SyncNoSmokePlaceReceiver;
+
 public class SurveyActivity extends AppCompatActivity {
     private EditText txtSmokePerDay;
     private Spinner ddlAge;
@@ -23,6 +27,7 @@ public class SurveyActivity extends AppCompatActivity {
     private boolean isSmokePerDayValid;
     private boolean isGenderValid;
     private boolean isAgeValid;
+    private SyncNoSmokePlaceReceiver syncNoSmokePlaceReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +90,16 @@ public class SurveyActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        // sync DB with SQLite only once each time app launch. After launch, it should not do this sync again when go back to this activity
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        // start load no smoke place receiver
+        if (sharedPreferences.getBoolean("isFlag", true)) {
+            syncNoSmokePlaceReceiver = new SyncNoSmokePlaceReceiver(this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isFlag", false);
+            editor.commit();
+        }
 
         // set onclick on button 'next'
         btnNext.setOnClickListener(new View.OnClickListener() {

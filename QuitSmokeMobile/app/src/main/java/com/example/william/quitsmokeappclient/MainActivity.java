@@ -22,6 +22,7 @@ import com.example.william.quitsmokeappclient.Fragments.PartnerMainFragment;
 import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.receiver.CheckPlanReceiver;
+import clientservice.webservice.receiver.SyncNoSmokePlaceReceiver;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
