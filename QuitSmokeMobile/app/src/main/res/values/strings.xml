@@ -68,7 +68,10 @@
     <string name="fail_cold_turkey_behaviour">failed to quit cold turkey</string>
     <string name="fail_reduce_behaviour">failed to reduce amount</string>
     <string name="register_hint_name">Name</string>
-    <string name="next">Next</string>
+    <string name="next">back</string>
+    <string name="survey_start_btn">Find Out your Quit Chance</string>
+    <string name="motive">Top Motivators</string>
+    <string name="back">Back</string>
     <string name="hint_chol">Cholesterol is one of three major classes of lipids which all animal cells use to construct their membranes and is thus manufactured by all animal cells. High cholesterol, is the presence of high levels of cholesterol in the blood. It is a form of high blood lipids and hyperlipoproteinemia</string>
     <string name="hint_sbp">Measures the pressure in your blood vessels when your heart rests between beats. If the measurement reads 120 systolic and 80 diastolic, you would say 120 over 80 or write 120/80 mmHg.</string>
     <string name="hint_hdl">High density lipoprotein (HDL cholesterol) is called the ‘good cholesterol’ because it helps to keep cholesterol from building up in the arteries.</string>

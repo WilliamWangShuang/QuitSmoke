@@ -25,25 +25,24 @@
         android:id="@+id/custom_progress"
         android:layout_width="200dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
         app:drawBackgroundOutsideProgress="true"
+        app:layout_constraintBottom_toTopOf="@+id/pressButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yourProgress"
-        app:layout_constraintVertical_bias="0.0"
         app:progress_background_color="@color/holo_darker_gray"
         app:progress_end_color="@android:color/holo_red_dark"
         app:progress_shader="sweep"
         app:progress_start_color="@android:color/holo_green_dark"
         app:progress_stroke_width="15dp"
         app:progress_text_color="@color/holo_blue_light"
-        app:style="solid_line"
-        tools:layout_editor_absoluteY="75dp" />
+        app:style="solid_line" />
 
     <Button
         android:id="@+id/buttonforquitter"
@@ -61,7 +60,7 @@
     <TextView
         android:id="@+id/pressButton"
         android:layout_width="wrap_content"
-        android:layout_height="12dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
