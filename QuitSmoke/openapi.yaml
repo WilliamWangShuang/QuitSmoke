@@ -107,6 +107,25 @@ paths:
       responses:
         '200':
           description: Success
+  /api/Values/getNoSmokePlaces:
+    get:
+      tags:
+        - Values
+      operationId: ApiValuesGetNoSmokePlacesGet
+      consumes: []
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          schema:
+            uniqueItems: false
+            type: array
+            items:
+              $ref: '#/definitions/NoSmokeEntity'
   /api/Values/login:
     post:
       tags:
@@ -430,6 +449,31 @@ definitions:
       fiT5046:
         type: string
       fiT5140:
+        type: string
+  NoSmokeEntity:
+    type: object
+    properties:
+      noSmokeList:
+        uniqueItems: false
+        type: array
+        items:
+          $ref: '#/definitions/NoSmokeItem'
+      type:
+        type: string
+  NoSmokeItem:
+    type: object
+    properties:
+      address:
+        type: string
+      latitude:
+        format: double
+        type: number
+      longitude:
+        format: double
+        type: number
+      name:
+        type: string
+      type:
         type: string
   FRSData:
     type: object
