@@ -14,6 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+
 import com.example.william.quitsmokeappclient.Fragments.CalculateFrsFragment;
 import com.example.william.quitsmokeappclient.Fragments.CreatePlanFragment;
 import com.example.william.quitsmokeappclient.Fragments.MainFragment;
@@ -24,11 +28,17 @@ import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.receiver.CheckPlanReceiver;
 import clientservice.webservice.receiver.SyncNoSmokePlaceReceiver;
 
+import static android.view.View.GONE;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     // set check create plan receiver
     private CheckPlanReceiver checkPlanReceiver;
+    private ImageButton btnFrag_home_go;
+    private ImageButton btnFrag_create_plan_go;
+    private ImageButton btnFrag_frs_calc_go;
+    private ImageButton btnFrag_map_go;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +61,48 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // set buttons onclick events
+        // home icon
+        btnFrag_home_go = findViewById(R.id.btnFrag_home_go);
+        btnFrag_home_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment nextFragment = getMainPageByRole();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
+            }
+        });
+        // create plan icon
+        btnFrag_create_plan_go = findViewById(R.id.btnFrag_create_plan_go);
+        btnFrag_create_plan_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment nextFragment = new CreatePlanFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
+            }
+        });
+        // calculate FRS
+        btnFrag_frs_calc_go = findViewById(R.id.btnFrag_frs_calc_go);
+        btnFrag_frs_calc_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment nextFragment = new CalculateFrsFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
+            }
+        });
+        // free zone map
+        btnFrag_map_go = findViewById(R.id.btnFrag_map_go);
+        btnFrag_map_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment nextFragment = new MapFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
+            }
+        });
 
         changeDrawerItem(navigationView);
         // set notification channel
@@ -162,6 +214,7 @@ public class MainActivity extends AppCompatActivity
                 invalidateOptionsMenu();
                 menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.create_plan).setVisible(false);
                 menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.write_report).setVisible(false);
+                btnFrag_create_plan_go.setVisibility(GONE);
             }
         } else if (QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
 
