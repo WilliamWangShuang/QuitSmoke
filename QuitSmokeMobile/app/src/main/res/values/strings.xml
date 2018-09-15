@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quit Together</string>
+    <string name="app_name">Quit \n Together</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Quit Together</string>
@@ -7,7 +7,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="launch_logo">launch_logo</string>
-    <string name="quit_together">Quit Together</string>
+    <string name="quit_together1">Quit</string>
+    <string name="quit_together2">Together</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="register_name_empty_msg">Name cannot be empty.</string>

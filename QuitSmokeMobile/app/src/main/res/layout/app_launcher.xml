@@ -1,103 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical"
-    android:background="@drawable/bg_pic" >
+    android:background="@drawable/bg_pic"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/angle_logo" />
 
     <TextView
         android:id="@+id/lblErrorMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
         android:textColor="#CB4335"
         android:textStyle="bold"
-        android:paddingLeft="10dp"/>
+        app:layout_constraintStart_toStartOf="@+id/lblAppName"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <TextView
+        android:id="@+id/lblAppName"
+        android:layout_width="0dp"
+        android:layout_height="127dp"
+        android:color="#FF2345"
+        android:fontFamily="@font/nanum_brush_script"
+        android:gravity="top|center"
+        android:text="@string/quit_together1"
+        android:textSize="120sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblErrorMsg" />
+
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="1">
+        android:layout_height="106dp"
+        android:layout_gravity="top"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="300dp"
+        android:color="#FF2345"
+        android:fontFamily="@font/nanum_brush_script"
+        android:gravity="center"
+        android:text="@string/quit_together2"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/lblAppName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-
-        <TableRow
-            android:gravity="center_horizontal"
-            >
-
-            <TextView
-                android:id="@+id/lblAppName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:color="#FF2345"
-
-                android:fontFamily="@font/nanum_brush_script"
-                android:gravity="center"
-                android:paddingTop="20dp"
-                android:paddingBottom="100dp"
-                android:text="@string/quit_together"
-                android:textSize="300px" />
-        </TableRow>
-    </TableLayout>
 
     <EditText
         android:id="@+id/emailEditText"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="12dp"
-        android:paddingLeft="12dp"
-        android:paddingBottom="12dp"
         android:layout_gravity="center"
-        android:inputType="textEmailAddress"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="230dp"
         android:background="@drawable/edit_text_style"
-        android:hint="Email" />
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
+        android:id="@+id/textInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_gravity="center"
-        app:passwordToggleEnabled="true"
-        app:hintEnabled="true"
-        android:textColorHint="@color/grey"
+        android:layout_marginBottom="34dp"
         android:hint="@string/login_pwd_hint"
+        android:textColorHint="@color/grey"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/colorAccent">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/passwordEditText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="12dp"
-            android:textColor="#000000"
-            android:background="@drawable/edit_text_style"
             android:layout_gravity="center"
-            android:inputType="textPassword" />
+            android:background="@drawable/edit_text_style"
+            android:inputType="textPassword"
+            android:paddingLeft="12dp"
+            android:textColor="#000000" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btnSignIn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Login"
-
         android:layout_gravity="center"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/buttonforwhitebg"
-        android:layout_marginTop="10dp"/>
 
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/buttonforwhitebg"
+        android:text="Login"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/registerLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
         android:id="@+id/registerLink"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="47dp"
         android:clickable="true"
-        android:text="Do not have an account? Register now!"
-        android:textSize="15dp"
-        android:layout_marginTop="15dp"
         android:gravity="center"
-        android:textColor="#0D47A1"/>
+        android:text="Do not have an account? Register now!"
+        android:textColor="#0D47A1"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
