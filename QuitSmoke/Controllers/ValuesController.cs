@@ -726,6 +726,7 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        // approve plan
         [HttpPost("approvePlan")]
         public bool approvePlan([FromBody] ApprovePlanEntity approvePlan)
         {
