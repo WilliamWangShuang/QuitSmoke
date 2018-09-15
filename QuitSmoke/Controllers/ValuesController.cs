@@ -63,6 +63,76 @@ namespace QuitSmokeWebAPI.Controllers
             }
         }
 
+        [HttpGet("getNoSmokePlaces")]
+        public ActionResult<List<NoSmokeEntity>> GetNoSmokePlaces()
+        {
+            List<NoSmokeEntity> result = new List<NoSmokeEntity>();
+            List<NoSmokeEntity> temp = new List<NoSmokeEntity>();
+            using(var client = new HttpClient())
+            {
+                try 
+                {
+                    //testEntity.UnitInfo = new System.Collections.ArrayList();
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT + Constant.JSON_NODE_NO_SMOKE_PLACE + Constant.FIREBASE_SUFFIX_JSON).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject responseJson = response.Content.ReadAsAsync<JObject>().Result;
+                        // initial loop source
+                        List<NoSmokeEntity.NoSmokeItem> src = new List<NoSmokeEntity.NoSmokeItem>();
+                        foreach(JToken token in responseJson.Children())
+                        {
+                            NoSmokeEntity.NoSmokeItem item = token.First.ToObject<NoSmokeEntity.NoSmokeItem>();
+                            src.Add(item);
+                        }
+                        
+                        // loop source to put all places with same type into one list. Construct return result
+                        foreach (NoSmokeEntity.NoSmokeItem item in src)
+                        {
+                            // get type of current looping place
+                            string currType = item.type;
+                            bool isTypeListExist = false;
+
+                            // check if a list of places in result exist. if no, add a list of this place type and put current item in.
+                            // if yes, put current item in that existing list
+                            foreach(NoSmokeEntity entity in result)
+                            {
+                                if (currType.Equals(entity.type, StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    isTypeListExist = true;
+                                    entity.noSmokeList.Add(item);
+                                    break;
+                                }
+                                else 
+                                {
+                                    isTypeListExist = false;
+                                }
+                            }
+
+                            if (!isTypeListExist)
+                            {
+                                NoSmokeEntity newPlaceList = new NoSmokeEntity();
+                                newPlaceList.type = currType;
+                                newPlaceList.noSmokeList.Add(item);
+                                result.Add(newPlaceList);
+                            }
+                        }
+                    } 
+                } 
+                catch (Exception ex)
+                {
+                    QuitSmokeUtils.WriteErrorStackTrace(ex);
+                }
+            }
+            return result;
+        }
+
         // POST api/values/login
         [HttpPost("login")]
         public ActionResult<AppUser> Login([FromBody] AppUser user)

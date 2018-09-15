@@ -18,6 +18,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string JSON_NODE_CHANCE_AGE = "chance_age";
         public static string JSON_NODE_MOTIVATION_AGE = "motivation_age";
         public static string JSON_NODE_MOTIVATION_GENDER = "motivation_gender";
+        public static string JSON_NODE_NO_SMOKE_PLACE = "nosmoke_place";
         public static string FIREBASE_APP_KEY = "AIzaSyBxuvPNqF9TMk4gea0hfOls1QEQa4hNrlQ";
         public static string FIRBASE_RESPONSE_EMAIL_EXIST = "EMAIL_EXISTS";
 
@@ -53,6 +54,10 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string JSON_KEY_STATUS = "status";
         public static string JSON_KEY_TARGET_AMOUNT = "target_amount";
         public static string JSON_KEY_REAL_AMOUNT = "real_amount";
+        public static string JSON_KEY_LAT = "latitude";
+        public static string JSON_KEY_LOG = "longitude";
+        public static string JSON_KEY_ADDRESS = "address";
+        public static string JSON_KEY_TYPE = "type";
         
         #endregion
 
