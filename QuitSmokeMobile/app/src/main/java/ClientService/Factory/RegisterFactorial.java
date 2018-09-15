@@ -68,6 +68,7 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                 try {
                     Toast.makeText(activity, activity.getResources().getString(R.string.register_success), Toast.LENGTH_LONG);
                     // set resident info to application level
+                    QuitSmokeClientUtils.setName(registerInfoUI.getName());
                     QuitSmokeClientUtils.setEmail(registerInfoUI.getEmail());
                     QuitSmokeClientUtils.setPassword(registerInfoUI.getPassword());
                     QuitSmokeClientUtils.setSmokerNodeName(QuitSmokeClientUtils.getSmokerNodeName());

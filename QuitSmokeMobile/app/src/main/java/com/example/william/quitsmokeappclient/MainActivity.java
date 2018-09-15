@@ -1,5 +1,6 @@
 package com.example.william.quitsmokeappclient;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.app.NotificationChannel;
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.william.quitsmokeappclient.Fragments.CalculateFrsFragment;
 import com.example.william.quitsmokeappclient.Fragments.CreatePlanFragment;
@@ -25,6 +28,7 @@ import com.example.william.quitsmokeappclient.Fragments.MapFragment;
 import com.example.william.quitsmokeappclient.Fragments.PartnerMainFragment;
 import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
 import clientservice.QuitSmokeClientUtils;
+import clientservice.db.QuitSmokeDbUtility;
 import clientservice.webservice.receiver.CheckPlanReceiver;
 import clientservice.webservice.receiver.SyncNoSmokePlaceReceiver;
 
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private ImageButton btnFrag_create_plan_go;
     private ImageButton btnFrag_frs_calc_go;
     private ImageButton btnFrag_map_go;
+    private TextView tvLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,11 +109,29 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        // logout
+        tvLogout = findViewById(R.id.logout);
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Test", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         changeDrawerItem(navigationView);
         // set notification channel
         createNotificationChannel();
         // start receiver
         checkPlanReceiver = new CheckPlanReceiver(this);
+
+        // set tool bar welcome message
+        TextView tvSubtitleInNav = navigationView.getHeaderView(0).findViewById(R.id.tvSubtitle);
+        tvSubtitleInNav.setText(getResources().getString(R.string.nav_header_subtitle) + " " + QuitSmokeClientUtils.getName());
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
     }
 
     @Override

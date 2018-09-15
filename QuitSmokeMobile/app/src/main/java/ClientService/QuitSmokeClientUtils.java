@@ -27,6 +27,7 @@ import clientservice.entities.PlanEntity;
 
 public class QuitSmokeClientUtils extends Application {
     // global attributes
+    private static String name;
     private static String email;
     private static String password;
     private static String uid;
@@ -39,6 +40,14 @@ public class QuitSmokeClientUtils extends Application {
     private static CircleProgressBar mCustomProgressBar;
 
     // setters and getters
+
+    public static String getName() {
+        return name;
+    }
+
+    public static void setName(String name) {
+        QuitSmokeClientUtils.name = name;
+    }
 
     public static boolean isIsSmoker() {
         return isSmoker;

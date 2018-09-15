@@ -1,6 +1,7 @@
 package clientservice.factory;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -8,10 +9,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
 import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
 import com.mapbox.mapboxsdk.annotations.Icon;
@@ -60,10 +64,16 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
         this.savedInstanceState = savedInstanceState;
         this.mContext = mContext;
         this.mMapView = mMapView;
-        mGPS = new GPSTracker(mContext);
-        latitude = mGPS.getLocation().getLatitude();
-        longtitude = mGPS.getLocation().getLongitude();
-        this.viewType = viewType;
+        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            h.sendEmptyMessage(0);
+            return;
+        } else {
+            mGPS = new GPSTracker(mContext);
+            latitude = mGPS.getLocation().getLatitude();
+            longtitude = mGPS.getLocation().getLongitude();
+            this.viewType = viewType;
+        }
     }
 
     private final LocationListener mLocationListener = new LocationListener() {
@@ -117,7 +127,7 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
         mLocationManager = (LocationManager)mContext.getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(mContext, "Please grant location access in your device settings for this app.", Toast.LENGTH_LONG).show();
+            h.sendEmptyMessage(0);
             return;
         }
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, mLocationListener);
@@ -125,8 +135,6 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
         Log.d("QuitSmokeDebug", "my position - " + "lat:" + latitude + ",long:" + longtitude);
         myLocation.setLatitude(latitude);
         myLocation.setLongitude(longtitude);
-//        myLocation.setLatitude(-37.8169724245);
-//        myLocation.setLongitude(144.96413018);
 
         // synchronize map view
         mMapView.getMapAsync(new OnMapReadyCallback() {
@@ -182,4 +190,13 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
         markerOptions.setIcon(iconGreen);
         mapboxMap.addMarker(markerOptions);
     }
+
+    @SuppressLint("HandlerLeak")
+    Handler h = new Handler() {
+        public void handleMessage(Message msg){
+            if(msg.what == 0) {
+                Toast.makeText(mContext, "Please grant location access in your device settings for this app.", Toast.LENGTH_LONG).show();
+            }
+        }
+    };
 }

@@ -16,6 +16,7 @@ import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.QuitSmokeUserWebservice;
 
 public class LoginFactorial extends AsyncTask<Void, Void, Void> {
+    private String name;
     private String email;
     private String pwd;
     private Activity loginActivity;
@@ -67,6 +68,7 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
         // if succeed to find user. initial application-level value and go to main activity
         if (isFound) {
             // set application-level latitude and longtitude for current user and postcode for retrieving local weather
+            QuitSmokeClientUtils.setName(userProfile.getName());
             QuitSmokeClientUtils.setEmail(email);
             QuitSmokeClientUtils.setPassword(encryptPwdFromUI);
             QuitSmokeClientUtils.setUid(userProfile.getUid());
