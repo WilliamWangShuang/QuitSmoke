@@ -34,14 +34,17 @@
         app:drawBackgroundOutsideProgress="true"
         app:layout_constraintBottom_toTopOf="@+id/pressButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plan_detail_progress"
+        app:layout_constraintVertical_bias="0.0"
         app:progress_background_color="@color/holo_darker_gray"
         app:progress_end_color="@android:color/holo_red_dark"
         app:progress_shader="sweep"
-        app:progress_start_color="@android:color/holo_green_dark"
+        app:progress_start_color="#ab6868"
         app:progress_stroke_width="15dp"
-        app:progress_text_color="@color/holo_blue_light"
+        app:progress_text_color="#af3737"
+        app:progress_text_size="40dp"
         app:style="solid_line" />
 
 
@@ -51,11 +54,10 @@
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="144dp"
+        android:layout_marginBottom="156dp"
         android:background="@drawable/buttonforquitter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -64,16 +66,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/title_update_encouragement"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_update_encouragement"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

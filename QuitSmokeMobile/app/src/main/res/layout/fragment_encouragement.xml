@@ -15,40 +15,45 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="232dp"
         android:paddingTop="15dp"
         android:text="Are you sure you still want to smoke?"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
         android:id="@+id/tvEncouragement"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
+        android:layout_width="358dp"
+        android:layout_height="35dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="8dp"
-        android:paddingTop="15dp"
+        android:paddingTop="14dp"
         android:text="Here is the encouragement from your supporter:"
         android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="14dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvEncouragementContent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.71"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tvEncouragementContent"
         android:layout_width="287dp"
-        android:layout_height="129dp"
+        android:layout_height="263dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="12dp"
         android:paddingTop="15dp"
         android:text="Supporter Encouragement"
         app:layout_constraintBottom_toTopOf="@+id/tvEncouragementConfirm"
@@ -58,14 +63,16 @@
 
     <Button
         android:id="@+id/noforencouragement"
-        android:layout_width="123dp"
+        android:layout_width="107dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/yesforencouragement"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/buttonforall"
         android:paddingBottom="8dp"
@@ -76,13 +83,15 @@
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/yesforencouragement"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
-        app:layout_constraintVertical_bias="0.822" />
+        app:layout_constraintVertical_bias="0.815" />
 
     <Button
         android:id="@+id/yesforencouragement"
-        android:layout_width="124dp"
+        android:layout_width="107dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
@@ -102,7 +111,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
-        app:layout_constraintVertical_bias="0.822"
+        app:layout_constraintVertical_bias="0.821"
         tools:ignore="RtlCompat" />
 
 </android.support.constraint.ConstraintLayout>

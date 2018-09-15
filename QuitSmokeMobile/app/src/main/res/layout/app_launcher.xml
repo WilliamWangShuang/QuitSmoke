@@ -35,10 +35,10 @@
 
                 android:fontFamily="@font/nanum_brush_script"
                 android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="40dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="100dp"
                 android:text="@string/quit_together"
-                android:textSize="170px" />
+                android:textSize="300px" />
         </TableRow>
     </TableLayout>
 
