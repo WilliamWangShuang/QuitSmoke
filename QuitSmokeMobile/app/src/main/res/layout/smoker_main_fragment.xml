@@ -24,19 +24,18 @@
     <com.dinuscxj.progressbar.CircleProgressBar
         android:id="@+id/custom_progress"
         android:layout_width="200dp"
-        android:layout_height="233dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginEnd="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
         app:drawBackgroundOutsideProgress="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/pressButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yourProgress"
-        app:layout_constraintVertical_bias="0.077"
         app:progress_background_color="@color/holo_darker_gray"
         app:progress_end_color="@android:color/holo_red_dark"
         app:progress_shader="sweep"
@@ -51,10 +50,11 @@
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/buttonforquitter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -63,14 +63,12 @@
         android:layout_height="19dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/title_panic_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonforquitter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/custom_progress"
-        app:layout_constraintVertical_bias="0.512" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

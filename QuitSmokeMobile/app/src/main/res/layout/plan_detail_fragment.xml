@@ -34,7 +34,6 @@
         app:drawBackgroundOutsideProgress="true"
         app:layout_constraintBottom_toTopOf="@+id/pressButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plan_detail_progress"
         app:layout_constraintVertical_bias="0.0"
@@ -54,10 +53,11 @@
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/buttonforquitter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -66,7 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
         android:text="@string/title_update_encouragement"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="12sp"
