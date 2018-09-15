@@ -94,6 +94,7 @@
     <string name="access_token">HqENWLsTVnZCbCt0w8oWyn7NsAK7zVxp</string>
     <string name="not_create_plan_msg">You have no running plan. Please create one first.</string>
     <string name="attribution">From the Australian \'National Drug Strategy Household Survey\'</string>
+    <string name="your_encouragement">Here is the encouragement from your supporter:</string>
 
     <array name="user_role">
         <item>Smoker</item>

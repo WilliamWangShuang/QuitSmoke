@@ -36,7 +36,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="8dp"
         android:paddingTop="14dp"
-        android:text="Here is the encouragement from your supporter:"
+        android:text="under construction"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="14dp"
         android:textStyle="bold"
@@ -46,16 +46,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
+    <!--@your_encouragement for the text back-->
     <TextView
         android:id="@+id/tvEncouragementContent"
         android:layout_width="287dp"
-        android:layout_height="263dp"
+        android:layout_height="132dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
         android:paddingTop="15dp"
-        android:text="Supporter Encouragement"
+        android:text="Under Construction"
         app:layout_constraintBottom_toTopOf="@+id/tvEncouragementConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
