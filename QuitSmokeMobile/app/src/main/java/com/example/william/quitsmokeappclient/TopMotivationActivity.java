@@ -50,7 +50,7 @@ public class TopMotivationActivity extends AppCompatActivity {
         simpleExpandableListView.setAdapter(listAdapter);
 
         //expand all the Groups
-        expandAll();
+        //expandAll();
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
