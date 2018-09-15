@@ -71,11 +71,5 @@ public class MainFragment extends Fragment {
 
             }
         });
-
-        // change tab based on user role
-//        TabLayout.Tab tab = tabLayout.getTabAt(0); // if is smoker
-//        if (QuitSmokeClientUtils.isIsPartner())
-//            tab = tabLayout.getTabAt(1); // if isPartner
-//        tab.select();
     }
 }
