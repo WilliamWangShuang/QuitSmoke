@@ -43,7 +43,7 @@ public class LaunchActivity extends AppCompatActivity {
                 String emailFromUI = txtEmail.getText().toString();
                 String pwdFromUI = txtPwd.getText().toString();
                 // check if the user exist by email and password
-                LoginFactorial loginFactorial = new LoginFactorial(LaunchActivity.this, emailFromUI, pwdFromUI);
+                LoginFactorial loginFactorial = new LoginFactorial(LaunchActivity.this, emailFromUI, pwdFromUI, false);
 
                 loginFactorial.execute();
             }

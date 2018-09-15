@@ -1,5 +1,8 @@
 package com.example.william.quitsmokeappclient;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -114,7 +117,16 @@ public class MainActivity extends AppCompatActivity
         tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Test", Toast.LENGTH_SHORT).show();
+                // clear value of email and pwd in shared preference
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", "");
+                editor.putString("pwd", "");
+                editor.commit();
+
+                // go back to launch page
+                Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -123,6 +135,19 @@ public class MainActivity extends AppCompatActivity
         createNotificationChannel();
         // start receiver
         checkPlanReceiver = new CheckPlanReceiver(this);
+        // set login account and password in Shared preference so that user do not need to login every time when open app until he log off
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String emailInPreference = sharedPreferences.getString("email", "");
+        String pwdInPreference = sharedPreferences.getString("pwd", "");
+        if (emailInPreference == null
+                || "".equals(emailInPreference)
+                || pwdInPreference == null
+                || "".equals(pwdInPreference)) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("email", QuitSmokeClientUtils.getEmail());
+            editor.putString("pwd", QuitSmokeClientUtils.getPassword());
+            editor.commit();
+        }
 
         // set tool bar welcome message
         TextView tvSubtitleInNav = navigationView.getHeaderView(0).findViewById(R.id.tvSubtitle);

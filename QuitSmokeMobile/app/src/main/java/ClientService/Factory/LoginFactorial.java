@@ -20,6 +20,8 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
     private String email;
     private String pwd;
     private Activity loginActivity;
+    // if account info exist in preference
+    private boolean isPreferenceExist;
     // indicator if find user successfully
     private boolean isFound;
     // indicator if error occur
@@ -27,10 +29,11 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
     // user info variable
     UserInfoEntity userProfile;
 
-    public LoginFactorial(Activity loginActivity, String email, String pwd) {
+    public LoginFactorial(Activity loginActivity, String email, String pwd, boolean isPreferenceExist) {
         this.email = email;
         this.pwd = pwd;
         this.loginActivity = loginActivity;
+        this.isPreferenceExist = isPreferenceExist;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         Log.d("QuitSmokeDebug","****login logic start****");
         // encrypt email
-        String encryptPwdFromUI = QuitSmokeClientUtils.encryptPwd(pwd);
+        String encryptPwdFromUI = isPreferenceExist ? pwd : QuitSmokeClientUtils.encryptPwd(pwd);
 
         // initial resident info by calling webservice
         try {

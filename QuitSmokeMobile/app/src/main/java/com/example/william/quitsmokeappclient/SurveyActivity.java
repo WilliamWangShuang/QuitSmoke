@@ -1,5 +1,6 @@
 package com.example.william.quitsmokeappclient;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import clientservice.factory.LoginFactorial;
 import clientservice.webservice.receiver.SyncNoSmokePlaceReceiver;
 
 public class SurveyActivity extends AppCompatActivity {
@@ -27,12 +29,14 @@ public class SurveyActivity extends AppCompatActivity {
     private boolean isSmokePerDayValid;
     private boolean isGenderValid;
     private boolean isAgeValid;
+    private Activity currActivity;
     private SyncNoSmokePlaceReceiver syncNoSmokePlaceReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gather_survey_info);
+        currActivity = this;
 
         // get fields on page
         txtSmokePerDay = (EditText)findViewById((R.id.survey_smoke_per_day));
@@ -85,9 +89,21 @@ public class SurveyActivity extends AppCompatActivity {
         tvLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // go to register activity
-                Intent intent = new Intent(SurveyActivity.this, LaunchActivity.class);
-                startActivityForResult(intent, 1);
+                // get email and pwd from shared preference. If exist, direct sign in. Otherwise, go to login page
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+                String emailInPreference = sharedPreferences.getString("email", "");
+                String pwdInPreference = sharedPreferences.getString("pwd", "");
+                if (emailInPreference == null
+                        || "".equals(emailInPreference)
+                        || pwdInPreference == null
+                        || "".equals(pwdInPreference)) {
+                    // go to register activity
+                    Intent intent = new Intent(SurveyActivity.this, LaunchActivity.class);
+                    startActivityForResult(intent, 1);
+                } else {
+                    LoginFactorial loginFactorial = new LoginFactorial(currActivity, emailInPreference, pwdInPreference, true);
+                    loginFactorial.execute();
+                }
             }
         });
 
