@@ -31,6 +31,7 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
     private RecyclerView.LayoutManager mLayoutManager;
     private ApprovePlanDialogFragment approvePlanDialogFragment;
     private FragmentActivity myContext;
+    private View myRootView;
 
     @Nullable
     @Override
@@ -41,6 +42,8 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // get root view
+        myRootView = getView();
         // get current user email
         String email = QuitSmokeClientUtils.getEmail();
         InitialPartnerFragmentFactorial initialPartnerFragmentFactorial =  new InitialPartnerFragmentFactorial(email);
@@ -54,10 +57,7 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
         // if result from factory is not null, initialize UI fields value
         Log.d("QuitSmokeDebug", "result from InitialPartnerFragmentFactorial:" + (reponseResult == null));
         if(resultFromFactory != null) {
-            mRecyclerView = (RecyclerView)getView().findViewById(R.id.rv_pending_plan);
-
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
+            mRecyclerView = (RecyclerView)myRootView.findViewById(R.id.rv_pending_plan);
             mRecyclerView.setHasFixedSize(true);
 
             // set layout manager
@@ -90,7 +90,7 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
             });
             mRecyclerView.setAdapter(mAdapter);
         } else {
-            ((TextView) getView().findViewById(R.id.tvStatusSupporter)).setText("No new plan created by your partner.");
+            ((TextView)myRootView.findViewById(R.id.tvStatusSupporter)).setText("No new plan created by your partner.");
         }
     }
 }
