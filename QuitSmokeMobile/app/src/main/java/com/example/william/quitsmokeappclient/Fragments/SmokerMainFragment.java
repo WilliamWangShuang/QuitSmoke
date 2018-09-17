@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,9 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
         btnPanicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("QuitSmokeDebug", "Result from GetCurrentPlanFactorial:" + realAmountMsg);
                 // if user not set partner, give error message
-                if (!QuitSmokeClientConstant.INDICATOR_N.equals(realAmountMsg)) {
+                if (realAmountMsg != null && !QuitSmokeClientConstant.INDICATOR_N.equals(realAmountMsg) && !QuitSmokeClientConstant.INDICATOR_NO_PLAN.equals(realAmountMsg)) {
                     // get real amount message
                     String msg = String.format(getResources().getString(R.string.panic_button_msg), realAmountMsg);
                     // initial pop out dialogs on this view
@@ -55,6 +57,16 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
                     args.putString("message", msg);
                     messageDialogFragment.setArguments(args);
                     messageDialogFragment.show(getFragmentManager(), "go to encouragement");
+                } else if (QuitSmokeClientConstant.INDICATOR_NO_PLAN.equals(realAmountMsg)) {
+                    mCustomProgressBar.setVisibility(View.INVISIBLE);
+                    // get validation value to bundle to pass to error dialog entity
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isTargetNoValid", true);
+                    bundle.putBoolean("isPartberSet", true);
+                    bundle.putBoolean("isPlanCreated", false);
+                    bundle.putBoolean("isProceedingPlanExist", true);
+                    createPlanErrorFragment.setArguments(bundle);
+                    createPlanErrorFragment.show(getFragmentManager(), "no running plan");
                 } else {
                     // get validation value to bundle to pass to error dialog entity
                     Bundle bundle = new Bundle();

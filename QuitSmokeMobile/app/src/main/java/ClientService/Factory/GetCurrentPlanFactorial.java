@@ -51,10 +51,11 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                     realAmount = currentPlan.getRealAmount();
                     h.sendEmptyMessage(0);
                 } else {
-                    h.sendEmptyMessage(1);
+                    return QuitSmokeClientConstant.INDICATOR_NO_PLAN;
                 }
             } else {
                 // if current user not set supporter yet. Set result empty
+                Log.d("QuitSmokeDebug", "Partner not set..");
                 return QuitSmokeClientConstant.INDICATOR_N;
             }
         } catch (Exception ex) {
@@ -80,8 +81,6 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 int targetAmount = currentPlan.getTargetAmount();
                 int progress = targetAmount == 0 ? 0 : (int)(realAmount * 100 / targetAmount);
                 QuitSmokeClientUtils.simulateProgress(mCustomProgressBar, progress);
-            } else if (msg.what == 1) {
-                mCustomProgressBar.setVisibility(View.INVISIBLE);
             } else {
                 Toast.makeText(smokerMainActivity, "Exception occurred when create plan. Try again. If not work, remove the shit app.", Toast.LENGTH_LONG).show();
             }
