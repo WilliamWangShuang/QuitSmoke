@@ -46,7 +46,7 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
             @Override
             public void onClick(View v) {
                 // if user not set partner, give error message
-                if (!QuitSmokeClientConstant.INDICATOR_N.equals(realAmountMsg)) {
+                if (realAmountMsg != null && !QuitSmokeClientConstant.INDICATOR_N.equals(realAmountMsg) && !QuitSmokeClientConstant.INDICATOR_NO_PLAN.equals(realAmountMsg)) {
                     // get real amount message
                     String msg = String.format(getResources().getString(R.string.panic_button_msg), realAmountMsg);
                     // initial pop out dialogs on this view
@@ -55,6 +55,14 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
                     args.putString("message", msg);
                     messageDialogFragment.setArguments(args);
                     messageDialogFragment.show(getFragmentManager(), "go to encouragement");
+                } else if (QuitSmokeClientConstant.INDICATOR_NO_PLAN.equals(realAmountMsg)) {
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isTargetNoValid", true);
+                    bundle.putBoolean("isPartberSet", true);
+                    bundle.putBoolean("isPlanCreated", false);
+                    bundle.putBoolean("isProceedingPlanExist", false );
+                    createPlanErrorFragment.setArguments(bundle);
+                    createPlanErrorFragment.show(getFragmentManager(), "no partner");
                 } else {
                     // get validation value to bundle to pass to error dialog entity
                     Bundle bundle = new Bundle();
