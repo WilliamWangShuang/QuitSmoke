@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import com.example.william.quitsmokeappclient.Fragments.SurveyErrorFragment;
+import com.example.william.quitsmokeappclient.Interface.IApprovePlanAsyncResponse;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import java.util.List;
 import clientservice.factory.LoginFactorial;
 import clientservice.webservice.receiver.SyncNoSmokePlaceReceiver;
 
-public class SurveyActivity extends AppCompatActivity {
+public class SurveyActivity extends AppCompatActivity implements IApprovePlanAsyncResponse {
     private EditText txtSmokePerDay;
     private Spinner ddlAge;
     private Spinner ddlGender;
@@ -30,6 +32,8 @@ public class SurveyActivity extends AppCompatActivity {
     private boolean isGenderValid;
     private boolean isAgeValid;
     private Activity currActivity;
+    private boolean isLoginSucc;
+    private LoginFactorial loginFactorial;
     private SyncNoSmokePlaceReceiver syncNoSmokePlaceReceiver;
 
     @Override
@@ -37,7 +41,6 @@ public class SurveyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gather_survey_info);
         currActivity = this;
-
         // get fields on page
         txtSmokePerDay = (EditText)findViewById((R.id.survey_smoke_per_day));
         ddlAge = (Spinner)findViewById((R.id.survey_age));
@@ -102,6 +105,7 @@ public class SurveyActivity extends AppCompatActivity {
                     startActivityForResult(intent, 1);
                 } else {
                     LoginFactorial loginFactorial = new LoginFactorial(currActivity, emailInPreference, pwdInPreference, true);
+                    loginFactorial.delegate = SurveyActivity.this;
                     loginFactorial.execute();
                 }
             }
@@ -150,6 +154,18 @@ public class SurveyActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String emailInPreference = sharedPreferences.getString("email", "");
+        String pwdInPreference = sharedPreferences.getString("pwd", "");
+        // if back button pressed, go back to this launch page
+        Intent intent = new Intent(SurveyActivity.this, SurveyActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
     private boolean validateUI(String smoke_per_day, String gender, String age) {
         boolean isValid = false;
         // check smoke per day
@@ -172,5 +188,10 @@ public class SurveyActivity extends AppCompatActivity {
         isValid = isSmokePerDayValid && isGenderValid && isAgeValid;
 
         return isValid;
+    }
+
+    @Override
+    public void processFinish(boolean reponseResult) {
+        isLoginSucc = reponseResult;
     }
 }

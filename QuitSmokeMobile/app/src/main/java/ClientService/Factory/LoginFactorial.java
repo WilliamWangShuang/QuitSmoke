@@ -9,13 +9,15 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.william.quitsmokeappclient.Interface.IApprovePlanAsyncResponse;
 import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
 import clientservice.entities.UserInfoEntity;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.QuitSmokeUserWebservice;
 
-public class LoginFactorial extends AsyncTask<Void, Void, Void> {
+public class LoginFactorial extends AsyncTask<Void, Void, Boolean> {
     private String name;
     private String email;
     private String pwd;
@@ -26,6 +28,7 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
     private boolean isFound;
     // indicator if error occur
     private boolean isError;
+    public IApprovePlanAsyncResponse delegate = null;
     // user info variable
     UserInfoEntity userProfile;
 
@@ -45,7 +48,7 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected Boolean doInBackground(Void... params) {
         Log.d("QuitSmokeDebug","****login logic start****");
         // encrypt email
         String encryptPwdFromUI = isPreferenceExist ? pwd : QuitSmokeClientUtils.encryptPwd(pwd);
@@ -91,24 +94,25 @@ public class LoginFactorial extends AsyncTask<Void, Void, Void> {
             }
         }
 
-        return null;
+        return isFound;
     }
 
     @Override
-    protected void onPostExecute(Void result) {
+    protected void onPostExecute(Boolean result) {
         //mContext.sendBroadcast(new Intent("startGenerateAppDataSignal"));
         Log.d("QuitSmokeDebug", "login finish.");
+        delegate.processFinish(result);
     }
 
     // create a handler to toast message on main thread according to the post result
     @SuppressLint("HandlerLeak")
     Handler h = new Handler() {
         public void handleMessage(Message msg){
-            if(msg.what == 0)
+            if(msg.what == 0) {
                 Toast.makeText(loginActivity, "Exception occurred when sign in. Try again. If not solved, remove the shit app.", Toast.LENGTH_LONG).show();
-            else if(msg.what == 1) {
+            } else if(msg.what == 1) {
                 TextView tvMsg = loginActivity.findViewById(R.id.lblErrorMsg);
-                tvMsg.setText("No accound found. Check your usearname and password.");
+                tvMsg.setText("No account found. Check your usearname and password.");
             } else {
                 // refresh message textview
                 TextView tvMsg = loginActivity.findViewById(R.id.lblErrorMsg);

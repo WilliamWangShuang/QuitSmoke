@@ -111,19 +111,17 @@
             android:textColor="#000000" />
     </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/btnSignIn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
+    <clientservice.factory.CircularProgressButton
+        android:id="@+id/btnMorph1"
+        android:layout_width="@dimen/mb_width_200"
+        android:layout_height="@dimen/mb_height_56"
         android:background="@drawable/buttonforwhitebg"
-        android:text="Login"
+        android:layout_gravity="center"
+        android:text="@string/login"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/registerLink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <TextView
         android:id="@+id/registerLink"

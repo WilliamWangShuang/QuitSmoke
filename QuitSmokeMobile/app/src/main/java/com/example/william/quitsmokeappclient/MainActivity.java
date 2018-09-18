@@ -19,11 +19,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.william.quitsmokeappclient.Fragments.CalculateFrsFragment;
 import com.example.william.quitsmokeappclient.Fragments.CreatePlanFragment;
 import com.example.william.quitsmokeappclient.Fragments.MainFragment;
@@ -31,10 +28,7 @@ import com.example.william.quitsmokeappclient.Fragments.MapFragment;
 import com.example.william.quitsmokeappclient.Fragments.PartnerMainFragment;
 import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
 import clientservice.QuitSmokeClientUtils;
-import clientservice.db.QuitSmokeDbUtility;
 import clientservice.webservice.receiver.CheckPlanReceiver;
-import clientservice.webservice.receiver.SyncNoSmokePlaceReceiver;
-
 import static android.view.View.GONE;
 
 public class MainActivity extends AppCompatActivity
@@ -166,6 +160,24 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String emailInPreference = sharedPreferences.getString("email", "");
+        String pwdInPreference = sharedPreferences.getString("pwd", "");
+        // if user is in login status, go back to home page. Otherwise, go back to launch survey activity
+        if (emailInPreference != null
+                && !"".equals(emailInPreference)
+                && pwdInPreference != null
+                && !"".equals(pwdInPreference)) {
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         }
     }
 

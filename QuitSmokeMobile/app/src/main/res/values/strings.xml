@@ -95,6 +95,7 @@
     <string name="not_create_plan_msg">You have no running plan. Please create one first.</string>
     <string name="attribution">From the Australian \'National Drug Strategy Household Survey\'</string>
     <string name="your_encouragement">Here is the encouragement from your supporter:</string>
+    <string name="login">Login</string>
 
     <array name="user_role">
         <item>Smoker</item>
