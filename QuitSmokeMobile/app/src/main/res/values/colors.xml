@@ -40,4 +40,6 @@
     <color name="mb_gray">#ffdedede</color>
     <color name="mb_blue">#8ebebe</color>
     <color name="mb_blue_dark">#ff00719b</color>
+    <color name="scratch_start_gradient">#e5e5e5</color>
+    <color name="scratch_end_gradient">#cccccc</color>
 </resources>

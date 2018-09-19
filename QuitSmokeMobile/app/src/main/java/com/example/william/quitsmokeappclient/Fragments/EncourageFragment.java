@@ -9,13 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.R;
-
 import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.AddSmokeAmountFactorial;
-import clientservice.factory.GetCurrentPlanFactorial;
 
 public class EncourageFragment extends Fragment {
     private Button btnYes;
