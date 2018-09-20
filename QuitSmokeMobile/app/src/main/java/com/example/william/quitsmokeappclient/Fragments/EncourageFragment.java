@@ -37,7 +37,13 @@ public class EncourageFragment extends Fragment {
             public void onClick(View v) {
 
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new SmokerMainFragment()).commit();
+                if(QuitSmokeClientUtils.isIsSmoker() && !QuitSmokeClientUtils.isIsPartner()) {
+                    fragmentManager.beginTransaction().replace(R.id.content_frame, new SmokerMainFragment()).commit();
+                } else if (!QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
+                    fragmentManager.beginTransaction().replace(R.id.content_frame, new PartnerMainFragment()).commit();
+                } else if (QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
+                    fragmentManager.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
+                }
             }
         });
 
