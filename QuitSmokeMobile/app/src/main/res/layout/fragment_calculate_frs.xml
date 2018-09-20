@@ -9,23 +9,23 @@
 
     <TextView
         android:id="@+id/tvFRSDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
-        android:gravity="center"
         android:text="@string/frs_desc"
         app:layout_constraintBottom_toTopOf="@+id/tvRiskResult"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvRiskResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -140,6 +140,66 @@
                 android:textSize="15sp" />
 
 
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvRiskResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvFRSDesc"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13">
+
+        <TableRow>
+
+            <TextView
+                android:background="#ff4c4c"
+                android:text="@string/high_risk"
+                android:textStyle="bold" />
+
+            <TextView
+                android:background="#bdbaba"
+                android:paddingLeft="3dp"
+                android:text="@string/high_risk_range"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:background="#ff9a4c"
+                android:text="@string/medium_risk"
+                android:textStyle="bold" />
+
+            <TextView
+                android:background="#cecbcb"
+                android:paddingLeft="3dp"
+                android:text="@string/medium_risk_range"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:background="#d5ff4c"
+                android:text="@string/low_risk"
+                android:textStyle="bold" />
+
+            <TextView
+                android:background="#e8e8e8"
+                android:paddingLeft="3dp"
+                android:text="@string/low_risk_range"
+                android:textStyle="bold" />
         </TableRow>
 
     </TableLayout>

@@ -77,6 +77,13 @@
     <string name="hint_sbp">Measures the pressure in your blood vessels when your heart rests between beats. If the measurement reads 120 systolic and 80 diastolic, you would say 120 over 80 or write 120/80 mmHg.</string>
     <string name="hint_hdl">High density lipoprotein (HDL cholesterol) is called the ‘good cholesterol’ because it helps to keep cholesterol from building up in the arteries.</string>
     <string name="frs_desc">The Framingham Risk Score is a gender-specific algorithm used to estimate the 10-year cardiovascular risk of an individual.</string>
+    <string name="high_risk">High-Risk</string>
+    <string name="high_risk_range">17% - 30%</string>
+    <string name="medium_risk">Medium-Risk</string>
+    <string name="medium_risk_range">4% - 16%</string>
+    <string name="low_risk">Low-Risk</string>
+    <string name="low_risk_range">0% - 3%</string>
+
     <string name="create_plan_empty_target">Target number cannot be blank.</string>
     <string name="create_plan_no_partner">You have not designate your supporter. Please designate your supporter first.</string>
     <string name="create_plan_proceeding_task_exist">You have a proceeding plan and cannot create new plan before completion.</string>
