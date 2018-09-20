@@ -61,19 +61,6 @@ public class SurveyActivity extends AppCompatActivity implements IApprovePlanAsy
         // Initializing an ArrayAdapter
         spinnerAgeAdapter.setDropDownViewResource(R.layout.spinner_item);
         ddlAge.setAdapter(spinnerAgeAdapter);
-        try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
-            popup.setAccessible(true);
-
-            // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(ddlAge);
-
-            // Set popupWindow height to 500px
-            popupWindow.setHeight(800);
-        }
-        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-            // silently fail...
-        }
 
         // set gender spinner
         // initial spinner values
