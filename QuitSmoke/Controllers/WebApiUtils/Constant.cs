@@ -58,6 +58,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         public static string JSON_KEY_LOG = "longitude";
         public static string JSON_KEY_ADDRESS = "address";
         public static string JSON_KEY_TYPE = "type";
+        public static string JSON_KEY_ENCOURAGEMENT = "encouragement";
         
         #endregion
 

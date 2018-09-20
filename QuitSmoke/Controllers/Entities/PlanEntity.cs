@@ -11,5 +11,6 @@ namespace QuitSmokeWebAPI.Controllers.Entity
         public int real_amount { get; set; }
         public string plan_create_date { get; set; }
         public string status { get; set; }
+        public string encouragement { get; set; }
     }
 }

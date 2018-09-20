@@ -726,6 +726,80 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("updateEncouragement")]
+        public bool updateEncouragement([FromBody] UpdateEncouragement updateEncouragement)
+        {
+            bool result = false;
+            string planNodeName = string.Empty;
+            string smokerUid = updateEncouragement.smokerUID;
+
+            try
+            {
+                // find out the token of plan to be updated first
+                using(var client = new HttpClient())
+                {
+                    //testEntity.UnitInfo = new System.Collections.ArrayList();
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                            + Constant.JSON_NODE_NAME_PLAN
+                            + Constant.FIREBASE_SUFFIX_JSON).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject responseObj = response.Content.ReadAsAsync<JObject>().Result;
+                        foreach (JToken token in responseObj.Children())
+                        {
+                            // get each JToken child to get plan entity so that it is convenient to check uid
+                            PlanEntity plan = token.First.ToObject<PlanEntity>();
+                            // check if uid is the one we want
+                            if (plan.uid.Equals(smokerUid, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                planNodeName = token.ToObject<JProperty>().Name;
+                                break;
+                            }
+                        }
+                    } 
+                }
+                // if node name is not empty, start update
+                if (!string.IsNullOrEmpty(planNodeName))
+                {
+                    // construct patch uri
+                    string uri = Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_PLAN + "/"
+                        + planNodeName + "/"
+                        + Constant.FIREBASE_SUFFIX_JSON;
+                    
+                    using (var client = new HttpClient())
+                    {
+                        var method = new HttpMethod("PATCH");
+                        // make patch request content
+                        string json = "{\"" + Constant.JSON_KEY_ENCOURAGEMENT + "\":\"" + updateEncouragement.encourage + "\"}";
+                        HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                        var request = new HttpRequestMessage(method, uri)
+                        {
+                            Content = httpContent
+                        };
+
+                        HttpResponseMessage response = new HttpResponseMessage();
+                        response = client.SendAsync(request).Result;
+                        result = response.IsSuccessStatusCode;
+                    }
+                    
+                }                
+            } catch (Exception ex) {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+                result = false;
+            }
+
+            return result;
+        }
+
         // approve plan
         [HttpPost("approvePlan")]
         public bool approvePlan([FromBody] ApprovePlanEntity approvePlan)

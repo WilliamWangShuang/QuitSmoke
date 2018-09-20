@@ -302,6 +302,31 @@ paths:
           description: Success
           schema:
             type: boolean
+  /api/Values/updateEncouragement:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesUpdateEncouragementPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: updateEncouragement
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/UpdateEncouragement'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
   /api/Values/approvePlan:
     post:
       tags:
@@ -592,6 +617,13 @@ definitions:
         type: string
       partnerEmail:
         type: string
+  UpdateEncouragement:
+    type: object
+    properties:
+      smokerUID:
+        type: string
+      encourage:
+        type: string
   ApprovePlanEntity:
     type: object
     properties:
@@ -614,6 +646,8 @@ definitions:
       plan_create_date:
         type: string
       status:
+        type: string
+      encouragement:
         type: string
   GetingPendingPlanReq:
     type: object
