@@ -16,6 +16,7 @@ public class QuitSmokeClientConstant {
     public static String GET_CURRENT_PLAN = "api/Values/getCurrentPlan";
     public static String ADD_REAL_AMOUNT = "api/Values/addSmokeAmount";
     public static String MAP_GET_ALL_NO_SMOKE_PLACE = "api/Values/getNoSmokePlaces";
+    public static String UPDATE_ENCOURAGEMENT = "api/Values/updateEncouragement";
 
     // general constants
     public static String WS_KEY_EXCEPTION = "Exception";
@@ -78,6 +79,8 @@ public class QuitSmokeClientConstant {
     public static String WS_INTERACT_PLAN_REAL_AMOUNT = "real_amount";
     public static String WS_INTERACT_QUERY_PLAN_EMAIL = "email";
     public static String WS_INTERACT_APPROVE_PLAN_AMOUNT = "targetAmount";
+    public static String WS_INTERACT_ENCOURAGEMENT_SMOKER_UID = "smokerUID";
+    public static String WS_INTERACT_ENCOURAGEMENT_ENCOURAGE = "encourage";
 
     // map json key
     public static String WS_MAP_TYPE = "type";

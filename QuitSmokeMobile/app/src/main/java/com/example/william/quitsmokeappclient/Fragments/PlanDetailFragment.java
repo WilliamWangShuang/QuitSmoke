@@ -1,9 +1,11 @@
 package com.example.william.quitsmokeappclient.Fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +17,21 @@ import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncRespo
 import com.example.william.quitsmokeappclient.R;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.GetCurrentPlanFactorial;
+import clientservice.factory.UpdateEncouragementFactorial;
 
 public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncResponse {
     private CircleProgressBar mCustomProgressBar;
     private Button btnUpdateEncourage;
     private String realAmountMsg;
+    private FragmentActivity myContext;
     private String uid;
+    private SetEncouragementDialogFragement setEncouragementDialogFragement;
+
+    @Override
+    public void onAttach(Activity activity) {
+        myContext=(FragmentActivity) activity;
+        super.onAttach(activity);
+    }
 
     @Nullable
     @Override
@@ -47,8 +58,11 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
         btnUpdateEncourage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // get real amount message
-                Toast.makeText(getContext(), "Coming soon..", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("smokerUid", uid);
+                setEncouragementDialogFragement = new SetEncouragementDialogFragement();
+                setEncouragementDialogFragement.setArguments(bundle);
+                setEncouragementDialogFragement.show(myContext.getSupportFragmentManager(), "updateEncouragement");
             }
         });
     }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="18dp"
+    android:layout_marginRight="13dp"
+    android:layout_marginBottom="18dp"
+    android:layout_marginLeft="13dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvSetEncouragement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update_encouragement"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"/>
+
+
+    <EditText
+        android:id="@+id/txtSetEncouragement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" />
+
+</LinearLayout>

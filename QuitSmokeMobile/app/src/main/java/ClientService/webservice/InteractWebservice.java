@@ -119,4 +119,23 @@ public class InteractWebservice {
 
         return result;
     }
+
+    public static boolean updateEncouragement(String smokerUid, String newEncouragement) throws JSONException, IOException {
+        boolean result = false;
+        Log.d("QuitSmokeDebug", "updateEncouragement starts.");
+        String url = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.UPDATE_ENCOURAGEMENT;
+        Log.d("QuitSmokeDebug", "update encouragement url:" + url);
+
+        // construct request json
+        JSONObject jsonReq = new JSONObject();
+        jsonReq.put(QuitSmokeClientConstant.WS_INTERACT_ENCOURAGEMENT_SMOKER_UID, smokerUid);
+        jsonReq.put(QuitSmokeClientConstant.WS_INTERACT_ENCOURAGEMENT_ENCOURAGE, newEncouragement);
+        Log.d("QuitSmokeDebug", "update encouragement json:" + jsonReq.toString());
+        // call ws to get update encouragement
+        String response = BaseWebservice.postWSForGetRestrievePlainText(url, jsonReq);
+        result = Boolean.parseBoolean(response);
+
+        Log.d("QuitSmokeDebug", "updateEncouragement result:" + result);
+        return result;
+    }
 }
