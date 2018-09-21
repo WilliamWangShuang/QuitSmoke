@@ -76,6 +76,8 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     Handler h = new Handler() {
         public void handleMessage(Message msg){
             if(msg.what == 0) {
+                String encouragement = currentPlan.getEncouragement();
+                QuitSmokeClientUtils.setEncouragement(encouragement);
                 mCustomProgressBar.setVisibility(View.VISIBLE);
                 int realAmount = currentPlan.getRealAmount();
                 int targetAmount = currentPlan.getTargetAmount();

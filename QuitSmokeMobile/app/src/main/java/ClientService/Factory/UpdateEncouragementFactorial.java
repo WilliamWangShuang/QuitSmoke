@@ -34,7 +34,6 @@ public class UpdateEncouragementFactorial extends AsyncTask<Void, Void, String> 
     protected String doInBackground(Void... params) {
         String result = "";
         try {
-            Log.d("TestDebug", "2.newEncourage:" + newEncourage);
             boolean resultFromWS = InteractWebservice.updateEncouragement(smokerUid, newEncourage);
             if (resultFromWS) {
                 result = QuitSmokeClientConstant.INDICATOR_Y;

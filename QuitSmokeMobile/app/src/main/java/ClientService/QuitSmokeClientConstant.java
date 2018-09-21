@@ -81,6 +81,7 @@ public class QuitSmokeClientConstant {
     public static String WS_INTERACT_APPROVE_PLAN_AMOUNT = "targetAmount";
     public static String WS_INTERACT_ENCOURAGEMENT_SMOKER_UID = "smokerUID";
     public static String WS_INTERACT_ENCOURAGEMENT_ENCOURAGE = "encourage";
+    public static String WS_INTERACT_ENCOURAGEMENT_ENCOURAGEMENT = "encouragement";
 
     // map json key
     public static String WS_MAP_TYPE = "type";

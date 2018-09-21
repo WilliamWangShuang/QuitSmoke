@@ -39,9 +39,18 @@ public class QuitSmokeClientUtils extends Application {
     private static String planNodeName;
     private static boolean isSmoker;
     private static boolean isPartner;
+    private static String encouragement;
     private static CircleProgressBar mCustomProgressBar;
 
     // setters and getters
+
+    public static String getEncouragement() {
+        return encouragement;
+    }
+
+    public static void setEncouragement(String encouragement) {
+        QuitSmokeClientUtils.encouragement = encouragement;
+    }
 
     public static String getName() {
         return name;

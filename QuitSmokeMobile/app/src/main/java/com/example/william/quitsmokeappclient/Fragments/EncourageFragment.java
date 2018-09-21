@@ -12,10 +12,12 @@ import android.widget.Button;
 import com.example.william.quitsmokeappclient.R;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.AddSmokeAmountFactorial;
+import clientservice.factory.CustomDrawView;
 
 public class EncourageFragment extends Fragment {
     private Button btnYes;
     private Button btnNo;
+    private CustomDrawView customDrawView;
 
     @Nullable
     @Override
@@ -30,6 +32,9 @@ public class EncourageFragment extends Fragment {
         // get buttons
         btnYes = view.findViewById(R.id.yesforencouragement);
         btnNo = view.findViewById(R.id.noforencouragement);
+        // get encouragement text view
+        customDrawView = view.findViewById(R.id.tvEncouragementContent);
+        customDrawView.setText(QuitSmokeClientUtils.getEncouragement());
 
         // add actions
         btnNo.setOnClickListener(new View.OnClickListener() {

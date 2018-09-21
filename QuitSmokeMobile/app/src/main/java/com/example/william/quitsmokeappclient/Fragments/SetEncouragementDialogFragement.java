@@ -44,9 +44,6 @@ public class SetEncouragementDialogFragement extends DialogFragment implements I
         errorMessage = getActivity().getResources().getString(R.string.error_msg);
 
         // Inflate and set the layout for the dialog
-        Log.d("TestDebug", "1.newEncourage:" + txtSetEncouragement.getText().toString());
-//        updateEncouragementFactorial = new UpdateEncouragementFactorial(getArguments().getString("smokerUid"), txtSetEncouragement.getText().toString(), getActivity());
-//        updateEncouragementFactorial.delegate = this;
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(view)
                 // Add action buttons
