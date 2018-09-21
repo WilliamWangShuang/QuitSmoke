@@ -12,14 +12,13 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/angle_logo_red" />
+        app:srcCompat="@drawable/static_red" />
 
 
     <TextView
@@ -30,160 +29,129 @@
         android:textStyle="bold"
         android:paddingLeft="10dp"/>
 
-    <TextView
-        android:id="@+id/lblAppName"
-        android:layout_width="match_parent"
-        android:layout_height="119dp"
-        android:color="#FF2345"
-        android:fontFamily="@font/nanum_brush_script"
-        android:gravity="center"
-        android:text="@string/quit_together1"
-        android:textSize="120sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:layout_gravity="top"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="300dp"
-        android:color="#FF2345"
-        android:fontFamily="@font/nanum_brush_script"
-        android:gravity="center"
-        android:text="@string/quit_together2"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toTopOf="@+id/lblAppName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="19dp"
-        android:layout_marginLeft="57dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
         android:text="@string/how_many_cigarettes_do_you_smoke_a_day"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/survey_smoke_per_day"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/survey_smoke_per_day"
 
-        android:layout_width="258dp"
+        android:layout_width="266dp"
         android:layout_height="31dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="200dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/edit_text_style"
         android:hint="@string/smoke_per_day"
         android:inputType="number"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="160dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="160dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
         android:text="@string/what_is_your_age"
-        android:layout_marginStart="57dp"
-        android:layout_marginLeft="57dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/survey_age"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/survey_smoke_per_day" />
 
     <Spinner
         android:id="@+id/survey_age"
         android:layout_width="266dp"
-        android:popupBackground="#dadcde"
-
         android:layout_height="35dp"
-        android:layout_marginEnd="336dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="336dp"
-        android:layout_marginStart="50dp"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/spbg"
         android:dropDownWidth="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        android:popupBackground="#dadcde"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="57dp"
-        android:layout_marginLeft="57dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="140dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
         android:text="What is your gender?"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/survey_gender"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/survey_age" />
 
     <Spinner
         android:id="@+id/survey_gender"
         android:layout_width="265dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="272dp"
-        android:layout_marginEnd="336dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="336dp"
-        android:layout_marginStart="50dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/spbg"
         android:popupBackground="#dadcde"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
         android:id="@+id/btn_servey_next"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="92dp"
         android:layout_marginLeft="92dp"
         android:layout_marginRight="92dp"
         android:layout_marginStart="92dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/buttonforall"
         android:text="@string/survey_start_btn"
-        app:layout_constraintBottom_toTopOf="@+id/main_page_login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/survey_gender" />
 
     <TextView
         android:id="@+id/main_page_login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:gravity="bottom"
         android:clickable="true"
         android:text="@string/sign_in"
         android:textColor="#0D47A1"
@@ -191,8 +159,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_servey_next" />
 
 
 </android.support.constraint.ConstraintLayout>

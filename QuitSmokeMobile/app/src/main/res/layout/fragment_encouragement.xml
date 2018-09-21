@@ -35,11 +35,11 @@
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:paddingTop="14dp"
-        android:textColor="@color/colorWhite"
         android:text="Here is the encouragement message from your supporter:"
         android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
