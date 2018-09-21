@@ -11,14 +11,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/angle_logo" />
+        app:srcCompat="@drawable/static_blue" />
 
     <TextView
         android:id="@+id/lblErrorMsg"
@@ -27,40 +27,6 @@
         android:paddingLeft="10dp"
         android:textColor="#CB4335"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/lblAppName"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/lblAppName"
-        android:layout_width="0dp"
-        android:layout_height="127dp"
-        android:color="#FF2345"
-        android:fontFamily="@font/nanum_brush_script"
-        android:gravity="top|center"
-        android:text="@string/quit_together1"
-        android:textSize="120sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/lblErrorMsg" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:layout_gravity="top"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="300dp"
-        android:color="#FF2345"
-        android:fontFamily="@font/nanum_brush_script"
-        android:gravity="center"
-        android:text="@string/quit_together2"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toTopOf="@+id/lblAppName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -72,7 +38,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginEnd="42dp"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="72dp"
         android:background="@drawable/edit_text_style"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -82,7 +48,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -90,13 +56,12 @@
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_gravity="center"
-        android:layout_marginBottom="34dp"
         android:hint="@string/login_pwd_hint"
         android:textColorHint="@color/grey"
         app:hintEnabled="true"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/colorAccent">
 
