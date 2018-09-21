@@ -65,33 +65,45 @@
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginLeft="57dp"
+        android:layout_marginStart="57dp"
         android:layout_marginTop="8dp"
         android:text="@string/how_many_cigarettes_do_you_smoke_a_day"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/survey_smoke_per_day"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
         android:id="@+id/survey_smoke_per_day"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+
+        android:layout_width="258dp"
+        android:layout_height="31dp"
         android:layout_marginEnd="200dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginRight="200dp"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/edit_text_style"
         android:hint="@string/smoke_per_day"
         android:inputType="number"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/what_is_your_age"
+        android:layout_marginStart="57dp"
+        android:layout_marginLeft="57dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/survey_age"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,36 +111,49 @@
 
     <Spinner
         android:id="@+id/survey_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="266dp"
+        android:popupBackground="#dadcde"
+
+        android:layout_height="35dp"
         android:layout_marginEnd="336dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginRight="336dp"
-        android:dropDownWidth="70dp"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/spbg"
+        android:dropDownWidth="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="57dp"
+        android:layout_marginLeft="57dp"
+        android:layout_marginBottom="4dp"
         android:text="What is your gender?"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/survey_gender"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/survey_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_width="265dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="272dp"
         android:layout_marginEnd="336dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginRight="336dp"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/spbg"
+        android:popupBackground="#dadcde"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
