@@ -28,18 +28,18 @@
 
     <TextView
         android:id="@+id/tvEncouragement"
-        android:layout_width="358dp"
+        android:layout_width="287dp"
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="16dp"
         android:paddingTop="14dp"
-        android:text="From your supporter"
+        android:textColor="@color/colorWhite"
+        android:text="Here is the encouragement message from your supporter:"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14dp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.621"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,7 @@
     <Button
         android:id="@+id/noforencouragement"
         android:layout_width="107dp"
-        android:layout_height="0dp"
+        android:layout_height="47dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/yesforencouragement"
@@ -81,21 +81,21 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/yesforencouragement"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
-        app:layout_constraintVertical_bias="0.815" />
+        app:layout_constraintVertical_bias="0.857" />
 
     <Button
         android:id="@+id/yesforencouragement"
         android:layout_width="107dp"
-        android:layout_height="0dp"
+        android:layout_height="47dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="50dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/buttonforall"
         android:paddingBottom="8dp"
@@ -108,7 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEncouragementConfirm"
-        app:layout_constraintVertical_bias="0.821"
+        app:layout_constraintVertical_bias="0.928"
         tools:ignore="RtlCompat" />
 
 </android.support.constraint.ConstraintLayout>
