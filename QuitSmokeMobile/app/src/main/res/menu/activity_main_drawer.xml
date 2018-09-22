@@ -19,10 +19,9 @@
                     android:icon="@drawable/google_map"
                     android:title="Free Zone" />
                 <item
-                    android:id="@+id/nav_slideshow"
+                    android:id="@+id/plan_history"
                     android:icon="@drawable/ic_menu_slideshow"
-                    android:title="Report History"
-                    android:enabled="false"/>
+                    android:title="Plan History" />
             </menu>
         </item>
 

@@ -26,6 +26,7 @@ import com.example.william.quitsmokeappclient.Fragments.CreatePlanFragment;
 import com.example.william.quitsmokeappclient.Fragments.MainFragment;
 import com.example.william.quitsmokeappclient.Fragments.MapFragment;
 import com.example.william.quitsmokeappclient.Fragments.PartnerMainFragment;
+import com.example.william.quitsmokeappclient.Fragments.PlanHistoryFragment;
 import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.receiver.CheckPlanReceiver;
@@ -224,6 +225,8 @@ public class MainActivity extends AppCompatActivity
             nextFragment = new CreatePlanFragment();
         } else if (id == R.id.map) {
             nextFragment = new MapFragment();
+        } else if (id == R.id.plan_history) {
+            nextFragment = new PlanHistoryFragment();
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();

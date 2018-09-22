@@ -1,22 +1,19 @@
 package clientservice.factory;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.example.william.quitsmokeappclient.Fragments.ApprovePlanDialogFragment;
+
 import com.example.william.quitsmokeappclient.Interface.IPlanRecycleItemClick;
 import com.example.william.quitsmokeappclient.R;
+
 import java.util.ArrayList;
-import clientservice.QuitSmokeClientConstant;
+
 import clientservice.entities.PlanEntity;
 
-public class PendingPlanRecycleViewAdapter extends RecyclerView.Adapter<PendingPlanRecycleViewAdapter.MyViewHolder> {
+public class ClosePlanRecycleViewAdapter extends RecyclerView.Adapter<ClosePlanRecycleViewAdapter.MyViewHolder> {
     private final ArrayList<PlanEntity> mDataset;
     private final IPlanRecycleItemClick listener;
 
@@ -29,6 +26,7 @@ public class PendingPlanRecycleViewAdapter extends RecyclerView.Adapter<PendingP
         private TextView tvStatus;
         private TextView tvCreateDate;
         private TextView tvRealAmount;
+        private TextView tvIsSuccess;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -36,13 +34,20 @@ public class PendingPlanRecycleViewAdapter extends RecyclerView.Adapter<PendingP
             tvStatus = (TextView)itemView.findViewById(R.id.plan_item_status);
             tvCreateDate = (TextView)itemView.findViewById(R.id.plan_item_create_date);
             tvRealAmount = (TextView)itemView.findViewById(R.id.plan_real_amount);
+            tvIsSuccess = (TextView)itemView.findViewById(R.id.is_success);
         }
 
         public void bind(final PlanEntity item, final IPlanRecycleItemClick listener) {
+            // bind real values for plan on UI
             tvTargetAmount.setText("Target Amount Set By your Partner:" + item.getTargetAmount());
             tvStatus.setText(item.getStatus());
             tvCreateDate.setText(item.getCreateDate());
             tvRealAmount.setText("Real Amount Taken By your Partner:" + item.getRealAmount());
+            // check if this plan succeed
+            boolean isSucc = false;
+            if (item.getTargetAmount() > item.getRealAmount())
+                isSucc = true;
+            tvIsSuccess.setText(isSucc ? "Success" : "Fail");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -53,15 +58,14 @@ public class PendingPlanRecycleViewAdapter extends RecyclerView.Adapter<PendingP
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public PendingPlanRecycleViewAdapter(ArrayList<PlanEntity> mDataset, IPlanRecycleItemClick listener) {
+    public ClosePlanRecycleViewAdapter(ArrayList<PlanEntity> mDataset, IPlanRecycleItemClick listener) {
         this.mDataset = mDataset;
         this.listener = listener;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public PendingPlanRecycleViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+    public ClosePlanRecycleViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.plan_list, parent,false);
 
