@@ -1025,10 +1025,51 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("getClosePlan")]
+        public ActionResult<IEnumerable<PlanEntity>> Post([FromBody] string smokerUid)
+        {
+            List<PlanEntity> result = new List<PlanEntity>();
+            try
+            {
+                // get all pending plans for all smokers supported by current user
+                using(var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                            + Constant.JSON_NODE_NAME_PLAN
+                            + Constant.FIREBASE_SUFFIX_JSON
+                            + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, smokerUid)
+                            + string.Format(Constant.FIREBASE_GET_SECOND_LEVEL_QUERY_PARAMETER, Constant.JSON_KEY_STATUS, Constant.STATUS_CLOSE)).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject tempObj = response.Content.ReadAsAsync<JObject>().Result;
+                        foreach (JToken token in tempObj.Children())
+                        {
+                            PlanEntity plan = token.First.ToObject<PlanEntity>();
+                            if (Constant.STATUS_CLOSE.Equals(plan.status, StringComparison.InvariantCultureIgnoreCase))
+                                result.Add(plan);
+                        } 
+                    }
+                }
+            } 
+            catch (Exception ex) 
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+            }
+            return result;
+        }
+
         [HttpPost("getCurrentPlan")]
         public ActionResult<PlanEntity> Post([FromBody] JObject requestJson)
         {
             PlanEntity result = null;
+            string currentPlanNodeName = string.Empty;
             try
             {
                 using (var client = new HttpClient())
@@ -1057,11 +1098,46 @@ namespace QuitSmokeWebAPI.Controllers
                             PlanEntity entity = token.First.ToObject<PlanEntity>();
                             if (Constant.STATUS_APPROVE.Equals(entity.status, StringComparison.InvariantCultureIgnoreCase))
                             {
-                                result = entity;
+                                DateTime createDate = DateTime.Parse(entity.plan_create_date);
+                                // calculate differences between current day and plan create date
+                                var diff = (DateTime.Now - createDate).TotalDays;
+                                if (diff >= 30)
+                                {
+                                    currentPlanNodeName = token.ToObject<JProperty>().Name;
+                                }
+                                else
+                                {
+                                    result = entity;
+                                }
                                 break;
                             }
                         }
                     }
+                }
+                // check if current plan node name variable is not empty, means the plan is expired, need to close it. and return null to client side.
+                if (!string.IsNullOrEmpty(currentPlanNodeName))
+                {
+                    // construct patch uri
+                    string uri = Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_PLAN + "/"
+                        + currentPlanNodeName + "/"
+                        + Constant.FIREBASE_SUFFIX_JSON;
+                    
+                    using (var client = new HttpClient())
+                    {
+                        var method = new HttpMethod("PATCH");
+                        // make patch request content
+                        string json = "{\"" + Constant.JSON_KEY_STATUS + "\":\"" + Constant.STATUS_CLOSE+ "\"}";
+                        HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                        var request = new HttpRequestMessage(method, uri)
+                        {
+                            Content = httpContent
+                        };
+
+                        HttpResponseMessage response = new HttpResponseMessage();
+                        response = client.SendAsync(request).Result;
+                    }
+                    
                 }
             } 
             catch (Exception ex)

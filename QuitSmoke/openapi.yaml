@@ -405,6 +405,34 @@ paths:
             type: array
             items:
               $ref: '#/definitions/PlanEntity'
+  /api/Values/getClosePlan:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesGetClosePlanPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: smokerUid
+          in: body
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            uniqueItems: false
+            type: array
+            items:
+              $ref: '#/definitions/PlanEntity'
   /api/Values/getCurrentPlan:
     post:
       tags:
