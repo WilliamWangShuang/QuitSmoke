@@ -58,7 +58,7 @@ public class CheckPlanReceiver extends BroadcastReceiver implements IGetPendingP
         Log.d("QuitSmokeDebug", "mbuilder in onReceive is null or not:" + (mBuilder == null));
         // check if there is pending plan, if yes, send notification.
         try {
-            initialPartnerFragmentFactorial =  new InitialPartnerFragmentFactorial(QuitSmokeClientUtils.getEmail());
+            initialPartnerFragmentFactorial =  new InitialPartnerFragmentFactorial(QuitSmokeClientUtils.getEmail(), true);
             initialPartnerFragmentFactorial.delegate = this;
             initialPartnerFragmentFactorial.execute();
         } catch (Exception ex) {

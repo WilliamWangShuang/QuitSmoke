@@ -10,13 +10,15 @@ import clientservice.webservice.InteractWebservice;
 
 public class InitialPartnerFragmentFactorial extends AsyncTask<Void, Void, ArrayList<PlanEntity>> {
     private String partnerEmail;
+    private boolean isCheckingPendingPlan;
     private ArrayList<PlanEntity> resultFromWS;
     public IGetPendingPlanResultAsyncResponse delegate = null;
 
     public InitialPartnerFragmentFactorial() {}
 
-    public InitialPartnerFragmentFactorial(String partnerEmail) {
+    public InitialPartnerFragmentFactorial(String partnerEmail, boolean isCheckingPendingPlan) {
         this.partnerEmail = partnerEmail;
+        this.isCheckingPendingPlan = isCheckingPendingPlan;
     }
 
     @Override
@@ -36,7 +38,10 @@ public class InitialPartnerFragmentFactorial extends AsyncTask<Void, Void, Array
     protected ArrayList<PlanEntity> doInBackground(Void... voids) {
         // construct request param json
         try {
-            resultFromWS = InteractWebservice.getPendingPlanByPartnerEmail(partnerEmail);
+            if (isCheckingPendingPlan)
+                resultFromWS = InteractWebservice.getPendingPlanByPartnerEmail(partnerEmail);
+            else
+                resultFromWS = InteractWebservice.getQuitterPlansByPartnerEmail(partnerEmail);
         } catch (Exception ex) {
             Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
         }

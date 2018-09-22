@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,20 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.william.quitsmokeappclient.Interface.IGetPendingPlanResultAsyncResponse;
 import com.example.william.quitsmokeappclient.Interface.IPlanRecycleItemClick;
 import com.example.william.quitsmokeappclient.R;
-
 import java.util.ArrayList;
-
-import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;
 import clientservice.factory.ClosePlanRecycleViewAdapter;
 import clientservice.factory.GetClosePlanFragmentFactorial;
-import clientservice.factory.InitialPartnerFragmentFactorial;
-import clientservice.factory.PendingPlanRecycleViewAdapter;
 
 public class PlanHistoryFragment extends Fragment implements IGetPendingPlanResultAsyncResponse {
 

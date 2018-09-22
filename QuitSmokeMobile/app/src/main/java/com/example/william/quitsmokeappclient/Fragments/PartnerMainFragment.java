@@ -46,7 +46,7 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
         myRootView = getView();
         // get current user email
         String email = QuitSmokeClientUtils.getEmail();
-        InitialPartnerFragmentFactorial initialPartnerFragmentFactorial =  new InitialPartnerFragmentFactorial(email);
+        InitialPartnerFragmentFactorial initialPartnerFragmentFactorial =  new InitialPartnerFragmentFactorial(email, false);
         initialPartnerFragmentFactorial.delegate = this;
         initialPartnerFragmentFactorial.execute();
     }

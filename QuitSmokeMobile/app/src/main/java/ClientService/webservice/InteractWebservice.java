@@ -71,6 +71,30 @@ public class InteractWebservice {
         return resultList;
     }
 
+    // get pending plan based on partner email
+    public static ArrayList<PlanEntity> getQuitterPlansByPartnerEmail(String email) throws JSONException, IOException{
+        ArrayList<PlanEntity> resultList = new ArrayList<>();
+        JSONObject reqJson = new JSONObject();
+        reqJson.put(QuitSmokeClientConstant.WS_INTERACT_QUERY_PLAN_EMAIL, email);
+        JSONArray jsonArray = BaseWebservice.postWebServiceForGetRestrieveJSONArray(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.GET_QUITTER_PLANS, reqJson);
+
+        // if ws result not null, construct domain returned object
+        if (jsonArray != null) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject json = jsonArray.getJSONObject(i);
+                PlanEntity result = new PlanEntity();
+                result.setCreateDate(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_CREATE_DT));
+                result.setStatus(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_STATUS));
+                result.setTargetAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_TARGET_AMOUNT));
+                result.setRealAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_REAL_AMOUNT));
+                result.setUid(json.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID));
+                resultList.add(result);
+            }
+        }
+
+        return resultList;
+    }
+
     public static ArrayList<PlanEntity> getClosePlanBySmokerUid(String smokerUid) throws JSONException, IOException{
         ArrayList<PlanEntity> resultList = new ArrayList<>();
         JSONArray jsonArray = BaseWebservice.postWebServiceForGetRestrieveJSONArray(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.GET_CLOSE_PLAN, smokerUid);

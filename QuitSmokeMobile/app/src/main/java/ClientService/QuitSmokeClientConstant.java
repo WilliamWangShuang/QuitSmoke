@@ -12,6 +12,7 @@ public class QuitSmokeClientConstant {
     public static String CREATE_PLAN_WS = "api/Values/createPlan";
     public static String CHECK_PARTNER = "api/Values/checkPartner";
     public static String GET_PENDING_PLAN = "api/Values/getPendingPlan";
+    public static String GET_QUITTER_PLANS = "api/Values/getQuitterPlans";
     public static String GET_CLOSE_PLAN = "api/Values/getClosePlan";
     public static String APPROVE_PLAN = "api/Values/approvePlan";
     public static String GET_CURRENT_PLAN = "api/Values/getCurrentPlan";
