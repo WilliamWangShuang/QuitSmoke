@@ -433,6 +433,34 @@ paths:
             type: array
             items:
               $ref: '#/definitions/PlanEntity'
+  /api/Values/getQuitterClosePlan:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesGetQuitterClosePlanPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: partnerEmail
+          in: body
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            uniqueItems: false
+            type: array
+            items:
+              $ref: '#/definitions/PlanEntity'
   /api/Values/getClosePlan:
     post:
       tags:
@@ -691,6 +719,8 @@ definitions:
   PlanEntity:
     type: object
     properties:
+      smoker_name:
+        type: string
       uid:
         type: string
       target_amount:

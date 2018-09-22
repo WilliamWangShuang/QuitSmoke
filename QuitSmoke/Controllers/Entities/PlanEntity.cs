@@ -6,6 +6,7 @@ namespace QuitSmokeWebAPI.Controllers.Entity
 {
     public class PlanEntity
     {
+        public string smoker_name { get; set; }
         public string uid { get; set; }
         public int target_amount { get; set; }
         public int real_amount { get; set; }

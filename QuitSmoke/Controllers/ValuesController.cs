@@ -1098,6 +1098,82 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("getQuitterClosePlan")]
+        public ActionResult<IEnumerable<PlanEntity>> GetQuitterClosePlan([FromBody] string partnerEmail) 
+        {
+            List<PlanEntity> result = new List<PlanEntity>();
+            Dictionary<string, string> smokerDic = new Dictionary<string, string>();
+            try
+            {
+                // declare a http client to call RESTful from web api exposed by other providers
+                using(var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                            + Constant.JSON_NODE_NAME_APP_USERS
+                            + Constant.FIREBASE_SUFFIX_JSON
+                            + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_PARTNER_EMAIL, partnerEmail)).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject objects = response.Content.ReadAsAsync<JObject>().Result;
+                        // fetch all uids of smokers whose supporter is the current user
+                        foreach (JToken token in objects.Children())
+                        {
+                            UserInfo userInfo = token.First.ToObject<UserInfo>();
+                            smokerDic.Add(userInfo.uid, userInfo.name);
+                        }
+                    }
+                }
+
+                // get all pending plans for all smokers supported by current user
+                using(var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    foreach (KeyValuePair<string, string> entry in smokerDic)
+                    {
+                        // retrieve data response
+                        HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                                + Constant.JSON_NODE_NAME_PLAN
+                                + Constant.FIREBASE_SUFFIX_JSON
+                                + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, entry.Key)
+                                + string.Format(Constant.FIREBASE_GET_SECOND_LEVEL_QUERY_PARAMETER, Constant.JSON_KEY_STATUS, Constant.STATUS_PENDING)).Result;
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // parse the response body
+                            JObject tempObj = response.Content.ReadAsAsync<JObject>().Result;
+                            foreach (JToken token in tempObj.Children())
+                            {
+                                PlanEntity plan = token.First.ToObject<PlanEntity>();
+                                if (Constant.STATUS_CLOSE.Equals(plan.status, StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    plan.smoker_name = entry.Value;
+                                    result.Add(plan);
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            } 
+            catch (Exception ex) 
+            {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+            }
+            return result;
+        }
+
         [HttpPost("getClosePlan")]
         public ActionResult<IEnumerable<PlanEntity>> Post([FromBody] string smokerUid)
         {
