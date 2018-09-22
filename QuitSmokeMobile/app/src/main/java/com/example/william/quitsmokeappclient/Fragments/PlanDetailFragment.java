@@ -25,6 +25,7 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
     private String realAmountMsg;
     private FragmentActivity myContext;
     private String uid;
+    private String createDT;
     private SetEncouragementDialogFragement setEncouragementDialogFragement;
 
     @Override
@@ -45,6 +46,8 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
 
         // get uid for this plan
         uid = getArguments().getString("uid");
+        // get plan create date
+        createDT = getArguments().getString("createDT");
         Log.d("QuitSmokeDebug", "uid from previous view:" + uid);
         // set progress bar
         mCustomProgressBar = (CircleProgressBar)view.findViewById(R.id.custom_plan_detail_progress);
@@ -60,6 +63,7 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("smokerUid", uid);
+                bundle.putString("createDT", createDT);
                 setEncouragementDialogFragement = new SetEncouragementDialogFragement();
                 setEncouragementDialogFragement.setArguments(bundle);
                 setEncouragementDialogFragement.show(myContext.getSupportFragmentManager(), "updateEncouragement");

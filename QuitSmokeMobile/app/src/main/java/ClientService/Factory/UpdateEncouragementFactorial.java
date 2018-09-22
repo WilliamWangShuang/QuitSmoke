@@ -15,12 +15,14 @@ import clientservice.webservice.QuitSmokeUserWebservice;
 
 public class UpdateEncouragementFactorial extends AsyncTask<Void, Void, String> {
     private String smokerUid;
+    private String planCreateDT;
     private String newEncourage;
     public IUpdatePartnerAsyncResponse delegate = null;
     private Activity planDetailActivity;
 
-    public UpdateEncouragementFactorial(String smokerUid, String newEncourage, Activity planDetailActivity) {
+    public UpdateEncouragementFactorial(String smokerUid, String planCreateDT, String newEncourage, Activity planDetailActivity) {
         this.smokerUid = smokerUid;
+        this.planCreateDT = planCreateDT;
         this.newEncourage = newEncourage;
         this.planDetailActivity = planDetailActivity;
     }
@@ -34,7 +36,7 @@ public class UpdateEncouragementFactorial extends AsyncTask<Void, Void, String> 
     protected String doInBackground(Void... params) {
         String result = "";
         try {
-            boolean resultFromWS = InteractWebservice.updateEncouragement(smokerUid, newEncourage);
+            boolean resultFromWS = InteractWebservice.updateEncouragement(smokerUid, planCreateDT, newEncourage);
             if (resultFromWS) {
                 result = QuitSmokeClientConstant.INDICATOR_Y;
             } else {

@@ -50,7 +50,7 @@ public class SetEncouragementDialogFragement extends DialogFragment implements I
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        updateEncouragementFactorial = new UpdateEncouragementFactorial(getArguments().getString("smokerUid"), txtSetEncouragement.getText().toString(), getActivity());
+                        updateEncouragementFactorial = new UpdateEncouragementFactorial(getArguments().getString("smokerUid"), getArguments().getString("createDT"), txtSetEncouragement.getText().toString(), getActivity());
                         updateEncouragementFactorial.delegate = SetEncouragementDialogFragement.this;
                         updateEncouragementFactorial.execute();
                     }

@@ -82,6 +82,7 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
                         PlanDetailFragment planDetailFragment = new PlanDetailFragment();
                         Bundle args = new Bundle();
                         args.putString("uid", item.getUid());
+                        args.putString("createDT", item.getCreateDate());
                         planDetailFragment.setArguments(args);
                         FragmentManager fragmentManager = getFragmentManager();
                         fragmentManager.beginTransaction().replace(R.id.content_frame, planDetailFragment).commit();
