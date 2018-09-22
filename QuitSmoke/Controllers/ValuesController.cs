@@ -757,8 +757,11 @@ namespace QuitSmokeWebAPI.Controllers
                         {
                             // get each JToken child to get plan entity so that it is convenient to check uid
                             PlanEntity plan = token.First.ToObject<PlanEntity>();
+                            DateTime dateFromClient = DateTime.Parse(updateEncouragement.createDT);
+                            DateTime dateOfThisPlan = DateTime.Parse(plan.plan_create_date);
                             // check if uid is the one we want
-                            if (plan.uid.Equals(smokerUid, StringComparison.InvariantCultureIgnoreCase))
+                            if (plan.uid.Equals(smokerUid, StringComparison.InvariantCultureIgnoreCase)
+                                && dateFromClient == dateOfThisPlan)
                             {
                                 planNodeName = token.ToObject<JProperty>().Name;
                                 break;
