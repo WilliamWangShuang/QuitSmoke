@@ -377,6 +377,34 @@ paths:
           description: Success
           schema:
             type: string
+  /api/Values/getQuitterPlans:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesGetQuitterPlansPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: partnerEmailObj
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/GetingPendingPlanReq'
+      responses:
+        '200':
+          description: Success
+          schema:
+            uniqueItems: false
+            type: array
+            items:
+              $ref: '#/definitions/PlanEntity'
   /api/Values/getPendingPlan:
     post:
       tags:
@@ -397,6 +425,34 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/GetingPendingPlanReq'
+      responses:
+        '200':
+          description: Success
+          schema:
+            uniqueItems: false
+            type: array
+            items:
+              $ref: '#/definitions/PlanEntity'
+  /api/Values/getClosePlan:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesGetClosePlanPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: smokerUid
+          in: body
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Success

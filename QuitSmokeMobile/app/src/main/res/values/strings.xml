@@ -60,10 +60,10 @@
     <string name="calculate_chol_err_msg">Chol is not in valid range</string>
     <string name="calculate_sbp_err_msg">SBP is not in valid range</string>
     <string name="calculate_hdl_err_msg">HDL is not in valid range</string>
-    <string name="mean_higher_than_avg">At your cigarette consumption, you approximately smoke %d more cigarettes compared to the population average.</string>
-    <string name="mean_lower_than_avg">At your cigarette consumption, you approximately smoke %d less cigarettes compared to the population average.</string>
-    <string name="succ_chance">At your age, you are %s likely to reduce your consumption (%s) compared to quitting cold turkey (%s)</string>
-    <string name="fail_chance">At your age, you are %s likely to fail to quit cold turkey (%s) compared to reducing consumption (%s) </string>
+    <string name="mean_higher_than_avg">At your cigarette consumption, you approximately smoke %d more cigarettes a week compared to the population average.</string>
+    <string name="mean_lower_than_avg">At your cigarette consumption, you approximately smoke %d less cigarettes a week compared to the population average.</string>
+    <string name="succ_chance">At your age, you are %s times more likely to reduce your consumption (%s percent) compared to quitting cold turkey (%s percent)</string>
+    <string name="fail_chance">At your age, you are %s times more likely to fail to quit cold turkey (%s percent) compared to reducing consumption (%s percent) </string>
     <string name="succ_cold_turkey_behaviour">successfully quit cold turkey</string>
     <string name="succ_reduce_behaviour">successfully reduced amount</string>
     <string name="fail_cold_turkey_behaviour">failed to quit cold turkey</string>
