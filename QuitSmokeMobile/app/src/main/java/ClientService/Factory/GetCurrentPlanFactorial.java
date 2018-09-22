@@ -8,10 +8,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
-
 import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;

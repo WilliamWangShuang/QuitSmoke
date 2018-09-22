@@ -41,7 +41,7 @@ public class PlanHistoryFragment extends Fragment implements IGetPendingPlanResu
         myRootView = getView();
         // get current user email
         String email = QuitSmokeClientUtils.getEmail();
-        GetClosePlanFragmentFactorial getClosePlanFragmentFactorial =  new GetClosePlanFragmentFactorial(QuitSmokeClientUtils.getUid());
+        GetClosePlanFragmentFactorial getClosePlanFragmentFactorial =  new GetClosePlanFragmentFactorial(QuitSmokeClientUtils.isIsPartner() && !QuitSmokeClientUtils.isIsSmoker());
         getClosePlanFragmentFactorial.delegate = this;
         getClosePlanFragmentFactorial.execute();
     }

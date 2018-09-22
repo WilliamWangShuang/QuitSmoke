@@ -9,14 +9,14 @@ import clientservice.entities.PlanEntity;
 import clientservice.webservice.InteractWebservice;
 
 public class GetClosePlanFragmentFactorial extends AsyncTask<Void, Void, ArrayList<PlanEntity>> {
-    private String smokerUid;
+    private boolean isSupporterHistoryView;
     private ArrayList<PlanEntity> resultFromWS;
     public IGetPendingPlanResultAsyncResponse delegate = null;
 
     public GetClosePlanFragmentFactorial() {}
 
-    public GetClosePlanFragmentFactorial(String smokerUid) {
-        this.smokerUid = smokerUid;
+    public GetClosePlanFragmentFactorial(boolean isSupporterHistoryView) {
+        this.isSupporterHistoryView = isSupporterHistoryView;
     }
 
     @Override
@@ -36,7 +36,10 @@ public class GetClosePlanFragmentFactorial extends AsyncTask<Void, Void, ArrayLi
     protected ArrayList<PlanEntity> doInBackground(Void... voids) {
         // construct request param json
         try {
-            resultFromWS = InteractWebservice.getClosePlanBySmokerUid(smokerUid);
+            if (isSupporterHistoryView)
+                resultFromWS = InteractWebservice.getClosePlanBySupporterEmail(QuitSmokeClientUtils.getEmail());
+            else
+                resultFromWS = InteractWebservice.getClosePlanBySmokerUid(QuitSmokeClientUtils.getUid());
         } catch (Exception ex) {
             Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
         }

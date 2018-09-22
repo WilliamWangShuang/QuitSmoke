@@ -6,6 +6,7 @@ import android.support.v4.widget.SlidingPaneLayout;
 
 public class PlanEntity implements Parcelable {
     private String uid;
+    private String smokerName;
     private int targetAmount;
     private String createDate;
     private String status;
@@ -16,6 +17,7 @@ public class PlanEntity implements Parcelable {
 
     private PlanEntity(Parcel in) {
         uid = in.readString();
+        smokerName = in.readString();
         targetAmount = in.readInt();
         createDate = in.readString();
         status = in.readString();
@@ -28,6 +30,14 @@ public class PlanEntity implements Parcelable {
         this.targetAmount = targetAmount;
         this.createDate = createDate;
         this.status = status;
+    }
+
+    public String getSmokerName() {
+        return smokerName;
+    }
+
+    public void setSmokerName(String smokerName) {
+        this.smokerName = smokerName;
     }
 
     public String getEncouragement() {
@@ -86,6 +96,7 @@ public class PlanEntity implements Parcelable {
     @Override
     public void writeToParcel(Parcel out, int flags) {
         out.writeString(uid);
+        out.writeString(smokerName);
         out.writeInt(targetAmount);
         out.writeString(createDate);
         out.writeString(status);

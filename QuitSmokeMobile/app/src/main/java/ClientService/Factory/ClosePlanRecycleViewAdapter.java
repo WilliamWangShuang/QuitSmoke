@@ -5,12 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.william.quitsmokeappclient.Interface.IPlanRecycleItemClick;
 import com.example.william.quitsmokeappclient.R;
-
 import java.util.ArrayList;
-
 import clientservice.entities.PlanEntity;
 
 public class ClosePlanRecycleViewAdapter extends RecyclerView.Adapter<ClosePlanRecycleViewAdapter.MyViewHolder> {
@@ -27,6 +24,7 @@ public class ClosePlanRecycleViewAdapter extends RecyclerView.Adapter<ClosePlanR
         private TextView tvCreateDate;
         private TextView tvRealAmount;
         private TextView tvIsSuccess;
+        private TextView tvSmokerName;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -35,14 +33,22 @@ public class ClosePlanRecycleViewAdapter extends RecyclerView.Adapter<ClosePlanR
             tvCreateDate = (TextView)itemView.findViewById(R.id.plan_item_create_date);
             tvRealAmount = (TextView)itemView.findViewById(R.id.plan_real_amount);
             tvIsSuccess = (TextView)itemView.findViewById(R.id.is_success);
+            tvSmokerName = (TextView)itemView.findViewById(R.id.tvSmokerName);
         }
 
         public void bind(final PlanEntity item, final IPlanRecycleItemClick listener) {
             // bind real values for plan on UI
-            tvTargetAmount.setText("Target Amount Set By your Partner:" + item.getTargetAmount());
+            tvTargetAmount.setText("Target Amount:" + item.getTargetAmount());
             tvStatus.setText(item.getStatus());
             tvCreateDate.setText(item.getCreateDate());
             tvRealAmount.setText("Real Amount Taken By your Partner:" + item.getRealAmount());
+            // construct smoker name
+            String smokerName = item.getSmokerName() == null || "".equals(item.getSmokerName()) ? "" : item.getSmokerName();
+            tvSmokerName.setText(smokerName);
+            // control smoker name visible
+            if (smokerName == null || "".equals(smokerName)) {
+                tvSmokerName.setVisibility(View.GONE);
+            }
             // check if this plan succeed
             boolean isSucc = false;
             if (item.getTargetAmount() > item.getRealAmount())

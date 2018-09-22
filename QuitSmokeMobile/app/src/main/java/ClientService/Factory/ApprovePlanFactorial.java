@@ -2,12 +2,8 @@ package clientservice.factory;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.example.william.quitsmokeappclient.Interface.IApprovePlanAsyncResponse;
-import com.example.william.quitsmokeappclient.Interface.IGetPendingPlanResultAsyncResponse;
-import java.util.ArrayList;
 import clientservice.QuitSmokeClientUtils;
-import clientservice.entities.PlanEntity;
 import clientservice.webservice.InteractWebservice;
 
 public class ApprovePlanFactorial extends AsyncTask<Void, Void, Boolean> {
