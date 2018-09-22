@@ -639,7 +639,7 @@ namespace QuitSmokeWebAPI.Controllers
                         foreach (JToken token in objects.Children())
                         {
                             entity = token.First.ToObject<PlanEntity>();
-                            if (Constant.STATUS_APPROVE.Equals(entity.status, StringComparison.InvariantCultureIgnoreCase))
+                            if (!Constant.STATUS_CLOSE.Equals(entity.status, StringComparison.InvariantCultureIgnoreCase))
                             {
                                 currentPlan = token;
                                 break;
@@ -1248,7 +1248,7 @@ namespace QuitSmokeWebAPI.Controllers
                         foreach (JToken token in objects.Children())
                         {
                             PlanEntity entity = token.First.ToObject<PlanEntity>();
-                            if (Constant.STATUS_APPROVE.Equals(entity.status, StringComparison.InvariantCultureIgnoreCase))
+                            if (!Constant.STATUS_CLOSE.Equals(entity.status, StringComparison.InvariantCultureIgnoreCase))
                             {
                                 DateTime createDate = DateTime.Parse(entity.plan_create_date);
                                 // calculate differences between current day and plan create date
