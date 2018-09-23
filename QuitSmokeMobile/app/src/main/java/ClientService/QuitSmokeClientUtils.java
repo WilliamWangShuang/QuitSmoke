@@ -406,4 +406,12 @@ public class QuitSmokeClientUtils extends Application {
 
         return ((float)(count))/len;
     }
+
+    public static String escapeString(String str) {
+        return str.replaceAll("\n", "＼ｎ");
+    }
+
+    public static String reoverString(String str) {
+        return str.replaceAll("＼ｎ", "\n");
+    }
 }

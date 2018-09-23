@@ -171,7 +171,7 @@ public class InteractWebservice {
             result.setRealAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_REAL_AMOUNT));
             result.setStatus(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_STATUS));
             result.setCreateDate(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_CREATE_DT));
-            result.setEncouragement(json.getString(QuitSmokeClientConstant.WS_INTERACT_ENCOURAGEMENT_ENCOURAGEMENT));
+            result.setEncouragement(QuitSmokeClientUtils.reoverString(json.getString(QuitSmokeClientConstant.WS_INTERACT_ENCOURAGEMENT_ENCOURAGEMENT)));
         }
         return result;
     }
@@ -198,7 +198,7 @@ public class InteractWebservice {
         JSONObject jsonReq = new JSONObject();
         jsonReq.put(QuitSmokeClientConstant.WS_INTERACT_ENCOURAGEMENT_SMOKER_UID, smokerUid);
         jsonReq.put(QuitSmokeClientConstant.WS_ITNERACT_PLAN_CREATE_DATE, createDT);
-        jsonReq.put(QuitSmokeClientConstant.WS_INTERACT_ENCOURAGEMENT_ENCOURAGE, newEncouragement);
+        jsonReq.put(QuitSmokeClientConstant.WS_INTERACT_ENCOURAGEMENT_ENCOURAGE, QuitSmokeClientUtils.escapeString(newEncouragement));
         Log.d("QuitSmokeDebug", "update encouragement json:" + jsonReq.toString());
         // call ws to get update encouragement
         String response = BaseWebservice.postWSForGetRestrievePlainText(url, jsonReq);
