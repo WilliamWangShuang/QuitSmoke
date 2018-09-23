@@ -11,7 +11,7 @@
         android:id="@+id/tvSetEncouragement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text="@string/update_encouragement"
         android:textColor="@color/colorWhite"
@@ -20,15 +20,15 @@
 
     <EditText
         android:id="@+id/txtSetEncouragement"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="300dp"
         android:layout_marginBottom="60dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_style"
         android:ems="10"
-        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:inputType="textMultiLine"
         android:scaleX="1"
         android:scaleY="1"
         android:selectAllOnFocus="true" />
