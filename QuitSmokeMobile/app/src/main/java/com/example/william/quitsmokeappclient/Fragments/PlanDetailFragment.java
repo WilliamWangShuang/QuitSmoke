@@ -73,6 +73,7 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
 
     @Override
     public void processFinish(String reponseResult) {
+        btnUpdateEncourage.setEnabled(true);
         realAmountMsg = reponseResult;
     }
 }

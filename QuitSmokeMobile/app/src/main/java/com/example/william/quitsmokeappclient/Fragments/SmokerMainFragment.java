@@ -85,5 +85,6 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
     @Override
     public void processFinish(String reponseResult) {
         realAmountMsg = reponseResult;
+        btnPanicButton.setEnabled(true);
     }
 }
