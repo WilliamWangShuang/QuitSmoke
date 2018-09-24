@@ -20,7 +20,7 @@
         android:id="@+id/simpleExpandableListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8387e1d6"
+        android:background="#cd6b9b9c"
         android:dividerHeight="0dp" />
 
     <TextView
