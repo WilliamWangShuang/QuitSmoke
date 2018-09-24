@@ -25,7 +25,6 @@ public class LaunchActivity extends AppCompatActivity implements IApprovePlanAsy
     private CircularProgressButton btnMorph1;
     private int mMorphCounter1;
     private boolean isLoginSucc;
-    private boolean isClickAble;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,23 +102,8 @@ public class LaunchActivity extends AppCompatActivity implements IApprovePlanAsy
 
     private void onMorphButton1Clicked(final CircularProgressButton btnMorph) {
         if (mMorphCounter1 == 0) {
-//            if (!isLoginSucc) {
                 mMorphCounter1++;
                 morphToSquare(btnMorph, 500);
-//            } else {
-//                // get email and pwd from shared preference. If exist, direct sign in.
-//                SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-//                String emailInPreference = sharedPreferences.getString("email", "");
-//                String pwdInPreference = sharedPreferences.getString("pwd", "");
-//                if (emailInPreference != null
-//                        && !"".equals(emailInPreference)
-//                        && pwdInPreference != null
-//                        && !"".equals(pwdInPreference)) {
-//                    LoginFactorial loginFactorial = new LoginFactorial(LaunchActivity.this, emailInPreference, pwdInPreference, true);
-//                    loginFactorial.delegate = this;
-//                    loginFactorial.execute();
-//                }
-//            }
         } else if (mMorphCounter1 == 1) {
             String emailFromUI = txtEmail.getText().toString();
             String pwdFromUI = txtPwd.getText().toString();
