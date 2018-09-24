@@ -302,6 +302,31 @@ paths:
           description: Success
           schema:
             type: boolean
+  /api/Values/updatePoint:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesUpdatePointPost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: updatePoint
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/UpdatePoint'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
   /api/Values/updateEncouragement:
     post:
       tags:
@@ -701,10 +726,20 @@ definitions:
         type: string
       partnerEmail:
         type: string
+  UpdatePoint:
+    type: object
+    properties:
+      smokerNodeName:
+        type: string
+      point:
+        format: int32
+        type: integer
   UpdateEncouragement:
     type: object
     properties:
       smokerUID:
+        type: string
+      createDT:
         type: string
       encourage:
         type: string

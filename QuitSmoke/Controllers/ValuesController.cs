@@ -726,6 +726,48 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("updatePoint")]
+        public bool updatePoint([FromBody] UpdatePoint updatePoint)
+        {
+            bool result = false;
+            string nodeName = updatePoint.smokerNodeName;
+            try
+            {
+                // if node name is not empty, start update
+                if (!string.IsNullOrEmpty(nodeName))
+                {
+                    // construct patch uri
+                    string uri = Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_APP_USERS + "/"
+                        + nodeName + "/"
+                        + Constant.FIREBASE_SUFFIX_JSON;
+                    
+                    using (var client = new HttpClient())
+                    {
+                        var method = new HttpMethod("PATCH");
+                        // make patch request content
+                        string json = "{\"" + Constant.JSON_KEY_POINT + "\":" + updatePoint.point +"}";
+                        HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                        var request = new HttpRequestMessage(method, uri)
+                        {
+                            Content = httpContent
+                        };
+
+                        HttpResponseMessage response = new HttpResponseMessage();
+                        response = client.SendAsync(request).Result;
+                        result = response.IsSuccessStatusCode;
+                    }
+                    
+                }
+                
+            } catch (Exception ex) {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+                result = false;
+            }
+
+            return result;
+        }
+
         [HttpPost("updateEncouragement")]
         public bool updateEncouragement([FromBody] UpdateEncouragement updateEncouragement)
         {
