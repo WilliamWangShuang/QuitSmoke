@@ -730,6 +730,7 @@ namespace QuitSmokeWebAPI.Controllers
         public bool updatePoint([FromBody] UpdatePoint updatePoint)
         {
             bool result = false;
+            UserInfo currUser = null;
             string nodeName = updatePoint.smokerNodeName;
             try
             {
@@ -742,11 +743,29 @@ namespace QuitSmokeWebAPI.Controllers
                         + nodeName + "/"
                         + Constant.FIREBASE_SUFFIX_JSON;
                     
+                    // get current app_user by nodeName
+                    using(var client = new HttpClient())
+                    {
+                        // add an Accept header for JSON format
+                        client.DefaultRequestHeaders.Accept.Add(
+                            new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+                        // retrieve data response
+                        HttpResponseMessage response = client.GetAsync(uri).Result;
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // parse the response body
+                            currUser = response.Content.ReadAsAsync<UserInfo>().Result;
+                        }
+                    }
+                    
                     using (var client = new HttpClient())
                     {
                         var method = new HttpMethod("PATCH");
+                        // if reset point ,set point as 0. Otherwise, add 1 to original value.
+                        int newPoint = updatePoint.isReset ? 0 : currUser.point + 1;
                         // make patch request content
-                        string json = "{\"" + Constant.JSON_KEY_POINT + "\":" + updatePoint.point +"}";
+                        string json = "{\"" + Constant.JSON_KEY_POINT + "\":" + newPoint +"}";
                         HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                         var request = new HttpRequestMessage(method, uri)
                         {

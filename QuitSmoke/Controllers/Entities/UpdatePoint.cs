@@ -6,6 +6,6 @@ namespace QuitSmokeWebAPI.Controllers.Entity
     public class UpdatePoint
     {
         public string smokerNodeName { get; set; }
-        public int point { get; set; }
+        public bool isReset { get; set; }
     }
 }
