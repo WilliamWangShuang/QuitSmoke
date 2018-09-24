@@ -396,11 +396,11 @@ public class CustomDrawView extends android.support.v7.widget.AppCompatTextView 
 
         int gravity = getGravity();
 
-        //todo Gravity.START
+        //Gravity.START
         if((gravity & Gravity.LEFT) == Gravity.LEFT) {
             left = paddingLeft;
         }
-        //todo Gravity.END
+        //Gravity.END
         else if((gravity & Gravity.RIGHT) == Gravity.RIGHT) {
             left = (vwidth - paddingRight) - width;
         }

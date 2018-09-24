@@ -1,5 +1,7 @@
 package com.example.william.quitsmokeappclient.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -40,6 +42,16 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
         GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), QuitSmokeClientUtils.getUid(), mCustomProgressBar, true);
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
+
+        /*
+            The logic is: If there is no indicator stored in SharedPreference, initialize indicator as value of 'false' when smoker login. Otherwise, use the value stored.
+                          When smoker clicks panic button, change value to 'true'. Check the value every 24H, if 'true', reset point of this smoker as 0, otherwise,
+                          increment 1 to the original point. Later, the streak will be calculate by the point of this user. Besides, reset indicator in shared preference to
+                          'false' every 24H.
+         */
+        // check shared preference to see if there is indicator is already set for indicating streaking is broken.
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        boolean isStreakBroken = sharedPreferences.getBoolean("isStreakBroken", false);
 
         // get panic button
         btnPanicButton = (Button)view.findViewById(R.id.buttonforquitter);

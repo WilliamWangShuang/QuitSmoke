@@ -1,16 +1,16 @@
 package clientservice;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.TextView;
-
 import com.dinuscxj.progressbar.CircleProgressBar;
-import com.jjoe64.graphview.series.BarGraphSeries;
-import com.jjoe64.graphview.series.BaseSeries;
-import com.jjoe64.graphview.series.DataPoint;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +24,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import clientservice.entities.PlanEntity;
 
 public class QuitSmokeClientUtils extends Application {
@@ -41,8 +40,17 @@ public class QuitSmokeClientUtils extends Application {
     private static boolean isPartner;
     private static String encouragement;
     private static CircleProgressBar mCustomProgressBar;
+    private static boolean isSmokeFreeZoneSync;
 
     // setters and getters
+
+    public static boolean isIsSmokeFreeZoneSync() {
+        return isSmokeFreeZoneSync;
+    }
+
+    public static void setIsSmokeFreeZoneSync(boolean isSmokeFreeZoneSync) {
+        QuitSmokeClientUtils.isSmokeFreeZoneSync = isSmokeFreeZoneSync;
+    }
 
     public static String getEncouragement() {
         return encouragement;
@@ -411,7 +419,7 @@ public class QuitSmokeClientUtils extends Application {
         return str.replaceAll("\n", "＼ｎ");
     }
 
-    public static String reoverString(String str) {
+    public static String recoverString(String str) {
         return str.replaceAll("＼ｎ", "\n");
     }
 }

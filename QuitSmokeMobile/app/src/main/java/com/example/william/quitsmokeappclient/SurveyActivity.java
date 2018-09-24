@@ -20,6 +20,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.LoginFactorial;
 import clientservice.webservice.receiver.SyncNoSmokePlaceReceiver;
 
@@ -99,13 +100,12 @@ public class SurveyActivity extends AppCompatActivity implements IApprovePlanAsy
         });
 
         // sync DB with SQLite only once each time app launch. After launch, it should not do this sync again when go back to this activity
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        boolean isSmokeFreeZoneSync = QuitSmokeClientUtils.isIsSmokeFreeZoneSync();
         // start load no smoke place receiver
-        if (sharedPreferences.getBoolean("isFlag", true)) {
+        if (!isSmokeFreeZoneSync) {
+            Log.d("QuitSmokeDebug", "Start Sychronize Smoke Free Zone data between SQLite and Firebase.");
             syncNoSmokePlaceReceiver = new SyncNoSmokePlaceReceiver(this);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("isFlag", false);
-            editor.commit();
+            QuitSmokeClientUtils.setIsSmokeFreeZoneSync(true);
         }
 
         // set onclick on button 'next'

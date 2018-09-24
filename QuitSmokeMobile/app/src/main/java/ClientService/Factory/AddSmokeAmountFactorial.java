@@ -2,6 +2,7 @@ package clientservice.factory;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
@@ -54,6 +55,12 @@ public class AddSmokeAmountFactorial extends AsyncTask<Void, Void, Void> {
     Handler h = new Handler() {
         public void handleMessage(Message msg){
             if(msg.what == 0) {
+                // set isStreakBroken in SharedPreference to 'true' to break streak
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isStreakBroken", true);
+                editor.commit();
+                // go back to smoker main page
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new SmokerMainFragment()).commit();
             } else {
                 Toast.makeText(context, "Unexpect error occurs.", Toast.LENGTH_SHORT);

@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        // check if login account info is already stored in SharedPreference
         SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         String emailInPreference = sharedPreferences.getString("email", "");
         String pwdInPreference = sharedPreferences.getString("pwd", "");
