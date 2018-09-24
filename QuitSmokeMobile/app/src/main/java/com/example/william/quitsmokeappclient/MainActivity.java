@@ -30,6 +30,8 @@ import com.example.william.quitsmokeappclient.Fragments.PlanHistoryFragment;
 import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.receiver.CheckPlanReceiver;
+import clientservice.webservice.receiver.ResetStreakReceiver;
+
 import static android.view.View.GONE;
 
 public class MainActivity extends AppCompatActivity
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity
 
     // set check create plan receiver
     private CheckPlanReceiver checkPlanReceiver;
+    private ResetStreakReceiver resetStreakReceiver;
     private ImageButton btnFrag_home_go;
     private ImageButton btnFrag_create_plan_go;
     private ImageButton btnFrag_frs_calc_go;
@@ -130,6 +133,8 @@ public class MainActivity extends AppCompatActivity
         createNotificationChannel();
         // start receiver
         checkPlanReceiver = new CheckPlanReceiver(this);
+        if (QuitSmokeClientUtils.isIsSmoker())
+            resetStreakReceiver = new ResetStreakReceiver(this);
         // set login account and password in Shared preference so that user do not need to login every time when open app until he log off
         SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         String emailInPreference = sharedPreferences.getString("email", "");

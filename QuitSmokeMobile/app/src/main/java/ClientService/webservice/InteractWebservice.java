@@ -207,4 +207,22 @@ public class InteractWebservice {
         Log.d("QuitSmokeDebug", "updateEncouragement result:" + result);
         return result;
     }
+
+    public static boolean updatePoint(String smokerNodeName, boolean isReset) throws JSONException, IOException {
+        boolean isSucc = false;
+        Log.d("QuitSmokeSebug", "smokerNodeName from ResetStreakReceiver:" + smokerNodeName + ",is reset point:"+ isReset);
+        String url = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.UPDATE_POINT;
+        Log.d("QuitSmokeDebug", "update point url:" + url);
+
+        // construct request json
+        JSONObject jsonReq = new JSONObject();
+        jsonReq.put(QuitSmokeClientConstant.WS_JSON_UPDATE_PARTNER_KEY_SMOKER_NODE_NAME, smokerNodeName);
+        jsonReq.put(QuitSmokeClientConstant.WS_INTERACT_RESET_POINT_I, isReset);
+        Log.d("QuitSmokeDebug", "update point json:" + jsonReq.toString());
+        // call ws to get update encouragement
+        String response = BaseWebservice.postWSForGetRestrievePlainText(url, jsonReq);
+        isSucc = Boolean.parseBoolean(response);
+
+        return isSucc;
+    }
 }
