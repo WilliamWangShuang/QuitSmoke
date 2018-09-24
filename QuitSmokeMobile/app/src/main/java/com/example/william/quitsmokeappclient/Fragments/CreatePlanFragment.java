@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.example.william.quitsmokeappclient.R;
 import clientservice.factory.CreatePlanFactorial;
 import clientservice.QuitSmokeClientUtils;
@@ -18,7 +20,7 @@ import clientservice.QuitSmokeClientUtils;
 public class CreatePlanFragment extends Fragment {
     private View vCreatePlanFragment;
     private Button btnCreatePlan;
-    private Button btnSetPartner;
+    private TextView btnSetPartner;
     private int targetAmount;
     private EditText txtTargetAmount;
     private CreatePlanErrorFragement createPlanErrorFragement;
@@ -46,7 +48,7 @@ public class CreatePlanFragment extends Fragment {
 
         // get UI fields
         btnCreatePlan = (Button)view.findViewById(R.id.btnCreatePlan);
-        btnSetPartner = (Button)view.findViewById(R.id.btnSetPartner);
+        btnSetPartner = (TextView)view.findViewById(R.id.btnSetPartner);
         txtTargetAmount = (EditText)view.findViewById(R.id.txtTargetAmount);
         // initial pop out dialogs on this view
         createPlanErrorFragement = new CreatePlanErrorFragement();
