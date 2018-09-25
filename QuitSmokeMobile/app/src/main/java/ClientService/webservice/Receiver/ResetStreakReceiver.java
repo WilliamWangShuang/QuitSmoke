@@ -43,7 +43,7 @@ public class ResetStreakReceiver extends BroadcastReceiver {
         sharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         // set isFirstLaunch false
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isFirstLaunch", false);
+        editor.putBoolean(QuitSmokeClientUtils.getUid() + "isFirstLaunch", false);
         editor.putString(QuitSmokeClientConstant.WS_JSON_UPDATE_PARTNER_KEY_SMOKER_NODE_NAME, QuitSmokeClientUtils.getSmokerNodeName());
         editor.commit();
     }

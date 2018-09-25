@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity
         checkPlanReceiver = new CheckPlanReceiver(this);
         // check if smoker has launched app in the same day. if yes, not start receiver to synchronize steaker's point
         if (QuitSmokeClientUtils.isIsSmoker()) {
-            boolean isFirstLaunch = sharedPreferences.getBoolean("isFirstLaunch", true);
+            boolean isFirstLaunch = sharedPreferences.getBoolean(QuitSmokeClientUtils.getUid() + "isFirstLaunch", true);
             if (isFirstLaunch) {
                 resetStreakReceiver = new ResetStreakReceiver(this);
             }
