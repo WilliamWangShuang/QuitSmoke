@@ -12,6 +12,7 @@ import com.example.william.quitsmokeappclient.Interface.ILoadNoSmokePlaceAsyncRe
 
 import java.util.List;
 
+import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.db.QuitSmokeDbUtility;
 import clientservice.entities.NoSmokePlace;
@@ -23,7 +24,6 @@ public class ResetStreakReceiver extends BroadcastReceiver {
     private AlarmManager alarmMgr;
     private Intent i;
     private PendingIntent pi;
-    private Context mContext;
     private ResetSmokerPointFactorial resetSmokerPointFactorial;
     private SharedPreferences sharedPreferences;
 
@@ -31,8 +31,6 @@ public class ResetStreakReceiver extends BroadcastReceiver {
 
     public ResetStreakReceiver(Context context){
         Log.d("QuitSmokeDebug", "start constructor of ResetStreakReceiver");
-        // get context
-        mContext = context;
         // Initial alarm manager used to set repeat clock
         alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         // Define which intent to be broadcast to context
@@ -40,7 +38,14 @@ public class ResetStreakReceiver extends BroadcastReceiver {
         // get current pending board cast intent in context
         pi = PendingIntent.getBroadcast(context,0, i,0);
         // Set alarm do the job of the intent  AlarmManager.INTERVAL_HALF_HOUR
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),AlarmManager.INTERVAL_DAY, pi);
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),3000, pi);
+
+        sharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        // set isFirstLaunch false
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isFirstLaunch", false);
+        editor.putString(QuitSmokeClientConstant.WS_JSON_UPDATE_PARTNER_KEY_SMOKER_NODE_NAME, QuitSmokeClientUtils.getSmokerNodeName());
+        editor.commit();
     }
 
     @Override
@@ -57,17 +62,18 @@ public class ResetStreakReceiver extends BroadcastReceiver {
             sharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
             boolean isStreakBroken = sharedPreferences.getBoolean("isStreakBroken", false);
             // if it is true, reset this smoker's point to 0 and reset indicator in shared preference to 'false'. Otherwise, increment it by 1
+            SharedPreferences.Editor editor = sharedPreferences.edit();
             if (isStreakBroken) {
                 // reset indicator in shared preference to 'false'
-                SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("isStreakBroken", false);
-                editor.commit();
                 // reset this smoker's point to 0.
-                resetSmokerPointFactorial = new ResetSmokerPointFactorial(true);
+                resetSmokerPointFactorial = new ResetSmokerPointFactorial(true, context);
             } else {
                 // add 1 to original point.
-                resetSmokerPointFactorial = new ResetSmokerPointFactorial(false);
+                resetSmokerPointFactorial = new ResetSmokerPointFactorial(false, context);
             }
+//            editor.putBoolean("isFirstLaunch", true);
+            editor.commit();
             resetSmokerPointFactorial.execute();
 
         } catch (Exception ex) {

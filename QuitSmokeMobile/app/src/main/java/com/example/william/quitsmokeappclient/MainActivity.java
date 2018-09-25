@@ -30,6 +30,8 @@ import com.example.william.quitsmokeappclient.Fragments.MapFragment;
 import com.example.william.quitsmokeappclient.Fragments.PartnerMainFragment;
 import com.example.william.quitsmokeappclient.Fragments.PlanHistoryFragment;
 import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
+
+import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.receiver.CheckPlanReceiver;
 import clientservice.webservice.receiver.ResetStreakReceiver;
@@ -133,10 +135,7 @@ public class MainActivity extends AppCompatActivity
         changeDrawerItem(navigationView);
         // set notification channel
         createNotificationChannel();
-        // start receiver
-        checkPlanReceiver = new CheckPlanReceiver(this);
-        if (QuitSmokeClientUtils.isIsSmoker())
-            resetStreakReceiver = new ResetStreakReceiver(this);
+
         // set login account and password in Shared preference so that user do not need to login every time when open app until he log off
         SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         String emailInPreference = sharedPreferences.getString("email", "");
@@ -149,6 +148,17 @@ public class MainActivity extends AppCompatActivity
             editor.putString("email", QuitSmokeClientUtils.getEmail());
             editor.putString("pwd", QuitSmokeClientUtils.getPassword());
             editor.commit();
+        }
+
+
+        // start receiver
+        checkPlanReceiver = new CheckPlanReceiver(this);
+        // check if smoker has launched app in the same day. if yes, not start receiver to synchronize steaker's point
+        if (QuitSmokeClientUtils.isIsSmoker()) {
+            boolean isFirstLaunch = sharedPreferences.getBoolean("isFirstLaunch", true);
+            if (isFirstLaunch) {
+                resetStreakReceiver = new ResetStreakReceiver(this);
+            }
         }
 
         // set tool bar welcome message

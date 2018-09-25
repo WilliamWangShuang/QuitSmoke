@@ -222,7 +222,7 @@ public class InteractWebservice {
         // call ws to get update encouragement
         String response = BaseWebservice.postWSForGetRestrievePlainText(url, jsonReq);
         isSucc = Boolean.parseBoolean(response);
-
+        Log.d("QuitSmokeDebug", "is update point success:" + isSucc);
         return isSucc;
     }
 }
