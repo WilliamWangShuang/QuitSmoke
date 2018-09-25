@@ -38,7 +38,7 @@ public class ResetStreakReceiver extends BroadcastReceiver {
         // get current pending board cast intent in context
         pi = PendingIntent.getBroadcast(context,0, i,0);
         // Set alarm do the job of the intent  AlarmManager.INTERVAL_HALF_HOUR
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),3000, pi);
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),AlarmManager.INTERVAL_DAY, pi);
 
         sharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         // set isFirstLaunch false
