@@ -1,11 +1,9 @@
 package clientservice.factory;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.TextView;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
 import clientservice.entities.UpdatePartnerEntity;

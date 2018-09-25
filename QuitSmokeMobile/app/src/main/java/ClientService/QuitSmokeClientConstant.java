@@ -36,6 +36,7 @@ public class QuitSmokeClientConstant {
     public static String INDICATOR_Y = "Y";
     public static String INDICATOR_N = "N";
     public static String INDICATOR_NO_PLAN = "NP";
+    public static String INDICATOR_FAIL = "F";
 
     // app user json key
     public static String WS_JSON_USER_KEY_EMAIL = "email";

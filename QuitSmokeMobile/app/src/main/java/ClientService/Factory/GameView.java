@@ -5,16 +5,14 @@ import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
+import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.Boom;
 import clientservice.entities.Enemy;
 import clientservice.entities.Friend;
@@ -28,19 +26,16 @@ public class GameView extends SurfaceView implements Runnable {
     private Paint paint;
     private Canvas canvas;
     private SurfaceHolder surfaceHolder;
-
     private Enemy[] enemies;
     //created a reference of the class Friend
     private Friend friend;
-
     private int enemyCount = 1;
-
     private ArrayList<Star> stars = new ArrayList<>();
-
     //defining a boom object to display blast
     private Boom boom;
     //a screenX holder
     int screenX;
+    int screenY;
     //to count the number of Misses
     int countMisses;
     //indicator that the enemy has just entered the game screen
@@ -53,13 +48,14 @@ public class GameView extends SurfaceView implements Runnable {
     int highScore[] = new int[4];
     //Shared Prefernces to store the High Scores
     SharedPreferences sharedPreferences;
+    Context context;
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
         this.screenX = screenX;
-
+        this.screenY = screenY;
         countMisses = 0;
-
+        this.context = context;
         isGameOver = false;
         player = new Player(context, screenX, screenY);
 
@@ -71,19 +67,8 @@ public class GameView extends SurfaceView implements Runnable {
             Star s = new Star(screenX, screenY);
             stars.add(s);
         }
-
-        enemies = new Enemy[enemyCount];
-        flag = new boolean[enemyCount];
-        for (int i = 0; i < enemyCount; i++) {
-            enemies[i] = new Enemy(context, screenX, screenY);
-            flag[i] = false;
-        }
-
-        //initializing boom object
-        boom = new Boom(context);
-
-        //initializing the Friend class object
-        friend = new Friend(context, screenX, screenY);
+        // add player, enenmies, friend and boom.
+        resetRolesOnScreen();
 
         //setting the score to 0 initially
         score = 0;
@@ -200,7 +185,7 @@ public class GameView extends SurfaceView implements Runnable {
             }
 
             paint.setTextSize(30);
-            canvas.drawText("Score:" + score,100,50,paint);
+            canvas.drawText("Score:" + score,screenX / 2,50,paint);
 
             canvas.drawBitmap(
                     player.getBitmap(),
@@ -260,14 +245,37 @@ public class GameView extends SurfaceView implements Runnable {
         try {
             gameThread.join();
         } catch (InterruptedException e) {
-
+            Log.d("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(e));
         }
     }
 
     public void resume() {
-        playing = true;
-        gameThread = new Thread(this);
-        gameThread.start();
+            playing = true;
+            gameThread = new Thread(this);
+            gameThread.start();
+    }
+
+    // reset game context when restart game
+    public void reset() {
+        isGameOver = false;
+        score = 0;
+        countMisses = 0;
+
+        // add player, enenmies, friend and boom.
+        resetRolesOnScreen();
+    }
+
+    private void resetRolesOnScreen() {
+        enemies = new Enemy[enemyCount];
+        flag = new boolean[enemyCount];
+        for (int i = 0; i < enemyCount; i++) {
+            enemies[i] = new Enemy(context, screenX, screenY);
+            flag[i] = false;
+        }
+        //initializing boom object
+        boom = new Boom(context);
+        //initializing the Friend class object
+        friend = new Friend(context, screenX, screenY);
     }
 
     @Override
@@ -284,4 +292,5 @@ public class GameView extends SurfaceView implements Runnable {
         }
         return true;
     }
+
 }

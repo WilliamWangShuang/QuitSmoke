@@ -105,6 +105,7 @@
     <string name="login">Login</string>
     <string name="update_encouragement">What do you want to say for encouraging your partner?</string>
     <string name="succ_update_encourgement">Work Complete!</string>
+    <string name="game_if_restart">Do you want to play again?</string>
 
     <array name="user_role">
         <item>Smoker</item>

@@ -1,6 +1,7 @@
 package com.example.william.quitsmokeappclient.Fragments;
 
 import android.app.Activity;
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
@@ -11,13 +12,15 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
+import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
-
 import clientservice.factory.GameView;
 
 public class GameFragment extends Fragment {
-    private View vGameFragment;
     //declaring gameview
     private GameView gameView;
     private Context mContext;
@@ -33,14 +36,35 @@ public class GameFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Getting display object
         Display display = getActivity().getWindowManager().getDefaultDisplay();
-
         //Getting the screen resolution into point object
-        Point size = new Point();
+        final Point size = new Point();
         display.getSize(size);
 
         //Initializing game view object
         gameView = new GameView(mContext, size.x, size.y);
-        return gameView;
+
+        Button btnRestart = new Button(mContext);
+        btnRestart.setText("Restart");
+        btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gameView.reset();
+                gameView.resume();
+            }
+        });
+        btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gameView.reset();
+                gameView.resume();
+            }
+        });
+        FrameLayout game = new FrameLayout(mContext);
+        LinearLayout gameWidgets = new LinearLayout(mContext);
+        gameWidgets.addView(btnRestart);
+        game.addView(gameView);
+        game.addView(gameWidgets);
+        return game;
     }
 
     @Override
@@ -61,4 +85,5 @@ public class GameFragment extends Fragment {
         super.onResume();
         gameView.resume();
     }
+
 }
