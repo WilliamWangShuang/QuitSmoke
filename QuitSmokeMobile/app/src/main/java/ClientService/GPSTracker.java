@@ -15,6 +15,8 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.List;
+
 public final class GPSTracker implements LocationListener {
 
     private final Context mContext;
@@ -53,7 +55,7 @@ public final class GPSTracker implements LocationListener {
      */
     public Location getLocation() {
         try {
-            locationManager = (LocationManager)mContext.getSystemService(Context.LOCATION_SERVICE);
+            locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
 
             // getting GPS status
             isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -76,6 +78,7 @@ public final class GPSTracker implements LocationListener {
                         Toast.makeText(mContext, "Please grant location access in your device settings for this app.", Toast.LENGTH_LONG).show();
                         return null;
                     }
+
                     locationManager.requestLocationUpdates(
                             LocationManager.NETWORK_PROVIDER,
                             MIN_TIME_BW_UPDATES,
@@ -86,12 +89,20 @@ public final class GPSTracker implements LocationListener {
                         if (location != null) {
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
+                        } else {
+                            List<String> providers = locationManager.getProviders(true);
+                            for (String provider : providers) {
+                                location = locationManager.getLastKnownLocation(provider);
+                                if (location == null) {
+                                    continue;
+                                }
+                            }
                         }
                     }
                 }
                 // if GPS Enabled get lat/long using GPS Services
                 if (isGPSEnabled) {
-                    location=null;
+                    location = null;
                     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                             && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         Toast.makeText(mContext, "Please grant location access in your device settings for this app.", Toast.LENGTH_LONG).show();
@@ -104,11 +115,18 @@ public final class GPSTracker implements LocationListener {
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                         Log.d("GPS Enabled", "GPS Enabled");
                         if (locationManager != null) {
-                            location = locationManager
-                                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                             if (location != null) {
                                 latitude = location.getLatitude();
                                 longitude = location.getLongitude();
+                            } else {
+                                List<String> providers = locationManager.getProviders(true);
+                                for (String provider : providers) {
+                                    location = locationManager.getLastKnownLocation(provider);
+                                    if (location == null) {
+                                        continue;
+                                    }
+                                }
                             }
                         }
                     }
