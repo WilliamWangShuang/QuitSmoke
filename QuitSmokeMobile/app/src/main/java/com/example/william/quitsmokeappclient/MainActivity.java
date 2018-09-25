@@ -23,6 +23,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.william.quitsmokeappclient.Fragments.CalculateFrsFragment;
 import com.example.william.quitsmokeappclient.Fragments.CreatePlanFragment;
+import com.example.william.quitsmokeappclient.Fragments.GameFragment;
+import com.example.william.quitsmokeappclient.Fragments.GameMainFragment;
 import com.example.william.quitsmokeappclient.Fragments.MainFragment;
 import com.example.william.quitsmokeappclient.Fragments.MapFragment;
 import com.example.william.quitsmokeappclient.Fragments.PartnerMainFragment;
@@ -233,6 +235,8 @@ public class MainActivity extends AppCompatActivity
             nextFragment = new MapFragment();
         } else if (id == R.id.plan_history) {
             nextFragment = new PlanHistoryFragment();
+        } else if (id == R.id.game) {
+            nextFragment = new GameMainFragment();
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();

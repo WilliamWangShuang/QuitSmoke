@@ -22,6 +22,10 @@
                     android:id="@+id/plan_history"
                     android:icon="@drawable/ic_menu_slideshow"
                     android:title="Plan History" />
+                <item
+                    android:id="@+id/game"
+                    android:icon="@drawable/player"
+                    android:title="Game" />
             </menu>
         </item>
 
