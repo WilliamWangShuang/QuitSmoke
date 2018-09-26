@@ -65,6 +65,7 @@ namespace QuitSmokeWebAPI.Controllers.WebApiUtils
         #region <<general constants>>
         public static string GENDER_M = "M";
         public static string GENDER_F = "F";
+        public static string SUCCESS = "Success";
         public static string FAIL_REDUCE_AMOUNT = "failed to reduce amount";
         public static string SUCC_REDUCE_AMOUNT = "successfully reduced amount";
         public static string FAIL_COLD_TURKEY = "failed to quit cold turkey";

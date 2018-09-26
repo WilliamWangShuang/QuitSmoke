@@ -1410,11 +1410,11 @@ namespace QuitSmokeWebAPI.Controllers
         private static string saveNewUserProfile(AppUser newUser, JObject responseAuth)
         {
             string responseString;
+            // get uid after sign up this new user in firebase
+            string uid = responseAuth.GetValue(Constant.JSON_KEY_UID).Value<string>();
             // save new user info in firebase
             using (var client = new WebClient())
-            {
-                // get uid after sign up this new user in firebase
-                string uid = responseAuth.GetValue(Constant.JSON_KEY_UID).Value<string>();
+            {                
                 // construct user info object association with the uid
                 UserInfo userInfo = new UserInfo();
                 userInfo.name = newUser.name;
@@ -1437,7 +1437,7 @@ namespace QuitSmokeWebAPI.Controllers
                 responseString = JObject.Parse(response).ToString();
             }
 
-            return responseString;
+            return Constant.SUCCESS.Equals(responseString, StringComparison.InvariantCultureIgnoreCase) ? uid : responseString;
         }
 
         private int getAgeRange(int age, out int endAge)
