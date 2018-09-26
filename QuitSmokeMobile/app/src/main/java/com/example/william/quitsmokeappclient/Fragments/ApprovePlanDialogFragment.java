@@ -119,7 +119,7 @@ public class ApprovePlanDialogFragment extends DialogFragment implements IApprov
                         Bundle args = new Bundle();
                         args.putString("uid", item.getUid());
                         planDetailFragment.setArguments(args);
-                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentManager fragmentManager = myContext.getSupportFragmentManager();
                         fragmentManager.beginTransaction().replace(R.id.content_frame, planDetailFragment).commit();
                     }
                 }
