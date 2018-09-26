@@ -167,6 +167,7 @@ public class InteractWebservice {
         if (json != null) {
             result = new PlanEntity();
             result.setUid(uid);
+            result.setMilestone(json.getInt(QuitSmokeClientConstant.WS_INTERACT_MILESTONE));
             result.setTargetAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_TARGET_AMOUNT));
             result.setRealAmount(json.getInt(QuitSmokeClientConstant.WS_INTERACT_PLAN_REAL_AMOUNT));
             result.setStatus(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_STATUS));

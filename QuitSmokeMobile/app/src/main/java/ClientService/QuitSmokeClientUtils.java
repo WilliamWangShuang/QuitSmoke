@@ -33,6 +33,7 @@ public class QuitSmokeClientUtils extends Application {
     private static String password;
     private static String uid;
     private static int age;
+    private static int point;
     private static String smokerNodeName;
     private static String gender;
     private static String planNodeName;
@@ -43,6 +44,14 @@ public class QuitSmokeClientUtils extends Application {
     private static boolean isSmokeFreeZoneSync;
 
     // setters and getters
+
+    public static int getPoint() {
+        return point;
+    }
+
+    public static void setPoint(int point) {
+        QuitSmokeClientUtils.point = point;
+    }
 
     public static boolean isIsSmokeFreeZoneSync() {
         return isSmokeFreeZoneSync;

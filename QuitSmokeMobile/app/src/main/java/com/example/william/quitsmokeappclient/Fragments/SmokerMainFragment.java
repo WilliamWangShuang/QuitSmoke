@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
@@ -24,6 +26,7 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
     private String realAmountMsg;
     private CreatePlanErrorFragement createPlanErrorFragment;
     private GoToEncourageDialogFragment messageDialogFragment;
+    private TextView tvMilestone;
 
     @Nullable
     @Override
@@ -36,10 +39,12 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
         super.onViewCreated(view, savedInstanceState);
 
         createPlanErrorFragment = new CreatePlanErrorFragement();
+        // textview for milestone
+        tvMilestone = (TextView)view.findViewById(R.id.tv_milestone_progress);
         // set progress bar
         mCustomProgressBar = (CircleProgressBar)view.findViewById(R.id.custom_progress);
         // get current proceeding plan
-        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), QuitSmokeClientUtils.getUid(), mCustomProgressBar, true);
+        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), QuitSmokeClientUtils.getUid(), mCustomProgressBar, tvMilestone, true);
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
 

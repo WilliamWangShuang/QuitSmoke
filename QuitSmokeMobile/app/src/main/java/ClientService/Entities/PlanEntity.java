@@ -12,6 +12,7 @@ public class PlanEntity implements Parcelable {
     private String status;
     private int realAmount;
     private String encouragement;
+    private int milestone;
 
     public PlanEntity() {}
 
@@ -23,6 +24,7 @@ public class PlanEntity implements Parcelable {
         status = in.readString();
         realAmount = in.readInt();
         encouragement = in.readString();
+        milestone = in.readInt();
     }
 
     public PlanEntity(String uid, int targetAmount, String createDate, String status) {
@@ -30,6 +32,14 @@ public class PlanEntity implements Parcelable {
         this.targetAmount = targetAmount;
         this.createDate = createDate;
         this.status = status;
+    }
+
+    public int getMilestone() {
+        return milestone;
+    }
+
+    public void setMilestone(int milestone) {
+        this.milestone = milestone;
     }
 
     public String getSmokerName() {
@@ -102,6 +112,7 @@ public class PlanEntity implements Parcelable {
         out.writeString(status);
         out.writeInt(realAmount);
         out.writeString(encouragement);
+        out.writeInt(milestone);
     }
 
     public static final Creator<PlanEntity> CREATOR = new Creator<PlanEntity>() {

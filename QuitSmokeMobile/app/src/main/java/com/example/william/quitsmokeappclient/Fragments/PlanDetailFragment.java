@@ -11,10 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
+
+import org.w3c.dom.Text;
+
 import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.GetCurrentPlanFactorial;
 import clientservice.factory.UpdateEncouragementFactorial;
@@ -23,6 +27,7 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
     private CircleProgressBar mCustomProgressBar;
     private Button btnUpdateEncourage;
     private String realAmountMsg;
+    private TextView tvMilestone;
     private FragmentActivity myContext;
     private String uid;
     private String createDT;
@@ -49,10 +54,12 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
         // get plan create date
         createDT = getArguments().getString("createDT");
         Log.d("QuitSmokeDebug", "uid from previous view:" + uid);
+        // get textview milestone
+        tvMilestone = (TextView)view.findViewById(R.id.tv_plan_detail_milestone);
         // set progress bar
         mCustomProgressBar = (CircleProgressBar)view.findViewById(R.id.custom_plan_detail_progress);
         // get current proceeding plan
-        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), uid, mCustomProgressBar, false);
+        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), uid, mCustomProgressBar, tvMilestone, false);
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
 

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
@@ -22,11 +23,13 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     private CircleProgressBar mCustomProgressBar;
     private PlanEntity currentPlan;
     private boolean isRequestFromSmokerFragement;
+    private TextView tvMilestone;
     public IUpdatePartnerAsyncResponse delegate = null;
 
-    public GetCurrentPlanFactorial(Activity smokerMainActivity, String uid, CircleProgressBar mCustomProgressBar, boolean isRequestFromSmokerFragement) {
+    public GetCurrentPlanFactorial(Activity smokerMainActivity, String uid, CircleProgressBar mCustomProgressBar, TextView tvMilestone, boolean isRequestFromSmokerFragement) {
         this.uid = uid;
         this.isRequestFromSmokerFragement = isRequestFromSmokerFragement;
+        this.tvMilestone = tvMilestone;
         this.smokerMainActivity = smokerMainActivity;
         this.mCustomProgressBar = mCustomProgressBar;
     }
@@ -77,10 +80,16 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 String encouragement = currentPlan.getEncouragement();
                 QuitSmokeClientUtils.setEncouragement(encouragement);
                 mCustomProgressBar.setVisibility(View.VISIBLE);
+                // calculate progress for progress bar
                 int realAmount = currentPlan.getRealAmount();
                 int targetAmount = currentPlan.getTargetAmount();
                 int progress = targetAmount == 0 ? 0 : (int)(realAmount * 100 / targetAmount);
                 QuitSmokeClientUtils.simulateProgress(mCustomProgressBar, progress);
+                // construct milestone text
+                int targetMilestone = currentPlan.getMilestone();
+                int currentSuccesiveDays = QuitSmokeClientUtils.getPoint();
+                String milestone = (currentSuccesiveDays >= targetMilestone ? "Complete - " : "") + currentSuccesiveDays + "/" + targetMilestone;
+                tvMilestone.setText(milestone);
             } else {
                 Toast.makeText(smokerMainActivity, "Exception occurred when create plan. Try again. If not work, remove the shit app.", Toast.LENGTH_LONG).show();
             }
