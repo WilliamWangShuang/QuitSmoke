@@ -1285,6 +1285,9 @@ namespace QuitSmokeWebAPI.Controllers
             string currentPlanNodeName = string.Empty;
             try
             {
+                
+                // get uid from request json
+                string uid = requestJson.Property(Constant.JSON_KEY_USER_UID).Value.ToObject<string>();
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
@@ -1293,9 +1296,6 @@ namespace QuitSmokeWebAPI.Controllers
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
                     
-                    // get uid from request json
-                    string uid = requestJson.Property(Constant.JSON_KEY_USER_UID).Value.ToObject<string>();
-
                     // retrieve data response
                     HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
                             + Constant.JSON_NODE_NAME_PLAN
@@ -1320,6 +1320,14 @@ namespace QuitSmokeWebAPI.Controllers
                                 }
                                 else
                                 {
+                                    // retrieve data response
+                                    // to get point by uid
+                                    HttpResponseMessage pointResponse = client.GetAsync(Constant.FIREBASE_ROOT 
+                                            + Constant.JSON_NODE_NAME_APP_USERS
+                                            + Constant.FIREBASE_SUFFIX_JSON
+                                            + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, uid)).Result;
+                                    JObject currUserJObject = pointResponse.Content.ReadAsAsync<JObject>().Result;
+                                    entity.successiveDays = currUserJObject.First.ToObject<JProperty>().Value.ToObject<UserInfo>().point;
                                     result = entity;
                                 }
                                 break;
