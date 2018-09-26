@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.william.quitsmokeappclient.CreateSupporterActivity;
 import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
+
+import clientservice.QuitSmokeClientConstant;
 import clientservice.entities.UserInfoEntity;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.QuitSmokeUserWebservice;
@@ -25,25 +27,26 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
     private Activity activity;
     // domain entity
     private UserInfoEntity registerInfoUI;
-    boolean isSucc;
+    private String result;
 
     public RegisterFactorial(Activity activity, TextView tvEmail, UserInfoEntity registerInfoUI) {
         this.registerInfoUI = registerInfoUI;
         this.activity = activity;
         this.tvEmail = tvEmail;
         this.email = tvEmail.getText().toString();
-        isSucc = false;
+        result = "";
     }
 
     @Override
     protected Void doInBackground(Void... params) {
         // check if a user with same email is already exist
         try {
-            isSucc = QuitSmokeUserWebservice.saveRegisterResident(registerInfoUI);
-            if (isSucc) {
-                h.sendEmptyMessage(0);
-            } else {
+            String result = QuitSmokeUserWebservice.saveRegisterResident(registerInfoUI);
+            Log.d("QuitSmokeDebug", "Result from backend save new resident:" + result);
+            if (QuitSmokeClientConstant.EMAIL_EXIST.equals(result)) {
                 h.sendEmptyMessage(1);
+            } else {
+                h.sendEmptyMessage(0);
             }
         } catch (Exception ex) {
             Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
@@ -76,6 +79,7 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                     QuitSmokeClientUtils.setGender(registerInfoUI.getGender());
                     QuitSmokeClientUtils.setIsSmoker(registerInfoUI.isSmoker());
                     QuitSmokeClientUtils.setIsPartner(registerInfoUI.isPartner());
+                    QuitSmokeClientUtils.setUid(result);
 
                     // clear text field background color and error message
                     tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.whiteBg));
