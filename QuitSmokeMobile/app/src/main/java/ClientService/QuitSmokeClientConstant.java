@@ -91,6 +91,7 @@ public class QuitSmokeClientConstant {
     public static String WS_INTERACT_SMOKER_NAME = "smoker_name";
     public static String WS_INTERACT_RESET_POINT_I = "isReset";
     public static String WS_INTERACT_MILESTONE = "milestone";
+    public static String WS_INTERACT_SUCCESSIVE_DAY = "successiveDays";
 
     // map json key
     public static String WS_MAP_TYPE = "type";

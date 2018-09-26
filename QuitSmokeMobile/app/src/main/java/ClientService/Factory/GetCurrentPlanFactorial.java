@@ -87,7 +87,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 QuitSmokeClientUtils.simulateProgress(mCustomProgressBar, progress);
                 // construct milestone text
                 int targetMilestone = currentPlan.getMilestone();
-                int currentSuccesiveDays = QuitSmokeClientUtils.getPoint();
+                int currentSuccesiveDays = currentPlan.getSuccessiveDay();
                 String milestone = (currentSuccesiveDays >= targetMilestone ? "Complete - " : "") + currentSuccesiveDays + "/" + targetMilestone;
                 tvMilestone.setText(milestone);
             } else {
