@@ -5,7 +5,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fde4bc">
+    android:background="#1e5d9f27">
 
     <TextView
         android:id="@+id/yourProgress"
@@ -88,7 +88,7 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
 
-        android:background="#4bb14828"
+        android:background="#78ea8039"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonforquitter"
         app:layout_constraintHorizontal_bias="0.0"
@@ -155,7 +155,7 @@
         android:layout_height="200dp"
 
         android:layout_marginTop="8dp"
-        android:background="#778f7c93"
+        android:background="#78ea8039"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
