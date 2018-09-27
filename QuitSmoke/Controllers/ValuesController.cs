@@ -817,8 +817,17 @@ namespace QuitSmokeWebAPI.Controllers
                     {
                         // parse the response body
                         JObject responseJObj = response.Content.ReadAsAsync<JObject>().Result;
-                        JProperty plan = responseJObj.First.ToObject<JProperty>();
-                        nodeName = plan.Name;
+                        // loop response result json object to find out currently running plan
+                        foreach (JToken token in responseJObj.Children())
+                        {
+                            JProperty prop = token.ToObject<JProperty>(); 
+                            PlanEntity plan = token.First.ToObject<PlanEntity>();
+                            if (!Constant.STATUS_CLOSE.Equals(plan.status, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                nodeName = prop.Name;
+                                break;
+                            }
+                        }
                     }
                 }
                 // if node name is not empty, start update

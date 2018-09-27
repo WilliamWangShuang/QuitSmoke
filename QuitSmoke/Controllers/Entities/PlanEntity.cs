@@ -15,5 +15,6 @@ namespace QuitSmokeWebAPI.Controllers.Entity
         public string encouragement { get; set; }
         public int milestone { get; set; }
         public int successiveDays { get; set; }
+        public string reward { get; set; }
     }
 }
