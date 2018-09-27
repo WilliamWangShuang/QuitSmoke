@@ -46,10 +46,12 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
             // do server side validation check if the smoker has set a supporter
             isPartnerSet = isRequestFromSmokerFragement ? InteractWebservice.isSupporterSet() : true;
             if (isPartnerSet) {
+                // get current plan by smoker's uid
                 currentPlan = InteractWebservice.getProceedingPlan(uid);
                 Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));
                 if (currentPlan != null) {
-                    realAmount = currentPlan.getRealAmount();
+                    // return current achieved successive day
+                    realAmount = currentPlan.getSuccessiveDay();
                     h.sendEmptyMessage(0);
                 } else {
                     return QuitSmokeClientConstant.INDICATOR_NO_PLAN;

@@ -21,6 +21,7 @@ public class QuitSmokeClientConstant {
     public static String MAP_GET_ALL_NO_SMOKE_PLACE = "api/Values/getNoSmokePlaces";
     public static String UPDATE_ENCOURAGEMENT = "api/Values/updateEncouragement";
     public static String UPDATE_POINT = "api/Values/updatePoint";
+    public static String UPDATE_MILESTONE = "api/Values/updateMilestone";
 
     // general constants
     public static String WS_KEY_EXCEPTION = "Exception";
@@ -92,6 +93,7 @@ public class QuitSmokeClientConstant {
     public static String WS_INTERACT_RESET_POINT_I = "isReset";
     public static String WS_INTERACT_MILESTONE = "milestone";
     public static String WS_INTERACT_SUCCESSIVE_DAY = "successiveDays";
+    public static String WS_INTERACT_REWARD = "reward";
 
     // map json key
     public static String WS_MAP_TYPE = "type";

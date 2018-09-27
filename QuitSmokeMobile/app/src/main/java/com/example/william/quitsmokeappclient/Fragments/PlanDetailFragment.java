@@ -12,26 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
-
-import org.w3c.dom.Text;
-
-import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.GetCurrentPlanFactorial;
-import clientservice.factory.UpdateEncouragementFactorial;
 
 public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncResponse {
     private CircleProgressBar mCustomProgressBar;
     private Button btnUpdateEncourage;
+    private Button btnUpdateMilestone;
     private String realAmountMsg;
     private TextView tvMilestone;
     private FragmentActivity myContext;
     private String uid;
     private String createDT;
     private SetEncouragementDialogFragement setEncouragementDialogFragement;
+    private SetMilestoneDialogFragement setMilestoneDialogFragement;
 
     @Override
     public void onAttach(Activity activity) {
@@ -63,7 +59,7 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
 
-        // get panic button
+        // set update encouragement button
         btnUpdateEncourage = (Button)view.findViewById(R.id.btn_update_encouragement);
         btnUpdateEncourage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,11 +72,26 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
                 setEncouragementDialogFragement.show(myContext.getSupportFragmentManager(), "updateEncouragement");
             }
         });
+        // set update milestone button
+        btnUpdateMilestone = (Button)view.findViewById(R.id.btn_set_milestone);
+        btnUpdateMilestone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("smokerUid", uid);
+                bundle.putInt("currentPoint", Integer.parseInt(realAmountMsg));
+                setMilestoneDialogFragement = new SetMilestoneDialogFragement();
+                setMilestoneDialogFragement.setArguments(bundle);
+                setMilestoneDialogFragement.show(myContext.getSupportFragmentManager(), "updateMilestone");
+            }
+        });
     }
 
     @Override
     public void processFinish(String reponseResult) {
         btnUpdateEncourage.setEnabled(true);
+        btnUpdateMilestone.setEnabled(true);
+        Log.d("QuitSmokeDebug", "real point of this plan from backend:" + reponseResult);
         realAmountMsg = reponseResult;
     }
 }

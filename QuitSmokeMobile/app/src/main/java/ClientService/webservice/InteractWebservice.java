@@ -227,4 +227,24 @@ public class InteractWebservice {
         Log.d("QuitSmokeDebug", "is update point success:" + isSucc);
         return isSucc;
     }
+
+    public static boolean updateMilstone(String uid, int target, String reward) throws JSONException, IOException {
+        boolean isSucc = false;
+        Log.d("QuitSmokeSebug", "from frontend uid:" + uid + ",target:"+ target + ",reward:" + reward);
+        String url = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.UPDATE_MILESTONE;
+        Log.d("QuitSmokeDebug", "update milestone url:" + url);
+
+        // construct request json
+        JSONObject jsonReq = new JSONObject();
+        jsonReq.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID, uid);
+        jsonReq.put(QuitSmokeClientConstant.WS_INTERACT_APPROVE_PLAN_AMOUNT, target);
+        jsonReq.put(QuitSmokeClientConstant.WS_INTERACT_REWARD, reward);
+        Log.d("QuitSmokeDebug", "update milestone json:" + jsonReq.toString());
+        // call ws to get update encouragement
+        String response = BaseWebservice.postWSForGetRestrievePlainText(url, jsonReq);
+        isSucc = Boolean.parseBoolean(response);
+        Log.d("QuitSmokeDebug", "is update milestone success:" + isSucc);
+
+        return isSucc;
+    }
 }
