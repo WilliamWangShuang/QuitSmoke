@@ -158,6 +158,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/default_value_pending"
         android:textSize="25sp"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/appCompatImageView4"
         app:layout_constraintHorizontal_bias="0.44"
@@ -179,7 +180,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/appCompatImageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_milestone_progress" />
 
     <TextView
         android:id="@+id/textView12"
@@ -214,7 +215,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="@+id/appCompatImageView4"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/tv_milestone_progress"
         app:layout_constraintTop_toBottomOf="@+id/main_milestone_progress"
         app:layout_constraintVertical_bias="0.73" />
 

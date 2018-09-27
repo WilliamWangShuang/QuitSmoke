@@ -14,6 +14,7 @@ public class PlanEntity implements Parcelable {
     private String encouragement;
     private int milestone;
     private int successiveDay;
+    private String reward;
 
     public PlanEntity() {}
 
@@ -27,6 +28,7 @@ public class PlanEntity implements Parcelable {
         encouragement = in.readString();
         milestone = in.readInt();
         successiveDay = in. readInt();
+        reward = in.readString();
     }
 
     public PlanEntity(String uid, int targetAmount, String createDate, String status) {
@@ -34,6 +36,14 @@ public class PlanEntity implements Parcelable {
         this.targetAmount = targetAmount;
         this.createDate = createDate;
         this.status = status;
+    }
+
+    public String getReward() {
+        return reward;
+    }
+
+    public void setReward(String reward) {
+        this.reward = reward;
     }
 
     public int getSuccessiveDay() {
@@ -124,6 +134,7 @@ public class PlanEntity implements Parcelable {
         out.writeString(encouragement);
         out.writeInt(milestone);
         out.writeInt(successiveDay);
+        out.writeString(reward);
     }
 
     public static final Creator<PlanEntity> CREATOR = new Creator<PlanEntity>() {

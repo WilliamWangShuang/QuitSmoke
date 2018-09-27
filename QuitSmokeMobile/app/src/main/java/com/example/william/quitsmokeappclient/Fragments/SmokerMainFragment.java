@@ -25,7 +25,8 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
     private Button btnPanicButton;
     private String realAmountMsg;
     private CreatePlanErrorFragement createPlanErrorFragment;
-    private GoToEncourageDialogFragment messageDialogFragment;
+    private GoToEncourageDialogFragment goToEncourageDialogFragment;
+    private ViewMilestoneInfoDialogFragment viewMilestoneInfoDialogFragment;
     private TextView tvMilestone;
 
     @Nullable
@@ -39,6 +40,7 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
         super.onViewCreated(view, savedInstanceState);
 
         createPlanErrorFragment = new CreatePlanErrorFragement();
+        viewMilestoneInfoDialogFragment = new ViewMilestoneInfoDialogFragment();
         // textview for milestone
         tvMilestone = (TextView)view.findViewById(R.id.tv_milestone_progress);
         // set progress bar
@@ -48,7 +50,7 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
 
-        // get panic button
+        // set panic button
         btnPanicButton = (Button)view.findViewById(R.id.buttonforquitter);
         btnPanicButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +61,11 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
                     // get real amount message
                     String msg = String.format(getResources().getString(R.string.panic_button_msg), realAmountMsg);
                     // initial pop out dialogs on this view
-                    messageDialogFragment = new GoToEncourageDialogFragment();
+                    goToEncourageDialogFragment = new GoToEncourageDialogFragment();
                     Bundle args = new Bundle();
                     args.putString("message", msg);
-                    messageDialogFragment.setArguments(args);
-                    messageDialogFragment.show(getFragmentManager(), "go to encouragement");
+                    goToEncourageDialogFragment.setArguments(args);
+                    goToEncourageDialogFragment.show(getFragmentManager(), "go to encouragement");
                 } else if (QuitSmokeClientConstant.INDICATOR_NO_PLAN.equals(realAmountMsg)) {
                     mCustomProgressBar.setVisibility(View.INVISIBLE);
                     // get validation value to bundle to pass to error dialog entity
@@ -86,12 +88,24 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
                 }
             }
         });
+
+        // set onclick event for textview Milestone
+        tvMilestone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("message", QuitSmokeClientUtils.getPoint());
+                viewMilestoneInfoDialogFragment.setArguments(bundle);
+                viewMilestoneInfoDialogFragment.show(getFragmentManager(), "see promise");
+            }
+        });
     }
 
 
     @Override
     public void processFinish(String reponseResult) {
         realAmountMsg = reponseResult;
+        tvMilestone.setEnabled(true);
         btnPanicButton.setEnabled(true);
     }
 }

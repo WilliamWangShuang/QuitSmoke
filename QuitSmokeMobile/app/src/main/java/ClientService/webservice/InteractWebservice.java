@@ -174,6 +174,7 @@ public class InteractWebservice {
             result.setCreateDate(json.getString(QuitSmokeClientConstant.WS_INTERACT_PLAN_CREATE_DT));
             result.setEncouragement(QuitSmokeClientUtils.recoverString(json.getString(QuitSmokeClientConstant.WS_INTERACT_ENCOURAGEMENT_ENCOURAGEMENT)));
             result.setSuccessiveDay(json.getInt(QuitSmokeClientConstant.WS_INTERACT_SUCCESSIVE_DAY));
+            result.setReward(json.getString(QuitSmokeClientConstant.WS_INTERACT_REWARD));
         }
         return result;
     }

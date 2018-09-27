@@ -51,7 +51,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));
                 if (currentPlan != null) {
                     // return current achieved successive day
-                    realAmount = currentPlan.getSuccessiveDay();
+                    realAmount = currentPlan.getRealAmount();
                     h.sendEmptyMessage(0);
                 } else {
                     return QuitSmokeClientConstant.INDICATOR_NO_PLAN;
@@ -92,6 +92,8 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 int currentSuccesiveDays = currentPlan.getSuccessiveDay();
                 String milestone = (currentSuccesiveDays >= targetMilestone ? "Complete - " : "") + currentSuccesiveDays + "/" + targetMilestone;
                 tvMilestone.setText(milestone);
+                QuitSmokeClientUtils.setReward(currentPlan.getReward());
+                QuitSmokeClientUtils.setAlreadyTakenSmokeNo(currentPlan.getRealAmount());
             } else {
                 Toast.makeText(smokerMainActivity, "Exception occurred when create plan. Try again. If not work, remove the shit app.", Toast.LENGTH_LONG).show();
             }

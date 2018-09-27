@@ -34,6 +34,7 @@ public class QuitSmokeClientUtils extends Application {
     private static String uid;
     private static int age;
     private static int point;
+    private static int alreadyTakenSmokeNo;
     private static String smokerNodeName;
     private static String gender;
     private static String planNodeName;
@@ -42,8 +43,25 @@ public class QuitSmokeClientUtils extends Application {
     private static String encouragement;
     private static CircleProgressBar mCustomProgressBar;
     private static boolean isSmokeFreeZoneSync;
+    private static String reward;
 
     // setters and getters
+
+    public static int getAlreadyTakenSmokeNo() {
+        return alreadyTakenSmokeNo;
+    }
+
+    public static void setAlreadyTakenSmokeNo(int alreadyTakenSmokeNo) {
+        QuitSmokeClientUtils.alreadyTakenSmokeNo = alreadyTakenSmokeNo;
+    }
+
+    public static String getReward() {
+        return reward;
+    }
+
+    public static void setReward(String reward) {
+        QuitSmokeClientUtils.reward = reward;
+    }
 
     public static int getPoint() {
         return point;
