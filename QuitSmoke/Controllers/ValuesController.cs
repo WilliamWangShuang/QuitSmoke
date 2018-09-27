@@ -787,6 +787,75 @@ namespace QuitSmokeWebAPI.Controllers
             return result;
         }
 
+        [HttpPost("updateMilestone")]
+        public bool updateMilestone([FromBody] UpdateMilestone updateMilestone)
+        {
+            bool result = false;
+            string nodeName = string.Empty;
+            string uid = updateMilestone.uid;
+            int target = updateMilestone.targetAmount;
+            string rerward = updateMilestone.reward;
+            try
+            {
+                // get plan nodeName based on uid 
+                using(var client = new HttpClient())
+                {
+                    //testEntity.UnitInfo = new System.Collections.ArrayList();
+                    client.BaseAddress = new Uri(Constant.FIREBASE_ROOT);
+
+                    // add an Accept header for JSON format
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    
+
+                    // retrieve data response
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_PLAN  
+                        + Constant.FIREBASE_SUFFIX_JSON
+                        + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, uid)).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // parse the response body
+                        JObject responseJObj = response.Content.ReadAsAsync<JObject>().Result;
+                        JProperty plan = responseJObj.First.ToObject<JProperty>();
+                        nodeName = plan.Name;
+                    }
+                }
+                // if node name is not empty, start update
+                if (!string.IsNullOrEmpty(nodeName))
+                {
+                    // construct patch uri
+                    string uri = Constant.FIREBASE_ROOT 
+                        + Constant.JSON_NODE_NAME_PLAN + "/"
+                        + nodeName + "/"
+                        + Constant.FIREBASE_SUFFIX_JSON;
+                    
+                    using (var client = new HttpClient())
+                    {
+                        var method = new HttpMethod("PATCH");
+                        // make patch request content
+                        string json = "{\"" + Constant.JSON_KEY_MILESTONE + "\":" + target + ",\"" + Constant.JSON_KEY_REWARD + "\":\"" + rerward + "\"}";
+                        HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                        var request = new HttpRequestMessage(method, uri)
+                        {
+                            Content = httpContent
+                        };
+
+                        HttpResponseMessage response = new HttpResponseMessage();
+                        response = client.SendAsync(request).Result;
+                        result = response.IsSuccessStatusCode;
+                    }
+                    
+                }
+                
+            } catch (Exception ex) {
+                QuitSmokeUtils.WriteErrorStackTrace(ex);
+                result = false;
+            }
+
+            return result;
+        }
+
         [HttpPost("updateEncouragement")]
         public bool updateEncouragement([FromBody] UpdateEncouragement updateEncouragement)
         {

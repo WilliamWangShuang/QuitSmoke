@@ -327,6 +327,31 @@ paths:
           description: Success
           schema:
             type: boolean
+  /api/Values/updateMilestone:
+    post:
+      tags:
+        - Values
+      operationId: ApiValuesUpdateMilestonePost
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - name: updateMilestone
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/UpdateMilestone'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: boolean
   /api/Values/updateEncouragement:
     post:
       tags:
@@ -731,9 +756,18 @@ definitions:
     properties:
       smokerNodeName:
         type: string
-      point:
+      isReset:
+        type: boolean
+  UpdateMilestone:
+    type: object
+    properties:
+      uid:
+        type: string
+      targetAmount:
         format: int32
         type: integer
+      reward:
+        type: string
   UpdateEncouragement:
     type: object
     properties:
@@ -770,6 +804,12 @@ definitions:
         type: string
       encouragement:
         type: string
+      milestone:
+        format: int32
+        type: integer
+      successiveDays:
+        format: int32
+        type: integer
   GetingPendingPlanReq:
     type: object
     properties:
