@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Your supporter Email"
+        android:text="Set up your supporter"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/colorWhite" />
 
