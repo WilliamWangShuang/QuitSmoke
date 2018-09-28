@@ -79,7 +79,7 @@ public class QuitSmokeUserWebservice {
     }
 
     // post to server to store register user
-    public static String saveRegisterResident(UserInfoEntity registerInfoUI) throws JSONException, IOException, ParseException {
+    public static String saveRegisterResident(UserInfoEntity registerInfoUI) throws JSONException, IOException {
         String result = "";
         // construct user json
         JSONObject jsonResident = new JSONObject();
@@ -92,16 +92,11 @@ public class QuitSmokeUserWebservice {
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_REGISTER_DT, QuitSmokeClientUtils.convertDateToString(new Date()));
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_AGE, registerInfoUI.getAge());
         jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_GENDER, registerInfoUI.getGender());
+        jsonResident.put(QuitSmokeClientConstant.WS_JSON_USER_KEY_PRICE_PER_PACK, registerInfoUI.getPricePerPack());
         Log.d("QuitSmokeDebug", "parsed user json to post:" + jsonResident.toString());
         // call ws to save
         String saveResidentResult = BaseWebservice.postWebService(QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.REGISTER_WS, jsonResident);
         Log.d("QuitSmokeDebug", "result from backend:" + saveResidentResult);
-//        // if save resident successfully, return true, otherwise, return this email already been registered.
-//        if (QuitSmokeClientConstant.EMAIL_EXIST.equals(saveResidentResult)) {
-//            isSuccessSave = false;
-//        } else {
-//            isSuccessSave = true;
-//        }
         result = saveResidentResult;
 
         return result;

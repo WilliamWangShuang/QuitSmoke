@@ -12,8 +12,7 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="register_name_empty_msg">Name cannot be empty.</string>
-    <string name="register_city_empty_msg">City cannot be empty.</string>
-    <string name="register_suburb_empty_msg">Suburb cannot be empty.</string>
+    <string name="register_price_per_pack_msg">Price per pack is not an valid value. Should be numeric and > 0.</string>
     <string name="register_email">Email</string>
     <string name="register_email_empty_msg">Email cannot be empty</string>
     <string name="register_email_format_msg">Email format is wrong. Must contain at least 1 \'@\' and end with \'.\' following by domain</string>
@@ -28,13 +27,9 @@
     <string name="register_age">Please select age.</string>
     <string name="register_gender">Please select a gender</string>
     <string name="login_pwd_hint">Password</string>
-    <string name="i_am_a_smoker">I am a smoker</string>
-    <string name="supporter">I am a supporter</string>
+    <string name="i_am_a_smoker">I am quitter</string>
+    <string name="supporter">I am supporter</string>
     <string name="register_title">Create a new account</string>
-    <string name="role_smoker">Smoker</string>
-    <string name="role_supporter">Supporter</string>
-    <string name="city">city</string>
-    <string name="suburb">Suburb</string>
     <string name="spinner_age_selector">Age</string>
     <string name="spinner_gender_selector">Gender</string>
     <string name="supporter_label">Type in your supporter email</string>
@@ -69,6 +64,7 @@
     <string name="fail_cold_turkey_behaviour">failed to quit cold turkey</string>
     <string name="fail_reduce_behaviour">failed to reduce amount</string>
     <string name="register_hint_name">Name</string>
+    <string name="register_hint_price_per_pack">Price per pack of your ususally taken smoke</string>
     <string name="next">back</string>
     <string name="survey_start_btn">Find Out your Quit Chance</string>
     <string name="motive">Top Motivators</string>
@@ -113,8 +109,8 @@
     <string name="reward_title">What is the reward you want to give if your partner meet the target?</string>
 
     <array name="user_role">
-        <item>Smoker</item>
-        <item>Supporter</item>
+        <item>I am quitter</item>
+        <item>I am supporter</item>
     </array>
 
     <array name="map_view_type_array">

@@ -150,11 +150,35 @@
                             android:textSize="10sp"/>
                     </TableRow>
 
-                    <Spinner
-                        android:id="@+id/ddlRole"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/add_depth"/>
+                    <TableRow>
+                        <Spinner
+                            android:id="@+id/ddlRole"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/add_depth"/>
+                    </TableRow>
+
+                    <TableRow>
+                        <EditText
+                            android:id="@+id/register_price_per_pack"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:textColor="#000000"
+                            android:inputType="number"
+                            android:hint="@string/register_hint_price_per_pack"
+                            android:textColorHint="@color/grey" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/lblPricePerPackErrorMsg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/errorBackgound"
+                            android:textStyle="bold" />
+                    </TableRow>
 
                     <TableRow>
                         <Button

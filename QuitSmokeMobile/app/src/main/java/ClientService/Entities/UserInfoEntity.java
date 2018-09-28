@@ -15,10 +15,11 @@ public class UserInfoEntity {
     private String age;
     private String gender;
     private String smokerNodeName;
+    private String pricePerPack;
 
     public UserInfoEntity() {}
 
-    public UserInfoEntity(String name, String age, String gender, String email, String password, Boolean isSmoker, Boolean isSupporter) {
+    public UserInfoEntity(String name, String age, String gender, String email, String password, Boolean isSmoker, Boolean isSupporter, String pricePerPack) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -26,9 +27,10 @@ public class UserInfoEntity {
         this.isPartner = isSupporter;
         this.age = age;
         this.gender = gender;
+        this.pricePerPack = pricePerPack;
     }
 
-    public UserInfoEntity(String name, String email, String password, String partnerEmail, boolean isPartner, int point, String registerDate, boolean isSmoker, String uid, String age) {
+    public UserInfoEntity(String name, String email, String password, String partnerEmail, boolean isPartner, int point, String registerDate, boolean isSmoker, String uid, String age, String pricePerPack) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -39,6 +41,15 @@ public class UserInfoEntity {
         this.isSmoker = isSmoker;
         this.uid = uid;
         this.age = age;
+        this.pricePerPack = pricePerPack;
+    }
+
+    public String getPricePerPack() {
+        return pricePerPack;
+    }
+
+    public void setPricePerPack(String pricePerPack) {
+        this.pricePerPack = pricePerPack;
     }
 
     public String getSmokerNodeName() {

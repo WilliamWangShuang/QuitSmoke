@@ -246,6 +246,25 @@ public class QuitSmokeClientUtils extends Application {
         return result;
     }
 
+    public static boolean validatePricePerPack(String price, String message, TextView msgView) {
+        boolean result;
+        try {
+            int input = Integer.parseInt(price);
+            if (input > 0) {
+                result = true;
+                msgView.setText("");
+            } else {
+                result = false;
+                msgView.setText(message);
+            }
+        } catch (Exception ex) {
+            Log.e("QuitSmokeDebug", QuitSmokeClientUtils.getExceptionInfo(ex));
+            result = false;
+            msgView.setText(message);
+        }
+        return result;
+    }
+
     //  encrypt password
     public static String encryptPwd(String pwd) {
         String result = "";

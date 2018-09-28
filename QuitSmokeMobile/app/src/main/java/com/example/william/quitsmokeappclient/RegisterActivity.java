@@ -1,9 +1,7 @@
 package com.example.william.quitsmokeappclient;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,15 +22,14 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView msgName;
     private TextView msgEmail;
     private TextView msgPwd;
-    private TextView msgCity;
     private TextView msgAge;
     private TextView msgGender;
+    private TextView msgPricePerPack;
     // declare text fields
     private EditText txtName;
     private EditText txtEmail;
-    private EditText txtCity;
-    private EditText txtSuburb;
     private TextView txtPwd;
+    private EditText txtPricePerPack;
     // declare drop down lists
     private Spinner ddlRole;
     private Spinner ddlAge;
@@ -104,10 +101,12 @@ public class RegisterActivity extends AppCompatActivity {
         msgPwd = (TextView)findViewById(R.id.lblPwdErrorMsg);
         msgAge = (TextView)findViewById(R.id.lblAgeErrorMsg);
         msgGender = (TextView)findViewById(R.id.lblGenderErrorMsg);
+        msgPricePerPack = (TextView)findViewById(R.id.lblPricePerPackErrorMsg);
         // get text fields
         txtName = (EditText)findViewById(R.id.register_name);
         txtEmail = (EditText)findViewById(R.id.register_email);
         txtPwd = (TextView)findViewById(R.id.register_password);
+        txtPricePerPack = (EditText)findViewById(R.id.register_price_per_pack);
 
         // register button logic
         Button btnRegister = (Button)findViewById(R.id.btn_confirm_register);
@@ -120,12 +119,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String pwd = txtPwd.getText().toString();
                 String age = ddlAge.getSelectedItem().toString();
                 String gender = ddlGender.getSelectedItem().toString();
-                boolean isSmoker = getResources().getString(R.string.role_smoker).equals(ddlRole.getSelectedItem().toString());
-                boolean isSupporter = getResources().getString(R.string.role_supporter).equals(ddlRole.getSelectedItem().toString());
+                boolean isSmoker = getResources().getString(R.string.i_am_a_smoker).equals(ddlRole.getSelectedItem().toString());
+                boolean isSupporter = getResources().getString(R.string.supporter).equals(ddlRole.getSelectedItem().toString());
+                String pricePerPack = txtPricePerPack.getText().toString();
 
                 // UI validation
                 // create UI info entity object
-                UserInfoEntity registerInfoUI = new UserInfoEntity(name, age, gender, email, pwd, isSmoker, isSupporter);
+                UserInfoEntity registerInfoUI = new UserInfoEntity(name, age, gender, email, pwd, isSmoker, isSupporter, pricePerPack);
                 // validate fields on UI
                 boolean isDataValidate = validateUIFields(registerInfoUI);
                 // if UI validation pass, do server-side validation
@@ -142,6 +142,8 @@ public class RegisterActivity extends AppCompatActivity {
         boolean result = false;
         // validate first name
         result = QuitSmokeClientUtils.validateEmpty(entity.getName(), getResources().getString(R.string.register_name_empty_msg), msgName);
+        // validate price per pack
+        result = QuitSmokeClientUtils.validatePricePerPack(entity.getPricePerPack(), getResources().getString(R.string.register_price_per_pack_msg), msgPricePerPack) && result;
         // validate age
         result = QuitSmokeClientUtils.validateAge(entity.getAge(), getResources().getString(R.string.register_age), msgAge) && result;
         // validate gender

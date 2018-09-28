@@ -22,8 +22,10 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
     // user email variables
     private String email;
     // email text view
+    @SuppressLint("StaticFieldLeak")
     private TextView tvEmail;
     // register activity
+    @SuppressLint("StaticFieldLeak")
     private Activity activity;
     // domain entity
     private UserInfoEntity registerInfoUI;
