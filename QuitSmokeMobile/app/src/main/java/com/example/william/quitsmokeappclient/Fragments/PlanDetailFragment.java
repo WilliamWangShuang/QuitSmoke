@@ -55,7 +55,7 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
         // set progress bar
         mCustomProgressBar = (CircleProgressBar)view.findViewById(R.id.custom_plan_detail_progress);
         // get current proceeding plan
-        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), uid, mCustomProgressBar, tvMilestone, false);
+        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), uid, mCustomProgressBar, tvMilestone, null, false);
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
 

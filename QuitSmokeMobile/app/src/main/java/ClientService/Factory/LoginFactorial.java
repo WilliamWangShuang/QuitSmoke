@@ -84,6 +84,8 @@ public class LoginFactorial extends AsyncTask<Void, Void, Boolean> {
             QuitSmokeClientUtils.setIsPartner(userProfile.isPartner());
             QuitSmokeClientUtils.setIsSmoker(userProfile.isSmoker());
             QuitSmokeClientUtils.setPoint(userProfile.getPoint());
+            QuitSmokeClientUtils.setPricePerPack(Integer.parseInt(userProfile.getPricePerPack()));
+
             h.sendEmptyMessage(2);
         } else {
             if (isError) {

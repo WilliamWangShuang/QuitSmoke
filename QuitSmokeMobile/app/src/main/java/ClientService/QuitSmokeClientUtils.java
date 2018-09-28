@@ -44,8 +44,17 @@ public class QuitSmokeClientUtils extends Application {
     private static CircleProgressBar mCustomProgressBar;
     private static boolean isSmokeFreeZoneSync;
     private static String reward;
+    private static int pricePerPack;
 
     // setters and getters
+
+    public static int getPricePerPack() {
+        return pricePerPack;
+    }
+
+    public static void setPricePerPack(int pricePerPack) {
+        QuitSmokeClientUtils.pricePerPack = pricePerPack;
+    }
 
     public static int getAlreadyTakenSmokeNo() {
         return alreadyTakenSmokeNo;

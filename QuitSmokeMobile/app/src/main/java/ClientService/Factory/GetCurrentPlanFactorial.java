@@ -24,14 +24,16 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     private PlanEntity currentPlan;
     private boolean isRequestFromSmokerFragement;
     private TextView tvMilestone;
+    private TextView tvMoneySaved;
     public IUpdatePartnerAsyncResponse delegate = null;
 
-    public GetCurrentPlanFactorial(Activity smokerMainActivity, String uid, CircleProgressBar mCustomProgressBar, TextView tvMilestone, boolean isRequestFromSmokerFragement) {
+    public GetCurrentPlanFactorial(Activity smokerMainActivity, String uid, CircleProgressBar mCustomProgressBar, TextView tvMilestone, TextView tvMoneySaved, boolean isRequestFromSmokerFragement) {
         this.uid = uid;
         this.isRequestFromSmokerFragement = isRequestFromSmokerFragement;
         this.tvMilestone = tvMilestone;
         this.smokerMainActivity = smokerMainActivity;
         this.mCustomProgressBar = mCustomProgressBar;
+        this.tvMoneySaved = tvMoneySaved;
     }
 
     @Override
@@ -92,6 +94,11 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 int currentSuccesiveDays = currentPlan.getSuccessiveDay();
                 String milestone = (currentSuccesiveDays >= targetMilestone ? "Complete - " : "") + currentSuccesiveDays + "/" + targetMilestone;
                 tvMilestone.setText(milestone);
+                // if is smoker view, set textview for money saved
+                if (isRequestFromSmokerFragement) {
+                    double moneySaved = (targetAmount - realAmount) * Math.round((double)QuitSmokeClientUtils.getPricePerPack() / 20.0 * 100.00) / 100.00;
+                    tvMoneySaved.setText("$" + moneySaved);
+                }
                 QuitSmokeClientUtils.setReward(currentPlan.getReward());
                 QuitSmokeClientUtils.setAlreadyTakenSmokeNo(currentPlan.getRealAmount());
             } else {

@@ -28,6 +28,7 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
     private GoToEncourageDialogFragment goToEncourageDialogFragment;
     private ViewMilestoneInfoDialogFragment viewMilestoneInfoDialogFragment;
     private TextView tvMilestone;
+    private TextView tvMoneySaved;
 
     @Nullable
     @Override
@@ -43,10 +44,12 @@ public class SmokerMainFragment extends Fragment implements IUpdatePartnerAsyncR
         viewMilestoneInfoDialogFragment = new ViewMilestoneInfoDialogFragment();
         // textview for milestone
         tvMilestone = (TextView)view.findViewById(R.id.tv_milestone_progress);
+        // textview for money saved
+        tvMoneySaved = (TextView)view.findViewById(R.id.tv_money_saved);
         // set progress bar
         mCustomProgressBar = (CircleProgressBar)view.findViewById(R.id.custom_progress);
         // get current proceeding plan
-        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), QuitSmokeClientUtils.getUid(), mCustomProgressBar, tvMilestone, true);
+        GetCurrentPlanFactorial getCurrentPlanFactorial = new GetCurrentPlanFactorial(getActivity(), QuitSmokeClientUtils.getUid(), mCustomProgressBar, tvMilestone, tvMoneySaved, true);
         getCurrentPlanFactorial.delegate = this;
         getCurrentPlanFactorial.execute();
 

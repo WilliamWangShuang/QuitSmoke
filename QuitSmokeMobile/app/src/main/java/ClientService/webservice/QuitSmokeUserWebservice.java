@@ -42,6 +42,7 @@ public class QuitSmokeUserWebservice {
                 result.setAge(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_AGE));
                 result.setGender(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_GENDER));
                 result.setSmokerNodeName(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_SMOKER_NODE_NAME));
+                result.setPricePerPack(appUserJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_PRICE_PER_PACK));
             }
         } catch (Exception ex) {
             throw ex;
