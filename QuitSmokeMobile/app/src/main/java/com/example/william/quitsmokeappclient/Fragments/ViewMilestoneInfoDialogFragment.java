@@ -3,20 +3,35 @@ package com.example.william.quitsmokeappclient.Fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.william.quitsmokeappclient.R;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
 
 import clientservice.QuitSmokeClientUtils;
 
 public class ViewMilestoneInfoDialogFragment extends DialogFragment {
+    private Button btnFacebookShare;
+    private SharePhotoContent content;
+    private CallbackManager callbackManager;
+    private ShareDialog shareDialog;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -36,8 +51,36 @@ public class ViewMilestoneInfoDialogFragment extends DialogFragment {
         TextView tvReward = (TextView)view.findViewById(R.id.tv_reward);
         // get message value from bundle
         int message = getArguments().getInt("message");
-        tvMessage.setText("You have insist " + message + " days.");
-        tvReward.setText("Your partner promise: " + QuitSmokeClientUtils.getReward());
+        tvMessage.setText(String.format("You have insist %d days.", message));
+        tvReward.setText(String.format("Your partner promise: %s", QuitSmokeClientUtils.getReward()));
+
+        // Initialize the SDK before executing any other operations,
+        FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
+        FacebookSdk.sdkInitialize(this.requireContext());
+
+        // construct share content
+        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.angle_logo);
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(bitmap)
+                .build();
+        content =  new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+
+        // construct fb dialog
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        // get fb share button
+        btnFacebookShare = view.findViewById(R.id.btn_fb_share);
+        // set facebook share button onclick event
+        btnFacebookShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ShareDialog.canShow(SharePhotoContent.class)) {
+                    shareDialog.show(content);
+                }
+            }
+        });
 
         return builder.create();
     }

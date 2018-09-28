@@ -1,16 +1,13 @@
 package clientservice;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.TextView;
 import com.dinuscxj.progressbar.CircleProgressBar;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +44,6 @@ public class QuitSmokeClientUtils extends Application {
     private static int pricePerPack;
 
     // setters and getters
-
     public static int getPricePerPack() {
         return pricePerPack;
     }
