@@ -33,7 +33,6 @@
         android:paddingBottom="10dp"
         android:scaleX="1"
         android:scaleY="1"
-        android:textIsSelectable="true"
         android:selectAllOnFocus="true"
         android:inputType="number"/>
 
@@ -64,7 +63,6 @@
         android:paddingBottom="10dp"
         android:scaleX="1"
         android:scaleY="1"
-        android:textIsSelectable="true"
         android:selectAllOnFocus="true" />
 
 </LinearLayout>

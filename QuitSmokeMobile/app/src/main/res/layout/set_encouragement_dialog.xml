@@ -36,7 +36,6 @@
         android:inputType="textMultiLine"
         android:scaleX="1"
         android:scaleY="1"
-        android:textIsSelectable="true"
         android:selectAllOnFocus="true" />
 
 </LinearLayout>
