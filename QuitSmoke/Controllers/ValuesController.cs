@@ -196,6 +196,7 @@ namespace QuitSmokeWebAPI.Controllers
                             result.gender = userInfo.gender;
                             result.age = userInfo.age.ToString();
                             result.partner_email = userInfo.partner_email;
+                            result.price_per_pack = userInfo.price_per_pack.ToString();
                         } 
                     }
                 }
@@ -1383,7 +1384,7 @@ namespace QuitSmokeWebAPI.Controllers
                     {
                         // parse the response body
                         JObject objects = response.Content.ReadAsAsync<JObject>().Result;
-                        // fetch all uids of smokers whose supporter is the current user
+                        // fetch all plans of the current user
                         foreach (JToken token in objects.Children())
                         {
                             PlanEntity entity = token.First.ToObject<PlanEntity>();
@@ -1503,6 +1504,7 @@ namespace QuitSmokeWebAPI.Controllers
                 userInfo.uid = uid;
                 userInfo.age = Int32.Parse(newUser.age);
                 userInfo.gender = newUser.gender;
+                userInfo.price_per_pack = Int32.Parse(newUser.price_per_pack);
 
                 // specify encoding 
                 client.Encoding = Encoding.UTF8;

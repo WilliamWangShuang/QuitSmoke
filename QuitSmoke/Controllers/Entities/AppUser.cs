@@ -18,5 +18,6 @@ namespace QuitSmokeWebAPI.Controllers.Entity
         public string age { get; set; }
         public string gender { get; set; }
         public string smoker_node_name { get; set;}
+        public string price_per_pack { get; set; }
     }
 }
