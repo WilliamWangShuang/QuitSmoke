@@ -250,7 +250,7 @@ public class QuitSmokeClientUtils extends Application {
         boolean result;
         try {
             int input = Integer.parseInt(price);
-            if (input > 0) {
+            if (input >= 0) {
                 result = true;
                 msgView.setText("");
             } else {

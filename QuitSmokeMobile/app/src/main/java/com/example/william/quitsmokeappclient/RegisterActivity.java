@@ -3,6 +3,7 @@ package com.example.william.quitsmokeappclient;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -53,6 +54,22 @@ public class RegisterActivity extends AppCompatActivity {
         // Initializing an ArrayAdapter
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         ddlRole.setAdapter(spinnerArrayAdapter);
+        // add item changed listener, if is supporter, hide textview for price per pack
+        ddlRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+              @Override
+              public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                  if (position == 1)
+                      txtPricePerPack.setVisibility(View.GONE);
+                  else
+                      txtPricePerPack.setVisibility(View.VISIBLE);
+              }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         // set age spinner
         // Get reference of widgets from XML layout
@@ -122,6 +139,9 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean isSmoker = getResources().getString(R.string.i_am_a_smoker).equals(ddlRole.getSelectedItem().toString());
                 boolean isSupporter = getResources().getString(R.string.supporter).equals(ddlRole.getSelectedItem().toString());
                 String pricePerPack = txtPricePerPack.getText().toString();
+                // if register supporter, this field is hidden on screen, so it is empty, so here set is a default value '0' to make it pass validation so that supporter can register successfully
+                if (pricePerPack == null || "".equals(pricePerPack))
+                    pricePerPack = "0";
 
                 // UI validation
                 // create UI info entity object
