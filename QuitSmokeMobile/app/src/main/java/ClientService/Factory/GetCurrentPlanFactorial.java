@@ -92,7 +92,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 // construct milestone text
                 int targetMilestone = currentPlan.getMilestone();
                 int currentSuccesiveDays = currentPlan.getSuccessiveDay();
-                String milestone = (currentSuccesiveDays >= targetMilestone ? "Complete - " : "") + currentSuccesiveDays + "/" + targetMilestone;
+                String milestone = (currentSuccesiveDays >= targetMilestone ? "Complete\n" : "") + currentSuccesiveDays + "/" + targetMilestone;
                 tvMilestone.setText(milestone);
                 // if is smoker view, set textview for money saved
                 if (isRequestFromSmokerFragement) {

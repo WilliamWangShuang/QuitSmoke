@@ -11,25 +11,22 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.william.quitsmokeappclient.R;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
-import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 
 import clientservice.QuitSmokeClientUtils;
 
 public class ViewMilestoneInfoDialogFragment extends DialogFragment {
-    private Button btnFacebookShare;
+    private ImageButton btnFacebookShare;
     private SharePhotoContent content;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
