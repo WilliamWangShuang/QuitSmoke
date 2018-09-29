@@ -89,8 +89,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
             android:layout_marginBottom="8dp"
             android:text="Potential Money Saved"
             android:textAppearance="@style/TextAppearance.AppCompat"
@@ -156,8 +156,8 @@
             android:id="@+id/main_milestone_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
@@ -207,7 +207,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
 
-    </android.support.constraint.ConstraintLayout>
+       </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/buttonforquitter"
