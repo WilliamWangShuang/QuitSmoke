@@ -5,6 +5,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
@@ -59,9 +63,30 @@ public class ViewMilestoneInfoDialogFragment extends DialogFragment {
         FacebookSdk.sdkInitialize(this.requireContext());
 
         // construct share content
-        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.angle_logo);
+        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.cup);
+        // customized the picture that is to be shared
+        Bitmap mutableBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Canvas canvas = new Canvas(mutableBitmap);
+        Paint paint = new Paint();
+        // draw the No. of quit days on bitmap
+        paint.setColor(Color.BLACK);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        paint.setTextSize(100);
+        // calculate No. x coordinate
+        float x = 0;
+        if (message > 0 && message < 10)
+            x = canvas.getWidth()/2 - 28;
+        else if (message >=10 && message <= 99)
+            x = canvas.getWidth()/2 - 56;
+        else
+            x = canvas.getWidth()/2 - 80;
+        canvas.drawText(message + "", x,canvas.getHeight()/3 + 35,paint);
+        // draw information message
+        paint.setTextSize(40);
+        canvas.drawText("I have quitted for",canvas.getWidth()/4 + 35,canvas.getHeight()/4 - 35,paint);
+        canvas.drawText("Day(s)",canvas.getWidth()/2 - 56,canvas.getHeight()/2 + 35,paint);
         SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(bitmap)
+                .setBitmap(mutableBitmap)
                 .build();
         content =  new SharePhotoContent.Builder()
                 .addPhoto(photo)
