@@ -89,8 +89,8 @@
     <string name="target_amount">Target Amount:</string>
     <string name="status_of_plan">Plan Status:</string>
     <string name="real_amount_from_smoker">Current Real Amount:</string>
-    <string name="title_your_progress">Your Progress</string>
-    <string name="title_plan_detail_progress">Your Quitter\'s Progress</string>
+    <string name="title_your_progress">Your Cigarette Quota</string>
+    <string name="title_plan_detail_progress">Your Quitter\'s Cigarette Quota</string>
     <string name="title_panic_button">Press the button if you want to smoke</string>
     <string name="title_update_encouragement">Press the button below to update your encouragement</string>
     <string name="panic_button_msg">You have smoked %s cigarettes for this month. Are you sure you want to smoke?</string>
@@ -103,8 +103,8 @@
     <string name="succ_update_encourgement">Work Complete!</string>
     <string name="game_if_restart">Do you want to play again?</string>
     <string name="default_value_pending">Pending</string>
-    <string name="milestone_title">Milestone</string>
-    <string name="money_title">Money</string>
+    <string name="milestone_title">Smoke-free Milestone</string>
+    <string name="money_title">Potential Money Saved</string>
     <string name="supporter_set_milestone_title">What is your expectation of milestone? (No. of Successive days of Quitting)</string>
     <string name="reward_title">What is the reward you want to give if your partner meet the target?</string>
     <string name="facebook_app_id">339498776616812</string>
