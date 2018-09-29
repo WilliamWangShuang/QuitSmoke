@@ -74,8 +74,8 @@
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
         android:background="#4757a6f5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonforquitter"
@@ -141,8 +141,8 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
 
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="8dp"
         android:background="#47399176"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
@@ -211,8 +211,8 @@
 
     <Button
         android:id="@+id/buttonforquitter"
-        android:layout_width="49dp"
-        android:layout_height="49dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
