@@ -35,12 +35,6 @@ public class TopMotivationActivity extends AppCompatActivity {
         // get button from UI
         btnNext = (Button)findViewById(R.id.btn_top_motivation_next);
 
-        // motivation logic
-        List<String> myDataset = new ArrayList<>();
-        for (int i = 0; i < surveyResultEntity.getMotivationAgeEntityList().size(); i++) {
-            MotivationAgeEntity entity = surveyResultEntity.getMotivationAgeEntityList().get(i);
-            myDataset.add(entity.getBehaviour() + "\t\t(" + entity.getProportion() + "%)");
-        }
         // add data for displaying in expandable list view
         loadData(surveyResultEntity.getMotivationAgeEntityList(), surveyResultEntity.getMotivationGenderEntityList());
         simpleExpandableListView = (ExpandableListView)findViewById(R.id.simpleExpandableListView);
@@ -93,10 +87,12 @@ public class TopMotivationActivity extends AppCompatActivity {
     //load some initial data into out list
     private void loadData(List<MotivationAgeEntity> topSet, List<MotivationGenderEntity> childSet){
         for (MotivationAgeEntity group : topSet) {
+            int index = 1;
             for (MotivationGenderEntity child: childSet) {
-                if (group.getBehaviour().equals(child.getClassification()))
-                    addMotivationNode(group.getBehaviour() + "(" + group.getProportion() + "%)",
-                            child.getBehaviour() + "(" +child.getProportion() + "%)");
+                if (group.getBehaviour().equals(child.getClassification())) {
+                    addMotivationNode(group.getBehaviour(), index + "." + child.getBehaviour());
+                    index++;
+                }
             }
         }
     }
