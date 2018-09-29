@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.william.quitsmokeappclient.R;
 import com.facebook.CallbackManager;
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
@@ -98,8 +99,15 @@ public class ViewMilestoneInfoDialogFragment extends DialogFragment {
         btnFacebookShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ShareDialog.canShow(SharePhotoContent.class)) {
-                    shareDialog.show(content);
+                try {
+                    if (ShareDialog.canShow(SharePhotoContent.class)) {
+                        shareDialog.show(content);
+                    }
+                } catch (FacebookException ex) {
+                    if (ex != null && ex.getMessage().equals("null")) {
+                        // Don't use the app for sharing in case of null-error
+                        shareDialog.show(content, ShareDialog.Mode.WEB);
+                    }
                 }
             }
         });
