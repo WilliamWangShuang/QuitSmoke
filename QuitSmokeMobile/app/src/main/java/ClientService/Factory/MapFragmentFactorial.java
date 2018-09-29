@@ -1,22 +1,13 @@
 package clientservice.factory;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
-import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
-import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
@@ -24,82 +15,37 @@ import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapquest.android.commoncore.model.LatLngExtent;
+import com.mapquest.mapping.layers.Layer;
+import com.mapquest.mapping.listener.ZoomListener;
 import com.mapquest.mapping.maps.MapView;
 import com.mapquest.mapping.maps.MapboxMap;
 import com.mapquest.mapping.maps.OnMapReadyCallback;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Map;
-import clientservice.GPSTracker;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.db.QuitSmokeDbUtility;
 import clientservice.entities.NoSmokeItem;
 import clientservice.entities.NoSmokePlace;
-import clientservice.webservice.MapWebservice;
-
-import static android.content.Context.LOCATION_SERVICE;
 
 public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
     Bundle savedInstanceState;
     Context mContext;
     MapView mMapView;
-    LatLng myLocation = null;
     MapboxMap mMapboxMap = null;
-    GPSTracker mGPS;
-    private double latitude;
-    private double longtitude;
-    private LocationManager mLocationManager;
     private List<NoSmokePlace> noSmokePlaceList;
+    private List<Marker> originalMarkers;
+    private LatLng firstNodePos;
     private String viewType;
     private final IconFactory iconFactory = IconFactory.getInstance(mContext);
     private final Icon iconGreen = iconFactory.fromResource(R.drawable.marker_green);
-    private  final Icon iconRed = iconFactory.fromResource(R.drawable.marker_red);
 
     // constructor
     public MapFragmentFactorial(MapView mMapView, Bundle savedInstanceState, Context mContext, String viewType) {
         this.savedInstanceState = savedInstanceState;
         this.mContext = mContext;
         this.mMapView = mMapView;
-        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            h.sendEmptyMessage(0);
-            return;
-        } else {
-            mGPS = new GPSTracker(mContext);
-            latitude = mGPS.getLocation().getLatitude();
-            longtitude = mGPS.getLocation().getLongitude();
-            this.viewType = viewType;
-        }
+        this.viewType = viewType;
     }
-
-    private final LocationListener mLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(final Location location) {
-            if (mGPS.canGetLocation()) {
-                latitude = mGPS.getLocation().getLatitude();
-                longtitude = mGPS.getLocation().getLongitude();
-            }
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    };
 
     @Override
     protected void onPreExecute() {
@@ -124,36 +70,43 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        mLocationManager = (LocationManager)mContext.getSystemService(LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            h.sendEmptyMessage(0);
-            return;
-        }
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, mLocationListener);
-        myLocation = new LatLng();
-        Log.d("QuitSmokeDebug", "my position - " + "lat:" + latitude + ",long:" + longtitude);
-        myLocation.setLatitude(latitude);
-        myLocation.setLongitude(longtitude);
-
         // synchronize map view
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(MapboxMap mapboxMap) {
-                Log.d("QuitSmokeDebug","my location:" + myLocation.getLatitude() + " : " + myLocation.getLongitude());
                 mMapboxMap = mapboxMap;
-                mMapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 13));
                 // remove all markers first
-                List<Marker> allMarkers = mMapboxMap.getMarkers();
-                for (Marker marker : allMarkers){
-                    mMapboxMap.removeMarker(marker);
-                }
-                // set maker for current user position
-                setMarker(mMapboxMap, iconGreen, "I am here", new LatLng(myLocation.getLatitude(), myLocation.getLongitude()));
+                removeMarkers();
+                mMapboxMap.addZoomListener(new ZoomListener() {
+                    @Override
+                    public void onZoomChange(double oldZoom, double newZoom) {
+                        adjustMarkser(mMapboxMap, newZoom);
+                    }
+                }, 0);
                 // add makers for all residents
                 addMarker(mMapboxMap, viewType);
+                mMapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstNodePos, 13));
             }
         });
+    }
+
+    private void adjustMarkser(MapboxMap mapboxMap,double newZoom) {
+        // set original marker list
+//        originalMarkers = mapboxMap.getMarkers();
+//        // recover all markers, then calculate which ones to remove
+//        double ration = Math.round(newZoom / 17 * 100.00) / 100.00;
+//        int hidSize = (int)(originalMarkers.size() * ration);
+//        for (int i = 0; i <= hidSize; i++) {
+//            originalMarkers.get(i).setIcon(iconFactory.fromBitmap(Bitmap.createBitmap(1,1,null)));
+//        }
+//        mMapView.
+    }
+
+    private void removeMarkers() {
+        List<Marker> allMarkers = mMapboxMap.getMarkers();
+        for (Marker marker : allMarkers){
+            mMapboxMap.removeMarker(marker);
+        }
     }
 
     // add maker on map
@@ -164,14 +117,17 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
             String noSmokePlaceType = noSmokePlace.getType();
             // check place type, if same as selected, add all its place items' lat & long
             if (viewType.equals(noSmokePlaceType)) {
-                // add latitude and longtitude of all this type of places
+                // add latitude and longitude of all this type of places
                 boolean isListNull = noSmokePlace.getList() == null;
-                Log.d("TestDebug", "if get list is null" + isListNull);
                 if (!isListNull) {
+                    boolean isFirstPlace = true;
                     for (NoSmokeItem item : noSmokePlace.getList()) {
                         double lat = item.getLatitude();
                         double lon = item.getLongitude();
-                        Log.d("QuitSmokeDebug", "latitude:" + lat + ",longitude:" + lon);
+                        if (isFirstPlace) {
+                            firstNodePos = new LatLng(lat, lon);
+                            isFirstPlace = false;
+                        }
                         LatLng latLng = new LatLng();
                         latLng.setLatitude(lat);
                         latLng.setLongitude(lon);
@@ -190,13 +146,4 @@ public class MapFragmentFactorial extends AsyncTask<Void, Void, Void> {
         markerOptions.setIcon(iconGreen);
         mapboxMap.addMarker(markerOptions);
     }
-
-    @SuppressLint("HandlerLeak")
-    Handler h = new Handler() {
-        public void handleMessage(Message msg){
-            if(msg.what == 0) {
-                Toast.makeText(mContext, "Please grant location access in your device settings for this app.", Toast.LENGTH_LONG).show();
-            }
-        }
-    };
 }
