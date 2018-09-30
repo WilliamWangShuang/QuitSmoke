@@ -24,6 +24,7 @@
                 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#1e5d9f27"
                     android:padding="10dp"
                     android:stretchColumns="0">
 
@@ -185,10 +186,11 @@
                             android:id="@+id/btn_confirm_register"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/buttonforall"
                             android:layout_marginTop="5dp"
                             android:layout_span="2"
                             android:text="@string/register_title"
-                            android:textStyle="bold" />
+                            android:textColor="@color/colorWhite" />
                     </TableRow>
 
                 </TableLayout>
