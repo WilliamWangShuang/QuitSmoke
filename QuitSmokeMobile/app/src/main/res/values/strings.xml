@@ -64,7 +64,7 @@
     <string name="fail_cold_turkey_behaviour">failed to quit cold turkey</string>
     <string name="fail_reduce_behaviour">failed to reduce amount</string>
     <string name="register_hint_name">Name</string>
-    <string name="register_hint_price_per_pack">Price per pack of your ususally taken smoke</string>
+    <string name="register_hint_price_per_pack">Price of usual pack of smokes</string>
     <string name="next">back</string>
     <string name="survey_start_btn">Find Out your Quit Chance</string>
     <string name="motive">Top Motivators</string>
