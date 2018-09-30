@@ -3,24 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#1effffff">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Top Motivations" />
+        android:text="Top Motivations"
+        android:textSize="40dp"
+        android:layout_gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lbl_quit_reason"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:textSize="18sp"/>
 
     <ExpandableListView
         android:id="@+id/simpleExpandableListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cd6b9b9c"
+        android:background="#1e5d9f27"
         android:dividerHeight="0dp" />
 
     <TextView
@@ -34,5 +40,12 @@
         android:id="@+id/btn_top_motivation_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/next" />
+        android:layout_gravity="center"
+        android:background="@drawable/buttonforwhitebg"
+        android:text="@string/next"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"/>
 </LinearLayout>
