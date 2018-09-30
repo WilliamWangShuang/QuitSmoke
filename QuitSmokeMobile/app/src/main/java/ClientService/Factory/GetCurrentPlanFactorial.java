@@ -53,7 +53,7 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 Log.d("QuitSmokeDebug", "currentPlan is null:" + (currentPlan == null));
                 if (currentPlan != null) {
                     // return current achieved successive day
-                    realAmount = currentPlan.getRealAmount();
+                    realAmount = isRequestFromSmokerFragement ? currentPlan.getRealAmount() : currentPlan.getSuccessiveDay();
                     h.sendEmptyMessage(0);
                 } else {
                     return QuitSmokeClientConstant.INDICATOR_NO_PLAN;
