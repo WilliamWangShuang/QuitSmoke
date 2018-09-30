@@ -13,11 +13,11 @@
                 <item
                     android:id="@+id/calculate_frs"
                     android:icon="@drawable/frs"
-                    android:title="Framingham Score" />
+                    android:title="Heart Risk Calc" />
                 <item
                     android:id="@+id/map"
                     android:icon="@drawable/google_map"
-                    android:title="Free Zone" />
+                    android:title="Smoke Free Zone" />
                 <item
                     android:id="@+id/plan_history"
                     android:icon="@drawable/ic_menu_slideshow"
@@ -25,7 +25,7 @@
                 <item
                     android:id="@+id/game"
                     android:icon="@drawable/player"
-                    android:title="Game" />
+                    android:title="Distract Me" />
             </menu>
         </item>
 
