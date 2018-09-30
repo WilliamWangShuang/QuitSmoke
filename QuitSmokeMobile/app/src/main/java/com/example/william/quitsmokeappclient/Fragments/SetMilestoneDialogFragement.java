@@ -8,8 +8,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -55,21 +57,7 @@ public class SetMilestoneDialogFragement extends DialogFragment implements IUpda
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // initial update milestone factory
-                        String targetStr = txtSetMilestoneTarget.getText().toString();
-                        boolean isInputEmpty = targetStr == null || "".equals(targetStr);
-                        if (!isInputEmpty) {
-                            targetNo = Integer.parseInt(targetStr);
-                            tvTargetMilstone.setText("");
-                            String reward = txtSetReward.getText().toString();
-                            updateMilestoneFactorial = new UpdateMilestoneFactorial(uid, targetNo, reward);
-                            updateMilestoneFactorial.delegate = SetMilestoneDialogFragement.this;
-                            // call REST method to update milestone of the plan
-                            updateMilestoneFactorial.execute();
-                        } else {
-                            tvTargetMilstone.setText(getResources().getString(R.string.milestone_target_error));
 
-                        }
                     }
                 })
                 .setNegativeButton("Close", new DialogInterface.OnClickListener() {
@@ -78,21 +66,59 @@ public class SetMilestoneDialogFragement extends DialogFragment implements IUpda
                         SetMilestoneDialogFragement.this.getDialog().cancel();
                     }
                 });
-        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                if (!"".equals(tvTargetMilstone.getText())) {
-                    SetMilestoneDialogFragement.this.getDialog().show();
-                }
-            }
-        });
+
         return builder.create();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        Log.d("TestDebug", "tvTargetMilstone:" + tvTargetMilstone.getText().toString());
+        if (!"".equals(tvTargetMilstone.getText().toString())) {
+
+        }
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();    //super.onStart() is where dialog.show() is actually called on the underlying dialog, so we have to do it after this point
+        AlertDialog d = (AlertDialog)getDialog();
+        if(d != null)
+        {
+            Button positiveButton = (Button) d.getButton(Dialog.BUTTON_POSITIVE);
+            positiveButton.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Boolean wantToCloseDialog = false;
+                    // initial update milestone factory
+                    String targetStr = txtSetMilestoneTarget.getText().toString();
+                    boolean isInputEmpty = targetStr == null || "".equals(targetStr);
+                    if (!isInputEmpty) {
+                        targetNo = Integer.parseInt(targetStr);
+                        tvTargetMilstone.setText("");
+                        String reward = txtSetReward.getText().toString();
+                        updateMilestoneFactorial = new UpdateMilestoneFactorial(uid, targetNo, reward);
+                        updateMilestoneFactorial.delegate = SetMilestoneDialogFragement.this;
+                        // call REST method to update milestone of the plan
+                        updateMilestoneFactorial.execute();
+                        wantToCloseDialog = true;
+                    } else {
+                        tvTargetMilstone.setText(getResources().getString(R.string.milestone_target_error));
+                    }
+                    if(wantToCloseDialog)
+                        dismiss();
+                    //else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.
+                }
+            });
+        }
     }
 
     @Override
