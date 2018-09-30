@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
+
+import clientservice.QuitSmokeClientUtils;
 import clientservice.factory.GetCurrentPlanFactorial;
 
 public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncResponse {
@@ -80,6 +82,7 @@ public class PlanDetailFragment extends Fragment implements IUpdatePartnerAsyncR
                 Bundle bundle = new Bundle();
                 bundle.putString("smokerUid", uid);
                 bundle.putInt("currentPoint", Integer.parseInt(realAmountMsg));
+                bundle.putString("createDT", createDT);
                 setMilestoneDialogFragement = new SetMilestoneDialogFragement();
                 setMilestoneDialogFragement.setArguments(bundle);
                 setMilestoneDialogFragement.show(myContext.getSupportFragmentManager(), "updateMilestone");
