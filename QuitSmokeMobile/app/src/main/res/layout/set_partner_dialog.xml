@@ -15,13 +15,16 @@
         android:layout_height="wrap_content"
         android:text="@string/supporter_label"
         android:textColor="@color/colorWhite"
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
         android:textStyle="bold"/>
 
 
     <EditText
         android:id="@+id/txtSetSupporter"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:ems="10"
         android:inputType="textEmailAddress" />
 
