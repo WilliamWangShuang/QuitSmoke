@@ -109,6 +109,7 @@
     <string name="reward_title">What is the reward you want to give if your partner meet the target?</string>
     <string name="facebook_app_id">339498776616812</string>
     <string name="milestone_target_error">Milestone Target cannot be empty.</string>
+    <string name="no_network_msg">Network not connect. Please connect first.</string>
 
     <array name="user_role">
         <item>I am quitter</item>
