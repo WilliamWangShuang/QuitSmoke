@@ -204,8 +204,23 @@
             app:layout_constraintTop_toBottomOf="@+id/main_milestone_progress"
             app:layout_constraintVertical_bias="1.0" />
 
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="40dp"
+            android:text="Tap above to find more"
+            android:textStyle="italic"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_milestone_progress"
+            app:layout_constraintVertical_bias="0.38" />
 
-       </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/buttonforquitter"
