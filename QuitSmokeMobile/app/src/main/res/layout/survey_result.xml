@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#1e5d9f27">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -50,19 +51,29 @@
             android:id="@+id/graph"
             android:layout_width="wrap_content"
             android:layout_height="400dp"
-            android:background="#6eababab"/>
+
+            android:layout_marginTop="10dp"
+            android:background="#4757a6f5" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/attribution"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:textSize="10sp"/>
 
         <Button
             android:id="@+id/btn_servey_result_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/buttonforwhitebg"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
             android:text="@string/motive" />
 
     </LinearLayout>
