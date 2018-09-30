@@ -23,6 +23,7 @@ import clientservice.factory.UpdateMilestoneFactorial;
 public class SetMilestoneDialogFragement extends DialogFragment implements IUpdatePartnerAsyncResponse {
     private EditText txtSetMilestoneTarget;
     private EditText txtSetReward;
+    private TextView tvTargetMilstone;
     private String uid;
     private int currentSuccessiveDays;
     private int targetNo;
@@ -41,6 +42,7 @@ public class SetMilestoneDialogFragement extends DialogFragment implements IUpda
         txtSetMilestoneTarget = (EditText)view.findViewById(R.id.txtSetMilestoneTarget);
         txtSetReward = (EditText)view.findViewById(R.id.txtSetReward);
         tvMilestone = (TextView)getActivity().findViewById(R.id.tv_plan_detail_milestone);
+        tvTargetMilstone = (TextView)view.findViewById(R.id.tvMilstoneTargetMsg);
 
         // initial update milestone factory
         uid = getArguments().getString("smokerUid");
@@ -54,20 +56,36 @@ public class SetMilestoneDialogFragement extends DialogFragment implements IUpda
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // initial update milestone factory
-                        targetNo = Integer.parseInt(txtSetMilestoneTarget.getText().toString());
-                        String reward = txtSetReward.getText().toString();
-                        updateMilestoneFactorial = new UpdateMilestoneFactorial(uid, targetNo, reward);
-                        updateMilestoneFactorial.delegate = SetMilestoneDialogFragement.this;
-                        // call REST method to update milestone of the plan
-                        updateMilestoneFactorial.execute();
+                        String targetStr = txtSetMilestoneTarget.getText().toString();
+                        boolean isInputEmpty = targetStr == null || "".equals(targetStr);
+                        if (!isInputEmpty) {
+                            targetNo = Integer.parseInt(targetStr);
+                            tvTargetMilstone.setText("");
+                            String reward = txtSetReward.getText().toString();
+                            updateMilestoneFactorial = new UpdateMilestoneFactorial(uid, targetNo, reward);
+                            updateMilestoneFactorial.delegate = SetMilestoneDialogFragement.this;
+                            // call REST method to update milestone of the plan
+                            updateMilestoneFactorial.execute();
+                        } else {
+                            tvTargetMilstone.setText(getResources().getString(R.string.milestone_target_error));
+
+                        }
                     }
                 })
                 .setNegativeButton("Close", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        tvTargetMilstone.setText("");
                         SetMilestoneDialogFragement.this.getDialog().cancel();
                     }
                 });
-
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                if (!"".equals(tvTargetMilstone.getText())) {
+                    SetMilestoneDialogFragement.this.getDialog().show();
+                }
+            }
+        });
         return builder.create();
     }
 
