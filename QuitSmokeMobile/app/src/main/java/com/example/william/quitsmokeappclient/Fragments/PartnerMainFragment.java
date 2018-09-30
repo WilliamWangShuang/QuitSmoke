@@ -32,6 +32,7 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
     private ApprovePlanDialogFragment approvePlanDialogFragment;
     private FragmentActivity myContext;
     private View myRootView;
+    private TextView tvTapRemind;
 
     @Nullable
     @Override
@@ -54,9 +55,11 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
     @Override
     public void processFinish(ArrayList<PlanEntity> reponseResult) {
         resultFromFactory = reponseResult;
+        tvTapRemind = myRootView.findViewById(R.id.tvTapRemind);
         // if result from factory is not null, initialize UI fields value
-        Log.d("QuitSmokeDebug", "result from InitialPartnerFragmentFactorial:" + (reponseResult == null));
-        if(resultFromFactory != null) {
+        Log.d("QuitSmokeDebug", "result from InitialPartnerFragmentFactorial:" + reponseResult.size());
+        if(resultFromFactory.size() != 0) {
+            tvTapRemind.setText(getResources().getString(R.string.tap_remind_default_msg));
             mRecyclerView = (RecyclerView)myRootView.findViewById(R.id.rv_pending_plan);
             mRecyclerView.setHasFixedSize(true);
 
@@ -91,7 +94,7 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
             });
             mRecyclerView.setAdapter(mAdapter);
         } else {
-            ((TextView)myRootView.findViewById(R.id.tvStatusSupporter)).setText("No new plan created by your partner.");
+            tvTapRemind.setText(getResources().getString(R.string.no_running_plan));
         }
     }
 }

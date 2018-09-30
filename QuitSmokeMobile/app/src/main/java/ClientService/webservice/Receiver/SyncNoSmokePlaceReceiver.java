@@ -35,7 +35,7 @@ public class SyncNoSmokePlaceReceiver extends BroadcastReceiver implements ILoad
         i = new Intent(context, SyncNoSmokePlaceReceiver.class);
         // get current pending board cast intent in context
         pi = PendingIntent.getBroadcast(context,0, i,0);
-        // Set alarm do the job of the intent  AlarmManager.INTERVAL_HALF_HOUR
+        // Set alarm do the job of the intent
         alarmMgr.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pi);
         mContext = context;
     }
