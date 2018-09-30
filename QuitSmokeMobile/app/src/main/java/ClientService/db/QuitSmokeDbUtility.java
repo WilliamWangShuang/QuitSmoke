@@ -151,8 +151,6 @@ public class QuitSmokeDbUtility {
         List<NoSmokePlace> result = new ArrayList<>();
         // get SQLite db
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        // create table contract
-        QuitSmokeContract.NoSmokePlace noSmokePlaceContract = new QuitSmokeContract.NoSmokePlace();
         // SQL string
         String queryString = "SELECT " + noSmokePlace.COLUMN_NAME_ADDRESS  + "," +
                 noSmokePlace.COLUMN_NAME_LATITUDE + "," +
@@ -191,7 +189,6 @@ public class QuitSmokeDbUtility {
                 List<NoSmokeItem> noSmokeItemList = new ArrayList<>();
                 noSmokeItemList.add(noSmokeItem);
                 entity.setList(noSmokeItemList);
-//                result.add(entity);
             }
 
             result.add(entity);
