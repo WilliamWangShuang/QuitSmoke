@@ -20,10 +20,10 @@
         android:textColor="#090909"/>
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tvTapRemind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tap below for more details"
+        android:text="@string/default_value_pending"
         android:textStyle="italic"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 

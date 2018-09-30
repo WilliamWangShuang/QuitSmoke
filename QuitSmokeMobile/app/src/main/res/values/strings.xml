@@ -110,6 +110,8 @@
     <string name="facebook_app_id">339498776616812</string>
     <string name="milestone_target_error">Milestone Target cannot be empty.</string>
     <string name="no_network_msg">Network not connect. Please connect first.</string>
+    <string name="tap_remind_default_msg">Tap below for more details</string>
+    <string name="no_running_plan">No new plan created by your partner.</string>
 
     <array name="user_role">
         <item>I am quitter</item>
