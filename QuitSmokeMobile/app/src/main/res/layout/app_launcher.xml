@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/bg_pic"
+    android:background="#ffffff"
     android:orientation="vertical">
 
     <ImageView
@@ -35,16 +35,18 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginStart="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="72dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/edit_text_style"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:paddingBottom="12dp"
         android:paddingLeft="12dp"
         android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,31 +78,53 @@
             android:textColor="#000000" />
     </android.support.design.widget.TextInputLayout>
 
-    <clientservice.factory.CircularProgressButton
-        android:id="@+id/btnMorph1"
-        android:layout_width="@dimen/mb_width_200"
-        android:layout_height="@dimen/mb_height_56"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/buttonforwhitebg"
-        android:text="@string/login"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintBottom_toTopOf="@+id/registerLink"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/registerLink"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="47dp"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="Do not have an account? Register now!"
-        android:textColor="#0D47A1"
-        android:textSize="15dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="72dp"
+        android:background="#4757a6f5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+
+        <TextView
+            android:id="@+id/registerLink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Do not have an account? Register now!"
+            android:textColor="#0D47A1"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMorph1" />
+
+        <clientservice.factory.CircularProgressButton
+            android:id="@+id/btnMorph1"
+            android:layout_width="@dimen/mb_width_200"
+            android:layout_height="@dimen/mb_height_56"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+
+            android:text="@string/login"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
