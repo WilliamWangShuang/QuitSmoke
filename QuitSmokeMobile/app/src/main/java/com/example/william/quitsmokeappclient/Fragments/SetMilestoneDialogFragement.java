@@ -125,7 +125,7 @@ public class SetMilestoneDialogFragement extends DialogFragment implements IUpda
     public void processFinish(String reponseResult) {
         if (QuitSmokeClientConstant.INDICATOR_Y.equals(reponseResult)) {
             // construct milestone text
-            String milestone = (currentSuccessiveDays >= targetNo ? "Complete - " : "") + currentSuccessiveDays + "/" + targetNo;
+            String milestone = (currentSuccessiveDays >= targetNo ? "Complete\n" : "") + currentSuccessiveDays + "/" + targetNo;
             tvMilestone.setText(milestone);
         }
     }
