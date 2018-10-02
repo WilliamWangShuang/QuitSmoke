@@ -3,21 +3,26 @@ package clientservice.factory;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.dinuscxj.progressbar.CircleProgressBar;
+import com.example.william.quitsmokeappclient.Fragments.MessageDialogFragment;
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;
 import clientservice.webservice.InteractWebservice;
+import com.example.william.quitsmokeappclient.R;
 
 public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     private Activity smokerMainActivity;
+    private FragmentManager fragmentManager;
     private String uid;
     private boolean isPartnerSet;
     private CircleProgressBar mCustomProgressBar;
@@ -27,11 +32,12 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     private TextView tvMoneySaved;
     public IUpdatePartnerAsyncResponse delegate = null;
 
-    public GetCurrentPlanFactorial(Activity smokerMainActivity, String uid, CircleProgressBar mCustomProgressBar, TextView tvMilestone, TextView tvMoneySaved, boolean isRequestFromSmokerFragement) {
+    public GetCurrentPlanFactorial(Activity smokerMainActivity, FragmentManager fragmentManager, String uid, CircleProgressBar mCustomProgressBar, TextView tvMilestone, TextView tvMoneySaved, boolean isRequestFromSmokerFragement) {
         this.uid = uid;
         this.isRequestFromSmokerFragement = isRequestFromSmokerFragement;
         this.tvMilestone = tvMilestone;
         this.smokerMainActivity = smokerMainActivity;
+        this.fragmentManager= fragmentManager;
         this.mCustomProgressBar = mCustomProgressBar;
         this.tvMoneySaved = tvMoneySaved;
     }
@@ -87,8 +93,20 @@ public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
                 // calculate progress for progress bar
                 int realAmount = currentPlan.getRealAmount();
                 int targetAmount = currentPlan.getTargetAmount();
+                final String progressBarClickMsg = String.format(smokerMainActivity.getResources().getString(R.string.progress_bar_click_message), currentPlan.getTargetAmount(), currentPlan.getRealAmount());
                 int progress = targetAmount == 0 ? 0 : (int)(realAmount * 100 / targetAmount);
                 QuitSmokeClientUtils.simulateProgress(mCustomProgressBar, progress);
+                // set onclick of progress bar to show the plan information, e.g.plan target number
+                mCustomProgressBar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MessageDialogFragment messageDialogFragment = new MessageDialogFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("message", progressBarClickMsg);
+                        messageDialogFragment.setArguments(bundle);
+                        messageDialogFragment.show(fragmentManager, "showPrgressBarMsg");
+                    }
+                });
                 // construct milestone text
                 int targetMilestone = currentPlan.getMilestone();
                 int currentSuccesiveDays = currentPlan.getSuccessiveDay();
