@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.TextView;
 import com.example.william.quitsmokeappclient.MainActivity;
 import com.example.william.quitsmokeappclient.R;
+
+import clientservice.QuitSmokeClientConstant;
 import clientservice.entities.UpdatePartnerEntity;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.QuitSmokeUserWebservice;
@@ -79,6 +81,7 @@ public class CreateSupporterFactorial extends AsyncTask<Void, Void, Void> {
                 tvErrorMsg.setText("");
                 // go to main activity
                 Intent intent = new Intent(createSupporterActivity, MainActivity.class);
+                intent.putExtra("isFromRegister", true);
                 createSupporterActivity.startActivityForResult(intent, 1);
             } else if(msg.what == 1) {
                 // show partner not exist error message

@@ -113,6 +113,7 @@
     <string name="tap_remind_default_msg">Tap below for more details</string>
     <string name="no_running_plan">No new plan created by your partner.</string>
     <string name="progress_bar_click_message">Your monthly plan target is %d. You have taken %d</string>
+    <string name="tutorial_msg">This is a tutorial.</string>
 
     <array name="user_role">
         <item>I am quitter</item>

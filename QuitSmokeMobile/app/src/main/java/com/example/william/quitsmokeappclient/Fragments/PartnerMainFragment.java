@@ -33,6 +33,7 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
     private FragmentActivity myContext;
     private View myRootView;
     private TextView tvTapRemind;
+    private TextView tvTutorial;
 
     @Nullable
     @Override
@@ -45,6 +46,19 @@ public class PartnerMainFragment extends Fragment implements IGetPendingPlanResu
         super.onViewCreated(view, savedInstanceState);
         // get root view
         myRootView = getView();
+        // get tutorial button
+        tvTutorial = view.findViewById(R.id.tvTutorial);
+        // set click function for button tvTutorial to show tutorial information
+        tvTutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MessageDialogFragment messageDialogFragment = new MessageDialogFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("message", getResources().getString(R.string.tutorial_msg));
+                messageDialogFragment.setArguments(bundle);
+                messageDialogFragment.show(getFragmentManager(), "tutorial");
+            }
+        });
         // get current user email
         String email = QuitSmokeClientUtils.getEmail();
         InitialPartnerFragmentFactorial initialPartnerFragmentFactorial =  new InitialPartnerFragmentFactorial(email, false);

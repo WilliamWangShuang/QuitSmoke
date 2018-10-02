@@ -11,7 +11,6 @@ import android.widget.TextView;
 import clientservice.factory.CreateSupporterFactorial;
 
 public class CreateSupporterActivity extends AppCompatActivity {
-    private TextView tvSupporterEmailErrorMsg;
     private EditText txtSupporterEmail;
     private Button btnSave;
     private Button btnLater;
@@ -22,7 +21,6 @@ public class CreateSupporterActivity extends AppCompatActivity {
         setContentView(R.layout.designate_supporter);
 
         // get views from UI
-        tvSupporterEmailErrorMsg = (TextView)findViewById(R.id.lblAddSupporterMsg);
         txtSupporterEmail = (EditText)findViewById(R.id.txtAddSupporter);
         btnSave = (Button)findViewById(R.id.btnAddSupporter);
         btnLater = (Button)findViewById(R.id.btnAddLater);
@@ -42,6 +40,7 @@ public class CreateSupporterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateSupporterActivity.this, MainActivity.class);
+                intent.putExtra("isFromRegister", true);
                 startActivityForResult(intent, 1);
             }
         });

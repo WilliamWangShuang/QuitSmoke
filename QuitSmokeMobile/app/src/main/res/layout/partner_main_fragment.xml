@@ -32,12 +32,10 @@
             android:paddingRight="2dp"
             android:textColor="#181717"
             android:textSize="18sp"
+            android:clickable="true"
             android:textStyle="bold" />
 
     </TableRow>
-
-
-
 
     <TextView
         android:id="@+id/tvTapRemind"
