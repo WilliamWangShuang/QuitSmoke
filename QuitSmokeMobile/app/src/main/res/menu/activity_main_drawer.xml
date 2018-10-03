@@ -38,11 +38,7 @@
                     android:title="Create Plan"
                     android:icon="@drawable/ic_menu_gallery"
                     />
-                <item
-                    android:id="@+id/write_report"
-                    android:icon="@drawable/ic_menu_slideshow"
-                    android:title="Write Report"
-                    android:enabled="false"/>
+
 
             </menu>
         </item>
