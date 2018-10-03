@@ -244,7 +244,7 @@
         app:layout_constraintTop_toTopOf="@+id/buttonforquitter"
         app:srcCompat="@drawable/ic_smoking_rooms_white_24dp"/>
 
-    
+
 
 
 
