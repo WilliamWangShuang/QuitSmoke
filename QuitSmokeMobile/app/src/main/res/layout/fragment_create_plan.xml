@@ -12,15 +12,15 @@
         android:id="@+id/tvMessage"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="28dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:textColor="@color/errorBackgound"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
 
     <LinearLayout
         android:id="@+id/tableLayout"
@@ -83,6 +83,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CreatePlanTitle" />
 
+    <TextView
+        android:id="@+id/Quitter_tutorial_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="How To Create a Plan"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/Quitter_tutorial_step1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMessage" />
+
+    <TextView
+        android:id="@+id/Quitter_tutorial_step1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="1) Please designate a supporter first (down below)"
+        app:layout_constraintBottom_toTopOf="@+id/Quitter_tutorial_step2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.358"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -140,7 +173,7 @@
             android:layout_marginBottom="8dp"
             android:clickable="true"
             android:gravity="center"
-            android:text="Send supporter requst"
+            android:text="DESIGNATE YOUR SUPPORTER"
             android:textColor="#0D47A1"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -149,5 +182,20 @@
             app:layout_constraintTop_toBottomOf="@+id/btnCreatePlan"
             tools:text="Don't have a suppoter?" />
     </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/Quitter_tutorial_step2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="2) Input your monthly cigarette intake (above)"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
 
