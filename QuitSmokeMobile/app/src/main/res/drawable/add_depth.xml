@@ -12,12 +12,12 @@
     </item>
 
     <item
-        android:top="@dimen/depth"
-        android:left="@dimen/depth">
-        <shape android:shape="rectangle">
-            <corners android:radius="0dp"/>
-            <solid android:color="#10464444"/>
-        </shape>
-    </item>
+    android:top="@dimen/depth"
+    android:left="@dimen/depth">
+    <shape android:shape="rectangle">
+        <corners android:radius="0dp"/>
+        <solid android:color="#10464444"/>
+    </shape>
+</item>
 
 </layer-list>

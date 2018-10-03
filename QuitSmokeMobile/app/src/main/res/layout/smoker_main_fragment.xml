@@ -179,16 +179,17 @@
             android:id="@+id/tv_milestone_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
             android:layout_marginLeft="45dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="8dp"
             android:text="@string/default_value_pending"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintHorizontal_bias="0.538"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
             app:layout_constraintTop_toBottomOf="@+id/main_milestone_progress"
-            app:layout_constraintVertical_bias="0.22000003" />
+            app:layout_constraintVertical_bias="0.087" />
 
         <TextView
             android:id="@+id/textView5"
@@ -209,16 +210,17 @@
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="40dp"
-            android:text="Tap this number to find more"
-            android:textStyle="italic"
+            android:layout_marginTop="8dp"
+            android:text="@string/milestone_tip"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_milestone_progress"
-            app:layout_constraintVertical_bias="0.38" />
+            app:layout_constraintVertical_bias="0.172" />
 
 
     </android.support.constraint.ConstraintLayout>
