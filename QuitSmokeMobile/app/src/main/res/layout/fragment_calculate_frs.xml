@@ -9,14 +9,16 @@
 
     <TextView
         android:id="@+id/tvFRSDesc"
-        android:layout_width="200dp"
+        android:layout_width="187dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/frs_desc"
+        android:textAppearance="@style/TextAppearance.AppCompat.Tooltip"
         app:layout_constraintBottom_toTopOf="@+id/tvRiskResult"
+        app:layout_constraintEnd_toStartOf="@+id/tableLayout4"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -27,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center"
@@ -35,7 +37,6 @@
         android:textColor="#181717"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout4" />
 
@@ -155,7 +156,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtSBP"
         app:layout_constraintTop_toBottomOf="@+id/txtSBP"
-        app:layout_constraintVertical_bias="0.060000002" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <TableLayout
@@ -164,18 +165,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tvFRSDesc"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow>
 
             <TextView
-                android:background="#e0fc0404"
+                android:background="#936d81dc"
                 android:text="@string/high_risk"
                 android:textStyle="bold" />
 
@@ -189,7 +187,7 @@
         <TableRow>
 
             <TextView
-                android:background="#c0ff0e00"
+                android:background="#5e6d81dc"
                 android:text="@string/medium_risk"
                 android:textStyle="bold" />
 
@@ -203,7 +201,7 @@
         <TableRow>
 
             <TextView
-                android:background="#8eff0000"
+                android:background="#366d81dc"
                 android:text="@string/low_risk"
                 android:textStyle="bold" />
 
@@ -239,7 +237,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         app:layout_constraintBottom_toBottomOf="@+id/txtSBP"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toTopOf="@+id/txtSBP" />
 
@@ -247,8 +245,6 @@
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="HDL"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         app:layout_constraintBottom_toBottomOf="@+id/txtHDL"
@@ -285,6 +281,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
