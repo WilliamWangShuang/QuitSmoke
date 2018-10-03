@@ -146,7 +146,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnCreatePlan" />
+            app:layout_constraintTop_toBottomOf="@+id/btnCreatePlan"
+            tools:text="Don't have a suppoter?" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
 
