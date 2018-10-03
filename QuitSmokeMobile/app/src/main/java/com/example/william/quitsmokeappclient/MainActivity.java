@@ -295,7 +295,6 @@ public class MainActivity extends AppCompatActivity
             if(Build.VERSION.SDK_INT > 11) {
                 invalidateOptionsMenu();
                 menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.create_plan).setVisible(false);
-                menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.write_report).setVisible(false);
                 btnFrag_create_plan_go.setVisibility(GONE);
             }
         } else if (QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
