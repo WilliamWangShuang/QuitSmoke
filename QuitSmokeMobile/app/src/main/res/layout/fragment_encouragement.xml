@@ -58,7 +58,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="Under Construction"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
