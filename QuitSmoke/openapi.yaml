@@ -242,7 +242,7 @@ paths:
         - application/json
         - text/json
       parameters:
-        - name: uid
+        - name: smokerNodeName
           in: body
           required: false
           schema:
@@ -595,6 +595,8 @@ definitions:
         type: string
       smoker_node_name:
         type: string
+      price_per_pack:
+        type: string
   MyTestEntity:
     type: object
     properties:
@@ -810,6 +812,8 @@ definitions:
       successiveDays:
         format: int32
         type: integer
+      reward:
+        type: string
   GetingPendingPlanReq:
     type: object
     properties:

@@ -573,7 +573,7 @@ namespace QuitSmokeWebAPI.Controllers
         }
 
         [HttpPost("checkPartner")]
-        public bool checkPartner([FromBody] String uid)
+        public bool checkPartner([FromBody] String smokerNodeName)
         {
             bool result = false;
 
@@ -587,16 +587,11 @@ namespace QuitSmokeWebAPI.Controllers
                     client.DefaultRequestHeaders.Accept.Add(
                         new MediaTypeWithQualityHeaderValue("application/json"));
                     // retrieve data response
-                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT 
-                            + Constant.JSON_NODE_NAME_APP_USERS 
-                            + Constant.FIREBASE_SUFFIX_JSON
-                            + string.Format(Constant.FIREBASE_GET_BY_UID_FORMAT, Constant.JSON_KEY_USER_UID, uid)).Result;
+                    HttpResponseMessage response = client.GetAsync(Constant.FIREBASE_ROOT + Constant.JSON_NODE_NAME_APP_USERS + "/" + smokerNodeName + Constant.FIREBASE_SUFFIX_JSON).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         // parse the response body
-                        JObject responseObj = response.Content.ReadAsAsync<JObject>().Result;
-                        JToken userInfoToken = responseObj.First;
-                        UserInfo userInfo = userInfoToken.First.ToObject<UserInfo>();
+                        UserInfo userInfo = response.Content.ReadAsAsync<UserInfo>().Result;
                         result = !string.IsNullOrEmpty(userInfo.partner_email);
                     } 
                 }
@@ -1510,14 +1505,12 @@ namespace QuitSmokeWebAPI.Controllers
                 client.Encoding = Encoding.UTF8;
                 // set headers
                 client.Headers.Add("Accept", "application/json");
-                var response = client.UploadString(Constant.FIREBASE_ROOT
+                responseString = client.UploadString(Constant.FIREBASE_ROOT
                     + Constant.JSON_NODE_NAME_APP_USERS
                     + Constant.FIREBASE_SUFFIX_JSON, JsonConvert.SerializeObject(userInfo));
-
-                responseString = JObject.Parse(response).ToString();
             }
 
-            return Constant.SUCCESS.Equals(responseString, StringComparison.InvariantCultureIgnoreCase) ? uid : responseString;
+            return responseString;
         }
 
         private int getAgeRange(int age, out int endAge)
