@@ -53,7 +53,7 @@
 
     <TextView
         android:id="@+id/pressButton"
-        android:layout_width="211dp"
+        android:layout_width="244dp"
         android:layout_height="17dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -67,7 +67,8 @@
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/buttonforquitter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Press the button below if you want to smoke" />
 
 
     <android.support.constraint.ConstraintLayout
