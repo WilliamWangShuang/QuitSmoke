@@ -49,22 +49,20 @@
         app:style="solid_line" />
 
 
-
-
     <TextView
         android:id="@+id/pressButton"
-        android:layout_width="257dp"
+        android:layout_width="211dp"
         android:layout_height="17dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/title_panic_button"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textSize="12sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/buttonforquitter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
