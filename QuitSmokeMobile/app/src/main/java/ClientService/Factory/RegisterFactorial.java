@@ -43,7 +43,7 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         // check if a user with same email is already exist
         try {
-            String result = QuitSmokeUserWebservice.saveRegisterResident(registerInfoUI);
+            result = QuitSmokeUserWebservice.saveRegisterResident(registerInfoUI);
             Log.d("QuitSmokeDebug", "Result from backend save new resident:" + result);
             if (QuitSmokeClientConstant.EMAIL_EXIST.equals(result)) {
                 h.sendEmptyMessage(1);
@@ -81,7 +81,6 @@ public class RegisterFactorial extends AsyncTask<Void, Void, Void> {
                     QuitSmokeClientUtils.setGender(registerInfoUI.getGender());
                     QuitSmokeClientUtils.setIsSmoker(registerInfoUI.isSmoker());
                     QuitSmokeClientUtils.setIsPartner(registerInfoUI.isPartner());
-                    QuitSmokeClientUtils.setUid(result);
 
                     // clear text field background color and error message
                     tvEmail.setBackgroundColor(activity.getResources().getColor(R.color.whiteBg));

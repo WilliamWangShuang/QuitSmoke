@@ -61,7 +61,7 @@ public class ApprovePlanDialogFragment extends DialogFragment implements IApprov
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(view)
                 // Add action buttons
-                .setPositiveButton("Approve", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String userInputAmount = txtTargetAmount.getText().toString();

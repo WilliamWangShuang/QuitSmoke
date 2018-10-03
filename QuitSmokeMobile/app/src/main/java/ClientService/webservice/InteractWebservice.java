@@ -22,7 +22,7 @@ public class InteractWebservice {
         String uri = QuitSmokeClientConstant.WEB_SERVER_BASE_URI + QuitSmokeClientConstant.CHECK_PARTNER;
 
         // call ws on server side to get calculation result
-        result = Boolean.parseBoolean(BaseWebservice.postWSForGetRestrievePlainText(uri, QuitSmokeClientUtils.getUid()));
+        result = Boolean.parseBoolean(BaseWebservice.postWSForGetRestrievePlainText(uri, QuitSmokeClientUtils.getSmokerNodeName()));
         Log.d("QuitSmokeDebug", "ws result from server:" + result);
         return result;
     }

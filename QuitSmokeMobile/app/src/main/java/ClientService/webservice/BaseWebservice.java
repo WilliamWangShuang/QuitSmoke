@@ -257,6 +257,8 @@ public class BaseWebservice {
                         // if this is a register request, set value of smoker node name
                         JSONObject smokerNodeNameJson = new JSONObject(httpMsg);
                         QuitSmokeClientUtils.setSmokerNodeName(smokerNodeNameJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_NAME));
+                        // set application uid value
+                        QuitSmokeClientUtils.setUid(smokerNodeNameJson.getString(QuitSmokeClientConstant.WS_JSON_USER_KEY_UID));
                     }
                 }
             }else{
@@ -491,7 +493,7 @@ public class BaseWebservice {
     public static String postWSForGetRestrievePlainText(String serviceUrl, String variable) throws IOException {
         // response result
         String result = null;
-
+        Log.d("QuitSmokeDebug", "serviceUrl:" + serviceUrl + ",variable:" + variable);
         // declare a url connection
         HttpURLConnection urlConnection = null;
 

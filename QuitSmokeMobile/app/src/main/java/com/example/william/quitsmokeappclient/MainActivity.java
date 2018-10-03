@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity
                 || "".equals(pwdInPreference)) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("email", QuitSmokeClientUtils.getEmail());
-            editor.putString("pwd", QuitSmokeClientUtils.getPassword());
+            editor.putString("pwd", QuitSmokeClientUtils.encryptPwd(QuitSmokeClientUtils.getPassword()));
             editor.commit();
         }
 
@@ -270,7 +270,13 @@ public class MainActivity extends AppCompatActivity
         android.support.v4.app.Fragment fragment = null;
         if (QuitSmokeClientUtils.isIsSmoker() && !QuitSmokeClientUtils.isIsPartner()) {
             boolean isFromRegister = getIntent().getBooleanExtra("isFromRegister", false);
-            fragment = isFromRegister ? new CreatePlanFragment() : new SmokerMainFragment();
+            if (isFromRegister) {
+                fragment = new CreatePlanFragment();
+                // remove isFromRegister value from intent after register
+                getIntent().removeExtra("isFromRegister");
+            } else {
+                fragment = new SmokerMainFragment();
+            }
         } else if (!QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
             fragment = new PartnerMainFragment();
         } else if (QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
@@ -289,7 +295,7 @@ public class MainActivity extends AppCompatActivity
             if(Build.VERSION.SDK_INT > 11) {
                 invalidateOptionsMenu();
                 menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.create_plan).setVisible(false);
-                //menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.write_report).setVisible(false);
+                menu.findItem(R.id.interaction_sub_menu).getSubMenu().findItem(R.id.write_report).setVisible(false);
                 btnFrag_create_plan_go.setVisibility(GONE);
             }
         } else if (QuitSmokeClientUtils.isIsSmoker() && QuitSmokeClientUtils.isIsPartner()) {
