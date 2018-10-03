@@ -157,6 +157,7 @@
             android:background="@drawable/buttonforall"
             android:enabled="false"
             android:text="Set Milestone"
+            android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
