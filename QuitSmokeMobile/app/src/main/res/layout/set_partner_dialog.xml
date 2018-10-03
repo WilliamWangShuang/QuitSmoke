@@ -7,7 +7,8 @@
     android:layout_marginRight="13dp"
     android:layout_marginBottom="18dp"
     android:layout_marginLeft="13dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#1e5d9f27">
 
     <TextView
         android:id="@+id/tvSetSupporter"

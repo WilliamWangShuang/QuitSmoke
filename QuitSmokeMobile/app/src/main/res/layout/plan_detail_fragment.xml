@@ -21,9 +21,11 @@
         android:text="@string/title_plan_detail_progress"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/colorWhite"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Your Quitter's Monthly Cigarette Quota" />
 
     <com.dinuscxj.progressbar.CircleProgressBar
         android:id="@+id/custom_plan_detail_progress"
