@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_create_plan_empty_target"
+            android:id="@+id/tv_create_plan_no_partner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
@@ -17,7 +17,7 @@
             android:textColor="@color/errorBackgound"/>
 
         <TextView
-            android:id="@+id/tv_create_plan_no_partner"
+            android:id="@+id/tv_create_plan_empty_target"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
