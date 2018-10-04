@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity
                 || "".equals(pwdInPreference)) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("email", QuitSmokeClientUtils.getEmail());
-            editor.putString("pwd", QuitSmokeClientUtils.encryptPwd(QuitSmokeClientUtils.getPassword()));
+            editor.putString("pwd", QuitSmokeClientUtils.getPassword());
             editor.commit();
         }
 
