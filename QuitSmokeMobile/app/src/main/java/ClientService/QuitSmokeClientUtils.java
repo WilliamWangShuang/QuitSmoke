@@ -467,10 +467,10 @@ public class QuitSmokeClientUtils extends Application {
     }
 
     public static String escapeString(String str) {
-        return str.replaceAll("\n", "＼ｎ");
+        return str.replaceAll("\n", "＼ｎ").replaceAll("/","／");
     }
 
     public static String recoverString(String str) {
-        return str.replaceAll("＼ｎ", "\n");
+        return str.replaceAll("＼ｎ", "\n").replaceAll("／", "/");
     }
 }
