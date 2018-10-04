@@ -10,11 +10,15 @@ import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import com.example.william.quitsmokeappclient.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import clientservice.QuitSmokeClientConstant;
 import clientservice.factory.UpdateEncouragementFactorial;
@@ -72,8 +76,16 @@ public class SetEncouragementDialogFragement extends DialogFragment implements I
 
     @Override
     public void processFinish(String reponseResult) {
-        if (QuitSmokeClientConstant.INDICATOR_Y.equals(reponseResult))
+        if (QuitSmokeClientConstant.INDICATOR_Y.equals(reponseResult)) {
             tvMessage.setText(succMessage);
+            Timer t = new Timer(false);
+            t.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    tvMessage.setText("");
+                }
+            }, 2000);
+        }
         else
             tvMessage.setText(errorMessage);
     }
