@@ -204,7 +204,7 @@ public class QuitSmokeClientUtils extends Application {
     public static boolean validatePwdFormat(String str, String message, TextView msgView) {
         boolean result = false;
         // check if the string is a strong password. At least 8 length. Contains at least 1 special character, 1 lower&upper letter, and 1 number
-        if(!str.trim().matches("^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$")){
+        if(!str.trim().matches("^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$")){
             result = false;
             msgView.setText(message);
         } else {
