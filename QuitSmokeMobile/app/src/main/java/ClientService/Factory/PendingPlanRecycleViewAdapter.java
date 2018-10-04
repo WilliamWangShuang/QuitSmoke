@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.example.william.quitsmokeappclient.Interface.IPlanRecycleItemClick;
 import com.example.william.quitsmokeappclient.R;
 import java.util.ArrayList;
+
+import clientservice.QuitSmokeClientConstant;
 import clientservice.entities.PlanEntity;
 
 public class PendingPlanRecycleViewAdapter extends RecyclerView.Adapter<PendingPlanRecycleViewAdapter.MyViewHolder> {
@@ -26,14 +28,20 @@ public class PendingPlanRecycleViewAdapter extends RecyclerView.Adapter<PendingP
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvTargetAmount = (TextView)itemView.findViewById(R.id.plan_item_target_amount);
-            tvStatus = (TextView)itemView.findViewById(R.id.plan_item_status);
-            tvCreateDate = (TextView)itemView.findViewById(R.id.plan_item_create_date);
-            tvRealAmount = (TextView)itemView.findViewById(R.id.plan_real_amount);
+            tvTargetAmount = (TextView) itemView.findViewById(R.id.plan_item_target_amount);
+            tvStatus = (TextView) itemView.findViewById(R.id.plan_item_status);
+            tvCreateDate = (TextView) itemView.findViewById(R.id.plan_item_create_date);
+            tvRealAmount = (TextView) itemView.findViewById(R.id.plan_real_amount);
         }
 
         public void bind(final PlanEntity item, final IPlanRecycleItemClick listener) {
-            tvTargetAmount.setText("Target Amount of this plan:" + item.getTargetAmount());
+            String prefixStr;
+            if (QuitSmokeClientConstant.STATUS_APPROVE.equals(item.getStatus())) {
+                prefixStr = "Target of this plan:";
+            } else {
+                prefixStr = "Target Amount set By your quitter:";
+            }
+            tvTargetAmount.setText(prefixStr + item.getTargetAmount());
             tvStatus.setText(item.getStatus());
             tvCreateDate.setText(item.getCreateDate());
             tvRealAmount.setText("Real Amount Taken By your Partner:" + item.getRealAmount());
@@ -47,7 +55,7 @@ public class PendingPlanRecycleViewAdapter extends RecyclerView.Adapter<PendingP
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public PendingPlanRecycleViewAdapter(ArrayList<PlanEntity> mDataset, IPlanRecycleItemClick listener) {
+    public PendingPlanRecycleViewAdapter(ArrayList<PlanEntity> mDataset,IPlanRecycleItemClick listener) {
         this.mDataset = mDataset;
         this.listener = listener;
     }

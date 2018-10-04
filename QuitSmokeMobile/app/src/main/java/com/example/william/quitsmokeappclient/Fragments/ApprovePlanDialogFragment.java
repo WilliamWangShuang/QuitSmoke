@@ -67,7 +67,7 @@ public class ApprovePlanDialogFragment extends DialogFragment implements IApprov
                         String userInputAmount = txtTargetAmount.getText().toString();
                         // if supporter not type in a numbear, show error mesgage. Otherwise, approve the plan
                         if (userInputAmount == null || "".equals(userInputAmount)) {
-                            Toast.makeText(myContext, "Please enater a number.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(myContext, "Please enter a number.", Toast.LENGTH_SHORT).show();
                         } else {
                             amount = Integer.parseInt(userInputAmount);
                             // Inflate and set the layout for the dialog
