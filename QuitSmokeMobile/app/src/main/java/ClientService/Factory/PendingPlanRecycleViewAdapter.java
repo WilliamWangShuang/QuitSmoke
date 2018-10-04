@@ -33,7 +33,7 @@ public class PendingPlanRecycleViewAdapter extends RecyclerView.Adapter<PendingP
         }
 
         public void bind(final PlanEntity item, final IPlanRecycleItemClick listener) {
-            tvTargetAmount.setText("Target Amount Set By your Partner:" + item.getTargetAmount());
+            tvTargetAmount.setText("Target Amount of this plan:" + item.getTargetAmount());
             tvStatus.setText(item.getStatus());
             tvCreateDate.setText(item.getCreateDate());
             tvRealAmount.setText("Real Amount Taken By your Partner:" + item.getRealAmount());
