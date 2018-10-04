@@ -55,6 +55,8 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/edit_text_style"
         android:hint="@string/smoke_per_day"
+        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:inputType="number"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
