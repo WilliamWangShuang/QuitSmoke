@@ -43,6 +43,7 @@ public class GameFragment extends Fragment {
         //Initializing game view object
         gameView = new GameView(mContext, size.x, size.y);
 
+        // initialize restart button
         Button btnRestart = new Button(mContext);
         btnRestart.setText("Restart");
         btnRestart.setOnClickListener(new View.OnClickListener() {
@@ -52,16 +53,20 @@ public class GameFragment extends Fragment {
                 gameView.resume();
             }
         });
-        btnRestart.setOnClickListener(new View.OnClickListener() {
+        // initialize go back game home page button
+        Button btnBack = new Button(mContext);
+        btnBack.setText("Back");
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameView.reset();
-                gameView.resume();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new GameMainFragment()).commit();;
             }
         });
         FrameLayout game = new FrameLayout(mContext);
         LinearLayout gameWidgets = new LinearLayout(mContext);
         gameWidgets.addView(btnRestart);
+        gameWidgets.addView(btnBack);
         game.addView(gameView);
         game.addView(gameWidgets);
         return game;
