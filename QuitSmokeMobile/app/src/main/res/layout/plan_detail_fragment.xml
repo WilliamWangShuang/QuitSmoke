@@ -38,7 +38,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:drawBackgroundOutsideProgress="true"
-        app:layout_constraintBottom_toTopOf="@+id/pressButton"
+        app:layout_constraintBottom_toTopOf="@+id/empty_to_stay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plan_detail_progress"
@@ -54,7 +54,7 @@
 
 
     <TextView
-        android:id="@+id/pressButton"
+        android:id="@+id/empty_to_stay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -65,14 +65,10 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="@string/title_update_encouragement"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintBottom_toTopOf="@+id/btn_update_encouragement"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/empty_to_connect"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
     <android.support.constraint.ConstraintLayout
@@ -83,14 +79,56 @@
         android:layout_marginRight="25dp"
         android:background="#4757a6f5"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btn_update_encouragement"
+        app:layout_constraintEnd_toEndOf="@+id/empty_to_connect"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
 
-        
+        <TextView
+            android:id="@+id/pressButton"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/title_update_encouragement"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.100000024" />
 
-
+        <Button
+            android:id="@+id/btn_update_encouragement"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/ic_add_circle_white_24dp"
+            android:backgroundTint="#ffffff"
+            android:enabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pressButton"
+            app:layout_constraintVertical_bias="1.0" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -102,7 +140,7 @@
         android:background="#47399176"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btn_update_encouragement"
+        app:layout_constraintStart_toStartOf="@+id/empty_to_connect"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout5">
 
 
@@ -110,8 +148,8 @@
             android:id="@+id/tv_plan_detail_milestone_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
@@ -120,8 +158,8 @@
             android:text="@string/milestone_title"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold"
             android:textSize="14dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,12 +188,12 @@
             android:id="@+id/btn_set_milestone"
             android:layout_width="123dp"
             android:layout_height="28dp"
-            android:layout_marginBottom="40dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/buttonforall"
             android:enabled="false"
             android:text="Set Milestone"
@@ -186,7 +224,7 @@
 
     <TextView
         android:id="@+id/tvMessage"
-        android:layout_width="300dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
@@ -195,19 +233,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_update_encouragement"
+        app:layout_constraintTop_toBottomOf="@+id/empty_to_connect"
         app:layout_constraintVertical_bias="0.45" />
 
-    <Button
-        android:id="@+id/btn_update_encouragement"
+    <TextView
+        android:id="@+id/empty_to_connect"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/ic_add_circle_white_24dp"
-        android:backgroundTint="#ffffff"
-        android:enabled="false"
+        android:text=""
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
