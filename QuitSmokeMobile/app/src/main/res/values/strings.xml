@@ -67,7 +67,7 @@
     <string name="register_hint_price_per_pack">Price of usual pack of smokes</string>
     <string name="next">back</string>
     <string name="survey_start_btn">Find Out your Quit Chance</string>
-    <string name="motive">Top Motivators</string>
+    <string name="motive">Find out the Top Motivators</string>
     <string name="back">Back</string>
     <string name="hint_chol">Cholesterol is one of three major classes of lipids which all animal cells use to construct their membranes and is thus manufactured by all animal cells. High cholesterol, is the presence of high levels of cholesterol in the blood. It is a form of high blood lipids and hyperlipoproteinemia</string>
     <string name="hint_sbp">Measures the pressure in your blood vessels when your heart rests between beats. If the measurement reads you 120/80 mmHg, the first number and larger one, 120 is your SBP.</string>
@@ -89,7 +89,7 @@
     <string name="target_amount">Target Amount:</string>
     <string name="status_of_plan">Plan Status:</string>
     <string name="real_amount_from_smoker">Current Real Amount:</string>
-    <string name="title_your_progress">Your Cigarette Quota</string>
+    <string name="title_your_progress">Your Monthly Cigarette Quota</string>
     <string name="title_plan_detail_progress">Your Quitter\'s Cigarette Quota</string>
     <string name="title_panic_button">Press the button if you want to smoke</string>
     <string name="title_update_encouragement">Press the button below to update your encouragement</string>

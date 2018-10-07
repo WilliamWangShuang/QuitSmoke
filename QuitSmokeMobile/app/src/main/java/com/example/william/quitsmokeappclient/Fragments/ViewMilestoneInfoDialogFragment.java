@@ -54,7 +54,7 @@ public class ViewMilestoneInfoDialogFragment extends DialogFragment {
         // get message value from bundle
         int message = getArguments().getInt("message");
         tvMessage.setText(String.format("You have insist %d days.", message));
-        tvReward.setText(String.format("Your partner promise: %s", QuitSmokeClientUtils.getReward()));
+        tvReward.setText(String.format("Your reward is: %s", QuitSmokeClientUtils.getReward()));
 
         // Initialize the SDK before executing any other operations,
         FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
