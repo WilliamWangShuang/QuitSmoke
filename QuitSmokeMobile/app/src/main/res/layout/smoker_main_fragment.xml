@@ -53,20 +53,20 @@
 
     <TextView
         android:id="@+id/pressButton"
-        android:layout_width="244dp"
-        android:layout_height="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:text="@string/title_panic_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:textStyle="bold"
         android:textColor="@color/colorWhite"
-        app:layout_constraintBottom_toTopOf="@+id/buttonforquitter"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Press the button below if you want to smoke" />
@@ -227,14 +227,15 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
         android:layout_width="45dp"
         android:layout_height="45dp"
+        android:elevation="@dimen/activity_horizontal_margin"
         app:layout_constraintBottom_toBottomOf="@+id/buttonforquitter"
         app:layout_constraintEnd_toEndOf="@+id/buttonforquitter"
         app:layout_constraintStart_toStartOf="@+id/buttonforquitter"
         app:layout_constraintTop_toTopOf="@+id/buttonforquitter"
-        app:srcCompat="@drawable/ic_smoking_rooms_white_24dp"
-        android:elevation="@dimen/activity_horizontal_margin"/>
+        app:srcCompat="@drawable/ic_smoking_rooms_white_24dp" />
 
     <Button
         android:id="@+id/buttonforquitter"
