@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 
 import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;

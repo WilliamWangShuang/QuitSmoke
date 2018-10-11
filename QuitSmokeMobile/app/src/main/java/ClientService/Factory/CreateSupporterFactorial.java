@@ -8,8 +8,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
-import com.example.william.quitsmokeappclient.MainActivity;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.MainActivity;
+import com.quitsmoke.william.quitsmokeappclient.R;
 
 import clientservice.QuitSmokeClientConstant;
 import clientservice.entities.UpdatePartnerEntity;

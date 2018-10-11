@@ -12,9 +12,9 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.william.quitsmokeappclient.Interface.ILoadNoSmokePlaceAsyncResponse;
-import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.Interface.ILoadNoSmokePlaceAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.R;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;

@@ -9,9 +9,9 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.william.quitsmokeappclient.CreateSupporterActivity;
-import com.example.william.quitsmokeappclient.MainActivity;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.CreateSupporterActivity;
+import com.quitsmoke.william.quitsmokeappclient.MainActivity;
+import com.quitsmoke.william.quitsmokeappclient.R;
 
 import clientservice.QuitSmokeClientConstant;
 import clientservice.entities.UserInfoEntity;

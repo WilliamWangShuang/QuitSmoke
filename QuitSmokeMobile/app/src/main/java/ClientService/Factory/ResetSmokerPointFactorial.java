@@ -13,8 +13,8 @@ import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.william.quitsmokeappclient.Fragments.CreatePlanErrorFragement;
-import com.example.william.quitsmokeappclient.MainActivity;
+import com.quitsmoke.william.quitsmokeappclient.Fragments.CreatePlanErrorFragement;
+import com.quitsmoke.william.quitsmokeappclient.MainActivity;
 
 import org.json.JSONException;
 

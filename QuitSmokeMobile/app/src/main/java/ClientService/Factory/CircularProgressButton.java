@@ -15,7 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.AppCompatButton;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.R;
 
 
 public class CircularProgressButton extends AppCompatButton {

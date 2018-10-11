@@ -6,7 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import com.example.william.quitsmokeappclient.Interface.ILoadNoSmokePlaceAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.Interface.ILoadNoSmokePlaceAsyncResponse;
 import java.util.List;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.db.QuitSmokeDbUtility;

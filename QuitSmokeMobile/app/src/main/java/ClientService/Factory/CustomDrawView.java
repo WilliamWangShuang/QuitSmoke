@@ -18,7 +18,7 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.R;
 import clientservice.QuitSmokeClientUtils;
 
 public class CustomDrawView extends android.support.v7.widget.AppCompatTextView {

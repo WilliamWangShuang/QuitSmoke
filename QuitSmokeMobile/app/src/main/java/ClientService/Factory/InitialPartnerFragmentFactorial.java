@@ -2,7 +2,7 @@ package clientservice.factory;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import com.example.william.quitsmokeappclient.Interface.IGetPendingPlanResultAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.Interface.IGetPendingPlanResultAsyncResponse;
 import java.util.ArrayList;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;

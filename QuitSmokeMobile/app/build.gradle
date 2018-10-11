@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.william.quitsmokeappclient"
+        applicationId "com.quitsmoke.william.quitsmokeappclient"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1

@@ -2,7 +2,7 @@ package clientservice.factory;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import com.example.william.quitsmokeappclient.Interface.IApprovePlanAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.Interface.IApprovePlanAsyncResponse;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.InteractWebservice;
 

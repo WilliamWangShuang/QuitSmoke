@@ -8,7 +8,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.R;
 import clientservice.entities.CalculateFrsEntity;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.QuitSmokerReportWebservice;

@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import java.util.Random;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.R;
 
 public class Enemy {
     private Bitmap bitmap;

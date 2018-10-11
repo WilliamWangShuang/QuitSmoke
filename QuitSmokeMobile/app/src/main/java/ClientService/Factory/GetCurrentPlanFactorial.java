@@ -12,13 +12,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.dinuscxj.progressbar.CircleProgressBar;
-import com.example.william.quitsmokeappclient.Fragments.MessageDialogFragment;
-import com.example.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.Fragments.MessageDialogFragment;
+import com.quitsmoke.william.quitsmokeappclient.Interface.IUpdatePartnerAsyncResponse;
 import clientservice.QuitSmokeClientConstant;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.entities.PlanEntity;
 import clientservice.webservice.InteractWebservice;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.R;
 
 public class GetCurrentPlanFactorial extends AsyncTask<Void, Void, String> {
     private Activity smokerMainActivity;

@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.william.quitsmokeappclient.Fragments.MainFragment;
-import com.example.william.quitsmokeappclient.Fragments.PartnerMainFragment;
-import com.example.william.quitsmokeappclient.Fragments.SmokerMainFragment;
+import com.quitsmoke.william.quitsmokeappclient.Fragments.MainFragment;
+import com.quitsmoke.william.quitsmokeappclient.Fragments.PartnerMainFragment;
+import com.quitsmoke.william.quitsmokeappclient.Fragments.SmokerMainFragment;
 
 public class SwitchMainAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;

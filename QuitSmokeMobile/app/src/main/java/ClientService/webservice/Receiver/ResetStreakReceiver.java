@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.william.quitsmokeappclient.Interface.ILoadNoSmokePlaceAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.Interface.ILoadNoSmokePlaceAsyncResponse;
 
 import java.util.List;
 

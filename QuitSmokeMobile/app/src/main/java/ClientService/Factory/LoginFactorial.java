@@ -10,9 +10,9 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.william.quitsmokeappclient.Interface.IApprovePlanAsyncResponse;
-import com.example.william.quitsmokeappclient.MainActivity;
-import com.example.william.quitsmokeappclient.R;
+import com.quitsmoke.william.quitsmokeappclient.Interface.IApprovePlanAsyncResponse;
+import com.quitsmoke.william.quitsmokeappclient.MainActivity;
+import com.quitsmoke.william.quitsmokeappclient.R;
 import clientservice.entities.UserInfoEntity;
 import clientservice.QuitSmokeClientUtils;
 import clientservice.webservice.QuitSmokeUserWebservice;
